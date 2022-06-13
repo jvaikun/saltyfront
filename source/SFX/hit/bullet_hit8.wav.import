@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bullet_hit8.wav-c2777fd2e05d90317d9353565567f3b4.sample"
+
+[deps]
+
+source_file="res://SFX/hit/bullet_hit8.wav"
+dest_files=[ "res://.import/bullet_hit8.wav-c2777fd2e05d90317d9353565567f3b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

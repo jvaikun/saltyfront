@@ -1,0 +1,856 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://Arena/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Game.gd" type="Script" id=2]
+[ext_resource path="res://Game/BGMPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/fonts/font_dialog.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Game/bg_shop.png" type="Texture" id=5]
+[ext_resource path="res://ui/Bracket.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://Game/Announcer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/tournament/Tournament.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Game/VersusHeader.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Effects/transition/doom_melt.shader" type="Shader" id=11]
+[ext_resource path="res://Game/BetInfo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/MechInfo.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Game/announcer1.png" type="Texture" id=14]
+[ext_resource path="res://Game/announcer2.png" type="Texture" id=15]
+[ext_resource path="res://Effects/transition/dissolve.shader" type="Shader" id=16]
+[ext_resource path="res://ui/TourStats.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Game/MatchStats.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/gift/gift_node.gd" type="Script" id=19]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://scenes/hangar/Hangar.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Game/door_outer_right.png" type="Texture" id=22]
+[ext_resource path="res://Game/door_outer_left.png" type="Texture" id=23]
+[ext_resource path="res://Game/door_inner_left.png" type="Texture" id=24]
+[ext_resource path="res://Game/door_inner_right.png" type="Texture" id=25]
+[ext_resource path="res://SFX/door/door_thud.wav" type="AudioStream" id=26]
+[ext_resource path="res://SFX/door/door_slam.wav" type="AudioStream" id=27]
+[ext_resource path="res://SFX/door/door_move.wav" type="AudioStream" id=28]
+[ext_resource path="res://Game/SignupUI.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/bootup/SystemDialog.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Game/icon_web.png" type="Texture" id=31]
+[ext_resource path="res://Game/icon_discord.png" type="Texture" id=32]
+[ext_resource path="res://ui/fonts/ui_font_med.tres" type="DynamicFont" id=33]
+[ext_resource path="res://Game/icon_twitter.png" type="Texture" id=34]
+[ext_resource path="res://Game/icon_reddit.png" type="Texture" id=35]
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 1, 1, 1, 0.25098 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 40
+font_data = ExtResource( 20 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.5, 1, 0.5, 1 )
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 11 )
+shader_param/progress = 0.0
+shader_param/bars = 64
+shader_param/amplitude = 2.0
+shader_param/frequency = 0.5
+
+[sub_resource type="Animation" id=23]
+resource_name = "dissolve"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../UI/ScreenBuffer:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../UI/ScreenBuffer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "dissolve_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RectFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RectFade:material:shader_param/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "dissolve_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RectFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RectFade:material:shader_param/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorInL:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 5, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -480, 0 ), Vector2( 480, 0 ), Vector2( 472, 0 ), Vector2( 480, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorInR:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 5, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 960, 0 ), Vector2( 968, 0 ), Vector2( 960, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorOutL:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 5, 1 ),
+"update": 0,
+"values": [ Vector2( -480, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorOutR:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 5, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 1440, 0 ) ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("DoorMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 28 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("DoorSlam")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 27 )
+} ],
+"times": PoolRealArray( 0.8 )
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("DoorThud")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 26 )
+} ],
+"times": PoolRealArray( 1 )
+}
+
+[sub_resource type="Animation" id=9]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorInL:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 5 ),
+"update": 0,
+"values": [ Vector2( 480, 0 ), Vector2( 472, 0 ), Vector2( 480, 0 ), Vector2( -480, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorInR:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 5 ),
+"update": 0,
+"values": [ Vector2( 960, 0 ), Vector2( 968, 0 ), Vector2( 960, 0 ), Vector2( 1920, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorOutL:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( -480, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorOutR:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 5 ),
+"update": 0,
+"values": [ Vector2( 1440, 0 ), Vector2( 1440, 0 ), Vector2( 1920, 0 ) ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("DoorMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 28 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("DoorThud")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 26 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("RectFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorInL:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 480, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorInR:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 960, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorOutL:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DoorOutR:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1440, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("RectFade:material:shader_param/progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RectFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorInL:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 480, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorInR:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 960, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorOutL:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DoorOutR:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1440, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("RectFade:material:shader_param/progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="ShaderMaterial" id=29]
+shader = ExtResource( 16 )
+shader_param/progress = 0.0
+shader_param/diamondPixelSize = 32.0
+
+[sub_resource type="DynamicFont" id=12]
+size = 48
+outline_size = 1
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id=13]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[node name="Game" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Tournament" parent="." instance=ExtResource( 9 )]
+
+[node name="Arena" parent="." instance=ExtResource( 1 )]
+
+[node name="Hangar" parent="." instance=ExtResource( 21 )]
+
+[node name="ChatBot" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TweenUI" type="Tween" parent="."]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SocialMedia" type="PanelContainer" parent="UI"]
+anchor_top = 0.95
+anchor_right = 1.0
+anchor_bottom = 0.95
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="HBoxContainer" parent="UI/SocialMedia"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1920.0
+margin_bottom = 32.0
+grow_horizontal = 2
+custom_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/SocialMedia/ItemList"]
+margin_left = 481.0
+margin_right = 513.0
+margin_bottom = 32.0
+texture = ExtResource( 31 )
+stretch_mode = 4
+
+[node name="Website" type="Label" parent="UI/SocialMedia/ItemList"]
+margin_left = 545.0
+margin_right = 712.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "saltyfront.net"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="UI/SocialMedia/ItemList"]
+margin_left = 744.0
+margin_right = 776.0
+margin_bottom = 32.0
+texture = ExtResource( 34 )
+stretch_mode = 4
+
+[node name="Twitter" type="Label" parent="UI/SocialMedia/ItemList"]
+margin_left = 808.0
+margin_right = 951.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "@salty_front"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="UI/SocialMedia/ItemList"]
+margin_left = 983.0
+margin_right = 1015.0
+margin_bottom = 32.0
+texture = ExtResource( 35 )
+stretch_mode = 4
+
+[node name="Reddit" type="Label" parent="UI/SocialMedia/ItemList"]
+margin_left = 1047.0
+margin_right = 1190.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "r/saltyfront"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="UI/SocialMedia/ItemList"]
+margin_left = 1222.0
+margin_right = 1254.0
+margin_bottom = 32.0
+texture = ExtResource( 32 )
+stretch_mode = 4
+
+[node name="Discord" type="Label" parent="UI/SocialMedia/ItemList"]
+margin_left = 1286.0
+margin_right = 1439.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Link in About"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SignupUI" parent="UI" instance=ExtResource( 29 )]
+visible = false
+anchor_top = 0.1
+anchor_bottom = 0.1
+rect_min_size = Vector2( 940, 0 )
+size_flags_horizontal = 3
+
+[node name="VersusHeader" parent="UI" instance=ExtResource( 10 )]
+
+[node name="PreFight" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MechInfo" parent="UI/PreFight" instance=ExtResource( 13 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -252.0
+margin_right = 437.0
+margin_bottom = 252.0
+size_flags_horizontal = 1
+
+[node name="Body" type="VBoxContainer" parent="UI/PreFight"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -980.0
+margin_top = -252.0
+margin_bottom = 252.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="PanelContainer" parent="UI/PreFight/Body"]
+margin_right = 980.0
+margin_bottom = 179.0
+rect_min_size = Vector2( 980, 0 )
+custom_styles/panel = ExtResource( 7 )
+
+[node name="Body" type="VBoxContainer" parent="UI/PreFight/Body/Help"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 962.0
+margin_bottom = 161.0
+
+[node name="Title" type="Label" parent="UI/PreFight/Body/Help/Body"]
+margin_right = 944.0
+margin_bottom = 31.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "HOW TO BET"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="RichTextLabel" parent="UI/PreFight/Body/Help/Body"]
+margin_top = 35.0
+margin_right = 944.0
+margin_bottom = 143.0
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+custom_fonts/normal_font = ExtResource( 33 )
+bbcode_enabled = true
+bbcode_text = "Type commands in chat:
+[color=white]!register[/color] to register your username
+[color=white]!bet amount team[/color] to bet <amount> credits on <team>
+[color=white]!balance[/color] - Check your credit balance"
+text = "Type commands in chat:
+!register to register your username
+!bet amount team to bet <amount> credits on <team>
+!balance - Check your credit balance"
+fit_content_height = true
+
+[node name="BetInfo" parent="UI/PreFight/Body" instance=ExtResource( 12 )]
+margin_top = 179.0
+margin_right = 980.0
+margin_bottom = 312.0
+
+[node name="TourBracket" parent="UI" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Stats" parent="UI" instance=ExtResource( 18 )]
+visible = false
+anchor_top = 0.55
+anchor_bottom = 0.55
+margin_left = -563.5
+margin_right = 563.5
+
+[node name="TourStats" parent="UI" instance=ExtResource( 17 )]
+visible = false
+
+[node name="ScreenBuffer" type="TextureRect" parent="UI"]
+material = SubResource( 21 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGMPlayer" parent="." instance=ExtResource( 3 )]
+
+[node name="Transition" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+anims/dissolve = SubResource( 23 )
+anims/dissolve_in = SubResource( 25 )
+anims/dissolve_out = SubResource( 26 )
+anims/door_close = SubResource( 8 )
+anims/door_open = SubResource( 9 )
+anims/fade_in = SubResource( 10 )
+anims/fade_out = SubResource( 18 )
+
+[node name="DoorInL" type="TextureRect" parent="Transition"]
+margin_left = -480.0
+margin_right = 0.00299072
+margin_bottom = 1080.0
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoorInR" type="TextureRect" parent="Transition"]
+margin_left = 1920.0
+margin_right = 2400.0
+margin_bottom = 1080.0
+texture = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoorOutL" type="TextureRect" parent="Transition"]
+margin_left = -480.0
+margin_bottom = 1080.0
+texture = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoorOutR" type="TextureRect" parent="Transition"]
+margin_left = 1920.0
+margin_right = 2400.01
+margin_bottom = 1080.0
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RectFade" type="ColorRect" parent="Transition"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 29 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoorMove" type="AudioStreamPlayer" parent="Transition"]
+stream = ExtResource( 28 )
+
+[node name="DoorSlam" type="AudioStreamPlayer" parent="Transition"]
+stream = ExtResource( 27 )
+
+[node name="DoorThud" type="AudioStreamPlayer" parent="Transition"]
+stream = ExtResource( 26 )
+
+[node name="Bootup" parent="Transition" instance=ExtResource( 30 )]
+size_flags_horizontal = 4
+
+[node name="Announcer" parent="." instance=ExtResource( 8 )]
+visible = false
+anchor_top = 0.2
+anchor_bottom = 0.2
+char_face = ExtResource( 14 )
+char_name = "Biff"
+
+[node name="Announcer2" parent="." instance=ExtResource( 8 )]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.2
+margin_left = -512.0
+margin_right = 0.0
+grow_horizontal = 0
+char_face = ExtResource( 15 )
+char_name = "Sully"
+
+[node name="Disclaimer" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -136.0
+margin_right = 247.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+custom_styles/normal = SubResource( 11 )
+text = "ALPHA VERSION
+ALL ASSETS ARE
+PLACEHOLDERS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Disclaimer2" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -247.0
+margin_top = -136.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+text = "ALPHA VERSION
+ALL ASSETS ARE
+PLACEHOLDERS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="Transition/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="boot_done" from="Transition/Bootup" to="." method="_on_Bootup_boot_done"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/icons/icon_melee.png" type="Texture" id=2]
+[ext_resource path="res://Game/PartInfo.gd" type="Script" id=3]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 1, 0, 1 )
+
+[node name="PartInfo" type="VBoxContainer"]
+margin_right = 146.0
+margin_bottom = 23.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PartName" type="Label" parent="."]
+margin_right = 186.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Part Name"
+
+[node name="Body" type="HBoxContainer" parent="."]
+margin_top = 23.0
+margin_right = 186.0
+margin_bottom = 87.0
+
+[node name="PartIcon" type="TextureRect" parent="Body"]
+modulate = Color( 0, 1, 0, 1 )
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="PartInfo" type="Label" parent="Body"]
+margin_left = 68.0
+margin_top = 22.0
+margin_right = 186.0
+margin_bottom = 41.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Part Info"

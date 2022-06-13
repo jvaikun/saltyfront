@@ -1,0 +1,416 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/icons/icon_combat.png" type="Texture" id=1]
+[ext_resource path="res://ui/Bracket.gd" type="Script" id=2]
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Game/TeamList.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/title/title_bg.png" type="Texture" id=5]
+
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 1, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TourBracket" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Team1" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 544, 216, 664, 216, 664, 272 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team2" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 544, 440, 664, 440, 664, 376 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team3" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 544, 640, 664, 640, 664, 704 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team4" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 544, 864, 664, 864, 664, 808 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team5" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1376, 216, 1256, 216, 1256, 272 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team6" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1376, 448, 1256, 448, 1256, 376 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team7" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1376, 640, 1256, 640, 1256, 704 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Team8" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1376, 864, 1256, 864, 1256, 808 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="QF1Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 704, 320, 792, 320, 792, 496 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="QF2Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 704, 752, 792, 752, 792, 600 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="QF3Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1216, 320, 1128, 320, 1128, 496 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="QF4Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1216, 760, 1128, 760, 1128, 600 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="SF1Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 832, 552, 872, 552, 872, 496, 920, 496 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="SF2Win" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 1088, 552, 1048, 552, 1048, 496, 1000, 496 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="FinalWin" type="Line2D" parent="Lines"]
+points = PoolVector2Array( 960, 448, 960, 328 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="LeftSide" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team1" parent="LeftSide" instance=ExtResource( 4 )]
+margin_top = 126.0
+margin_bottom = 309.0
+
+[node name="Team2" parent="LeftSide" instance=ExtResource( 4 )]
+margin_top = 341.0
+margin_bottom = 524.0
+
+[node name="Team3" parent="LeftSide" instance=ExtResource( 4 )]
+margin_top = 556.0
+margin_bottom = 739.0
+
+[node name="Team4" parent="LeftSide" instance=ExtResource( 4 )]
+margin_top = 771.0
+margin_bottom = 954.0
+
+[node name="RightSide" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -548.0
+grow_horizontal = 0
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team5" parent="RightSide" instance=ExtResource( 4 )]
+margin_top = 126.0
+margin_bottom = 309.0
+grow_horizontal = 0
+
+[node name="Team6" parent="RightSide" instance=ExtResource( 4 )]
+margin_top = 341.0
+margin_bottom = 524.0
+grow_horizontal = 0
+
+[node name="Team7" parent="RightSide" instance=ExtResource( 4 )]
+margin_top = 556.0
+margin_bottom = 739.0
+grow_horizontal = 0
+
+[node name="Team8" parent="RightSide" instance=ExtResource( 4 )]
+margin_top = 771.0
+margin_bottom = 954.0
+grow_horizontal = 0
+
+[node name="Champ" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -274.0
+margin_right = 274.0
+grow_horizontal = 2
+
+[node name="Quarterfinal1" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 624.0
+margin_top = 272.0
+margin_right = 704.0
+margin_bottom = 375.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quarterfinal1"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Quarterfinal1/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Quarterfinal1/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "QF 1"
+align = 1
+
+[node name="Quarterfinal2" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 624.0
+margin_top = 704.0
+margin_right = 704.0
+margin_bottom = 807.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quarterfinal2"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Quarterfinal2/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Quarterfinal2/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "QF 2"
+align = 1
+
+[node name="Quarterfinal3" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 1216.0
+margin_top = 272.0
+margin_right = 1296.0
+margin_bottom = 375.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quarterfinal3"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Quarterfinal3/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Quarterfinal3/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "QF 3"
+align = 1
+
+[node name="Quarterfinal4" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 1216.0
+margin_top = 704.0
+margin_right = 1296.0
+margin_bottom = 807.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quarterfinal4"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Quarterfinal4/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Quarterfinal4/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "QF 4"
+align = 1
+
+[node name="Semifinal1" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 752.0
+margin_top = 496.0
+margin_right = 832.0
+margin_bottom = 599.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Semifinal1"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Semifinal1/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Semifinal1/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "SF 1"
+align = 1
+
+[node name="Semifinal2" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 1088.0
+margin_top = 496.0
+margin_right = 1168.0
+margin_bottom = 599.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Semifinal2"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 76.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Semifinal2/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Semifinal2/VBoxContainer"]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "SF 2"
+align = 1
+
+[node name="Final" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 920.0
+margin_top = 448.0
+margin_right = 1002.0
+margin_bottom = 551.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Final"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 78.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Final/VBoxContainer"]
+margin_right = 74.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Final/VBoxContainer"]
+margin_top = 68.0
+margin_right = 74.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "Final"
+align = 1
+
+[node name="Championship" type="PanelContainer" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 872.0
+margin_top = 224.0
+margin_right = 1045.0
+margin_bottom = 327.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Championship"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 169.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="Championship/VBoxContainer"]
+margin_right = 165.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Championship/VBoxContainer"]
+margin_top = 68.0
+margin_right = 165.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "Championship"
+align = 1

@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=2]
+[ext_resource path="res://Game/PilotInfo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/TeamList.gd" type="Script" id=4]
+[ext_resource path="res://ui/fonts/ui_font_med.tres" type="DynamicFont" id=5]
+
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 64
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 72
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 1, 0, 1 )
+
+[node name="TeamList" type="PanelContainer"]
+margin_right = 548.0
+margin_bottom = 183.0
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="VBoxContainer" parent="."]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 530.0
+margin_bottom = 165.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Caption" type="Label" parent="Body"]
+visible = false
+margin_right = 540.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Team Caption"
+align = 1
+
+[node name="Header" type="MarginContainer" parent="Body"]
+margin_right = 512.0
+margin_bottom = 19.0
+
+[node name="TeamColor" type="TextureRect" parent="Body/Header"]
+margin_right = 512.0
+margin_bottom = 19.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="TeamName" type="Label" parent="Body/Header"]
+margin_right = 512.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Team"
+align = 1
+valign = 1
+
+[node name="PilotList" type="HBoxContainer" parent="Body"]
+margin_top = 19.0
+margin_right = 512.0
+margin_bottom = 147.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PilotInfo" parent="Body/PilotList" instance=ExtResource( 3 )]
+margin_right = 128.0
+margin_bottom = 128.0
+
+[node name="PilotInfo2" parent="Body/PilotList" instance=ExtResource( 3 )]
+margin_left = 128.0
+margin_right = 256.0
+margin_bottom = 128.0
+
+[node name="PilotInfo3" parent="Body/PilotList" instance=ExtResource( 3 )]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 128.0
+
+[node name="PilotInfo4" parent="Body/PilotList" instance=ExtResource( 3 )]
+margin_left = 384.0
+margin_right = 512.0
+margin_bottom = 128.0
+
+[node name="Lose" type="Label" parent="."]
+visible = false
+margin_left = 18.0
+margin_top = 60.0
+margin_right = 555.0
+margin_bottom = 123.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
+text = " S M O K E D "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

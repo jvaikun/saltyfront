@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Torso6.obj-676c39032e17a10bfc61fc6f77d8fb16.mesh"
+
+[deps]
+
+files=[ "res://.import/Torso6.obj-676c39032e17a10bfc61fc6f77d8fb16.mesh" ]
+
+source_file="res://Parts/3D/Torso6.obj"
+dest_files=[ "res://.import/Torso6.obj-676c39032e17a10bfc61fc6f77d8fb16.mesh", "res://.import/Torso6.obj-676c39032e17a10bfc61fc6f77d8fb16.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

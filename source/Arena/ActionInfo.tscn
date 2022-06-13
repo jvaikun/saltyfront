@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://ui/fonts/font_square_mini.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Arena/ActionInfo.gd" type="Script" id=3]
+[ext_resource path="res://ui/icons/icon_melee.png" type="Texture" id=4]
+
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+draw_center = false
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color( 0, 1, 0, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="ActionInfo" type="PanelContainer"]
+margin_right = 132.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 128, 200 )
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoCont" type="VBoxContainer" parent="."]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 114.0
+margin_bottom = 182.0
+alignment = 1
+
+[node name="Title" type="Label" parent="InfoCont"]
+margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+text = "Attack"
+align = 1
+
+[node name="WeaponIcon" type="TextureRect" parent="InfoCont"]
+modulate = Color( 0, 1, 0, 1 )
+margin_top = 47.0
+margin_right = 96.0
+margin_bottom = 111.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="WeaponInfo" type="Label" parent="InfoCont"]
+margin_top = 115.0
+margin_right = 96.0
+margin_bottom = 158.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Weapon
+info"
+align = 1
+
+[node name="NoAction" type="Label" parent="."]
+visible = false
+margin_top = 68.0
+margin_right = 132.0
+margin_bottom = 131.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "No 
+Action"
+align = 1
+valign = 1

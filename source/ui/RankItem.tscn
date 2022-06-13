@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/RankItem.gd" type="Script" id=2]
+
+[node name="RankItem" type="HBoxContainer"]
+margin_right = 113.0
+margin_bottom = 19.0
+custom_constants/separation = 16
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rank" type="Label" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_right = 14.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 30.0
+margin_right = 83.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "Name"
+
+[node name="Number" type="Label" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 99.0
+margin_right = 113.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"

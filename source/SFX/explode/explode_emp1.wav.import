@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explode_emp1.wav-9f394785b271459f7a8079a803ac5e85.sample"
+
+[deps]
+
+source_file="res://SFX/explode/explode_emp1.wav"
+dest_files=[ "res://.import/explode_emp1.wav-9f394785b271459f7a8079a803ac5e85.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

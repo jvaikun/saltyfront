@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh"
+
+[deps]
+
+files=[ "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh" ]
+
+source_file="res://Test/tiger_scroll.obj"
+dest_files=[ "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh", "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

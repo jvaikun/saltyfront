@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://ui/fonts/font_dialog.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/DialogText.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=5]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="DialogText" type="PanelContainer"]
+margin_right = 384.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 384, 0 )
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Message" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 366.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Message Text"
+autowrap = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

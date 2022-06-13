@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Foot5.obj-fbfdb2425a35bb192392a424fcb0837e.mesh"
+
+[deps]
+
+files=[ "res://.import/Foot5.obj-fbfdb2425a35bb192392a424fcb0837e.mesh" ]
+
+source_file="res://Parts/3D/Foot5.obj"
+dest_files=[ "res://.import/Foot5.obj-fbfdb2425a35bb192392a424fcb0837e.mesh", "res://.import/Foot5.obj-fbfdb2425a35bb192392a424fcb0837e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

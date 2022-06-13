@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/missile_shoot1.ogg-bf6f3f3b7b3ab42a67f15a0f3a4f89d8.oggstr"
+
+[deps]
+
+source_file="res://SFX/shoot/missile_shoot1.ogg"
+dest_files=[ "res://.import/missile_shoot1.ogg-bf6f3f3b7b3ab42a67f15a0f3a4f89d8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

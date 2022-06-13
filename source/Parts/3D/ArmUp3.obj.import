@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ArmUp3.obj-08f5d98c28eb4e63e695946831b10a30.mesh"
+
+[deps]
+
+files=[ "res://.import/ArmUp3.obj-08f5d98c28eb4e63e695946831b10a30.mesh" ]
+
+source_file="res://Parts/3D/ArmUp3.obj"
+dest_files=[ "res://.import/ArmUp3.obj-08f5d98c28eb4e63e695946831b10a30.mesh", "res://.import/ArmUp3.obj-08f5d98c28eb4e63e695946831b10a30.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

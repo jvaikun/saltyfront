@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hrifle_shoot1.wav-f2cb4d6bc49eb3e38bc898ab873a47a7.sample"
+
+[deps]
+
+source_file="res://SFX/shoot/hrifle_shoot1.wav"
+dest_files=[ "res://.import/hrifle_shoot1.wav-f2cb4d6bc49eb3e38bc898ab873a47a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

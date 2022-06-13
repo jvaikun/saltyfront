@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/frames/bar2_bg.png" type="Texture" id=2]
+[ext_resource path="res://ui/ChartBar.gd" type="Script" id=3]
+[ext_resource path="res://ui/frames/bar2_fg.png" type="Texture" id=4]
+[ext_resource path="res://ui/frames/bar2_fill.png" type="Texture" id=5]
+
+[node name="ChartBar" type="HBoxContainer"]
+margin_right = 512.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 512, 0 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_top = 6.0
+margin_right = 96.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 96, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Name"
+
+[node name="Bar" type="TextureProgress" parent="."]
+margin_left = 100.0
+margin_right = 356.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 256, 32 )
+value = 50.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+
+[node name="Number" type="Label" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 360.0
+margin_top = 6.0
+margin_right = 374.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2

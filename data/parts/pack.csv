@@ -1,0 +1,5 @@
+id,name,capacity,range_min,range_max,model,texture,function
+0,Hermes MkII,0,0,0,2,0,boost
+1,HeviTIG 1500,3,0,1,3,0,repair
+2,Lil Mule,3,0,1,1,0,ammo
+3,Omniscan 500,0,0,4,0,0,scan

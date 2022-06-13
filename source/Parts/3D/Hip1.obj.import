@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Hip1.obj-15ea26735058c1c86037253d0cebeda2.mesh"
+
+[deps]
+
+files=[ "res://.import/Hip1.obj-15ea26735058c1c86037253d0cebeda2.mesh" ]
+
+source_file="res://Parts/3D/Hip1.obj"
+dest_files=[ "res://.import/Hip1.obj-15ea26735058c1c86037253d0cebeda2.mesh", "res://.import/Hip1.obj-15ea26735058c1c86037253d0cebeda2.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

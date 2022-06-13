@@ -1,0 +1,502 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://Arena/Arena.gd" type="Script" id=1]
+[ext_resource path="res://Arena/target.png" type="Texture" id=2]
+[ext_resource path="res://Arena/MapCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Arena/move.png" type="Texture" id=4]
+[ext_resource path="res://Arena/select.png" type="Texture" id=5]
+[ext_resource path="res://Arena/Markers.gd" type="Script" id=6]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://ui/OverlayCRT.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Arena/UnitInfoMini.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Arena/UnitInfo.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Arena/ActionInfo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/frames/ui_frame.png" type="Texture" id=13]
+[ext_resource path="res://Arena/move2.png" type="Texture" id=16]
+[ext_resource path="res://Arena/target2.png" type="Texture" id=17]
+[ext_resource path="res://Arena/DebugVector.gd" type="Script" id=18]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://Arena/SkillTag.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Game/MatchInfo.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Arena/IntroOutro.tscn" type="PackedScene" id=25]
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="PlaneMesh" id=5]
+
+[sub_resource type="AnimatedTexture" id=6]
+flags = 19
+frames = 2
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 16 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = SubResource( 6 )
+
+[sub_resource type="PlaneMesh" id=8]
+
+[sub_resource type="AnimatedTexture" id=9]
+flags = 19
+frames = 2
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 17 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = SubResource( 9 )
+
+[sub_resource type="PlaneMesh" id=11]
+
+[sub_resource type="PrismMesh" id=12]
+
+[sub_resource type="SpatialMaterial" id=13]
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopBar:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TurnInfo:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TeamInfo1/UnitInfoMini:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TeamInfo1/UnitInfoMini2:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TeamInfo1/UnitInfoMini3:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("TeamInfo1/UnitInfoMini4:rect_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("TeamInfo2/UnitInfoMini:rect_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("TeamInfo2/UnitInfoMini2:rect_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("TeamInfo2/UnitInfoMini3:rect_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("TeamInfo2/UnitInfoMini4:rect_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=15]
+size = 32
+font_data = ExtResource( 19 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 24
+font_data = ExtResource( 19 )
+
+[node name="Arena" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Nav" type="Spatial" parent="."]
+
+[node name="Camera" parent="." instance=ExtResource( 3 )]
+
+[node name="Mechs" type="Spatial" parent="."]
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="Markers" type="Spatial" parent="."]
+script = ExtResource( 6 )
+
+[node name="Select" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Move" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 7 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Target" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 10 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="North" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 0.1, 0, -1, -4.37114e-09, 0, 0, -1 )
+visible = false
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="MapUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.5
+margin_bottom = -0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MapUI"]
+anims/intro = SubResource( 14 )
+
+[node name="Tags" type="Control" parent="MapUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IntroOutro" parent="MapUI" instance=ExtResource( 25 )]
+
+[node name="TopBar" type="Control" parent="MapUI"]
+anchor_right = 1.0
+grow_horizontal = 2
+rect_scale = Vector2( 1, 1e-05 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapInfo" type="PanelContainer" parent="MapUI/TopBar"]
+margin_right = 199.0
+margin_bottom = 74.0
+custom_styles/panel = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoLabel" type="Label" parent="MapUI/TopBar/MapInfo"]
+margin_left = 18.0
+margin_top = 24.0
+margin_right = 181.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Map Info"
+valign = 1
+
+[node name="MatchInfo" parent="MapUI/TopBar" instance=ExtResource( 24 )]
+
+[node name="TeamInfo1" type="VBoxContainer" parent="MapUI"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -346.0
+margin_right = 180.0
+margin_bottom = 346.0
+grow_vertical = 2
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitInfoMini" parent="MapUI/TeamInfo1" instance=ExtResource( 9 )]
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 203.0
+
+[node name="UnitInfoMini2" parent="MapUI/TeamInfo1" instance=ExtResource( 9 )]
+margin_top = 203.0
+margin_right = 180.0
+margin_bottom = 346.0
+
+[node name="UnitInfoMini3" parent="MapUI/TeamInfo1" instance=ExtResource( 9 )]
+margin_top = 346.0
+margin_right = 180.0
+margin_bottom = 489.0
+
+[node name="UnitInfoMini4" parent="MapUI/TeamInfo1" instance=ExtResource( 9 )]
+margin_top = 489.0
+margin_right = 180.0
+margin_bottom = 632.0
+
+[node name="TeamInfo2" type="VBoxContainer" parent="MapUI"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -148.0
+margin_top = -334.0
+margin_bottom = 334.0
+grow_horizontal = 0
+grow_vertical = 2
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitInfoMini" parent="MapUI/TeamInfo2" instance=ExtResource( 9 )]
+margin_top = 48.0
+margin_bottom = 191.0
+
+[node name="UnitInfoMini2" parent="MapUI/TeamInfo2" instance=ExtResource( 9 )]
+margin_top = 191.0
+margin_bottom = 334.0
+
+[node name="UnitInfoMini3" parent="MapUI/TeamInfo2" instance=ExtResource( 9 )]
+margin_top = 334.0
+margin_bottom = 477.0
+
+[node name="UnitInfoMini4" parent="MapUI/TeamInfo2" instance=ExtResource( 9 )]
+margin_top = 477.0
+margin_bottom = 620.0
+
+[node name="TurnInfo" type="HBoxContainer" parent="MapUI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -696.0
+margin_top = -280.0
+margin_right = 696.0
+grow_horizontal = 2
+grow_vertical = 0
+rect_scale = Vector2( 1, 1e-05 )
+custom_constants/separation = -16
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentUnit" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
+margin_left = 17.0
+margin_top = 80.0
+margin_right = 367.0
+margin_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="AttackInfo" parent="MapUI/TurnInfo" instance=ExtResource( 12 )]
+show_behind_parent = true
+margin_left = 351.0
+margin_top = 80.0
+margin_right = 479.0
+margin_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="MechView" type="MarginContainer" parent="MapUI/TurnInfo"]
+margin_left = 463.0
+margin_right = 929.0
+margin_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Background" type="NinePatchRect" parent="MapUI/TurnInfo/MechView"]
+margin_right = 466.0
+margin_bottom = 280.0
+texture = ExtResource( 13 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="InnerBox" type="MarginContainer" parent="MapUI/TurnInfo/MechView"]
+margin_right = 466.0
+margin_bottom = 280.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="ViewBox" type="ViewportContainer" parent="MapUI/TurnInfo/MechView/InnerBox"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 446.0
+margin_bottom = 260.0
+
+[node name="Viewport" type="Viewport" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox"]
+size = Vector2( 426, 240 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="ChaseCam" type="Camera" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox/Viewport"]
+cull_mask = 1048573
+fov = 90.0
+size = 2.0
+
+[node name="Label" type="Label" parent="MapUI/TurnInfo/MechView/InnerBox"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 446.0
+margin_bottom = 39.0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 17 )
+text = "Mech View:"
+
+[node name="OverlayCRT" parent="MapUI/TurnInfo/MechView/InnerBox" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 446.0
+margin_bottom = 260.0
+
+[node name="CounterInfo" parent="MapUI/TurnInfo" instance=ExtResource( 12 )]
+show_behind_parent = true
+margin_left = 913.0
+margin_top = 80.0
+margin_right = 1041.0
+margin_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="InfoCont" parent="MapUI/TurnInfo/CounterInfo" index="0"]
+margin_right = 110.0
+
+[node name="Title" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="0"]
+margin_right = 92.0
+
+[node name="WeaponIcon" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="1"]
+margin_right = 92.0
+
+[node name="WeaponInfo" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="2"]
+margin_right = 92.0
+
+[node name="CurrentTarget" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
+margin_left = 1025.0
+margin_top = 80.0
+margin_right = 1375.0
+margin_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="SkillTag" parent="MapUI" instance=ExtResource( 21 )]
+visible = false
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="DebugInfo" type="Label" parent="Debug"]
+margin_left = -1.25
+margin_right = 38.75
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vectors" type="Control" parent="Debug"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="MapUI/TurnInfo/CounterInfo"]

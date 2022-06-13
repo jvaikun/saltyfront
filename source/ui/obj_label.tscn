@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=1]
+
+[node name="TextLabel" type="Label"]
+modulate = Color( 0, 1, 0, 1 )
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

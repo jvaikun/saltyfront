@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Game/icon_reddit.png" type="Texture" id=1]
+[ext_resource path="res://ui/frames/ui_frame.png" type="Texture" id=2]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Game/icon_web.png" type="Texture" id=4]
+[ext_resource path="res://Game/icon_twitter.png" type="Texture" id=5]
+[ext_resource path="res://Game/icon_discord.png" type="Texture" id=6]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 3 )
+
+[node name="ContactList" type="MarginContainer"]
+anchor_right = 1.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 80.0
+texture = ExtResource( 2 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Body" type="MarginContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 80.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+
+[node name="ItemList" type="HBoxContainer" parent="Body"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 1896.0
+margin_bottom = 56.0
+grow_horizontal = 2
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Web" type="HBoxContainer" parent="Body/ItemList"]
+margin_right = 462.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Body/ItemList/Web"]
+margin_left = 129.0
+margin_right = 161.0
+margin_bottom = 32.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
+[node name="Website" type="Label" parent="Body/ItemList/Web"]
+margin_left = 165.0
+margin_right = 332.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "saltyfront.net"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Body/ItemList"]
+margin_left = 470.0
+margin_right = 932.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Body/ItemList/HBoxContainer2"]
+margin_left = 141.0
+margin_right = 173.0
+margin_bottom = 32.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+
+[node name="Twitter" type="Label" parent="Body/ItemList/HBoxContainer2"]
+margin_left = 177.0
+margin_right = 320.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "@salty_front"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Body/ItemList"]
+margin_left = 940.0
+margin_right = 1402.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Body/ItemList/HBoxContainer3"]
+margin_left = 141.0
+margin_right = 173.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Reddit" type="Label" parent="Body/ItemList/HBoxContainer3"]
+margin_left = 177.0
+margin_right = 320.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "r/saltyfront"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Body/ItemList"]
+margin_left = 1410.0
+margin_right = 1872.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Body/ItemList/HBoxContainer4"]
+margin_left = 136.0
+margin_right = 168.0
+margin_bottom = 32.0
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Discord" type="Label" parent="Body/ItemList/HBoxContainer4"]
+margin_left = 172.0
+margin_right = 325.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Link in About"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

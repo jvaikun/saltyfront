@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Game/TeamList.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=2]
+[ext_resource path="res://Game/VersusHeader.gd" type="Script" id=3]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=4]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 4 )
+
+[node name="VersusHeader" type="MarginContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -724.0
+margin_right = 724.0
+margin_bottom = 175.0
+grow_horizontal = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelRow" type="HBoxContainer" parent="."]
+margin_right = 1448.0
+margin_bottom = 195.0
+custom_constants/separation = -16
+alignment = 1
+
+[node name="Team1" parent="PanelRow" instance=ExtResource( 1 )]
+margin_left = 68.0
+margin_top = 6.0
+margin_bottom = 189.0
+grow_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Countdown" type="PanelContainer" parent="PanelRow"]
+margin_left = 564.0
+margin_right = 884.0
+margin_bottom = 195.0
+grow_horizontal = 2
+rect_min_size = Vector2( 320, 175 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/panel = ExtResource( 2 )
+
+[node name="Body" type="VBoxContainer" parent="PanelRow/Countdown"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 296.0
+margin_bottom = 171.0
+custom_constants/separation = 8
+
+[node name="Match" type="Label" parent="PanelRow/Countdown/Body"]
+margin_right = 272.0
+margin_bottom = 55.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Tournament 1
+Quarterfinal 1"
+align = 1
+valign = 1
+
+[node name="Counter" type="Label" parent="PanelRow/Countdown/Body"]
+margin_top = 63.0
+margin_right = 272.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "- 0 -"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="Label" parent="PanelRow/Countdown/Body"]
+margin_top = 121.0
+margin_right = 272.0
+margin_bottom = 147.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Next Map"
+align = 1
+valign = 1
+
+[node name="Team2" parent="PanelRow" instance=ExtResource( 1 )]
+show_behind_parent = true
+margin_left = 868.0
+margin_top = 6.0
+margin_right = 1380.0
+margin_bottom = 189.0
+size_flags_vertical = 4

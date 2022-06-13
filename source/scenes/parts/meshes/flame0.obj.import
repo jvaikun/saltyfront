@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/flame0.obj-088c4f1540c62c31c288b2c59a8990ea.mesh"
+
+[deps]
+
+files=[ "res://.import/flame0.obj-088c4f1540c62c31c288b2c59a8990ea.mesh" ]
+
+source_file="res://scenes/parts/meshes/flame0.obj"
+dest_files=[ "res://.import/flame0.obj-088c4f1540c62c31c288b2c59a8990ea.mesh", "res://.import/flame0.obj-088c4f1540c62c31c288b2c59a8990ea.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

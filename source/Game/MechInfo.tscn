@@ -1,0 +1,325 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://ui/headshots.png" type="Texture" id=1]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://Game/PartInfo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/MechInfo.gd" type="Script" id=5]
+[ext_resource path="res://ui/icons/icon_hp.png" type="Texture" id=6]
+[ext_resource path="res://ui/icons/icon_dodge.png" type="Texture" id=7]
+[ext_resource path="res://ui/icons/icon_defense.png" type="Texture" id=8]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.75 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 64
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 80 )
+
+[node name="MechInfo" type="PanelContainer"]
+margin_right = 626.0
+margin_bottom = 504.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="."]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 608.0
+margin_bottom = 486.0
+custom_constants/separation = 16
+
+[node name="PilotName" type="MarginContainer" parent="Stats"]
+margin_right = 590.0
+margin_bottom = 19.0
+
+[node name="TeamColor" type="TextureRect" parent="Stats/PilotName"]
+margin_right = 590.0
+margin_bottom = 19.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="Name" type="Label" parent="Stats/PilotName"]
+margin_right = 590.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Pilot Name"
+
+[node name="Team" type="Label" parent="Stats/PilotName"]
+margin_right = 590.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Team"
+align = 2
+
+[node name="PilotDetail" type="HBoxContainer" parent="Stats"]
+margin_top = 35.0
+margin_right = 590.0
+margin_bottom = 159.0
+custom_constants/separation = 16
+
+[node name="Portrait" type="MarginContainer" parent="Stats/PilotDetail"]
+margin_right = 64.0
+margin_bottom = 80.0
+size_flags_vertical = 0
+
+[node name="TeamColor" type="ColorRect" parent="Stats/PilotDetail/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+
+[node name="PilotFace" type="TextureRect" parent="Stats/PilotDetail/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PilotData" type="GridContainer" parent="Stats/PilotDetail"]
+margin_left = 80.0
+margin_right = 177.0
+margin_bottom = 124.0
+custom_constants/vseparation = 16
+columns = 2
+
+[node name="Label2" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_right = 79.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Melee:"
+align = 2
+
+[node name="Melee" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 83.0
+margin_right = 97.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+
+[node name="Label3" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_top = 35.0
+margin_right = 79.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Short:"
+align = 2
+
+[node name="Short" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 83.0
+margin_top = 35.0
+margin_right = 97.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+
+[node name="Label4" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_top = 70.0
+margin_right = 79.0
+margin_bottom = 89.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Long:"
+align = 2
+
+[node name="Long" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 83.0
+margin_top = 70.0
+margin_right = 97.0
+margin_bottom = 89.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+
+[node name="Label5" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_top = 105.0
+margin_right = 79.0
+margin_bottom = 124.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Dodge:"
+align = 2
+
+[node name="Dodge" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 83.0
+margin_top = 105.0
+margin_right = 97.0
+margin_bottom = 124.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+
+[node name="MechData" type="GridContainer" parent="Stats/PilotDetail"]
+margin_left = 193.0
+margin_right = 401.0
+margin_bottom = 124.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/PilotDetail/MechData"]
+modulate = Color( 0, 1, 0, 1 )
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="TextureRect2" type="TextureRect" parent="Stats/PilotDetail/MechData"]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 72.0
+margin_right = 136.0
+margin_bottom = 64.0
+texture = ExtResource( 8 )
+
+[node name="TextureRect3" type="TextureRect" parent="Stats/PilotDetail/MechData"]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 144.0
+margin_right = 208.0
+margin_bottom = 64.0
+texture = ExtResource( 7 )
+
+[node name="Label7" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_top = 72.0
+margin_right = 64.0
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "HP"
+align = 1
+
+[node name="Label8" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_left = 72.0
+margin_top = 72.0
+margin_right = 136.0
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "DEF"
+align = 1
+
+[node name="Label9" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_left = 144.0
+margin_top = 72.0
+margin_right = 208.0
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "EVA"
+align = 1
+
+[node name="HP" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_top = 99.0
+margin_right = 64.0
+margin_bottom = 118.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+
+[node name="Defense" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_left = 72.0
+margin_top = 99.0
+margin_right = 136.0
+margin_bottom = 118.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+
+[node name="Dodge" type="Label" parent="Stats/PilotDetail/MechData"]
+margin_left = 144.0
+margin_top = 99.0
+margin_right = 208.0
+margin_bottom = 118.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+
+[node name="MechStats" type="MarginContainer" parent="Stats"]
+margin_top = 175.0
+margin_right = 590.0
+margin_bottom = 468.0
+
+[node name="HangarView" type="TextureRect" parent="Stats/MechStats"]
+margin_right = 590.0
+margin_bottom = 293.0
+rect_min_size = Vector2( 480, 270 )
+expand = true
+stretch_mode = 6
+
+[node name="PartList" type="GridContainer" parent="Stats/MechStats"]
+margin_right = 590.0
+margin_bottom = 293.0
+custom_constants/vseparation = 16
+custom_constants/hseparation = 16
+columns = 3
+
+[node name="InfoPodL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_right = 186.0
+margin_bottom = 87.0
+
+[node name="Label" type="Label" parent="Stats/MechStats/PartList"]
+margin_left = 202.0
+margin_top = 36.0
+margin_right = 388.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoPodR" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_left = 404.0
+margin_right = 590.0
+margin_bottom = 87.0
+
+[node name="InfoWpnL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_top = 103.0
+margin_right = 186.0
+margin_bottom = 190.0
+
+[node name="Label2" type="Label" parent="Stats/MechStats/PartList"]
+margin_left = 202.0
+margin_top = 139.0
+margin_right = 388.0
+margin_bottom = 153.0
+
+[node name="InfoWpnR" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_left = 404.0
+margin_top = 103.0
+margin_right = 590.0
+margin_bottom = 190.0
+
+[node name="Label3" type="Label" parent="Stats/MechStats/PartList"]
+margin_top = 242.0
+margin_right = 186.0
+margin_bottom = 256.0
+
+[node name="InfoPack" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_left = 202.0
+margin_top = 206.0
+margin_right = 388.0
+margin_bottom = 293.0
+
+[node name="Label4" type="Label" parent="Stats/MechStats/PartList"]
+margin_left = 404.0
+margin_top = 242.0
+margin_right = 590.0
+margin_bottom = 256.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/LegLow4.obj-3dfe1ce5aedbc82f2100e5dc766a536a.mesh"
+
+[deps]
+
+files=[ "res://.import/LegLow4.obj-3dfe1ce5aedbc82f2100e5dc766a536a.mesh" ]
+
+source_file="res://Parts/3D/LegLow4.obj"
+dest_files=[ "res://.import/LegLow4.obj-3dfe1ce5aedbc82f2100e5dc766a536a.mesh", "res://.import/LegLow4.obj-3dfe1ce5aedbc82f2100e5dc766a536a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

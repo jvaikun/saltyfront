@@ -1,0 +1,175 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Arena/UnitInfoMini.gd" type="Script" id=1]
+[ext_resource path="res://Arena/highlight.png" type="Texture" id=2]
+[ext_resource path="res://ui/headshots.png" type="Texture" id=3]
+[ext_resource path="res://ui/frames/ui_frame_mono.png" type="Texture" id=4]
+[ext_resource path="res://Arena/mechdmg_legs.png" type="Texture" id=5]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Arena/skull1.png" type="Texture" id=7]
+[ext_resource path="res://Arena/mechdmg_body.png" type="Texture" id=8]
+[ext_resource path="res://Arena/skull2.png" type="Texture" id=9]
+[ext_resource path="res://Arena/mechdmg_armr.png" type="Texture" id=10]
+[ext_resource path="res://Arena/mechdmg_arml.png" type="Texture" id=11]
+[ext_resource path="res://Arena/mechdmg_outline.png" type="Texture" id=12]
+[ext_resource path="res://Arena/MechTag.tscn" type="PackedScene" id=13]
+
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 48, 48 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 80 )
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 2
+fps = 8.0
+frame_0/texture = ExtResource( 7 )
+frame_1/texture = ExtResource( 9 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 6 )
+
+[node name="UnitInfoMini" type="PanelContainer"]
+margin_right = 172.0
+margin_bottom = 143.0
+custom_styles/panel = SubResource( 4 )
+script = ExtResource( 1 )
+
+[node name="Items" type="VBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 156.0
+margin_bottom = 127.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisualCont" type="MarginContainer" parent="Items"]
+margin_right = 140.0
+margin_bottom = 88.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="VisualList" type="HBoxContainer" parent="Items/VisualCont"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 136.0
+margin_bottom = 84.0
+alignment = 1
+
+[node name="Portrait" type="MarginContainer" parent="Items/VisualCont/VisualList"]
+margin_right = 64.0
+margin_bottom = 80.0
+
+[node name="TeamColor" type="ColorRect" parent="Items/VisualCont/VisualList/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PilotFace" type="TextureRect" parent="Items/VisualCont/VisualList/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = SubResource( 1 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MechDmg" type="MarginContainer" parent="Items/VisualCont/VisualList"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 80.0
+
+[node name="BodyDmg" type="TextureRect" parent="Items/VisualCont/VisualList/MechDmg"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 8 )
+
+[node name="ArmRDmg" type="TextureRect" parent="Items/VisualCont/VisualList/MechDmg"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 10 )
+
+[node name="ArmLDmg" type="TextureRect" parent="Items/VisualCont/VisualList/MechDmg"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 11 )
+
+[node name="LegsDmg" type="TextureRect" parent="Items/VisualCont/VisualList/MechDmg"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 5 )
+
+[node name="Outline" type="TextureRect" parent="Items/VisualCont/VisualList/MechDmg"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 12 )
+
+[node name="Dead" type="TextureRect" parent="Items/VisualCont"]
+visible = false
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 136.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 64, 80 )
+texture = SubResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PilotName" type="Label" parent="Items"]
+margin_top = 92.0
+margin_right = 140.0
+margin_bottom = 111.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Pilot Name"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Highlight" type="NinePatchRect" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 156.0
+margin_bottom = 127.0
+texture = ExtResource( 2 )
+draw_center = false
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MainCont" type="MarginContainer" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 156.0
+margin_bottom = 127.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="MechTag" parent="." instance=ExtResource( 13 )]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 156.0
+margin_bottom = 127.0

@@ -1,0 +1,55 @@
+{
+    "corps":{
+        "OmniCorp":{
+            "funds":0,
+            "budget":[10000, 20000, 1000],
+            "bets":[1000, 3000, 500],
+            "aggression":8,
+            "odds_diff":0
+        },
+        "Nito Ogami":{
+            "funds":0,
+            "budget":[10000, 20000, 1000],
+            "bets":[1000, 2000, 500],
+            "aggression":4,
+            "odds_diff":0
+        },
+        "Specific Motors":{
+            "funds":0,
+            "budget":[10000, 20000, 1000],
+            "bets":[1000, 2000, 500],
+            "aggression":6,
+            "odds_diff":0
+        },
+        "TriOptimal":{
+            "funds":0,
+            "budget":[10000, 20000, 1000],
+            "bets":[1000, 2000, 500],
+            "aggression":2,
+            "odds_diff":0
+        }
+    },
+    "npcs":{
+        "timid":{
+            "funds":0,
+            "budget":[1000, 5000, 1000],
+            "bets":[50, 250, 50],
+            "aggression":1,
+            "odds_diff":0.5
+        },
+        "normal":{
+            "funds":0,
+            "budget":[1000, 5000, 1000],
+            "bets":[50, 250, 50],
+            "aggression":1,
+            "odds_diff":0.5
+        },
+        "bold":{
+            "funds":0,
+            "budget":[1000, 5000, 1000],
+            "bets":[50, 250, 50],
+            "aggression":1,
+            "odds_diff":0.5
+        }
+    }
+}

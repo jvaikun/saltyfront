@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Effects/weather/trace_01.png" type="Texture" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 20, 1, 4 )
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+initial_velocity = 10.0
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 2 )
+
+[node name="Particles" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4 )
+amount = 64
+lifetime = 1.25
+visibility_aabb = AABB( -10, -20, -4, 20, 20, 8 )
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )

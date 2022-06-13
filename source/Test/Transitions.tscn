@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Game/bg_town.png" type="Texture" id=1]
+[ext_resource path="res://Game/bg_arena.png" type="Texture" id=2]
+[ext_resource path="res://Game/bg_shop.png" type="Texture" id=3]
+[ext_resource path="res://Effects/transition/doom_melt.shader" type="Shader" id=4]
+[ext_resource path="res://Effects/transition/dissolve.shader" type="Shader" id=5]
+[ext_resource path="res://Test/Transitions.gd" type="Script" id=6]
+[ext_resource path="res://Effects/transition/mask_dissolve.shader" type="Shader" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dissolve"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect2:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "dissolve2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect4:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "melt"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect3:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/progress = 0.0
+shader_param/diamondPixelSize = 64.0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+shader_param/progress = 0.0
+shader_param/bars = 64
+shader_param/amplitude = 2.0
+shader_param/frequency = 0.5
+
+[sub_resource type="OpenSimplexNoise" id=6]
+octaves = 2
+period = 1.0
+persistence = 0.0
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=7]
+flags = 3
+width = 60
+height = 33
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 7 )
+shader_param/progress = 0.0
+shader_param/smoothing = null
+shader_param/mask = SubResource( 7 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dissolve = SubResource( 1 )
+anims/dissolve2 = SubResource( 9 )
+anims/melt = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+visible = false
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

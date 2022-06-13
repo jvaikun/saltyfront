@@ -1,0 +1,1056 @@
+FM4 - Basics and Game Mechanics FAQ
+by Lord Plothos
+
+-----------------------------------------------------------------------------
+Contents:
+Introduction
+Abbreviations and terminology
+TOPIC 1 - SKILLS
+   Q01: What are skills and how do they work?
+   Q02: How do I gain skills?
+   Q03: What determines when a skill activates?
+   Q04: What are chains?
+   Q05: How many skills can I equip?
+   Q06: What's better: lots of skills or higher-level skills?
+TOPIC 2 - EVASION
+   Q07: What is evasion, and how does it work, exactly?
+   Q08: What determines the likelihood of evasion?
+TOPIC 3 - SPEED
+   Q09: What does the speed stat do?
+TOPIC 4 - ACCURACY AND DAMAGE
+   Q10: What is accuracy?
+   Q11: How is accuracy determined?
+   Q12: How is damage determined?
+   Q13: Why do some of my single shot attacks do half damage? Why do
+        some of my MG or SG bullets do half what the others do?
+   Q14: Why do I take damage from a BZ, even when it misses?
+   Q15: How do shields work?
+   Q16: How does melee damage work?
+   Q16.5 How does armor work?
+TOPIC 5 - LINKS
+   Q17: What are links and how do they work?
+   Q18: What are the best links to set up? How do I use links
+        effectively?
+   Q19: Can I decide what a linked wanzer does? If so, how?
+TOPIC 6 - CHARACTER LEVELS
+   Q20: What do character levels do?
+   Q21: What is the maximum level I can get?
+   Q22: How do I gain levels?
+TOPIC 7 - WHAT IS THE BEST/EASIEST/FASTEST WAY TO ______?
+   Q23: What's the fastest way to gain money?
+   Q24: What's the fastest way to gain EP?
+   Q25: What's the fastest way to gain exp.?
+   Q26: What's the best way to _____ in battle/sim _____?
+TOPIC 8 - WHERE IS ______?
+   Q27: Where is the Wanzer Shop? How can I buy stuff?
+   Q28: Where is the Computer Shop?
+   Q29: Where is the old equipment? Can I still get parts sold in
+        previous shops?
+   Q30: Where is Sim battle ____?
+TOPIC 9 - CHARACTER ROLES
+   Q31: What's the best way to use _Pilot Name_?
+   Q32: I never use _Pilot Name_'s Backpack; what's it good for?
+TOPIC 10 - SETTING UP YOUR WANZERS
+   Q33: How does all this power and weight stuff work?
+   Q34: What parts should I buy? What are the best combinations?
+   Q35: How do I set a wanzer's armor, and to what should I set it?
+   Q36: Does the color of a wanzer effect anything?
+   Q37: Some parts in the wanzer shop are in orange font; what's up?
+TOPIC 11 - SPECIAL ITEMS
+   Q38: I've talked to ____, but I didn't get the ____. What gives?
+   Q39: How do I get the ______?
+Thanks, legal, etc.
+
+-----------------------------------------------------------------------------
+Introduction: The purpose of this faq is to help the FM4 player
+make sense of some of the confusing things about this splendid game.
+The inspiration comes from extensive observation of the most frequent
+questions raised on the gamefaqs.com message board. New players
+continue to raise questions about the same issues. The message board
+is a very good resource for this type of thing, of course, and the
+FM4 board is especially helpful, I find. However, as the questions
+keep recurring, it would seem beneficial to these new players if they
+could get answers to their questions more quickly and perhaps with
+less embarrassment. Details about some of the mechanics may also
+remain mysterious to more experienced players. Some info and/or
+speculation about some of these things will help anybody who hasn't
+sat down and collected a bunch of data, then figured this stuff out.
+
+   The questions put forward here reflect my own observations of the
+kinds of things players typically find obscure. Along the way, I'll
+include some mechanical details to help players get a clearer idea of
+how things work in FM4. Much of the mechanical stuff is mere speculation.
+I will try to indicate when this is so, and give a bit of data to back
+myself up. I have not hacked the game, so I could be wrong about many
+of the things in here. Still, it fits the data I've gotten, and I've run
+all of it by the folks on the message board, so it should be pretty safe
+to let your thinking about the game be guided by what's in here.
+
+   Questions will be divided into topics for ease of location, but the
+complete noob might want to just read through all of this quickly.
+
+   One thing I will not do here is advance my own (or anyone else?¡¥s)
+style of play or general strategies. I will attempt to give information
+that is certain and/or accepted truth on the board, and wherever there
+is some contention on a given matter I will indicate both sides of the
+issue whenever I can.
+
+-----Abbreviations and terminology I will use------
+MG - Machine Gun          RK - Rocket
+SG - Shotgun              GR - Grenade Launcher
+RF - Rifle                REP - Repair Pack
+BZ - Bazooka              EMP - EMP Wanzer or Pack
+MS - Missile              Ev - Evasion
+ML - Melee                Acc - Accuracy
+
+Sniper - Alternative name for a RF wanzer.
+Dodge - Alternative word to describe successful evasion.
+Burst - Used to denote the series of shots fired by burst weapons like
+   MGs and SGs. An attack with a SG, for example, involves the firing
+   of two bursts (provided the attacker has sufficient AP).
+<Skill Name> - Notation used to indicate that the name being used is
+   for a pilot skill, such as <Double Shot I>. Many skills have an
+   associated number. If I leave it off, this is to indicate what I
+   have said holds in general for each of the skills of that type.
+   E.g.: "<Double Shot>, though it involves firing two guns, will use
+   up ammo for only one of them," for this is true of <Double Shot I>
+   and <Double Shot II>.
+Rating - Term to denote the level of a given attribute. A pilot has
+   ratings for speed, evasion, and weapons, indicating how skilled that
+   pilot is in those areas. Speed and evasion have no set limit, but
+   there is only so much that each pilot will be able to add to them
+   during the course of the game. Weapon ratings never exceed 3 (lowest
+   is 0).
+Battle - Indicates the larger engagement taking place on the battlefield,
+   as opposed to "Firefight".
+Firefight - Indicates the smaller scale gun battle that takes place
+   each time one wanzer attacks another, as opposed to "Battle".
+Chain Skills - These are the skills that can be strung together to
+   create chains. Not all activation skills are chain skills, but all
+   chain skills ARE activation skills. (See topic 1 below). Almost
+   every time two of these skills activate in a row, they will chain
+   together, increasing the damage of the later attacks.
+Damage Packet - A piece of the damage in an attack, corresponding to
+   a number displayed in a firefight animation. Some weapons concentrate
+   their damage into a single packet, but others divide their damage
+   into numerous packets. Each packet strikes one and only one part of
+   the target wanzer. (See topic 4 below).
+
+
+
+-----------------------------------------------------------------------------
+TOPIC 1 - SKILLS
+Q01: What are skills and how do they work?
+   A: Skills are abilities gained by the various pilots in the game.
+  They are said to be attached to the computer, and so more can be
+  gained later in the game via the computer shop, but they are
+  specific to each character and may not be swapped in any way. They
+  operate like class abilities for different character in a standard
+  RPG. There are enhancement skills, such as <AP +1> and <Evasion +3>,
+  that increase a pilots stats permanently. These may be purchased
+  multiple times with the results stacking. Getting three <Evasion +3>
+  adds 9 to the pilot's evasion rating. These do not need to be
+  equipped or anything else. They reflect the pilot simply getting
+  better in those areas. This includes weapon ratings, which can go up
+  to 3, but no further, and affect how much damage a pilot will do with
+  weapons of that type. Two pilots with the same SG and differing
+  SG ratings will do differing damage with those bullets that actually
+  hit the target (i.e., that have not been evaded or simply missed).
+  There are also resistance ratings, indicating how hard it is for an
+  EMP to damage the pilot's wanzer in the indicated area. The pilot is
+  better at combating the effects of the EMP pulse on these systems in
+  his or her wanzer. These come in increments of 50%, with 100%
+  indicating total immunity. Then there are skills that must be
+  equipped by the pilot after purchasing them, sort of like armor or
+  weapons. These are divided into two categories: passive skills and
+  activation skills. Passive skills must be equipped, but once they are
+  they will always work. These include <Move Plus>, which increases
+  the pilot's range of movement by 1, <Repair Plus>, which increases
+  the pilot's ability to repair damage with a repair pack, and <AP
+  Plus>, which reduces the amount of AP the pilot uses up when he
+  fires his weapon. Last of all, there are activation skills. These
+  skills must be equipped, and have merely a chance of activating when
+  the conditions are right for it to work. Examples include <Rapid
+  Fire>, which increases the number of bullets fired by a MG or SG
+  attack, and <Feint>, which increases the chance of dodging an attack.
+  Thus, to use <Rapid Fire>, it must be equipped, and you must be
+  firing a MG or SG. It will not always activate when you do so, but it
+  may. Likewise, <Feint> must be equipped, and MAY activate when you
+  are attacked by a weapon that can be dodged (this excludes missiles,
+  grenades, and rockets). As each skill has only a chance to activate,
+  the more skills you have equipped, the more chance one of them will
+  activate, but the less chance any given one will. This is because
+  for each shot (with a few exceptions), only one skill may activate.
+  Thus, if <Rapid Fire> activates first, then <Double Shot> cannot
+  activate for that shot, though it still may for the next. Defensive
+  skills that activate for enemy attacks do not compete with offensive
+  skills that activate for your attacks. One pilot may activate 2
+  <Rapid Fire>s and then 2 <Feint>s in the same firefight.
+   Advanced A: Skill activation is a bit of a mystery, but it seems
+  to many of us on the board that it works like this. All skills
+  a pilot has equipped and which can activate at a given moment are
+  compiled into a list (the order might be fixed, but we don't know).
+  The game then goes down the list and checks each skill to see if it
+  activates. If one does, that is the skill you see, and the rest of
+  the list is not checked. If none activate, you get nothing. This
+  helps explain why you will see more activations if you have more
+  skills, and also why once you have a sufficient number of them
+  you'll probably activate one just about every time. This is why I
+  suggest that you find a happy medium and get as many high level
+  skills as you can, while still basically guaranteeing that one always
+  activates (so you get those lovely chains). If you have 4 slots
+  available and 6 skills already equipped, <Rapid Fire III> would be
+  a good choice, as it doubles your MG or SG damage, and you have
+  enough skills to be relatively sure of activation. If, on the other
+  hand, you have 4 slots and only one skill, you may be better off
+  going with <Rapid Fire I> and <Terror Shot I> to increase your
+  activation chances, thus increasing the likelihood of chaining.
+
+Q02: How do I gain skills?
+   A: There are two ways to get skills, the second available only a
+  little ways into the game. The first works like this: Each pilot has
+  a set of skills associated with him/her, and those skills are divided
+  into six groups for each pilot. When you first get a pilot, they
+  will have a certain number of these skill groups available to them.
+  Each skill in one of these available groups may be purchased for
+  the pilot by spending that pilot's EP (enhancement points, gained
+  in battle). The pilot can also spend EP to open up further groups of
+  skills by selecting "Upgrade" in the character setup menu. See Q1
+  above for what the different skills types are, and how they work.
+  Don't forget that some skills must be equipped to do anything. Once
+  all six skill groups have been opened, that pilot can do nothing with
+  his/her EP but purchase available skills. If there are no more skills
+  you wish to purchase, then you'll have to wait for the computer shop
+  to get more. The computer shop will come up later (see below for when).
+  Here, you can spend money to buy further groups of skills for each
+  pilot. The skills purchased and how much each costs will be displayed.
+  Once the skills are purchased from the shop, they still need to be
+  purchased with EP.
+    Thus, there are two ways to make skills available to a pilot:
+  purchase upgrades with EP or purchase skill sets from the computer
+  shop with money. All skills made thus available must then be purchased
+  with EP. Some of those then need to be equipped.
+   Advanced A: Some skills in the computer shop menu will be listed in
+  red font. This indicates that the pilot already has that skill
+  either available or purchased. Thus, buying that set from the com-
+  puter shop will NOT make that red skill available to the pilot.
+  Thus, if you look at an evasion set and 3 of the 4 <evasion +3%>
+  skills are red, buying that set will only make one <evasion +3%>
+  available for the pilot to purchase with EP. For this reason, there
+  may be times when you will benefit more by purchasing a LESS expensive
+  set of skills in the computer shop. Nearly all skills gained
+  from the pilot's original sets will be somewhere among the three
+  computer shop sets, so upgrading will always make some items in
+  the computer shop red. This is why weapon ratings can never exceed
+  3. There are only 3 <Weapon +1> skills for each weapon type available,
+  and getting it makes it red. If the pilot got all three naturally,
+  he/she can't get any more from the shop.
+
+Q03: What determines when a skill activates?
+   A: A skill has a set of preconditions that determine those occasions
+  when it CAN activate. For <Rapid Fire>, this is that the pilot must
+  be firing with either a MG or SG in a firefight, which can be either
+  as the attacker or as a counterattack. There is a chance that the
+  skill will activate on those occasions. Two chain skills cannot
+  activate on the SAME shot/burst, but they can activate on EACH shot/
+  burst in the firefight. Two separate bursts of the SG can
+  activate a chain skill for each shot, possibly the same skill twice,
+  possibly a different skill for each. When subsequent shots/busts each
+  activate a skill, this CAN create a chain, increasing damage (see
+  Q4 below). Because each skill has a chance to activate when conditions
+  are right, the more skills you have equipped and which can activate
+  for a given attack, the more chance one of them will activate, but
+  the less chance a specific one will do so, for it may be precluded
+  by the activation of another skill. (See the Advanced A to Q1 above
+  for more information on this subject). It is not known whether higher
+  level skills have lower activation percentages than lower level
+  skills or not, but even if they don't, because you can equip larger
+  numbers of lower level skills, you will have more activations this
+  way. The downside of this, though, is that what activates will be
+  less effective. A large number of high level skills is the best,
+  but hard to attain. Find the balance that works best for you. (Keep
+  in mind that chains are very useful in this game, so even lower
+  level skills can do more damage overall if you're chaining them
+  more often).
+
+Q04: What are chains?
+   A: Chain attacks can occur when a series of attacks are made by one
+  side (you or the enemy) and a chain skill activates on each one.
+  Chains increase the amount of damage of the later attacks. Early in
+  the game, your wanzers will not be linked, so you will not be able
+  to form chains involving more than 2 shots/bursts (one character
+  firing twice with a MG or SG). Later, when chains can include as many
+  as 8 shots/bursts, they will become one of the most important methods
+  of doing damage and defeating the enemy. The highest bonus to damage
+  that can come of this is x2.0. Example: Two linked wanzers attack an
+  enemy, firing twice each with MGs. All four bursts activate <Rapid
+  Fire I>. The first will be at normal damage (though the skill will
+  increase the number of bullets in the burst). The second will
+  multiply the damage of each bullet that hits by 1.2. The third
+  multiplies by 1.5, and the fourth by 2.0. Longer chains will
+  involve repeated 2.0 bursts. Chains can be interrupted by an enemy
+  shot, by the failure to activate a skill on one of the attacks, or
+  (rarely, but it happens) by the skills simply failing to chain to-
+  gether. An enemy's evading your attack will NOT interrupt the chain,
+  as the skill still activates and the shots are still fired; your
+  chain attack has simply missed the target.
+
+Q05: How many skills can I equip?
+   A: Each pilot has a number of Skill Slots (this can be increased by
+  purchasing upgrades). Each skill takes up a certain number of these.
+  Think of it like this: each pilot has a skill backpack with so much
+  room in it. Better skills take up more room. Only activation and
+  passive skills require being equipped, so buy as many enhancement
+  skills as you like. Be careful not to buy more activation skills than
+  you can equip, unless you plan on replacing one you no longer want
+  to use, or you'll be wasting EP (and later money).
+
+Q06: What's better: lots of skills or higher-level skills?
+   A: Opinions vary. Activating more skills and making sure you create
+  chains frequently is important, but so is activating good skills.
+  See the answers to Q1 and Q2 above.
+
+-----------------------------------------------------------------------------
+TOPIC 2 - EVASION
+Q07: What is evasion, and how does it work, exactly?
+   A: As opposed to FM3, where a wanzer?¡¥s evasion was simply subtracted
+  from the attacker?¡¥s accuracy, evasion in FM4 is a set percentage
+  chance for a wanzer to dodge the entire attack (see question 2 below
+  for info on what that chance may turn out to be). Each unit on the
+  battlefield has a set evasion percentage, and for each and every
+  attack that percentage is used to determine if it completely misses.
+  This is totally independent of how accurate the shot is. The accuracy
+  of the shot (indicated by the blue number by the target on the screen)
+  is the percentage chance to hit IF the attack is not evaded. This has
+  the effect of making a MG or SG attack a bit less dependable than it
+  was in FM3, because when a wanzer evades, it evades all the bullets
+  fired by the MG or SG, whereas in FM3 even against a high evasion
+  wanzer you could be reasonably sure one or two bullets would hit. The
+  evasion is graphically depicted by the wanzer stepping to the side
+  when fired upon.
+   Advanced A: Each attack in the firefight can be dodged. In FM4, so
+  long as a pilot has enough AP, he will fire TWICE with either a MG
+  or SG. The target wanzer can evade both, neither, or only one of
+  these bursts. Some special attacks like <double assault> and <double
+  strike> will involve two attacks, and I have seen it happen that only
+  one of these is dodged. Conversely, I have never seen just one burst
+  from a <double shot> attack dodged; there it seems all or nothing.
+
+Q08: What determines the likelihood of evasion?
+   A: There are a number of factors. The first is the base chance. This
+  is equivalent to the wanzer evasion plus the pilot's evasion, but
+  only if the wanzer's evasion is above 0%. A wanzer with 0% evasion
+  cannot dodge, no matter what the pilot's skill. Thus, the base for a
+  pilot with 30% evasion in a wanzer with 11% evasion is 41% but the
+  base for the same pilot in a 0% wanzer is 0%, even though the total
+  of the two is 30%. The base chance is then modified by the conditions
+  on the battlefield. The pilot levels of the attacker and defender
+  matter, but no one knows to what degree. If you're higher level than
+  your attacker, you get some advantage. Similarly, facing matters.
+  Attacks from the side and back are harder to dodge. In fact, the game
+  claims attacks from the back cannot be dodged (see Advanced A below).
+  Terrain and weather conditions may or may not have some effect as
+  well.
+   Advanced A: The claim that back attacks can't be dodged has been
+  seen to be false. One possible explanation is that the facing that's
+  relevant is the facing in the firefight at the moment of the attack,
+  NOT the facing of the wanzers at the time the fight was initiated.
+  Thus, pilots with high speed ratings may be able to change their
+  facing before their attacker actually fires, thereby allowing them to
+  dodge. In the animation of the firefight, you will see wanzers turn
+  themselves towards their attackers. This would indicate their facing,
+  and so tell you if the attack is one that can be dodged. As far as I
+  know, no animation has been seen in which a wanzer was faced entirely
+  the wrong way, did not change its facing, and still dodged.
+   Some Data: I put Darril on a bridge facing several enemies straight
+  on (no facing modification) with a base evasion of 75%. I then
+  recorded 200 attacks (ignoring those in which he activated <Feint>).
+  He dodged almost exactly 75% of them. Thus, the numbers worked out
+  pretty well, although he seemed to get no bonus from his (massive)
+  level advantage.
+
+-----------------------------------------------------------------------------
+TOPIC 3 - SPEED
+Q09: What does the speed stat do?
+   A: Speed affects nothing but the point at which your character will
+  be able to act during a firefight. Characters with higher speeds will
+  shoot first whenever a firefight is started. Thus, if you are fast,
+  you can counter and kill your attacker before he ever fires at you.
+  If it is possible to change facing in the firefight so as to help you
+  dodge, when you are able to do so is affected by speed. Speed does
+  not increase a unit's evasion or accuracy percentages, nor alter AP
+  use or number of attacks in any way.
+   Advanced A: Different weapons have varying speed modifiers. Thus,
+  two pilots with the same speed but weapons with differing speeds will
+  always attack in the same order, the one with the quicker weapon
+  always going first. ML attacks seem to be significantly delayed. If
+  you want a ML wanzer to attack first, you'll have to give that pilot
+  a large speed advantage. 2 speed is enough early on, but as speed
+  ratings rise, the difference will have to be 4 or more to get the ML
+  acting first. Apparently, then what matters is the relative differ-
+  ence in speed, i.e., the difference relative to the numbers involved.
+  2 is 1/4 of 8, but only 1/8 of 16, and the weapons may require a 1/4
+  or 1/6 advantage.
+
+-----------------------------------------------------------------------------
+TOPIC 4 - ACCURACY AND DAMAGE
+Q10: What is accuracy?
+   A: Accuracy is the chance to hit with each damage packet in an
+  attack, IF the enemy doesn't dodge. Accuracy does not include or
+  in any way reflect the enemy's chance to dodge, in which case the
+  entire attack will simply miss (see Topic 2 above). Each weapon has
+  its damage indicated in the following format: NNxNN. A SG will look
+  like 12x10, while a MS may look like 60x4, and a ML like 90x1. This
+  indicates the number of damage packets that can strike the enemy and
+  the base damage each packet will do. If the target doesn't dodge,
+  then each packet has a percentage chance to hit it. That percentage
+  chance is given by the accuracy. An acc of 75 will mean a 75% chance
+  to hit with the one ML strike, and 75% chance for each bullet in an
+  SGs burst. Thus, a bust of 10 SG bullets will probably have 7 or 8
+  hit, again, IF the target does not evade the attack. Each of the
+  packets that successfully strike the target will randomly strike one
+  of its parts (legs, body, or left or right arm). (See Q12 below for
+  info on what happens when parts are broken.) Your accuracy is
+  displayed on the screen by the blue number next to the target. The
+  accuracy of your target's counter attack, if any, will be displayed
+  in red next to you. (There will also be a line of blue boxes and a 
+  line of red boxes between you, which move at different speeds. These
+  lines represent graphically the accuracy. They move fast if your
+  accuracy is high, and slowly if it's low. That's all they mean. A
+  line will be grayed out if it encounters an obstruction, and you will
+  see a tiny X indicating where that obstruction is.) If there is no
+  number, it means the enemy can't counter (he may be out of ammo or
+  AP). If it is 0%, he can't hit, usually because of intervening
+  obstacles like trees, and so he will not be able counter. If the
+  number is non-zero, he can counter, and he pretty much always will.
+   Advanced Tip: You can use this last fact to your advantage. A
+  powerful unit can be made to waste its AP if you cause it to fire
+  with a very low accuracy. Once its AP is used up, it can then be
+  attacked without fear of counter. This helps against Wagner on more
+  than one occasion.
+
+Q11: How is accuracy determined?
+   A: Each weapon has a range, and weapons for which accuracy matters
+  have their accuracy displayed in the following manner:
+
+     1           X
+     #############
+     YY%        ZZ%
+
+  The YY number represents the base accuracy of the weapon from a range
+  of 1 square. X is the extreme range of the weapon, the furthest
+  distance from which it can be fired, and the ZZ number is it's base
+  accuracy from that range. Middle accuracies fall in between these
+  numbers and you just have to calculate or guess at them. This base
+  weapon accuracy is then modified by the accuracy of the arm holding
+  the weapon. The overall base accuracy is then modified by weather
+  conditions (which can also affect range), light levels, and pilot
+  level.
+   The modifier for arm accuracy is NOT simply added to the base accuracy
+  of the weapon, as we here at the gamefaqs board had previously thought.
+  Rather, the base accuracy of the weapon is increased by that percent.
+  That is, a base 80% and a +20% arm do NOT yield a 99% accuracy (at 
+  least not without a bonus for being high level). Instead, they yield a
+  96%. A 39% base accuracy in the same +20% arm yields only a 47%. This
+  newly modified accuracy is further multiplied by 1.09 if your level is
+  higher than your target's. Thus, the 96% above would indeed increase to
+  99% (the maximum) and the 47% would become a 51%. This accuracy score
+  is then lowered by adverse conditions such as bad weather or poor light.
+   Overall the formula works like this:
+
+     Accuracy = (base accuracy of the weapon for the range in question) *
+     (1 + percentage modifier of the arm pulling the trigger, expressed as
+     a decimal) * (1.09 if your level is higher than your target's)
+     [round down, then modify for adverse conditions]
+
+   For example: the FV-24B at a range of 4 squares has a base accuracy of 
+  58%. If equipped in an arm with a +30% modifier and fired at a lower-
+  level target, the accuracy before deductions for adverse conditions is:
+
+     (.58)*(1 + .3)*(1.09) = .82186, which rounds down to 82%
+
+   At a range of 1, it's far better:
+
+     (.80)*(1.3)*(1.09) = 1.1336, that is, 99%
+
+   Thus, more accurate weapons benefit MORE from good arms than do less
+  accurate weapons (because you're not adding .3, you're adding 30% of the
+  original accuracy, which is a larger amount the more accurate you were 
+  to begin with). Likewise, the level advantage will help you more if
+  you're more accurate. On the other side of the coin, poor arms will hurt
+  accurate weapons more than inaccurate weapons.
+      Advanced A: ML, MS, RK, and GR DO NOT benefit or suffer from any
+  accuracy modification of the arm. A pile bunker ML weapon has a base
+  90% acc no matter what arm is equipped, though this 90% can be in-
+  creased by a level advantage. For weapons that require two hands,
+  like RFs and BZs, the accuracy of the off hand is irrelevant. Only
+  the acc of the hand pulling the trigger matters. Likewise, it appears
+  the acc of the chosen MG or SG in a <double shot> attack is all that
+  matters. If you have weight issues, you can use a high acc arm on the
+  primary gun and a low acc arm for the off gun. (Just make sure the
+  primary gun has enough ammo, and make sure it is the one set to
+  attack AND defense support.) (See Q19 below).
+Q12: How is damage determined?
+   A: As just noted, damage for each weapon comes in a set number of
+  packets. 60x4 means four packets that do a base minimum of 60. 12x10
+  means 10 bullets that do a base minimum of 12. The damage from each
+  packet can fluctuate, however. The range of damage depends on the 
+  size of the base minimum damage. To find the upper bound of the damage
+  range, divide the base minimum damage by 10, round up, and subtract 
+  1. This number is then added to the base minimum damage to find the 
+  maximum damage for that packet. That is, for 1-10, add 0, for 11-20,
+  add 1, for 21-30, add 2, etc. Thus, a damage packet with a base
+  minimum of 7, for instance, will just always do 7. A packet with a
+  minimum of 33 will do between 33 and 36. A packet with a base minimum
+  of 300 will do between 300 and 329, while a packet with a minimum of
+  301 will do between 301 and 331. The number displayed by the weapon 
+  in the wanzer setup and wanzer shops (and in the in-battle displays)
+  reflects the base minimum damage. You can expect the average damage,
+  without any other modifiers to possibly be roughly 10% higher than this
+  listed number, and about 5% higher on average.
+    Additionally, this base minimum damage is increased when the pilot
+  is proficient with the weapon in question. If a pilot has a SG rating
+  of 3 and a MG rating of 0, she will do more with a 10x10 SG than with
+  a 10x10 MG. The damage increase is a 20% bump to the base minimum
+  damage for each 1 point increase in the relevant weapon rating. Thus,
+  a pilot with a 0 in MG, who fires a 10x10 MG and does not activate a
+  skill, will fire 10 packets of 10 damage each (which can then be
+  reduced by armor; see below). Conversely, a pilot with a rating of 3
+  in MG, firing the same gun, and who also activates no skill, will fire
+  10 packets of 16-17 damage each. Skills and chain attacks (and the 
+  melee modifier discussed below) have an associated damage multiplier
+  (e.g., x1.5 for the third attack in a chain), which mulitplies the 
+  base minimum damage above and beyond any increase for weapon rating.
+  Thus, a pilot with a 3 in MG, firing a 10x10 MG, who activates <terror
+  shot> as the third skill in a chain, thus getting a 1.5 modifier would
+  multiply the base minimum of 16 by 1.5, getting 24, so each of her 
+  damage packets would do between 24 and 26.
+    Damage is reduced by 30% when armor of the appropriate type has been
+  equipped by the target. MG bullets that would normally do 10 will do 7.
+  The upper bound on reduced damage does not follow exactly the pattern
+  given above, but it is very close, and the frequencies of the numbers 
+  are weighted, so that average damage is reduced by 30% over all. There
+  is no penalty for having armor of a given type; that is, your armor is
+  never especially weak against one type of attack. You can only reduce 
+  damage by having armor of the same type as the attack. (See the advanced
+  A 2 below.)
+    Damage for GR and RK is evenly spread over the wanzer struck. Damage
+  for GR decreases with the damage-taker's distance from the target
+  square. Damage for RKs is random over the whole attack area. See Q7
+  below for special rules regarding ML attacks.
+   Advanced A: Damage from a single packet that exceeds the HP of the
+  part struck is wasted. Thus, hitting an arm with 1 HP with a ML
+  attack that does 900 damage in reality does only 1 damage, destroying
+  the arm. The extra damage is wasted. Unlike FM3, in which destroyed
+  parts were ignored, in FM4, a part that has been destroyed is no less
+  likely to be hit than it was before being destroyed. Damage from a
+  packet that hits a destroyed part is halved and then transferred to
+  the body. Thus, a ML attack on a wanzer with its arm blown off that
+  would normally do 900 damage will, if it hits the arm, do 450 to the
+  body instead. Another effect of all this is that a ML attack on a
+  wanzer with only 1 HP left on each its parts has just a 1 in 4 chance
+  to kill it, even if it hits. A SG attack, on the other hand, is
+  guaranteed to kill it, so long as it connects with at least 4 bullets
+  (and the damage isn't reduced to 0 by a <Block Damage> or <Anti-Break>
+  skill), because once the bottom three parts are destroyed a bullet
+  that hits them will have its damage transferred to the body, thus
+  destroying the wanzer.
+    Advanced A 2: Bazookas do two types of damage. (See Q 14). The first
+  is a shell doing impact damage, and the second is a cluster of scatter
+  packets doing fire damage. If your armor is strong against impact, it 
+  will reduce by 30% the damage from the shell, but not affect the fire
+  damage, and vice versa. Moreover, there are skills, such as <fire shot>
+  or <piercing strike> that add damage of a certain type, which may or 
+  may not be the same as the weapon's original type. The added damage is
+  determined by a percentage of the weapon's damage. If the types differ,
+  armor strong against one will reduce that damage and only that damage.
+  For this reason, activating <impact shot> against an enemy with impact 
+  armor will add less to your attack than activating <piercing shot> 
+  would have.
+
+Q13: Why do some of my single shot attacks do half damage? Why do some
+  of my MG or SG bullets do half what the others do?
+   A: This is due to the damage transfer rule outlined in the advanced
+  answer to Q12 above. Hits to broken parts are transferred to the
+  target's body, and damage thus transferred is halved.
+
+Q14: Why do I take damage from a BZ, even when it misses?
+   A: BZ damage comes in two forms. The first shot can hit or miss, and
+  is impact damage. This is followed by 4 fire damage packets that will
+  almost always hit no matter what. Very low acc can cause the fire to
+  miss as well, as can the shell striking something on the way to the
+  target (like a tree in the way). Otherwise, even if the shell misses,
+  the scatter damage will still hit. If the target evades, the fire
+  damage will miss as well.
+
+Q15: How do shields work?
+   A: The main benefit of the shield is often not the damage reduction,
+  but instead the fact that it makes all damage go to the arm holding
+  the shield. Even the fire damage from the BZ (whether the shell
+  missed or not) will hit the arm (which is usually unimportant and has
+  lots of HP). The damage taken will be reduced by the % listed for the
+  shield. The AP used is 2 for each attack blocked. Thus 4 AP is needed
+  to block both bursts from a SG, but only 2 for a RF or ML attack. If
+  the target dodges, no AP or shield "ammo" is used up; however, if the
+  target does not dodge, even if the shot misses, both AP and ammo will
+  go down (annoying, but true).
+   Advanced A: <AP plus> and <AP damage> skills attach to each use of
+  the shield. Thus <AP damage> can render shields pretty useless, as it
+  can take 6 or more AP to block one SG burst! Useful on simulator D8.
+
+Q16: How does melee damage work?
+   A: Like all weapons, ML have a base attack damage that can be in-
+  creased by the pilots ML rating. This can be increased by activated
+  skills and by chaining skills, as with other weapons. ML, however,
+  have in addition to this the following modifier:
+      N = wanzer's total power/wanzer's total weight
+  Any ML attack is multiplied by the N for that wanzer. This is in
+  addition to all other modifiers. Thus, if Latona has a weight of 200,
+  and a power output of 400, her N is 2. So, her damage will be multi-
+  plied by two. If she's acting late in a long chain, the x2 from that
+  makes her attack x4 overall. Whatever her base damage is, modified
+  for her weapon rating and any added damage from the activation of
+  the skill is then multiplied by 4! Late in the game, ML attacks can
+  easily exceed 1,000 points of damage. N canNOT exceed 2, however. A
+  150 to 400 weight-to-power ratio still results in a x2 modifier.
+
+Q16.5: How does armor work?
+   A: Armor of the appropriate type reduces damage by 30%. See A and 
+  Advanced A 2 for Q12 above.
+
+-----------------------------------------------------------------------------
+TOPIC 5 - LINKS
+Q17: What are links and how do they work?
+   A: Links affect who takes part in a given firefight. If no one is
+  linked, when a wanzer is attacked, he and his attacker are the only
+  ones involved. Links have the effect of including more wanzers in
+  these firefights. Each pilot can have up to 3 attack links and 3
+  defense links, meaning 3 additional pilots can be included on each
+  side of the firefight, for a total of 8 wanzers. Yikes! The links are
+  set up in the "pilot setup" screen, and work as follows. The two
+  lynchpins are the attacker and his target. For each ally the attacker
+  has linked in his attack links, they will assist him when he attacks,
+  so long as they are in range and have enough AP/ammo to do so. For
+  each ally the defender has in his defense links, they will assist him
+  when he is attacked, so long as the same conditions hold. Thus, if
+  Darril is linked to Renges defensively and Chaeffer offensively,
+  Chaeffer will fire at Darril's target when Darril attacks, if he can,
+  but will do nothing when Darril gets attacked, even if he's right
+  there. Renges will fire at anyone he can who attacks Darril, but will
+  do nothing when Darril is the aggressor. If THEY do not have Darril
+  listed in THEIR links, Darril will not assist them in attack or
+  defense. The fact that they're in HIS links only means anything when
+  HE is a lynchpin in a firefight (attacker or target). Links are the
+  only way to get lots of people firing in the same firefight, and so
+  are the only way to form the long, damage-multiplying chain attacks
+  that are the core of the later 2/3 of this game (see above).
+   Advanced A: The only wanzers that will take damage in a firefight are
+  the attacker and his target, with one exception. Appropriately linked
+  wanzers are always part of the battle (even if they have insufficient
+  AP or ammo to do anything), while unlinked wanzers are not. As such,
+  linked wanzers can block your line of fire, while non-linked wanzers
+  will not (they basically vanish for the duration of the firefight).
+  You will not hit a friend with your shot even if he decreases your
+  accuracy, but you CAN hit a foe who does so. Sometimes you can use
+  this to your advantage. When firing a MG or SG, don't shoot at the
+  guy with 1 HP; shoot at the guy behind him. You may still hit the
+  first guy, killing him, and some shots will go on to hit the guy
+  behind him. Plus, if the first burst kills the intervening guy, the
+  second burst will still be fired, whereas had the first burst been
+  directed at the guy in front, there would be no second burst. The
+  enemy isn't smart enough to use this to his advantage, but you may
+  still find yourself sometimes taking damage to two wanzers in one
+  fight. Obviously, this strategy isn't effective for single-packet
+  weapons like RF and ML.
+
+Q18: What are the best links to set up? How do I use links effectively?
+   A: This is more of a tactical question, and so not really intended to
+  be part of this guide, but some suggestions help illustrate the mechan-
+  ics of the link system, so here are some ways many people set things
+  up. First of all, linking early in the game is less of a factor than it
+  is later. This is because massive amounts of attacks typically require
+  massive amounts of AP, which your units just don't have early on. A
+  pilot with only 12 AP can fire a MG only thrice per round, and that's
+  only if he/she doesn't move first. So, if he/she attacks, that's
+  basically it for him/her. The big exception to this early on is the
+  melee wanzer, because melee attacks take only 1 AP. Unfortunately,
+  because ML attacks have to be made from an adjacent square, they are
+  not very useful defensively. They can be very nice in an attack link,
+  though. Putting Latona in the attack links of both Hermes and Elsa
+  early on lets her move and attack, then link into the attacks of both
+  those two pilots. Thus, she can be active in three linked firefights
+  even early on, something the other members of the squad can't do. When
+  you get more AP later on, linking gunners becomes more and more useful/
+  necessary. Another thing which helps with this is the <AP Plus> skill.
+  Any pilot involved in the firefight (i.e., even if they're out of range
+  or ammo) who has <AP Plus II> equipped will reduce the AP cost of all
+  attacks by friendlies by 1. Thus, if all four linked wanzers have it,
+  all attacks take 4 less AP than they would have otherwise (minimum of
+  0). MGs and SGs will fire for free, as will MLs. BZs and RFs will fire
+  for 2. You can also include <AP Plus I>, which takes off a further
+  AP, but only if the wanzer who has it equipped is one of the link
+  lynchpins: i.e., the attacker or the target. Links with RFs and BZs
+  can be very effective once you have enough AP or <AP Plus> to allow for
+  lots of firing, because their range makes it extremely easy to involve
+  them in firefights (they can typically hit a larger number of units
+  from any given square). Be careful, though, because these weapons can
+  run out of ammo fast, and if they're always firing they surely will.
+  Later in the game, MGs and SGs will also have highly limited ammo, so
+  spreading links out amongst your party is often a good idea. Another
+  thing to do is to set any two-gun wanzers to attack-link with one
+  weapon and defense-link with the other. This evens out their ammo use.
+  (See below about setting link actions.)
+
+Q19: Can I decide what a linked wanzer does? If so, how?
+   A: Yes, you can. Remember that when you attack you decide what the
+  attacking wanzer will do by selecting (with square) which weapon to
+  fire, etc. When a linked wanzer acts, what it does is automatic, but
+  you can determine ahead of time what that action will be. In the
+  link setup screen, select "set support action". Here, you will be
+  given two choices: one for attack links and one for defense links.
+  What you set here determines what your wanzer does when supporting
+  an ally's attack or when coming to the aid of a targeted ally. You
+  can set any MG, SG, BZ, RF, or ML that the wanzer has equipped, and
+  they will function just as if you had fired the weapon yourself.
+  Thus, if you set Elsa to SG for attack support and MG for defense
+  support, she will fire her SG when she is included in an ally's
+  attack links, has enough ammo, has enough AP, and is in range of
+  the ally's target; she will fire her MG when she can at anyone in
+  range who attacks an ally that has her included in its defensive
+  links. Setting different weapons to different support actions helps
+  to spread out ammo use for a two-gun wanzer. It also allows for a
+  SG/ML wanzer like Darril to use ML for attack (see above for why
+  that's nice) and SG for defense. It is often a good idea to put
+  longer range weapons in defense links, because you have less control
+  over who is where when it's the enemy who's moving. Later, you will
+  also be able to put backpacks into support action slots, just like
+  weapons. Actually, you can always put them there, but early on this
+  won't do anything, because your packs will have no support functions.
+  Later, EMP packs will have anti-missile capabilities, which will
+  protect any unit in range (and who is linked the EMP unit's backpack
+  defensively) from missile attacks (up to ten times). You will also
+  be able to set radio packs to salvage destroyed allies. Missile
+  anti-lock is very nice, salvage much less so.
+
+-----------------------------------------------------------------------------
+TOPIC 6 - CHARACTER LEVELS
+Q20: What do character levels do?
+   A: Levels effect two things only: accuracy and evasion. If unit A is
+  a higher level than unit B, it gains an accuracy bonus when attacking
+  unit B, and an evasion bonus when unit B attacks it. Rumors that level
+  also increases the chances of activating skills have not been sub-
+  stantiated, and the game gives no overt indication that this is so.
+  Keeping your levels above those of the enemy is advisable, but hardly
+  necessary, as the advantage is small. It is unclear whether greater
+  differences in level mean greater advantages, and if so how much.
+
+Q21: What is the maximum level I can get?
+   A: 30.
+
+Q22: How do I gain levels?
+   A: You gain levels by gaining experience. A unit will gain experience
+  whenever an enemy unit is destroyed and whose destruction your unit
+  took part in. If your unit ever attacked it, was offensively linked to
+  a unit that attacked it, defensively linked to a unit that was
+  attacked by it, or even if your unit healed damage done by that unit,
+  you will gain exp when it is destroyed. The amount gained (I think)
+  is based on how good the enemy is and where your team is in the
+  storyline. Thus, the further you go, the less exp you'll gain in a
+  given sim (though the decrease may stop at a certain point, for you
+  can still get significant exp by soloing D2 and U1 even very late in
+  the game and with very high-level characters. Your radio man will
+  quite easily hit the level 30 cap if you visit the sims often.
+
+
+-----------------------------------------------------------------------------
+TOPIC 7 - WHAT IS THE BEST/EASIEST/FASTEST WAY TO ______?
+Q23: What's the fastest way to gain money?
+   A: Sim battles that can be completed quickly and result in good money
+  are the best way to do this. D2 is very good for Durandal, especially
+  after you get the radio pack. D8 and D4 are also good. U1 is very,
+  very fast if you have the minotaur arms. U11 is good as well. See my
+  Bare Bones FAQ for info on the money received from each sim. Determine
+  how easy they are to beat quickly and use that to determine which
+  sims you want to fight.
+
+Q24: What's the fastest way to gain EP?
+   A: The skill <EP Plus> helps a lot, if you need a character to gain
+  EP fast. Soloing sims is another good way to get one character a lot
+  of EP. D2 with a radio (you can slap a radio on anybody for a while
+  and do this, then slap it back on Beck or whoever) is excellent for
+  this. U8 is very good, as it is easy and quick. U1 with a minotaur
+  will also work well.
+
+Q25: What's the fastest way to gain exp.?
+   A: See Q2 above. Generally, if you're gaining a bunch of EP, you're
+  gaining a bunch of exp. Radios and Minotaurs are great ways to do
+  this.
+
+Q26: What's the best way to _____ in battle/sim _____?
+   A: For strategies on specific battles, check the FAQ/Walkthroughs.
+  You can also ask for advice on the gamefaqs.com message board. There
+  are many helpful contributors there.
+
+
+-----------------------------------------------------------------------------
+TOPIC 8 - WHERE IS ______?
+Q27: Where is the Wanzer Shop? How can I buy stuff?
+   A: The wanzer shop isn't available right away. It will open up later.
+  It's hard to miss, as it will become an option on the main menu, just
+  like "Talk" and "Pilot Setup". The first shop for Durandal is available
+  just before Mission 05 - Polish Resource Base. The first shop for the
+  UCS 332nd is available just after Mission 08 - Port Cumana. See my Bare
+  Bones FAQ.
+
+Q28: Where is the Computer Shop?
+   A: Like the wanzer shop, the computer shop is not available early.
+  It will also become an option from the main menu. The first comp. shops
+  are: for UCS, just after Mission 10 - Rural Village, and for Durandal,
+  just before Mission 11 - Wassau. See my Bare Bones FAQ.
+
+Q29: Where is the old equipment? Can I still get parts sold in previous
+  shops?
+   A: Yes, but you have to go to the "Simulator" and then pick "Online
+  Shop" from the menu there. All previous equipment is available here
+  except Durandal shop 3, which is only available for a brief time in
+  Port Nicolaev. See my Bare Bones FAQ.
+
+Q30: Where is Sim battle ____?
+   A: Each sim battle has to be unlocked. Durandal sims D1-D8 and UCS
+  sims U1-U7 are unlocked by completing a battle in the story. Sims
+  D9-D14 and U8-U14 must be unlocked by meeting some special criteria.
+  Through the 12th sims for each side, there are two ways to open each
+  sim, one that can be accomplished in a story battle, and one in the
+  simulator. Check my Bare Bones FAQ for what these criteria are in
+  each case. For sims D13, D14, U13, and U14, there are almost
+  certainly more criteria than those given in my FAQ. This is because
+  the exact criteria have not been determined. Most likely these also
+  include meeting all the criteria for opening the "special" sims
+  (8/9-12). That is, meet the storyline criteria AND the sim criteria.
+  D14 appears to require that you meet at least two separate criteria.
+  The first involves D13, so you will have to open that first. The
+  second involves mission 27 (kill the AA wanzers by turn 8). Unlike
+  D9-D12, where meeting EITHER of the two criteria listed will open
+  the sim, D14 requires you to meet BOTH. D13, U13 and U14 may also
+  have additional criteria, but they have not be positively identified
+  as of yet.
+
+-----------------------------------------------------------------------------
+TOPIC 9 - CHARACTER ROLES
+Q31: What's the best way to use _Pilot Name_?
+   A: Again, this FAQ is not intended as a means of suggesting strategy,
+  just as a way of helping you to form your own. Here are some things to
+  take into account as you proceed. As outlined above, each character
+  has a set of skills they need only EP to obtain. Other skills must be
+  bought in the computer shop, and are often unavailable until late in
+  the game. Thus, any time you want to change one pilot from his/her
+  "normal" role, that pilot will always fail to be perfectly suited to
+  their new role until late in the game. A good example of this is the
+  weapon ratings. Latona, e.g., gets only ML weapon ratings naturally.
+  Other weapon proficiencies she must get from the computer shop. Making
+  her a RF wanzer prior to the third shop means she cannot have a rating
+  of 3 in RF. You may still find a rating 2 RF of more value than a
+  rating 3 ML, however, depending on your style. Also, typically, a
+  pilot's skills will not be suited to other weapons, so switching their
+  role means either buying a ton of new skills or doing without, thus
+  reducing effectiveness. The call is yours.
+
+Q32: I never use _Pilot Name_'s Backpack; what's it good for?
+   A: All packs have their uses, but depending on how you play you may
+  not find a need for them all. Don't sell any of them short, but don't
+  stick with something that's clearly no help to you just because it's
+  in the game. Sometimes, however, packs become either more or less
+  useful as the game goes on, so you may get rid of a pack that would
+  prove to be a big help later on. (Naturally, you can dump the pack
+  until that point, and then pick it up again.) EMP packs, for instance,
+  gain missile anti-lock capabilities (See the Links topic above), which
+  gives them a novel and very real value. The value of sensors will vary
+  depending on the value you place on missiles, and your tendency/desire
+  to separate your forces. There are battles in which sensors can be
+  very useful. All can be useful sometimes, though. The key is to
+  determine which is useful ENOUGH to make it worth lugging the thing
+  around all the time.
+   Example A: Latona's early 50% EMP may seem too unreliable, but you
+  may like the following tactic. With Latona in Elsa's and Hermes'
+  attack links, she'll get two free attacks on any wanzer she's next to,
+  and he probably won't survive that. Plus, you have to move SOMEbody in
+  first, and you don't want him/her to get clobbered. So, send Latona in
+  first, have her EMP a guy she's NOT next to (thus avoiding counters),
+  and then move Elsa and Hermes in to shower lead on the guy she IS next
+  to. Now he's dead, and his friend is EMPed half the time.
+   Example B: Bosch has a sensor pack and you're in a battle with a
+  bunch of allied missile wanzers that can't move far or survive well.
+  Move him forward and they can chip in from range for a ton of free
+  damage THAT CAN'T BE DODGED. Quite a way to take out some of those
+  dodgy enemies.
+   Advanced A: Do not underestimate the secondary abilities of the radio
+  pack. Few disvalue the air strike, but don't forget the armor coating
+  and supply features. Supply can save you late in the game, when your
+  MGs have only 20 shots. Armor at a key moment can really soften the
+  blow of a big foe you weren't prepared for.
+
+-----------------------------------------------------------------------------
+TOPIC 10 - SETTING UP YOUR WANZERS
+Q33: How does all this power and weight stuff work?
+   A: A wanzer has a power output, given by a numerical value. All parts
+  and equipment have weight values, also given numerical values. The
+  total weight of the wanzer cannot exceed its total power output. You
+  can see these numbers listed in the wanzer setup and wanzer shop
+  screens at the top right of the screen next to a bar, which represents
+  the ratio of weight to power. As the bar fills up, this indicates that
+  you have less power to spare. Power comes from two sources: the wanzer
+  body and the backpack. Not all packs give additional power, but all
+  bodies do. To find total power, add the outputs from these two sources.
+  All parts, weapons, and packs have weight as well. Thus, since the body
+  and pack have weights, the spare power you have left over for
+  additional parts and weapons is less than the power output: it is equal
+  to power output minus the weight of the body and the pack. Each part
+  you add, each arm or set of legs, adds weight, reducing spare power.
+  Likewise for weapons. When you swap parts (e.g. buy a new right arm),
+  if the new part is heavier, you will reduce the spare power by the
+  difference. Swapping a 40 wt. arm for a 20 wt. arm decreases your
+  power surplus by 20, making it harder to put heavier parts/weapons
+  elsewhere. If you do not have sufficient power to accommodate the
+  heavier arm, you will not be allowed to equip it. Keep in mind that
+  weapons can weigh a lot, so when buying parts you need to leave power
+  for weapons as well. Typically, as parts get better, they get heavier.
+  Likewise for weapons. Fortunately, as bodies get better they provide
+  more spare power. Packs can weigh a lot too, and do not always add
+  power to make up for it. Sensors, repair packs, and EMPs are usually
+  very heavy with no power output, so you'll need a body with LOTS of
+  spare power to hold it in addition to arms, legs, and weapons. Bodies
+  with lots of spare power generally have less evasion, and sometimes
+  major penalties that prevent dodging at all! For this reason, Hermes
+  and Zead early on are generally unable to dodge much, Hermes because
+  of his heavy repair pack, Zead because of his heavy missiles. Latona
+  can remain dodgy, despite her heavy EMP pack, but only because her
+  arms and weapons can be extremely light (remember that ML and MS
+  weapons are unaffected by arm acc). She will still suffer in the
+  damage department, though. (See the damage topic above).
+   Example: Hermes is in shop Durandal 1. He's in his original Giza
+  wanzer. The Giza's body has a weight of 75 and a power output of 320,
+  leaving 245 power to spare. The arms weigh 30 each, leaving 185. The
+  legs weigh 40, leaving 145. His repair pack weighs 100, leaving just
+  45, and his Raptor MG weighs 32, leaving a mere 13 spare power. Thus,
+  with this setup, the display at the top right of the screen will read
+  307/320, with the bar almost entirely filled. The only other legs he
+  will be able to equip now will be the Valiant F and Wildgoat legs,
+  because his current legs weigh 40 and the next heaviest weigh 60, so
+  all he can change to are the lighter ones... but, unfortunately,
+  both of these would be a big step down. He can switch both arms to
+  Zenith, though, because they weigh 32, only 2 more each than those of
+  the Giza, leaving him with 9 spare power. However, he only needs good
+  accuracy for his gun arm, so he should only switch one. That leaves
+  11 power. Oh no! The best MG weighs 20 more than his current one.
+  Should he settle for the middle gun? But wait! His off arm doesn't
+  need acc AT ALL. Swap that for a Wildgoat (weight = 16), and he'll
+  have enough for the new gun arm and the best MG (11 + 16 - 20 = 7).
+  So he's got a good MG with a +10% acc. arm. Not bad. Better still,
+  though, if he changes his body to a Stork, he'll have 260 power to
+  play with from the beginning, instead of the 245 from the Giza.
+  That's an increase of 15, for a total of 22! He can improve his legs
+  with that! (Note: this is not a suggested build. I do something much
+  different with Hermes. This is just for illustration).
+   Note: Items (like repair 200, or missile reloads) do not weigh
+  anything. They only take up space in the repair pack. Each pack has
+  a number of item spaces, and each item takes up a certain number of
+  these. Item packs have the most space, but power packs have some too,
+  and some special packs you can get later have item space as well
+  (e.g., a certain repair pack you can get in the simulator).
+
+Q34: What parts should I buy? What are the best combinations?
+   A: I'm not going to build your wanzers for you. Half of the game
+  lies in how you outfit your wanzers and pilots. Here are some things
+  to keep in mind. First of all, you can find lists of the shop sets
+  in my Wanzer Shop FAQ, where all the parts, packs, and weapons are
+  listed in what I think is a helpful manner. Wanzers with heavier
+  loads (e.g., missleers, grenadiers, mechanics, EMPs, etc.) may have
+  to sacrifice evasion in order to get the weight needed to carry all
+  their stuff. The bodies with the most spare power usually have huge
+  evasion penalties, and no matter what legs you have you won't be
+  dodging. If you have to use one, make sure your other parts have
+  high HP, or keep your wanzer out of battle. Sacrifice symmetry when
+  you need to. Don't make both arms the same if it's not the best
+  setup. Often you'll have only one gun (e.g. RF wanzers or MG wanzers
+  with repair packs). If so, make the off arm light and high HP. Make
+  gun arms as accurate as possible, but keep in mind that missiles,
+  grenades, rockets, and melee weapons don't benefit or suffer from
+  arm accuracy modifiers, so you can use lighter, less accurate arms
+  there. Movement is important for just about everybody, but evasion
+  isn't always too critical. Keep in mind what you'll be doing with
+  the wanzer in question when determining which is most important.
+  Don't forget about power packs if you're just shy of being able to
+  accommodate a part you want. Power packs in this game can even carry
+  a few items in there, so missleers can carry reloads and get some
+  extra power for mobility too. Fit your wanzer to the pilot and the
+  role they're gonna be playing in your force. I usually buy by
+  weapons first (though sometimes I'm forced to buy a body first to
+  get the extra power I need), then build the rest of the wanzer
+  around that, maximizing whatever I need maximized (e.g. acc, ev,
+  HP, movement, etc.).
+
+Q35: How do I set a wanzer's armor, and to what should I set it?
+   A: In the "wanzer setup" screen, pick "Set Armor". What armor is
+  best depends on what the next battle will be like. You can guess,
+  or check a faq like my Bare Bones FAQ or one of the walkthroughs.
+
+Q36: Does the color of a wanzer effect anything?
+   A: Just how funky fresh you look. Pick whatever you think looks
+  good and bask in the light of your aesthetic sensibilities. Camo
+  in the jungle won't make you any harder to hit.
+
+Q37: Some parts in the wanzer shop are in orange font; what's up?
+   A: The orange color indicates that your team owns at least one of
+  that particular piece of equipment. Any time you have a part (or
+  weapon) either equipped or in your stock inventory, that item will
+  be listed in orange font whenever it is available in the shop you're
+  perusing. There will also be a number at the bottom right of the
+  shop screen: "Team Surplus". Whenever a piece of equipment in the
+  shop is highlighted, if you have any of that type in your stock, the
+  number will be displayed here. This is to let you know you have a
+  spare before you shell out money for a new one. Keep an eye on it.
+
+-----------------------------------------------------------------------------
+TOPIC 11 - SPECIAL ITEMS
+Q38: I've talked to ____, but I didn't get the ____. What gives?
+   A: Many of the items you get from conversations require several
+  conversations throughout the game. You must carry out ALL of them
+  before you actually receive the item in question. See my Bare
+  Bones FAQ for info on when you should talk to someone, and when
+  you can expect to get an item out of it.
+
+Q39: How do I get the ______?
+   A: There are two ways to get special items in FM4. Some you can
+  get via conversation (see Q38 above) between battles. Some you
+  get in the simulator. There are special simulator battles that
+  must be unlocked by meeting certain criteria (see Q30 above).
+  Check out my Bare Bones FAQ for info on what you can get from the
+  sims and how to open the sims in the first place.
+
+
+---------------------------------------------------------
+Legal: This FAQ is for distribution through gamefaqs.com
+only, and is intended solely for the assistance of the
+Front Mission 4 player as he is playing Front Mission 4.
+No part of this FAQ may be reproduced, used, or cited for
+any other reason, for profit or otherwise without written
+permission from the author.
+---------------------------------------------------------
+Contact Information: For advice, comments, or questions,
+you may contact me at holopanien<at>juno.com. Info on
+mistakes, gaps or other errors will be greatly
+appreciated.
+---------------------------------------------------------
+Special Thanks is due to the many participants on the
+gamefaqs.com FM4 message board. Data collection, analysis,
+and theory-building has been greatly facilitated by many
+of these insightful, courteous people.
+---------------------------------------------------------
+
+Copyright 2004 Ben Fiedor
+
+
+
+
+
+Restore Page

@@ -1,0 +1,184 @@
+{
+    "tour_intro":{
+        "comments":[
+            "Welcome to another SaltyFront tournament, the signup list has just opened, so come on and sign up with !fight",
+            "Opening up a brand new tournament with a call for fighters! Why not try your luck with the !fight command?",
+            "You're watching SaltyFront, coming to you live at the start of a new tournament! Sign up with !fight to join in!",
+            "Welcome back to SaltyFront, we're firing up a new tournament and we'd love to see you join with the !fight command!"
+        ],
+        "replies":[
+            "And make fuckin' sure you're registered with !register, otherwise you can't do shit!",
+            "Don't forget to register first with !register, dumbass!",
+            "But shit won't work if you haven't registered, so do that with !register, goddammit!",
+            "Nobody's fucking fighting without registering, so make sure you've used !register, dammit!"
+        ]
+    },
+    "roster_empty":{
+        "comments":[
+            "Starting off with a blank signup list, an impressive display of fear from chat!",
+            "It seems the signup list is filled to the brim with COWARDICE!",
+            "Signup list is empty so far, could be that the marks are wising up!",
+            "And the signup list is a ghost town!"
+        ],
+        "replies":[
+            "I bet these cowards don't even smoke crack! Shameful.",
+            "Sounds like a case of all gun, no ammo!",
+            "Quit jerkin' us around, you fuckin' jagoffs!",
+            "That's what happens when you've got\n  l i t t l e  m o n e y"
+        ]
+    },
+    "roster_low":{
+        "comments":[
+            "A modest start to the tournament, entrants trickling in.",
+            "Chat looking a bit gun shy, just a few entries so far.",
+            "Looking like slim pickings tonight, signup list looking thin...",
+            "Quiet crowd today, with only a few signups."
+        ],
+        "replies":[
+            "Yeah, could be better.",
+            "Fuckers need to get MOTIVATED. We need more POWER.",
+            "The hell are they waiting for? These mechs aren't gonna blow themselves up!",
+            "GET IN AND FIGHT, YOU SHITS."
+        ]
+    },
+    "roster_high":{
+        "comments":[
+            "And the signup list is PACKED! We've got a live one tonight!",
+            "Chat is eager to get in there, almost overflowing the signup list!",
+            "Looking like a full house tonight!",
+            "And the entries are just POURING in!"
+        ],
+        "replies":[
+            "YEAH! BLOOD FOR MAMMON!",
+            "Hell yeah, full house! Benzos and whisky for everyone!",
+            "IT'S ON, MOTHER FUCKS",
+            "This is the good shit right here!"
+        ]
+    },
+    "pre_fight":{
+        "comments":[
+            "Bets are now open, as we wait for the next match to start. Team info coming onscreen...",
+            "Opening up the betting pools, as we cycle through the team info...",
+            "Info on the next match coming up, just as bets are opening...",
+            "And with that, it's time to place your bets. Pilot and mech info coming up..."
+        ],
+        "replies":[
+            "C'mon big money! Poppa needs a new liver! And hair plugs!",
+            "Fuckin' hell, get a load of these mutants!",
+            "Hoo boy, we've got ourselves a REAL pantload this time!",
+            "Wow, I'm drunk enough that some of these losers actually look like contenders!"
+        ]
+    },
+    "bet_fraud":{
+        "comments":[
+            "Look at the smooth operator here, betting against their team!",
+            "FRAUD DETECTED!",
+            "Look out folks, we got big-brain energy here!",
+            "SOMEBODY is betting against their team!"
+        ],
+        "replies":[
+            "This is the level of quality we EXPECT and DEMAND, folks!",
+            "Hell yeah, go for the throat, FUCK TEAMWORK!",
+            "COLLUSION is how you get PAID, son!",
+            "Hahaha, go get that money!"
+        ]
+    },
+    "post_fight_normal":{
+        "comments":[
+            "One team down, and the other is up, up, and away to the next match!",
+            "The victors stomping on the fallen as they make their way to the top!",
+            "The smoke has parted, revealing a clear winner!",
+            "Unquestionable victory here, complete dismantling of the defeated!"
+        ],
+        "replies":[
+            "Haha yeah! That's the stuff!",
+            "That's what we like to see Biff, killer fuckin' instinct!",
+            "Victory smells like copper and burnt toast! True story.",
+            "It brings a tear to my eye, Biff. Sometimes nausea and dizziness, but mostly tears."
+        ]
+    },
+    "post_fight_decision":{
+        "comments":[
+            "Admin has done the numbers, giving a win by decision!",
+            "Close call, but admin has come in with the decision!",
+            "Unusual circumstances here, leading to a win by decision!",
+            "Looks like a win by decision! That's just how things go sometimes, folks!"
+        ],
+        "replies":[
+            "This is some BULLSHIT!",
+            "Bureaucratic HORSESHIT! Victory is declared by blood alone!",
+            "Winning by points? Well don't you losers feel fuckin' accomplished?",
+            "FUCK THAT! Russian roulette overtime, NOW!"
+        ]
+    },
+    "post_fight_error":{
+        "comments":[
+            "Looks like some technical difficulties folks! Admin is calling the match!",
+            "Something's gone awry on the field, looks like we're calling this one.",
+            "A little glitch in the works, folks, nothing to worry about.",
+            "Seems like something's amiss on the field, so we're calling the match."
+        ],
+        "replies":[
+            "BOOOOO! Kill 'em all and let Marduk sort 'em out!",
+            "God damn it! I had child support money riding on that!",
+            "When's Admin gonna start carpet bombing the field when this shit happens?",
+            "Remind me to have the lead mechanic's knees broken."
+        ]
+    },
+    "new_champ":{
+        "comments":[
+            "After clawing their way to the top of the heap, the new champs take the crown!",
+            "A new champion is crowned today, as the winners take their hard-earned prize!",
+            "It's a long way to the top, but our new champions have made it!",
+            "Running the gauntlet to cross the finish line, our new champions take the throne!"
+        ],
+        "replies":[
+            "Fuck a crown, it's all about the PURSE! Remember kids: GET PAID, OR GET SMOKED!",
+            "And just think, YOU could be the next dirtbag to take the throne from 'em! SO GET IN ALREADY!",
+            "It warms my coke-addled heart to see mayhem and destruction pay off!",
+            "Be sure to commemorate this event by ordering some plastic shit from our Virtual Gift Shop!"
+        ]
+    },
+    "same_champ":{
+        "comments":[
+            "The champs are still holding on to their title, taking apart another pretender to the throne!",
+            "Well, they came at the kings, but they missed! Champs still going strong!",
+            "Another challenger goes down as the champs furiously defend their title!",
+            "The champs show another team of wannabes how it's done, with another title defense!"
+        ],
+        "replies":[
+            "They better not drop that combo, KEEP THE MUTHAFUCKIN' RHYTHM UP!",
+            "Hell yeah, fuck your shitty sword, Damocles!",
+            "That's how we roll here at SaltyFront: GET PAID, OR GET SMOKED!",
+            "Never fails, some motherfuckers are ALWAYS trying to ice skate uphill!"
+        ]
+    },
+    "tour_review":{
+        "comments":[
+            "Comment 1",
+            "Comment 2",
+            "Comment 3",
+            "Comment 4"
+        ],
+        "replies":[
+            "Reply 1",
+            "Reply 2",
+            "Reply 3",
+            "Reply 4"
+        ]
+    },
+    "tour_outro":{
+        "comments":[
+            "With that, the tournament draws to a close! But not to worry, SaltyFront will be back after a short break!",
+            "Another round, another tournament! SaltyFront will be right back with more mech battling action after the break!",
+            "What a great tounament, folks! And there's plenty more where that came from, after we take a short break!",
+            "And there you have it, another one for the books. We're setting things up for the next round, so stay tuned!"
+        ],
+        "replies":[
+            "Thank fuck, I gotta take a piss! These antifreeze highballs go through me fast!",
+            "Time for my crap break, I feel an extinction level event coming on!",
+            "Catch you in five, Biff! That cough syrup ain't gonna drink itself!",
+            "Shit, if I haul ass I might score some dumpster pizza from Little Caligula's! Later, suckers!"
+        ]
+    }
+}

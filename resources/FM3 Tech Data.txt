@@ -1,0 +1,995 @@
+********************************************************************************
+Front Mission 3
+Technical Data on Weapon and Wanzer Parts
+
+by Anthony Nguyen, aka Luxion
+last updated: May 11th, 2000
+
+Where I am in the game (Emma's Storyline):
+Mission 64 (now I'm counting my medals to determine that).
+
+This is one of five Front Mission 3 informative collections by me.  I have a habit
+of collecting technical information from strategy/tactical console games.  I do
+it for myself, but all that work deserves some attention, so whether you appreciate
+it or not, here it is.
+
+This FAQ is near complete, but with recent knowledge of an official
+strategy guide being released for the game, I would like to make my work known
+before I become accused of "stealing" information from other sources.
+
+This FAQ is meant for those who have played the game.  It is organized
+in a fashion where anyone can look at it and understand what is going on, but that is
+just my opinion and optimism.
+
+Credit goes to Square for releasing yet another great game, and finally bringing
+over to the US a piece of the Front Mission universe.  Most all numbers, stats, 
+technical descriptions, and names belong to Front Mission 3.
+
+Disclaimer :
+This FAQ Copyright 2000 Anthony Nguyen.  I went through a lot of trouble to collect 
+this information myself.  If any information is used from this guide for 
+reproduction or mass distribution, please mention my name as well as e-mail me at:
+
+luxion_mk2@hotmail.com
+
+ICQ# 4462286
+
+If there any comments, corrections, and/or suggestions, please send them to me!
+
+Thank you for your support.
+
+
+
+***********************************************************************
+General Cost for Upgrading
+
+$$$$$/$$$$$
+  |	|
+  |     ->Cost to upgrade from level 0
+  |     
+  ->Cost to upgrade from previous level
+
+		Body:		Arm:		Legs:
+Base   :	  240		  100		  320
+Level 1:	120/120		 50/ 50		 80/ 80
+Level 2:	170/290		 70/120		120/200
+Level 3:	220/510		 90/210		150/340
+Level 4:	270/770		110/320		180/520
+Level 5:	320/1080	130/450		210/720
+Level 6:	360/1440	150/600		240/960
+Level 7:	410/1850	170/770		280/1240
+
+		Def-C:		Acc:		Eva/Boost:
+Level 1:	240/240		100/100		160/160
+Level 2:	360/600		150/250		240/400
+Level 3:	480/1080	200/450		320/720
+Level 4:	600/1680	250/700		400/1120
+
+-----------------------------------------------------------------------
+***********************************************************************
+Wanzers (in alphabetical order)
+
+notes: Excuse the misformatting of some of the information.  It is in
+that format because when you supply the information, the information will
+shift into place (well, on my computer it does).
+
+Information recorded from enemy units are marked with a *.
+! means an enemy wanzer who will not surrender, at that point in the game.
+
+***********************************************************************
+Wanzer Model (manufacturer)
+Body:			Arms:			Legs: [Mobility Type]
+HP: LV 0		HP: LV 0		HP: LV 0
+                   Upgraded HP/difference
+Weight: 		Weight/arm		Weight:
+Power: 						Move:
+			Accuracy: %		Boost/Dash:
+DCM/upgrade		    +%/upgrade		   upgraded B/D
+(Damage Class Modifier)
+						Evade/upgrade
+
+[Skill]			[Skill]			[Skill]
+
+[] are hints as to how to unlock the skill.  Those listed without
+[]'s have been unlocked by me.
+-----------------------------------------------------------------------
+Drake M2C (Diable Avionics)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    332/40		    209/25		    273/33
+    382/50		    241/32		    314/39
+    438/56		    276/35		    360/46
+    502/64		    316/40		    412/52
+    578/76		    364/48		    475/63
+    662/84		    417/53		    544/69
+    762/100		    480/63		    626/82
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM 15%			    +21%		     4/2
+    30%			    +38%		     4/3
+    45%			    +69%		     6/3
+    60%			    +126%		     7/4
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+Chaff			Pilor DMGI		EXPx2
+-----------------------------------------------------------------------
+Enyo Mk109 (Kirishima)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    332/40		    209/25		    283/43
+    382/50		    241/32		    333/50
+    438/56		    276/35		    393/60
+    502/64		    316/40		    463/70
+    578/76		    364/48		    544/81
+    662/84		    417/53		    640/96
+    762/100		    480/63		    756/116
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM  5%			    +21%		     4/2
+    10%			    +38%		     5/3
+    15%			    +69%		     7/4
+    20%			    +126%		     7/5
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+AutoI			Leg Smash		Prvnt Loss
+-----------------------------------------------------------------------
+Foura M12A (Leonora)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    332/40		    220/44		    288/48
+    382/50		    276/56		    360/72
+    438/56		    331/55		    432/72
+    502/64		    386/55		    504/72
+    578/76		    471/85		    614/110
+    662/84		    533/62		    696/82
+    762/100		    653/120		    852/156
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM 10%			    +18%		     4/2
+    20%			    +27%		     4/3
+    30%			    +40%		     6/3
+    40%			    +60%		     7/4
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+Pilot Eject		Arm Smash		Escape
+-----------------------------------------------------------------------
+Genie (Jade Metal Lyman)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    344/52		    217/33		    288/48
+    405/61		    255/38		    360/72
+    478/73		    301/46		    432/72
+    563/85		    355/54		    504/72
+    662/99		    417/62		    614/110
+    779/117		    491/74		    696/82
+    919/140		    579/88		    852/156
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM  5%			    +18%		     4/2
+    10%			    +27%		     4/3
+    15%			    +40%		     6/3
+    20%			    +60%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+DEF-C1 (Up)		PilotDMGIII		AutoCountr
+-----------------------------------------------------------------------
+Getty (Sender)
+Body:			Arms:			Legs: 4 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    /		    /		    /
+    510/		    347/		    459/
+    584/74		    409/		    540/
+    673/89		    481/72		    635/95
+    771/98		    566/85		    747/112
+    887/116		    667/101		    882/135
+Weight: 42		Weight: 36		Weight: 43
+Power: 254					Move: 3
+			Acc: 10%		B/D: /
+DCM 10%			    +%		     2/3
+    20%			    +32%		     3/4
+    30%			    +58%		     3/4
+    40%			    +105%		     4/5
+						Evade: 8%
+						      10%
+						      16%
+						      24%
+
+RevengeIII		FiringSquad		E-Skill2[Down]
+-----------------------------------------------------------------------
+Grapple M1 (Diable Avionics)
+Body:			Arms:			Legs: 2 Legs
+HP: 464			HP: 292			HP: 384
+    528/64		    344/52		    437/53
+    607/79		    405/61		    503/66
+    696/89		    478/73		    576/73
+    798/102		    563/85		    660/84
+    918/130		    662/99		    760/100
+   1053/135		    779/117		    871/111
+   1211/158		    919/140		   1002/131
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 2/0
+DCM  5%			    + 8%		     2/2
+    10%			    +13%		     4/3
+    15%			    +22%		     5/4
+    20%			    +37%		     6/5
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+MeleeIII		Dbl PunchI		Skill+2[Up]
+-----------------------------------------------------------------------
+Grezex (Schnecker)
+Body:			Arms:			Legs: 2 Legs
+HP: 276			HP: 172			HP: 228
+    331/55		    196/24		    259/31
+    414/83		    225/29		    298/39
+    496/82		    258/33		    342/44
+    579/83		    295/37		    392/50
+    706/127		    340/45		    451/59
+    800/94		    390/50		    517/66
+    979/179		    448/58		    595/78
+Weight: 38		Weight: 51		Weight: 38
+Power: 269					Move: 3
+			Acc: 14%		B/D: 2/0
+DCM 10%			    +23%		     4/2
+    20%			    +38%		     5/3
+    30%			    +62%		     7/3
+    40%			    +103%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+ZoomIII			Aim			Hrd Knocks
+-----------------------------------------------------------------------
+Hoshun Mk112
+Body:			Arms:			Legs: 2 Legs
+HP: 468			HP: 300			HP: 400
+    561/93		    360/60		    480/80
+    702/141		    450/90		    600/120
+    842/140		    540/90		    720/120
+    982/140		    630/90		    840/120
+   1198/216		    768/138		   1024/184
+   1357/159		    870/102		   1160/136
+   1661/304		   1065/195		   1420/260
+Weight: 37		Weight: 25		Weight: 35
+Power: 350					Move: 5
+			Acc: 12%		B/D: 2/0
+DCM 15%			    +21%		     4/2
+    30%			    +38%		     5/3
+    45%			    +69%		     7/4
+    60%			    +126%		     7/5
+						Evade: 10%
+						       24%
+						       40%
+						       59%
+
+Rvnge-Body		Body Smash		AP-0
+-----------------------------------------------------------------------
+Jinyo Mk110 (Kirishima)
+Body:			Arms:			Legs: 2 Legs
+HP: 340			HP: 212			HP: 280
+    387/47		    241/29		    319/39
+    445/58		    277/36		    366/47
+    510/65		    318/41		    420/54
+    584/74		    364/46		    481/61
+    673/89		    419/55		    554/73
+    771/98		    481/62		    635/81
+    887/116		    553/72		    730/95
+Weight: 42		Weight: 36		Weight: 43
+Power: 254					Move: 3
+			Acc: 10%		B/D: 2/0
+DCM  5%			    +18%		     4/0
+    10%			    +32%		     4/2
+    15%			    +58%		     6/3
+    20%			    +105%		     7/3
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+RevengeI		ROFUPII			Fast Attack
+-----------------------------------------------------------------------
+Kasel M2 (Leonora)
+Body:			Arms:			Legs: 2 Legs
+HP: 464			HP: 292			HP: 384
+    547/83		    332/40		    437/53
+    644/97		    382/50		    503/66
+    760/116		    438/56		    576/73
+    895/135		    502/64		    660/84
+   1053/158		    578/76		    760/100
+   1238/185		    662/84		    871/111
+   1461/223		    762/100		   1002/131
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 2/0
+DCM 10%			    + 9%		     4/2
+    20%			    +16%		     4/3
+    30%			    +29%		     6/3
+    40%			    +52%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+MeleeII			Stun Punch		AP-30%
+-----------------------------------------------------------------------
+Kyojun Mk107 (Iguchi)
+Body:			Arms:			Legs: 2 Legs
+HP: 340			HP: 212			HP: 280
+    401/61		    250/38		    319/39
+    472/71		    294/44		    366/47
+    557/85		    347/53		    420/54
+    656/99		    409/62		    481/61
+    771/115		    481/72		    554/73
+    907/136		    566/85		    635/81
+   1071/164		    667/101		    730/95
+Weight: 60		Weight: 36		Weight: 43
+Power: 254					Move: 3
+			Acc: 10%		B/D: 2/0
+DCM 10%			    +18%		     4/2
+    20%			    +32%		     4/3
+    30%			    +58%		     6/3
+    40%			    +105%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+ZoomI			ROFUP1			BraceI
+-----------------------------------------------------------------------
+Laiying 1 (Tiewudi Heavy Industries)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    344/52		    220/36		    288/48
+    405/61		    276/56		    360/72
+    478/73		    331/55		    432/72
+    563/85		    386/55		    504/72
+    662/99		    471/85		    614/110
+    779/117		    533/62		    696/82
+    919/140		    653/120		    852/156
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM  5%			    +18%		     2/2
+    10%			    +27%		     4/3
+    15%			    +40%		     5/4
+    20%			    +90%		     6/5
+						Evade: 6%
+						      14%
+						      24%
+						      35%
+
+Def-C2[Up]		PilotDMGII		Skill+3[Up]
+-----------------------------------------------------------------------
+Lanze (Schnecker)
+Body:			Arms:			Legs: 2 Legs
+HP: 464			HP: 292			HP: 384
+    556/92		    332/40		    460/76
+    696/140		    382/50		    576/116
+    835/139		    438/56		    691/115
+    974/139		    502/64		    806/115
+   1187/213		    578/76		    983/177
+   1345/158		    662/84		   1113/130
+   1647/302		    762/100		   1363/250
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 2/0
+DCM 15%			    + 7%		     2/2
+    30%			    +11%		     4/3
+    45%			    +16%		     5/4
+    60%			    +25%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+TackleIII		ShieldAtkII		Avoid40
+-----------------------------------------------------------------------
+Lenghe 1
+Body:			Arms:			Legs: 2 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    696/		    438/		    576/
+    835/139		    525/87		    691/115
+    974/139		    613/88		    806/115
+   1187/213		    747/134		    983/177
+   1345/158		    846/99		   1113/130
+   1647/302		   1036/190		   1363/250
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: /
+DCM  5%			    + 7%		     4/2
+    10%			    +11%		     5/3
+    15%			    +16%		     7/3
+    20%			    +25%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+InitiativeIII		ShieldAtkIII		Gangbeating
+-----------------------------------------------------------------------
+Mingtian 1
+Body:			Arms:			Legs: 2 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    /		    276/		    /
+    525/		    331/55		    432/
+    613/88		    386/55		    504/72
+    747/134		    471/85		    614/110
+    846/99		    533/62		    696/82
+   1036/190		    653/120		    852/156
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: /
+DCM 10%			    +19%		     2/2
+    20%			    +32%		     4/3
+    30%			    +53%		     5/4
+    40%			    +88%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+Def-CMAX		Rndm Smash		Blackout
+-----------------------------------------------------------------------
+Pare PAW1 (Papel)
+Body:			Arms:			Legs: 2 Legs
+HP: 276			HP: 172			HP: 228
+    314/38		    196/24		    269/41
+    361/47		    225/29		    316/47
+    414/53		    258/33		    373/57
+    474/60		    295/37		    440/67
+    546/72		    340/45		    517/77
+    626/80		    390/50		    608/91
+    720/94		    448/58		    718/110
+Weight: 38		Weight: 51		Weight: 38
+Power: 269					Move: 3
+			Acc: 14%		B/D: 2/0
+DCM 10%			    +23%		     4/0
+    20%			    +38%		     4/2
+    30%			    +62%		     6/3
+    40%			    +103%		     7/3
+						Evade: 6%
+						      14%
+						      24%
+						      35%
+
+E-Acc1[Down]		ToppleShot		Evade1[Up]
+-----------------------------------------------------------------------
+Prov PAW2 (Papel)
+Body:			Arms:			Legs: Hover
+HP: 364			HP: 228			HP: 300
+    414/50		    269/41		    342/42
+    476/62		    316/47		    393/51
+    546/70		    373/57		    450/57
+    626/80		    440/67		    516/66
+    720/94		    517/77		    594/78
+    826/106		    608/91		    681/87
+    950/124		    718/110		    783/102
+Weight: 44		Weight: 33		Weight: 48
+Power: 253					Move: 3
+			Acc:  9%		B/D: 0/0
+DCM 15%			    +16%
+    30%			    +29%
+    45%			    +52%
+    60%			    +94%
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+[No shoulder wpn]	Dbl ShotI		Guard-B
+-----------------------------------------------------------------------
+Qibing 0 ()
+Body:			Arms:			Legs: 2 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    628?/		    394?/		    517?/
+    741/		    465/		    610/
+    872/131		    548/83		    717/107
+   1026/154		    644/96		    844/127
+   1206/180		    758/114		    993/149
+   1423/217		    894/136		   1171/178
+Weight: 42		Weight: 20		Weight: 55
+Power: 231					Move: 5
+			Acc:  5%		B/D: /
+DCM 15%			    + -%		     2/2
+    30%			    +13%		     4/3
+    45%			    +22%		     5/4
+    60%			    +37%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+RevengeII		TopplePnch		DmgFix200
+-----------------------------------------------------------------------
+Rekson M4F (Diable Avionics)
+Body:			Arms:			Legs: 2 Legs
+HP: 276			HP: 172			HP: 228
+    314/38		    196/24		    259/31
+    361/47		    225/29		    298/39
+    414/53		    258/33		    342/44
+    474/60		    295/37		    392/50
+    546/72		    340/45		    451/59
+    626/80		    390/50		    517/66
+    720/94		    448/58		    595/78
+Weight: 38		Weight: 51		Weight: 38
+Power: 269					Move: 3
+			Acc: 14%		B/D: 2/0
+DCM 15%			    +25%		     4/2
+    30%			    +45%		     5/3
+    45%			    +81%		     7/3
+    60%			    +147%		     7/4
+						Evade: 6%
+						      14%
+						      24%
+						      35%
+
+ZoomII			BkupFire		E-Skill1[Down]
+-----------------------------------------------------------------------
+Shangdi 1
+Body:			Arms:			Legs: 2 Legs
+HP: 276			HP: 172			HP: 228
+    331/55		    206/34		    259/31
+    414/83		    258/52		    298/39
+    496/82		    309/51		    342/44
+    579/83		    361/52		    392/50
+    706/127		    440/79		    451/59
+    800/94		    498/58		    517/66
+    979/179		    610/112		    595/78
+Weight: 38		Weight: 51		Weight: 38
+Power: 269					Move: 3
+			Acc: 14%		B/D: 2/0
+DCM  5%			    +25%		     4/2
+    10%			    +45%		     4/3
+    15%			    +81%		     6/3
+    20%			    +147%		     7/4
+						Evade: 6%
+						      14%
+						      24%
+						      35%
+
+E-AccNul		Dbl ShotII		EXPx3
+-----------------------------------------------------------------------
+Shunwang 1
+Body:			Arms:			Legs: 4 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    /		    /		    /
+    612/		    381/		    420/
+    714/102		    445/64		    481/61
+    870/156		    542/97		    554/73
+    986/116		    614/72		    635/81
+   1207/221		    752/138		    730/95
+Weight: 42		Weight: 36		Weight: 43
+Power: 254					Move: 3
+			Acc: 10%		B/D: /
+DCM  5%			    +18%		     2/3
+    10%			    +32%		     3/4
+    15%			    +58%		     3/4
+    20%			    +105%		     4/5
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+E-EvadeNul		Aim-Body		Evade-Max
+-----------------------------------------------------------------------
+Shunyo Mk111
+Body:			Arms:			Legs: 2 Legs
+HP: 			HP: 			HP: 
+    /		    /		    /
+    /		    /		    /
+    /		    /		    /
+    /		    /		    /
+    /		    /		    /
+    800/		    390/		    608/
+    979/179		    448/58		    718/110
+Weight: 38		Weight: 51		Weight: 38
+Power: 269					Move: 3
+			Acc: 14%		B/D: /
+DCM -%			    +%		     /
+    -%			    +%		     4/3
+    15%			    +81%		     6/3
+    20%			    +147%		     7/4
+						Evade: %
+						      %
+						      32%
+						      47%
+
+DmgFix400		Rvnge-Same		AP-60%
+-----------------------------------------------------------------------
+Tiandong 3 (Shanghai Steel)
+Body:			Arms:			Legs: 2 Legs
+HP: 464			HP: 292			HP: 384
+    528/64		    350/58		    453/69
+    607/79		    438/88		    533/80
+    696/89		    525/87		    629/96
+    798/102		    613/88		    741/112
+    918/120		    747/134		    871/130
+   1053/135		    846/99		   1025/154
+   1211/158		   1036/190		   1209/184
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 2/0
+DCM 10%			    + 8%		     2/2
+    20%			    +13%		     4/3
+    30%			    +22%		     5/4
+    40%			    +37%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+TackleII		EjectPunch		Avoid20
+-----------------------------------------------------------------------
+Tieqi 4 (Shanghai Steel)
+Body:			Arms:			Legs: 2 Legs
+HP: 312			HP: 196			HP: 256
+    374/62		    231/35		    302/46
+    468/94		    272/41		    355/53
+    561/93		    321/49		    419/64
+    655/94		    378/57		    494/75
+    798/143		    444/66		    581/87
+    904/106		    523/79		    683/102
+   1107/203		    617/94		    806/123
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 5
+			Acc: 12%		B/D: 2/0
+DCM 15%			    +19%		     4/2
+    30%			    +32%		     4/3
+    45%			    +53%		     6/3
+    60%			    +88%		     7/4
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+E-Dec-C2[Down]		Aim-Leg			BraceII
+-----------------------------------------------------------------------
+Vinedrai (Schnecker)
+Body:			Arms:			Legs: 2 Legs
+HP: 340			HP: 212			HP: 280
+    408/68		    254/42		    336/56
+    510/102		    318/64		    420/84
+    612/102		    381/63		    504/84
+    714/102		    445/64		    588/84
+    870/156		    542/97		    716/128
+    986/116		    614/72		    812/96
+   1207/221		    752/138		    994/182
+Weight: 42		Weight: 36		Weight: 43
+Power: 254					Move: 3
+			Acc: 10%		B/D: 2/0
+DCM 10%			    +16%		     2/2
+    20%			    +27%		     4/3
+    30%			    +44%		     5/4
+    40%			    +74%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+E-Evade2[Down]		Aim-Arm			EXPx4
+-----------------------------------------------------------------------
+Whisk (Sender)
+Body:			Arms:			Legs: 2 Legs
+HP: 292			HP: 184			HP: 240
+    350/58		    220/36		    288/48
+    438/88		    276/56		    360/72
+    525/87		    331/55		    432/72
+    613/88		    386/55		    504/72
+    747/134		    471/85		    614/110
+    846/99		    533/62		    696/82
+   1036/190		    653/120		    852/156
+Weight: 60		Weight: 45		Weight: 18
+Power: 344					Move: 2
+			Acc: 12%		B/D: 2/0
+DCM 10%			    +19%		     2/0
+    20%			    +32%		     4/2
+    30%			    +53%		     5/3
+    40%			    +88%		     6/3
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+E-Def-CNul		Salvo			Evade2[Up]
+-----------------------------------------------------------------------
+Wude 3
+Body:			Arms:			Legs: Hover
+HP: 464			HP: 292			HP: 384
+    547/83		    350/58		    437/53
+    644/97		    438/88		    503/66
+    760/116		    525/87		    576/73
+    895/135		    613/88		    660/84
+   1053/158		    747/134		    760/100
+   1238/185		    846/99		    871/111
+   1461/223		   1036/190		   1002/131
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 0/0
+DCM 15%			    + 9%
+    30%			    +16%
+    45%			    +29%
+    60%			    +52%
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+E-Acc2[Down]		Dbl PunchII		E-Skill3[Down]
+-----------------------------------------------------------------------
+Yongsai 3 (Tiewudi Heavy Industries)
+Body:			Arms:			Legs: 2 Legs
+HP: 364			HP: 228			HP: 300
+    436/72		    273/45		    360/60
+    546/110		    342/69		    450/90
+    655/109		    410/68		    540/90
+    764/109		    478/68		    630/90
+    931/167		    583/105		    768/138
+   1055/124		    661/78		    870/102
+   1292/237		    809/148		   1065/195
+Weight: 44		Weight: 33		Weight: 48
+Power: 253					Move: 4
+			Acc:  9%		B/D: 2/0
+DCM 10%			    +14%		     2/2
+    20%			    +24%		     4/3
+    30%			    +40%		     5/4
+    40%			    +66%		     6/5
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+BkupMelee		ROFUPIII		Avoid80
+-----------------------------------------------------------------------
+Zenislev (Jade Metal Lyman)
+Body:			Arms:			Legs: 2 Legs
+HP: 452			HP: 284			HP: 372
+    542/90		    335/51		    438/66
+    678/136		    394/59		    517/79
+    813/135		    465/71		    610/93
+    949/136		    548/83		    717/107
+   1157/208		    644/96		    844/127
+   1310/153		    758/114		    993/149
+   1604/294		    894/136		   1171/178
+Weight: 42		Weight: 20		Weight: 55
+Power: 231					Move: 5
+			Acc:  5%		B/D: 2/0
+DCM  5%			     +7%		     4/2
+    10%			    +11%		     4/3
+    15%			    +16%		     6/3
+    20%			    +25%		     7/4
+						Evade: 8%
+						      19%
+						      32%
+						      47%
+
+Tackle			Dbl Assault		InitiativeI
+-----------------------------------------------------------------------
+Zeros (Jade Metal Lyman)
+Body:			Arms:			Legs: 2 Legs
+HP: 464			HP: 292			HP: 384
+    528/79		    344/52		    453/69
+    607/79		    405/61		    533/80
+    696/89		    478/73		    629/96
+    798/102		    563/85		    741/112
+    918/120		    662/99		    871/130
+   1053/135		    779/117		   1025/154
+   1211/158		    919/140		   1209/184
+Weight: 39		Weight: 15		Weight: 59
+Power: 206					Move: 6
+			Acc:  5%		B/D: 2/0
+DCM 10%			    + 7%		     4/0
+    20%			    +11%		     4/2
+    30%			    +16%		     6/3
+    40%			    +25%		     7/3
+						Evade: 4%
+						      10%
+						      16%
+						      24%
+
+E-Evade1[Down]		ShieldAtkI		InitiativeII
+-----------------------------------------------------------------------
+*Kodomari
+Body:			Arms:			Legs: Hover
+HP: 			HP: 			HP: 
+    472			    330			    354
+						Move: 4
+			Acc: 14%		B/D: 0/0
+DCM 15%			    +%
+						Evade: 
+
+Armament:	Type:		Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:
+Exp Beam	Beam [N]	90%	1-9	84x1	15	0%/5%	--
+-----------------------------------------------------------------------
+*Genie Arm
+Body:			Arms:			Legs: 2 Legs
+HP: 			HP: 			HP: 
+    965			    681			    772
+ 						Move: 4
+			Acc: 14%		B/D: 0/0
+DCM  -			    +%
+    30%						Evade:  -
+						       24%
+
+Armament:	Type:		Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:
+16.5mm MG	M.Gun (Body)	80%	1-4	11x10	 5	10%	--
+Miner AT	Missile		80%	3-9	104x1	10	 0%	 6
+130mm Gun	Cannon		75%	2-6	86x1	 6	 4%	--
+Miner AT	Missile		80%	3-9	104x1	10	 0%	 6
+GGR 52		Grenade		60%	3-6	88x1	12	 0%	 4
+-----------------------------------------------------------------------
+***********************************************************************
+
+
+***********************************************************************
+Wanzer Components (Weapons, Backpacks, Shields, Computers)
+***********************************************************************
+	       # of
+Computers:     Slots	Function				Cost
+----------     -----	--------				----
+COM4		 4	None					 200
+COM5		 5	None					 400
+COM6		 6	None					 600
+COMB554		 6	Activate%[Up] low, Combo%[Down]	low	1000
+COMC754		 6	Activate%[Down] high, Combo%[Up] high	1000
+COMB603		 6	Activate%[Up] med, Combo%[Down] med	1000
+COMC654		 6	Activate%[Down] med, Combo%[Up] med	1000
+COMB652		 6	Activate%[Up] high, Combo%[Down] high	1000
+COMC554		 6	Activate%[Down] low, Combo%[Up] low	1000
+COMG10		 6	Acquire% Up				1300
+
+
+Backpacks:	Wt:   Capacity:	Power:	Cost:
+----------	---	---	-----	----
+BX002		10	 4		 140
+Mk3 Pack	10	 4		 140
+Mk6 Pack	30	 6		 
+Rucksack L	30	 6		 300
+BX056		30	 6
+BX090		50	 8		 600
+BPT3A		10		  30	 200
+Mk5 E-Pack	10		  30	 200
+Mk7 E-Pack	20		  60	 400
+Placid		20		  60	 400
+BPT12B		20		  60
+BPT9MAX		30		  90	 800
+*Mk8 E-Pack			  90
+
+Those without costs are Backpacks that can be captured/salvaged from an enemy wanzer.
+
+M.Guns:		Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+*Achin 51	  P		80%	1-4	 8x10	5	-10%	 --
+KodoSN990	  P	48	80%	1-4	11x10	5	-10%	 --	 160
+DGS-25		  P	56	80%	1-4	13x10	5	-10%	 --	 240
+Mingda 2	  P	65	80%	1-4	15x10	5	-10%	 --	 460
+Hiuda 3		  P	78	80%	1-4	18x10	5	-10%	 --	 620
+*Nissai 90MF	  P		80%	1-4	18x10	5	-10%	 --
+Arc Barrel 4	  P	91	80%	1-4	21x10	5	-10%	 --	 800
+*Shunda 4	  P	91	80%	1-4	21x10	5	-10%	 --
+
+
+Shotugns:	Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+Odin M98	  I	42	75%	1-3	12x12	3	-2%	 --	 140
+SPPG 14		  I	50	75%	1-3	14x12	3	-2%	 --	 260
+*Chongte	  I		75%	1-3	14x12	3	-2%	 --	
+*Chongte 0	  I		75%	1-3	14x12	3	-2%	 --	
+Chongdu 2	  I	59	75%	1-3	16x12	3	-2%	 --	 500
+Chongta 3	  I	69	75%	1-3	19x12	3	-2%	 --	 660
+Desoto M300	  I	80	75%	1-3	22x12	3	-2%	 --	 780
+
+
+Rifles:		Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+Franbar FF	  P	45	75%	1-6	 58x1	4	-2%	 --	
+Mk9 Sniper	  P	53	75%	1-6	 69x1	4	-2%	 --	 200
+Laoxing 6	  P	62	75%	1-6	 82x1	4	-2%	 --	 460
+Laohu 3		  P	73	75%	1-6	 98x1	4	-2%	 --	 600
+*Einband	  P		75%	1-6	 98x1	4	-2%	 --	 
+*Scarab F2	  P		75%	1-6	 98x1	4	-2%	 --	 
+Mk11 Sniper	  P	84	75%	1-6	117x1	4	-2%	 --	 780
+
+
+Flamer:		Type:	Wt:	Acc:	Range:	Dmg:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	------	------	----	----
+Heat Stream	  F	51	60%	1-2	17/hit	4/7/11	-2%	 --	 100
+Huoliu 1	  F	60	60%	1-2	20/hit	4/7/11	-2%	 --	 200
+Huosai 2	  F	70	60%	1-2	24/hit  4/7/11	-2%	 --	 460
+Huoyao 3	  F	81	60%	1-2	28/hit  4/7/11	-2%	 --	 600
+Hot Gazel	  F	93	60%	1-2	33/hit  4/7/11	-2%	 --	 780
+
+
+Melee:		Type:	Wt:	Acc:	Range:	Attack:	AP:	Cost:
+----------	-----	---	---	---	-----	-	----
+*Heavy Weight	  I		100%	 1	 70x1	1
+Bone Buster	  I	22	100%	 1	 76x1	1	 100
+Fear Fist	  I	26	100%	 1	 91x1	1	 200
+*Mk16 Fist	  I		100%	 1	 91x1	1
+Mk10 Fist	  I	30	100%	 1	109x1	1	 300
+Mk12 Fist	  I	35	100%	 1	130x1	1	 400
+*Max Weight	  I		100%	 1	130x1	1
+*Big Buster	  I		100%	 1	130x1	1
+Fatal Buster	  I	40	100%	 1	156x1	1	 500
+*Mk20 Fist	  I		100%	 1	156x1	1
+Cleave Axe	  I	21	120%	 1	 67x1	1	 200
+Mk9 Baton	  I	25	120%	 1	 80x1	1	 300
+Mk13 Baton	  I	29	120%	 1	 96x1	1	 400
+Venus		  I	33	120%	 1	115x1	1	 500
+Sharp Spike	  P	20	110%	 1	 63x1	1	 140
+Heavy Spike	  P	23	110%	 1	 75x1	1	 260
+Mk18 Spike	  P	28	110%	 1	 90x1	1	 400
+Mk22 Spike	  P	32	110%	 1	108x1	1	 500
+
+
+Missiles:	Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+*Canary 2	  F		80%	3-9	 60x1	10	-0%	  6
+Quill		  F	 81	80%	3-9	 73x1	10	-0%	  6	 
+Wagtail 2	  F	 96	80%	3-9	 87x1	10	-0%	  6	 380
+*Huoji 22	  F		80%	3-9	 87x1	10	-0%	  6
+Yunsheng 34	  F	109	80%	3-9	104x1	10	-0%	  6	 460
+*Yunsheng 38	  F	109	80%	3-9	104x1	10	-0%	  6	 460
+Zhiniao 50	  F	123	80%	3-9	124x1	10	-0%	  6	 660
+*Drozel		  F		80%	3-9	124x1	10	-0%	  6
+*Nightingale	  F		80%	3-9	124x1	10	-0%	  6
+Bjariger	  F	137	80%	3-9	148x1	10	-0%	  6	 900
+
+
+Grenades:	Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+Wanzerfaust	  F	 92	60%	3-6	 62x1	12	-0%	  4	 260
+Type 10 GR	  F	109	60%	3-6	 74x1	12	-0%	  4	 400
+Type 13 GR	  F	124	60%	3-6	 88x1	12	-0%	  4	 600
+Type 14 GR	  F	140	60%	3-6	105x1	12	-0%	  4	 800
+Faust GGR	  F	156	60%	3-6	126x1	12	-0%	  4	1000
+
+
+Beams:		Type:	Wt:	Acc:	Range:	Attack:	AP:	Acc/Rg:	Ammo:	Cost:
+----------	-----	---	---	---	-----	-	------	----	----
+*Exp Beam	  N		90%	1-9	 84x1	15	-0%	 --	
+Heavy P-Gun	  N	127	90%	1-9	250x1	15	-0%	 --	Special
+
+The Heavy P-Gun can only be obtained through the network or capturing a Hoshun Mk112
+
+
+Shields:	Wt:	AP:	Dura.:	Damg:	Cost:
+----------	---	-	-----	----	----
+Mk6 Shield	18	2	  4	-50%	 100
+SN-100G		24	2	  6	-50%	 160
+*Lite Shield		2	  6	-50%
+Buckler		22	2	  4	-70%	 200
+Hvy Shield	28	2	  6	-70%	 300
+*Mk10 Shield		2	  6	-70%
+SN-107G		36	2	  4	-90%	 400
+
+
+*Enemy Weapons (or at least not yet available for purchase)
+NOTE:	All melee, missiles, and grenades' accuracy are -0% per height.
+	Normal is -5% per height.
+
+Restore Page

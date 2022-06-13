@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sgun_shoot2.wav-3bbe1f36f17a21e2c74f4daec9fdfbb9.sample"
+
+[deps]
+
+source_file="res://SFX/shoot/sgun_shoot2.wav"
+dest_files=[ "res://.import/sgun_shoot2.wav-3bbe1f36f17a21e2c74f4daec9fdfbb9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

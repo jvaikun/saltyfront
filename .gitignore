@@ -1,0 +1,12 @@
+# Records directory
+data/records/
+# User data directory
+data/user/
+# Background music directory
+bgm/
+# Screenshot directory
+screenshot/
+# Settings file
+godot/settings.cfg
+# Blender scratch files
+*.blend*

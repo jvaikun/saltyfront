@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rifle0.obj-14594cd07a3fe40505945bfcc6b9f44c.mesh"
+
+[deps]
+
+files=[ "res://.import/rifle0.obj-14594cd07a3fe40505945bfcc6b9f44c.mesh" ]
+
+source_file="res://Parts/3D/rifle0.obj"
+dest_files=[ "res://.import/rifle0.obj-14594cd07a3fe40505945bfcc6b9f44c.mesh", "res://.import/rifle0.obj-14594cd07a3fe40505945bfcc6b9f44c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

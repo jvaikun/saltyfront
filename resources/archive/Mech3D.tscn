@@ -1,0 +1,334 @@
+[gd_scene load_steps=123 format=2]
+
+[ext_resource path="res://Mech/Mech3D.gd" type="Script" id=1]
+[ext_resource path="res://Effects/blackSmoke05.png" type="Texture" id=2]
+[ext_resource path="res://Effects/fire_01.png" type="Texture" id=3]
+[ext_resource path="res://Mech/MechSprite.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Mech/glow.material" type="Material" id=5]
+[ext_resource path="res://Effects/spark_02.png" type="Texture" id=6]
+[ext_resource path="res://Effects/spark_03.png" type="Texture" id=7]
+[ext_resource path="res://Effects/spark_04.png" type="Texture" id=8]
+[ext_resource path="res://Effects/spark_01.png" type="Texture" id=9]
+[ext_resource path="res://SFX/skill_activate.wav" type="AudioStream" id=10]
+[ext_resource path="res://SFX/shoot/mgun_shoot0.wav" type="AudioStream" id=11]
+[ext_resource path="res://SFX/shoot/rifle_shoot4.wav" type="AudioStream" id=12]
+[ext_resource path="res://SFX/shoot/rifle_shoot2.wav" type="AudioStream" id=13]
+[ext_resource path="res://SFX/miss/bullet_miss8.wav" type="AudioStream" id=14]
+[ext_resource path="res://SFX/ready/mgun_ready2.wav" type="AudioStream" id=15]
+[ext_resource path="res://SFX/shoot/hrifle_shoot1.wav" type="AudioStream" id=16]
+[ext_resource path="res://SFX/shoot/hrifle_shoot3.wav" type="AudioStream" id=17]
+[ext_resource path="res://SFX/shoot/mgun_shoot4.wav" type="AudioStream" id=18]
+[ext_resource path="res://SFX/shoot/rifle_shoot3.wav" type="AudioStream" id=19]
+[ext_resource path="res://SFX/ready/mgun_ready0.wav" type="AudioStream" id=20]
+[ext_resource path="res://SFX/ready/mgun_ready1.wav" type="AudioStream" id=21]
+[ext_resource path="res://SFX/miss/bullet_miss6.wav" type="AudioStream" id=22]
+[ext_resource path="res://SFX/shoot/mgun_shoot5.wav" type="AudioStream" id=23]
+[ext_resource path="res://SFX/shoot/mgun_shoot1.wav" type="AudioStream" id=24]
+[ext_resource path="res://SFX/miss/bullet_miss7.wav" type="AudioStream" id=25]
+[ext_resource path="res://SFX/shoot/mgun_shoot3.wav" type="AudioStream" id=26]
+[ext_resource path="res://SFX/shoot/rifle_shoot5.wav" type="AudioStream" id=27]
+[ext_resource path="res://SFX/shoot/hrifle_shoot2.wav" type="AudioStream" id=28]
+[ext_resource path="res://SFX/ready/rifle_ready0.wav" type="AudioStream" id=29]
+[ext_resource path="res://SFX/ready/rifle_ready1.wav" type="AudioStream" id=30]
+[ext_resource path="res://SFX/ready/sgun_ready2.wav" type="AudioStream" id=31]
+[ext_resource path="res://SFX/shoot/sgun_shoot1.wav" type="AudioStream" id=32]
+[ext_resource path="res://SFX/ready/rifle_ready2.wav" type="AudioStream" id=33]
+[ext_resource path="res://SFX/shoot/mgun_shoot2.wav" type="AudioStream" id=34]
+[ext_resource path="res://SFX/shoot/rifle_shoot0.wav" type="AudioStream" id=35]
+[ext_resource path="res://SFX/shoot/sgun_shoot0.wav" type="AudioStream" id=36]
+[ext_resource path="res://SFX/shoot/rifle_shoot1.wav" type="AudioStream" id=37]
+[ext_resource path="res://SFX/shoot/rifle_shoot8.wav" type="AudioStream" id=38]
+[ext_resource path="res://SFX/shoot/rifle_shoot7.wav" type="AudioStream" id=39]
+[ext_resource path="res://SFX/shoot/sgun_shoot2.wav" type="AudioStream" id=40]
+[ext_resource path="res://SFX/ready/sgun_ready1.wav" type="AudioStream" id=41]
+[ext_resource path="res://SFX/shoot/rifle_shoot9.wav" type="AudioStream" id=42]
+[ext_resource path="res://SFX/miss/bullet_miss9.wav" type="AudioStream" id=43]
+[ext_resource path="res://SFX/shoot/rifle_shoot6.wav" type="AudioStream" id=44]
+[ext_resource path="res://SFX/ready/sgun_ready0.wav" type="AudioStream" id=45]
+[ext_resource path="res://SFX/shoot/hrifle_shoot0.wav" type="AudioStream" id=46]
+[ext_resource path="res://SFX/shoot/sgun_shoot3.wav" type="AudioStream" id=47]
+[ext_resource path="res://SFX/hit/bullet_hit8.wav" type="AudioStream" id=48]
+[ext_resource path="res://SFX/hit/bullet_hit0.wav" type="AudioStream" id=49]
+[ext_resource path="res://SFX/hit/bullet_hit1.wav" type="AudioStream" id=50]
+[ext_resource path="res://SFX/hit/bullet_hit3.wav" type="AudioStream" id=51]
+[ext_resource path="res://SFX/hit/bullet_hit4.wav" type="AudioStream" id=52]
+[ext_resource path="res://SFX/hit/bullet_hit6.wav" type="AudioStream" id=53]
+[ext_resource path="res://SFX/hit/bullet_hit2.wav" type="AudioStream" id=54]
+[ext_resource path="res://SFX/hit/bullet_hit5.wav" type="AudioStream" id=55]
+[ext_resource path="res://SFX/hit/bullet_hit7.wav" type="AudioStream" id=56]
+[ext_resource path="res://SFX/hit/bullet_hit14.wav" type="AudioStream" id=57]
+[ext_resource path="res://SFX/hit/bullet_hit9.wav" type="AudioStream" id=58]
+[ext_resource path="res://SFX/hit/bullet_hit11.wav" type="AudioStream" id=59]
+[ext_resource path="res://SFX/hit/bullet_hit12.wav" type="AudioStream" id=60]
+[ext_resource path="res://SFX/miss/bullet_miss0.wav" type="AudioStream" id=61]
+[ext_resource path="res://SFX/miss/bullet_miss3.wav" type="AudioStream" id=62]
+[ext_resource path="res://SFX/miss/bullet_miss4.wav" type="AudioStream" id=63]
+[ext_resource path="res://SFX/miss/bullet_miss5.wav" type="AudioStream" id=64]
+[ext_resource path="res://SFX/hit/bullet_hit15.wav" type="AudioStream" id=65]
+[ext_resource path="res://SFX/hit/bullet_hit10.wav" type="AudioStream" id=66]
+[ext_resource path="res://SFX/hit/bullet_hit13.wav" type="AudioStream" id=67]
+[ext_resource path="res://SFX/miss/bullet_miss1.wav" type="AudioStream" id=68]
+[ext_resource path="res://SFX/miss/bullet_miss2.wav" type="AudioStream" id=69]
+[ext_resource path="res://SFX/explode/explode_lg2.wav" type="AudioStream" id=70]
+[ext_resource path="res://SFX/explode/explode_sm0.wav" type="AudioStream" id=71]
+[ext_resource path="res://SFX/explode/explode_sm1.wav" type="AudioStream" id=72]
+[ext_resource path="res://SFX/explode/explode_sm2.wav" type="AudioStream" id=73]
+[ext_resource path="res://SFX/explode/explode_sm3.wav" type="AudioStream" id=74]
+[ext_resource path="res://SFX/explode/explode_sm4.wav" type="AudioStream" id=75]
+[ext_resource path="res://SFX/explode/explode_sm5.wav" type="AudioStream" id=76]
+[ext_resource path="res://SFX/explode/explode_sm6.wav" type="AudioStream" id=77]
+[ext_resource path="res://SFX/explode/explode_lg0.wav" type="AudioStream" id=78]
+[ext_resource path="res://SFX/explode/explode_lg1.wav" type="AudioStream" id=79]
+[ext_resource path="res://SFX/explode/explode_lg3.wav" type="AudioStream" id=80]
+[ext_resource path="res://SFX/explode/explode_lg4.wav" type="AudioStream" id=81]
+[ext_resource path="res://SFX/explode/explode_lg6.wav" type="AudioStream" id=82]
+[ext_resource path="res://SFX/explode/explode_lg5.wav" type="AudioStream" id=83]
+[ext_resource path="res://SFX/shoot/missile_shoot2.ogg" type="AudioStream" id=84]
+[ext_resource path="res://SFX/shoot/missile_shoot1.ogg" type="AudioStream" id=85]
+[ext_resource path="res://SFX/shoot/missile_shoot0.ogg" type="AudioStream" id=86]
+[ext_resource path="res://SFX/shoot/flame_shoot3.wav" type="AudioStream" id=87]
+[ext_resource path="res://SFX/shoot/mgun_shoot7.wav" type="AudioStream" id=88]
+[ext_resource path="res://SFX/shoot/mgun_shoot8.wav" type="AudioStream" id=89]
+[ext_resource path="res://SFX/shoot/mgun_shoot6.wav" type="AudioStream" id=90]
+[ext_resource path="res://SFX/shoot/flame_shoot0.wav" type="AudioStream" id=91]
+[ext_resource path="res://SFX/shoot/flame_shoot1.wav" type="AudioStream" id=92]
+[ext_resource path="res://SFX/shoot/flame_shoot2.wav" type="AudioStream" id=93]
+[ext_resource path="res://SFX/walk/step_mech.wav" type="AudioStream" id=94]
+[ext_resource path="res://SFX/walk/step1.wav" type="AudioStream" id=95]
+[ext_resource path="res://SFX/walk/step0.wav" type="AudioStream" id=96]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="SphereShape" id=2]
+
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 2, 2 )
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+flags_transparent = true
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 4 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+min_value = 0.5
+max_value = 2.0
+_data = [ Vector2( 0, 0.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 2 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+lifetime_randomness = 0.5
+direction = Vector3( 0, 0, -1 )
+spread = 4.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.25
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=12]
+material = SubResource( 11 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+linear_accel = 4.0
+angle = 360.0
+angle_random = 1.0
+scale = 2.0
+color_ramp = SubResource( 14 )
+
+[sub_resource type="SpatialMaterial" id=16]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=17]
+material = SubResource( 16 )
+
+[sub_resource type="Gradient" id=18]
+colors = PoolColorArray( 1, 1, 0.2, 1, 1, 0.2, 0.2, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+
+[sub_resource type="Curve" id=20]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.376344, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=21]
+curve = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+linear_accel = 4.0
+angle = 360.0
+angle_random = 1.0
+scale = 3.0
+scale_curve = SubResource( 21 )
+color_ramp = SubResource( 19 )
+
+[sub_resource type="SpatialMaterial" id=23]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=24]
+material = SubResource( 23 )
+
+[sub_resource type="SpriteFrames" id=25]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="ArrayMesh" id=26]
+surfaces/0 = {
+"aabb": AABB( -1, 0, -1, 2, 2, 2.00001 ),
+"array_data": PoolByteArray( 255, 255, 127, 191, 0, 0, 0, 0, 0, 0, 128, 63, 129, 0, 0, 0, 0, 0, 129, 129, 0, 0, 0, 60, 255, 255, 127, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 127, 0, 126, 0, 0, 127, 0, 0, 0, 60, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 127, 0, 127, 0, 0, 127, 0, 60, 0, 60, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 128, 63, 127, 0, 0, 0, 127, 0, 0, 127, 0, 60, 0, 60, 255, 255, 127, 191, 0, 0, 0, 64, 0, 0, 128, 63, 129, 0, 0, 0, 0, 0, 129, 129, 0, 0, 0, 0, 255, 255, 127, 191, 0, 0, 0, 64, 0, 0, 128, 63, 0, 0, 127, 0, 127, 0, 0, 127, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 0, 64, 0, 0, 128, 63, 0, 0, 127, 0, 126, 0, 0, 127, 0, 60, 0, 0, 255, 255, 127, 63, 0, 0, 0, 64, 0, 0, 128, 63, 127, 0, 0, 0, 127, 0, 0, 127, 0, 60, 0, 0, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 129, 0, 127, 0, 0, 127, 0, 60, 0, 60, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 128, 191, 127, 0, 0, 0, 127, 0, 0, 127, 0, 60, 0, 60, 255, 255, 127, 63, 0, 0, 0, 64, 0, 0, 128, 191, 0, 0, 129, 0, 127, 0, 0, 127, 0, 60, 0, 0, 255, 255, 127, 63, 0, 0, 0, 64, 0, 0, 128, 191, 127, 0, 0, 0, 127, 0, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 129, 0, 0, 0, 0, 0, 129, 129, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 129, 0, 127, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 0, 64, 0, 0, 128, 191, 129, 0, 0, 0, 0, 0, 129, 129, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 0, 64, 0, 0, 128, 191, 0, 0, 129, 0, 127, 0, 0, 127, 0, 60, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 6, 0, 2, 0, 1, 0, 5, 0, 6, 0, 7, 0, 9, 0, 3, 0, 7, 0, 11, 0, 9, 0, 10, 0, 13, 0, 8, 0, 10, 0, 15, 0, 13, 0, 4, 0, 12, 0, 14, 0, 4, 0, 0, 0, 12, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 24,
+"material": ExtResource( 5 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 16
+}
+
+[node name="Mech" type="KinematicBody"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="Resources" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "bullet_hit0", "bullet_hit1", "bullet_hit10", "bullet_hit11", "bullet_hit12", "bullet_hit13", "bullet_hit14", "bullet_hit15", "bullet_hit2", "bullet_hit3", "bullet_hit4", "bullet_hit5", "bullet_hit6", "bullet_hit7", "bullet_hit8", "bullet_hit9", "bullet_miss0", "bullet_miss1", "bullet_miss2", "bullet_miss3", "bullet_miss4", "bullet_miss5", "bullet_miss6", "bullet_miss7", "bullet_miss8", "bullet_miss9", "explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6", "explode_sm0", "explode_sm1", "explode_sm2", "explode_sm3", "explode_sm4", "explode_sm5", "explode_sm6", "flame_shoot0", "flame_shoot1", "flame_shoot2", "flame_shoot3", "hrifle_shoot0", "hrifle_shoot1", "hrifle_shoot2", "hrifle_shoot3", "mgun_ready0", "mgun_ready1", "mgun_ready2", "mgun_shoot0", "mgun_shoot1", "mgun_shoot2", "mgun_shoot3", "mgun_shoot4", "mgun_shoot5", "mgun_shoot6", "mgun_shoot7", "mgun_shoot8", "missile_shoot0", "missile_shoot1", "missile_shoot2", "rifle_ready0", "rifle_ready1", "rifle_ready2", "rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "rifle_shoot3", "rifle_shoot4", "rifle_shoot5", "rifle_shoot6", "rifle_shoot7", "rifle_shoot8", "rifle_shoot9", "sgun_ready0", "sgun_ready1", "sgun_ready2", "sgun_shoot0", "sgun_shoot1", "sgun_shoot2", "sgun_shoot3", "skill_activate", "step0", "step1", "step_mech" ), [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 66 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 67 ), ExtResource( 57 ), ExtResource( 65 ), ExtResource( 54 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 55 ), ExtResource( 53 ), ExtResource( 56 ), ExtResource( 48 ), ExtResource( 58 ), ExtResource( 61 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 22 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 43 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 70 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 83 ), ExtResource( 82 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 77 ), ExtResource( 91 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 87 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 28 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 24 ), ExtResource( 34 ), ExtResource( 26 ), ExtResource( 18 ), ExtResource( 23 ), ExtResource( 90 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 86 ), ExtResource( 85 ), ExtResource( 84 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 37 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 12 ), ExtResource( 27 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 41 ), ExtResource( 31 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 40 ), ExtResource( 47 ), ExtResource( 10 ), ExtResource( 96 ), ExtResource( 95 ), ExtResource( 94 ) ] ]
+
+[node name="Collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 72, 72 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="MechSprite" parent="Viewport" instance=ExtResource( 4 )]
+
+[node name="Mesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="Mounts" type="Spatial" parent="."]
+
+[node name="ArmR" type="Position3D" parent="Mounts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5 )
+
+[node name="ArmL" type="Position3D" parent="Mounts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5 )
+
+[node name="PodR" type="Position3D" parent="Mounts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0 )
+
+[node name="PodL" type="Position3D" parent="Mounts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, 0 )
+
+[node name="Effects" type="Spatial" parent="."]
+
+[node name="Flame" type="Particles" parent="Effects"]
+emitting = false
+amount = 64
+lifetime = 0.5
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="Smoke" type="Particles" parent="Effects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+emitting = false
+lifetime = 1.4
+local_coords = false
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 17 )
+
+[node name="Fire" type="Particles" parent="Effects"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0 )
+emitting = false
+process_material = SubResource( 22 )
+draw_pass_1 = SubResource( 24 )
+
+[node name="Stun" type="AnimatedSprite3D" parent="Effects"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0 )
+visible = false
+billboard = 1
+frames = SubResource( 25 )
+playing = true
+
+[node name="Tween" type="Tween" parent="Effects"]
+
+[node name="Glow" type="MeshInstance" parent="Effects"]
+material_override = ExtResource( 5 )
+mesh = SubResource( 26 )
+material/0 = null
+
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
+[connection signal="tween_completed" from="Effects/Tween" to="." method="_on_Tween_tween_completed"]

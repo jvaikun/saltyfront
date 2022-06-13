@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SCN - New Tournament.wav-7605b4d75749f9b024a6a312e3f1495a.sample"
+
+[deps]
+
+source_file="res://Game/SCN - New Tournament.wav"
+dest_files=[ "res://.import/SCN - New Tournament.wav-7605b4d75749f9b024a6a312e3f1495a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

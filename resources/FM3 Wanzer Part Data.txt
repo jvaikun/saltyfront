@@ -1,0 +1,266 @@
+Name            | HP0 | HP1 | HP2 | HP3 | HP4 | HP5  | HP6  | HP7   |Weight|Power|   Special   |
+Hoshun   MK112  | 468 | 561 | 702 | 842 | 982 | 1198 | 1357 | 1661  |  37  | 350 |  Revenge B  |
+Meledyne M1     | 292 | 332 | 382 | 438 | 502 | 578  | 662  | 762   |  60  | 344 |   EDfCl-1   |
+Lenghe   1      | 464 | 556 | 696 | 835 | 974 | 1187 | 1345 | 1647  |  39  | 206 |   IniIII    |
+Lanze           | 464 | 556 | 696 | 835 | 974 | 1187 | 1345 | 1647  |  39  | 206 |  TackleIII  |
+Wude     3      | 464 | 547 | 644 | 760 | 895 | 1053 | 1238 | 1461  |  39  | 206 |   EAcc-2    |
+Kasel    M2     | 464 | 547 | 644 | 760 | 895 | 1053 | 1238 | 1461  |  39  | 206 |   MeleeII   |
+Zeros           | 464 | 528 | 607 | 696 | 798 | 918  | 1053 | 1211  |  39  | 206 |   EEva-1    |
+Tiandong 3      | 464 | 528 | 607 | 696 | 798 | 918  | 1053 | 1211  |  39  | 206 |  TackleII   |
+Grapple  M1     | 464 | 528 | 607 | 696 | 798 | 918  | 1053 | 1211  |  39  | 206 |  MeleeIII   |
+Quibing  0*     | 452 | 542 | 678 | 813 | 949 | 1157 | 1310 | 1423  |  42  | 231 |  RevengeII  |
+Zenislev        | 452 | 542 | 678 | 813 | 949 | 1157 | 1310 | 1604  |  42  | 231 |   TackleI   |
+Yongsai  3      | 364 | 436 | 546 | 655 | 764 | 931  | 1055 | 1292  |  44  | 253 |   BackupM   |
+Prov     PAW2   | 364 | 414 | 476 | 546 | 626 | 720  | 826  | 950   |  44  | 253 |   AutoI     |
+Shunwang 1      | 340 | 408 | 510 | 612 | 714 | 870  | 986  | 1207  |  42  | 254 |    EEva0    |
+Vinedrai        | 340 | 408 | 510 | 612 | 714 | 870  | 986  | 1207  |  42  | 254 |   E Eva-2   |
+Kyojun   Mk107  | 340 | 401 | 472 | 557 | 656 | 771  | 907  | 1071  |  42  | 254 |    ZoomI    |
+Kyokei   Mk108  | 340 | 387 | 445 | 510 | 584 | 673  | 771  | 887   |  40  | 220 |   MeleeI    |
+Jinyo    Mk110  | 340 | 387 | 445 | 510 | 584 | 673  | 771  | 887   |  42  | 254 |  RevengeI   |
+Getty           | 340 | 387 | 445 | 510 | 584 | 673  | 771  | 887   |  42  | 254 | RevengeIII  |
+Tieqi    4      | 312 | 374 | 468 | 561 | 655 | 798  | 904  | 1107  |  43  | 287 |   EDfCl-2   |
+Mingtian 1      | 292 | 350 | 438 | 525 | 613 | 747  | 846  | 1036  |  60  | 344 |   DfClMaX   |
+Whisk           | 292 | 350 | 438 | 525 | 613 | 747  | 846  | 1036  |  60  | 344 |   EDfCl0    |
+Laiying  1      | 292 | 344 | 405 | 478 | 563 | 662  | 779  | 919   |  60  | 344 |    DfCl2    |
+Genie           | 292 | 344 | 405 | 478 | 563 | 662  | 779  | 919   |  60  | 344 |    DfCl1    |
+Foura    M12A   | 292 | 332 | 382 | 438 | 502 | 578  | 662  | 762   |  60  | 344 | Pilot Eject |
+Enyo     Mk109  | 292 | 332 | 382 | 438 | 502 | 578  | 662  | 762   |  60  | 344 |    AutoI    |
+Drake    M2C    | 292 | 332 | 382 | 438 | 502 | 578  | 662  | 762   |  60  | 344 |    Chaff    |
+Shunyo   MK111  | 276 | 331 | 414 | 496 | 579 | 706  | 800  | 979   |  38  | 269 |  DMGFx400   |
+Grezex          | 276 | 331 | 414 | 496 | 579 | 706  | 800  | 979   |  38  | 269 |   ZoomIII   |
+Shangdi  1      | 276 | 331 | 414 | 496 | 579 | 706  | 800  | 979   |  38  | 269 |   EAcc0     |
+Rekson   M4F    | 276 | 314 | 361 | 414 | 474 | 546  | 626  | 720   |  38  | 269 |   ZoomII    |
+Pare     PAW1   | 276 | 314 | 361 | 414 | 474 | 546  | 626  | 720   |  38  | 269 |   EAcc-1    |
+
+Name            | Lv1 | Lv2 | Lv3 | Lv4 |
+Meledyne M1     | 15% | x2  | x3  | x4  |
+Hoshun   MK112  | 15% | x2  | x3  | x4  |
+Drake    M2C    | 15% | x2  | x3  | x4  |
+Lanze           | 15% | x2  | x3  | x4  |
+Wude     3      | 15% | x2  | x3  | x4  |
+Prov     PAW2   | 15% | x2  | x3  | x4  |
+Tieqi    4      | 15% | x2  | x3  | x4  |
+Rekson   M4F    | 15% | x2  | x3  | x4  |
+Drake    M2C    | 15% | x2  | x3  | x4  |
+Qibing   0      | 15% | x2  | x3  | x4  |
+Whisk           | 10% | x2  | x3  | x4  |
+Kasel    M2     | 10% | x2  | x3  | x4  |
+Zeros           | 10% | x2  | x3  | x4  |
+Mingtian 1      | 10% | x2  | x3  | x4  |
+Tiandong 3      | 10% | x2  | x3  | x4  |
+Yongsai  3      | 10% | x2  | x3  | x4  |
+Vinedrai        | 10% | x2  | x3  | x4  |
+Kyojun   Mk107  | 10% | x2  | x3  | x4  |
+Kyokei   Mk108  | 10% | x2  | x3  | x4  |
+Getty           | 10% | x2  | x3  | x4  |
+Foura    M12A   | 10% | x2  | x3  | x4  |
+Grezex          | 10% | x2  | x3  | x4  |
+Pare     PAW1   | 10% | x2  | x3  | x4  |
+Shunyo   MK111  |  5% | x2  | x3  | x4  |
+Lenghe   1      |  5% | x2  | x3  | x4  |
+Shunwang 1      |  5% | x2  | x3  | x4  |
+Jinyo    Mk110  |  5% | x2  | x3  | x4  |
+Grapple  M1     |  5% | x2  | x3  | x4  |
+Zenislev        |  5% | x2  | x3  | x4  |
+Laiying  1      |  5% | x2  | x3  | x4  |
+Genie           |  5% | x2  | x3  | x4  |
+Enyo     Mk109  |  5% | x2  | x3  | x4  |
+Shangdi  1      |  5% | x2  | x3  | x4  |
+
+Name            | HP0 | HP1 | HP2 | HP3 | HP4 | HP5  | HP6  | HP7   |Weight| Acc%|   Special   |
+Hoshun   Mk112  | 300 | 360 | 450 | 540 | 630 | 768  | 870  | 1065  |  24  | 12% | Body Smash! |
+Meledyne M1     | 184 | 209 | 241 | 276 | 316 | 364  | 417  | 480   |  45  | 12% | Panic Shot  |
+Lenghe   1      | 292 | 350 | 438 | 525 | 613 | 747  | 846  | 1036  |  15  |  5% | Shld AtkIII |
+Wude     3      | 292 | 350 | 438 | 525 | 613 | 747  | 846  | 1036  |  15  |  5% | Dbl PunchII |
+Tiandong 3      | 292 | 350 | 438 | 525 | 613 | 747  | 846  | 1036  |  15  |  5% | Eject Punch |
+Lanze           | 292 | 332 | 382 | 438 | 502 | 578  | 662  | 762   |  15  |  5% | Shld AtkII  |
+Kasel    M2     | 292 | 332 | 382 | 428 | 502 | 578  | 662  | 762   |  15  |  5% | Stun Punch  |
+Zeros           | 292 | 344 | 405 | 478 | 563 | 662  | 779  | 919   |  15  |  5% | Shld AtkI   |
+Grapple  M1     | 292 | 344 | 405 | 478 | 563 | 662  | 779  | 919   |  15  |  5% | Dbl PunchI  |
+Zenislev        | 284 | 335 | 394 | 465 | 548 | 644  | 758  | 894   |  20  |  5% | Dbl Assault |
+Qibing   0      | 284 | 335 | 394 | 465 | 548 | 644  | 758  | 894   |  20  |  5% | TopplePunch |
+Yongsai  3      | 228 | 273 | 342 | 410 | 478 | 583  | 661  | 809   |  33  |  9% |  ROFUPIII   |
+Prov     PAW2   | 228 | 269 | 316 | 373 | 440 | 517  | 608  | 718   |  33  |  9% | Dbl ShotI   |
+Shunwang 1      | 212 | 254 | 318 | 381 | 445 | 542  | 614  | 752   |  36  | 10% | Aim Body    |
+Vinedrai        | 212 | 254 | 318 | 381 | 445 | 542  | 614  | 752   |  36  | 10% |  Aim Arm    |
+Kyojun   Mk107  | 212 | 250 | 294 | 347 | 409 | 481  | 566  | 667   |  36  | 10% |   ROFUPI    |
+Kyokei   Mk108  | 212 | 250 | 294 | 347 | 409 | 481  | 566  | 667   |  25  |  7% | Hit or Miss |
+Getty           | 212 | 250 | 294 | 347 | 409 | 481  | 566  | 667   |  36  | 10% | FiringSquad |
+Jinyo    Mk110  | 212 | 241 | 277 | 318 | 364 | 419  | 481  | 553   |  36  | 10% |   ROFUPII   |
+Tieqi    4      | 196 | 231 | 272 | 321 | 378 | 444  | 523  | 617   |  44  | 12% |  Aim Legs   |
+Mingtian 1      | 184 | 220 | 276 | 331 | 386 | 471  | 533  | 653   |  45  | 12% |Random Smash |
+Whisk           | 184 | 220 | 276 | 331 | 386 | 471  | 533  | 653   |  45  | 12% |   Salvo     |
+Laiying  1      | 184 | 220 | 276 | 331 | 386 | 471  | 533  | 653   |  45  | 12% | Plt DamII   |
+Foura    M12A   | 184 | 220 | 276 | 331 | 386 | 471  | 533  | 653   |  45  | 12% | Arm Smash!  |
+Genie           | 184 | 217 | 255 | 301 | 355 | 417  | 491  | 579   |  45  | 12% | Plt DamIII  |
+Enyo     Mk109  | 184 | 209 | 241 | 276 | 316 | 364  | 417  | 480   |  45  | 12% | Leg Smash!  |
+Drake    M2C    | 184 | 209 | 241 | 276 | 316 | 364  | 417  | 480   |  45  | 12% | Pilot DMGI  |
+Shangdi  1      | 172 | 206 | 258 | 309 | 361 | 440  | 498  | 610   |  51  | 14% | Dbl ShotII  |
+Shunyo   MK111  | 172 | 196 | 225 | 258 | 295 | 340  | 390  | 448   |  51  | 14% | Revenge Same|
+Grezex          | 172 | 196 | 225 | 258 | 295 | 340  | 390  | 448   |  51  | 14% |    Aim      |
+Rekson   M4F    | 172 | 196 | 225 | 258 | 295 | 340  | 390  | 448   |  51  | 14% | Backup Fire |
+Pare     PAW1   | 172 | 196 | 225 | 258 | 295 | 340  | 390  | 448   |  51  | 14% | ToppleShot  |
+
+Name            | Lv1  | Lv2  | Lv3  | Lv4   |
+Shunyo   MK111  | +25% | +45% | +81% | +147% |
+Rekson   M4F    | +25% | +45% | +81% | +147% |
+Shangdi  1      | +25% | +45% | +81% | +147% |
+Hoshun   MK112  | +21% | +38% | +69% | +126% |
+Enyo     Mk109  | +21% | +38% | +69% | +126% |
+Hoshun   Mk112  | +21% | +38% | +69% | +126% |
+Drake    M2C    | +21% | +38% | +69% | +126% |
+Meledyne M1     | +21% | +38% | +69% | +126% |
+Grezex          | +23% | +27% | +62% | +109% |
+Shunwang 1      | +18% | +32% | +58% | +105% |
+Jinyo    Mk110  | +18% | +32% | +58% | +105% |
+Getty           | +18% | +32% | +58% | +105% |
+Kyojun   Mk107  | +18% | +32% | +58% | +105% |
+Pare     PAW1   | +23% | +38% | +62% | +103% |
+Prov     PAW2   | +16% | +29% | +52% | +94%  |
+Tieqi    4      | +19% | +32% | +53% | +88%  |
+Whisk           | +19% | +32% | +53% | +88%  |
+Mingtian 1      | +19% | +32% | +53% | +88%  |
+Vinedrai        | +16% | +27% | +44% | +74%  |
+Kyokei   Mk108  | +12% | +22% | +40% | +73%  |
+Yongsai  3      | +14% | +24% | +40% | +66%  |
+Laiying  1      | +18% | +27% | +40% | +60%  |
+Genie           | +18% | +27% | +40% | +60%  |
+Foura    M12A   | +18% | +27% | +40% | +60%  |
+Wude     3      | +9%  | +16% | +29% | +52%  |
+Kasel    M2     | +9%  | +16% | +29% | +52%  |
+Tiandong 3      | +8%  | +13% | +22% | +37%  |
+Grapple  M1     | +8%  | +13% | +22% | +37%  |
+Qibing   0      | +8%  | +13% | +22% | +37%  |
+Zenislev        | +7%  | +11% | +16% | +25%  |
+Zeros           | +7%  | +11% | +16% | +25%  |
+Lanze           | +7%  | +11% | +16% | +25%  |
+Lenghe   1      | +7%  | +11% | +16% | +25%  |
+
+Name            | HP0 | HP1 | HP2 | HP3 | HP4 | HP5  | HP6  | HP7   |Weight| Move|  Special    |
+Hoshun   MK112  | 400 | 480 | 600 | 720 | 840 | 1024 | 1160 | 1420  |  35  |  5  |   AP-0      |
+Meledyne M1     | 240 | 283 | 314 | 360 | 412 | 475  | 544  | 626   |  18  |  2  |  Skill+1    |
+Lenghe   1      | 384 | 460 | 576 | 691 | 806 | 983  | 1113 | 1363  |  59  |  6  |Gang Beating |
+Lanze           | 384 | 460 | 576 | 691 | 806 | 983  | 1113 | 1363  |  59  |  6  |  Avoid 40   |
+Zeros           | 384 | 453 | 533 | 629 | 741 | 871  | 1025 | 1209  |  59  |  6  |   Ini II    |
+Tiandong 3      | 384 | 453 | 533 | 629 | 741 | 871  | 1025 | 1209  |  59  |  6  |  Avoid 20   |
+Wude     3      | 384 | 437 | 503 | 576 | 660 | 760  | 871  | 1002  |  59  |  6  |  E Skill-3  |
+Kasel    M2     | 384 | 437 | 503 | 576 | 660 | 760  | 871  | 1002  |  59  |  6  |   AP-30%    |
+Grapple  M1     | 384 | 437 | 503 | 576 | 660 | 760  | 871  | 1002  |  59  |  6  |  Skill+2    |
+Zenislev        | 372 | 438 | 517 | 610 | 717 | 844  | 993  | 1171  |  55  |  5  |  Ini II     |
+Quibing  0      | 372 | 438 | 517 | 610 | 717 | 844  | 993  | 1171  |  55  |  5  |  DMGFx200   |
+Yongsai  3      | 300 | 360 | 450 | 540 | 630 | 769  | 870  | 1065  |  48  |  4  |  Avoid 80   |
+Prov     PAW2   | 300 | 342 | 393 | 450 | 516 | 594  | 681  | 783   |  48  |  4  | Guard Body  |
+Vinedrai        | 280 | 336 | 420 | 504 | 583 | 716  | 812  | 994   |  43  |  3  |   EXPx4     |
+Getty           | 280 | 330 | 389 | 459 | 540 | 635  | 747  | 882   |  43  |  3  |  E Skill-2  |
+Shunwang 1      | 280 | 319 | 366 | 420 | 481 | 554  | 635  | 730   |  43  |  3  |  EvadeMax   |
+Kyojun   Mk107  | 280 | 319 | 366 | 420 | 481 | 554  | 635  | 730   |  43  |  3  |  Brace I    |
+Kyokei   Mk108  | 280 | 319 | 366 | 420 | 481 | 554  | 635  | 730   |  45  |  4  |  DMGFx100   |
+Jinyo    Mk110  | 280 | 319 | 366 | 420 | 481 | 554  | 635  | 730   |  43  |  3  |  Fast Atk   |
+Tieqi    4      | 256 | 302 | 355 | 419 | 494 | 581  | 683  | 806   |  44  |  5  |   BRACEII   |
+Drake    M2C    | 240 | 273 | 314 | 360 | 412 | 475  | 544  | 626   |  18  |  2  |   EXPx2     |
+Whisk           | 240 | 288 | 360 | 432 | 504 | 614  | 696  | 852   |  18  |  2  |   Evade+2   |
+Mingtian 1      | 240 | 288 | 360 | 432 | 504 | 614  | 696  | 852   |  18  |  2  |   Blackout  |
+Laiying  1      | 240 | 288 | 360 | 432 | 504 | 614  | 696  | 852   |  18  |  2  |   Skill+3   |
+Genie           | 240 | 288 | 360 | 432 | 504 | 614  | 696  | 852   |  18  |  2  |Auto Counter |
+Foura    M12A   | 240 | 288 | 360 | 432 | 504 | 614  | 696  | 852   |  18  |  2  |   Escape    |
+Enyo     Mk109  | 240 | 283 | 333 | 393 | 463 | 544  | 640  | 756   |  18  |  2  |Prevent Loss |
+Grezex          | 228 | 259 | 298 | 342 | 392 | 451  | 517  | 595   |  38  |  3  | Hard Knocks |
+Shangdi  1      | 228 | 259 | 298 | 342 | 392 | 451  | 517  | 595   |  38  |  3  |   EXPx3     |
+Rekson   M4F    | 228 | 259 | 298 | 342 | 392 | 451  | 517  | 595   |  38  |  3  |  E Skill-1  |
+Pare     PAW1   | 228 | 269 | 316 | 373 | 440 | 517  | 608  | 718   |  38  |  3  |   Evade+1   |
+Shunyo   MK111  | 228 | 269 | 316 | 373 | 440 | 517  | 608  | 718   |  38  |  3  |   AP-60%    |
+
+Name            | Lv1 | Lv2 | Lv3 | Lv4 |
+Hoshun   Mk112  | 10% | 24% | 40% | 59% |
+Grezex          | 8%  | 19% | 32% | 47% |
+Lanze           | 8%  | 19% | 32% | 47% |
+Shunyo   MK111  | 8%  | 19% | 32% | 47% |
+Lenghe   1      | 8%  | 19% | 32% | 47% |
+Shunwang 1      | 8%  | 19% | 32% | 47% |
+Enyo     Mk109  | 8%  | 19% | 32% | 47% |
+Grapple  M1     | 8%  | 19% | 32% | 47% |
+Kasel    M2     | 8%  | 19% | 32% | 47% |
+Jinyo    Mk110  | 8%  | 19% | 32% | 47% |
+Zenislev        | 8%  | 19% | 32% | 47% |
+Kyojun   Mk107  | 8%  | 19% | 32% | 47% |
+Genie           | 8%  | 19% | 32% | 47% |
+Prov     PAW2   | 8%  | 19% | 32% | 47% |
+Meledyne M1     | 6%  | 14% | 24% | 35% |
+Kyokei   Mk108  | 6%  | 14% | 24% | 35% |
+Rekson   M4F    | 6%  | 14% | 24% | 35% |
+Shangdi  1      | 6%  | 14% | 24% | 35% |
+Pare     PAW1   | 6%  | 14% | 24% | 35% |
+Laiying  1      | 6%  | 14% | 24% | 35% |
+Whisk           | 4%  | 10% | 16% | 24% |
+Vinedrai        | 4%  | 10% | 16% | 24% |
+Qibing   0      | 4%  | 10% | 16% | 24% |
+Tieqi    4      | 4%  | 10% | 16% | 24% |
+Yongsai  3      | 4%  | 10% | 16% | 24% |
+Foura    M12A   | 4%  | 10% | 16% | 24% |
+Wude     3      | 4%  | 10% | 16% | 24% |
+Tiandong 3      | 4%  | 10% | 16% | 24% |
+Mingtian 1      | 4%  | 10% | 16% | 24% |
+Drake    M2C    | 4%  | 10% | 16% | 24% |
+Getty           | 4%  | 10% | 16% | 24% |
+Zeros           | 4%  | 10% | 16% | 24% |
+
+Name          Type     DC Wt   Acc.  Rng  Attack    AP  AD/Rg AD/Ht Ammo
+War Hammer    Baton    I  18   120%  1    56 (x1)   1   -0%   -0%   Unl.
+Cleave Axe    Baton    I  21   120%  1    67 (x1)   1   -0%   -0%   Unl.
+Mk9 Baton     Baton    I  25   120%  1    80 (x1)   1   -0%   -0%   Unl.
+Mk13 Baton    Baton    I  29   120%  1    96 (x1)   1   -0%   -0%   Unl.
+Venus         Baton    I  33   120%  1    115 (x1)  1   -0%   -0%   Unl.
+Sharp Spike   Spike    P  20   110%  1    63 (x1)   1   -0%   -0%   Unl.
+Heavy Spike   Spike    P  23   110%  1    75 (x1)   1   -0%   -0%   Unl.
+Mk18 Spike    Spike    P  28   110%  1    90 (x1)   1   -0%   -0%   Unl.
+Mk22 Spike    Spike    P  32   110%  1    108 (x1)  1   -0%   -0%   Unl.
+Last Strike   Spike    P  37   110%  1    129 (x1)  1   -0%   -0%   Unl.
+Bone Buster   Fist     I  22   100%  1    76 (x1)   1   -0%   -0%   Unl.
+Fear Fist     Fist     I  26   100%  1    91 (x1)   1   -0%   -0%   Unl.
+Mk10 Fist     Fist     I  30   100%  1    109 (x1)  1   -0%   -0%   Unl.
+Mk12 Fist     Fist     I  35   100%  1    130 (x1)  1   -0%   -0%   Unl.
+Big Buster    Fist     I  35   100%  1    130 (x1)  1   -0%   -0%   Unl.
+Fatal Buster  Fist     I  40   100%  1    156 (x1)  1   -0%   -0%   Unl.
+Odin M98      Shotgun  I  42   75%   1-3  12 (x12)  3   -2%   -5%   Unl.
+SPPG 14       Shotgun  I  50   75%   1-3  14 (x12)  3   -2%   -5%   Unl.
+Chongdu 2     Shotgun  I  59   75%   1-3  16 (x12)  3   -2%   -5%   Unl.
+Chongta 3     Shotgun  I  69   75%   1-3  19 (x12)  3   -2%   -5%   Unl.
+Desoto M300   Shotgun  I  80   75%   1-3  22 (x12)  3   -2%   -5%   Unl.
+Kodo SN990    M.Gun    P  48   80%   1-4  11 (x10)  5   -10%  -5%   Unl.
+DGS-25        M.Gun    P  56   80%   1-4  13 (x10)  5   -10%  -5%   Unl.
+Mingda 2      M.Gun    P  65   80%   1-4  15 (x10)  5   -10%  -5%   Unl.
+Huida 3       M.Gun    P  78   80%   1-4  18 (x10)  5   -10%  -5%   Unl.
+Nissai 90MF   M.Gun    P  78   80%   1-4  18 (x10)  5   -10%  -5%   Unl.
+Arc Barrel 4  M.Gun    P  91   80%   1-4  21 (x10)  5   -10%  -5%   Unl.
+Heat Stream   Flamer   F  51   60%   1-2  17 (x4)   4   -2%   -5%   Unl.
+Huoliu 1      Flamer   F  60   60%   1-2  20 (x4)   4   -2%   -5%   Unl.
+Huosai 2      Flamer   F  70   60%   1-2  24 (x4)   4   -2%   -5%   Unl.
+Huoyao 3      Flamer   F  81   60%   1-2  28 (x4)   4   -2%   -5%   Unl.
+Hot Gazel     Flamer   F  93   60%   1-2  33 (x4)   4   -2%   -5%   Unl.
+Franbar FF    Rifle    P  45   75%   1-6  58 (x1)   4   -2%   -5%   Unl.
+Mk9 Sniper    Rifle    P  53   75%   1-6  69 (x1)   4   -2%   -5%   Unl.
+Laoxing 6     Rifle    P  62   75%   1-6  82 (x1)   4   -2%   -5%   Unl.
+Laohu 3       Rifle    P  73   75%   1-6  98 (x1)   4   -2%   -5%   Unl.
+Scarab F2     Rifle    P  73   75%   1-6  98 (x1)   4   -2%   -5%   Unl.
+Mk11 Sniper   Rifle    P  84   75%   1-6  117 (x1)  4   -2%   -5%   Unl.
+Hvy P-Gun     Beam     N  127  90%   1-9  250 (x1)  15  -0%   -5%   Unl.
+Quill         Missile  F  81   80%   3-9  73 (x1)   10  -0%   -0%   6
+Wagtail 2     Missile  F  96   80%   3-9  87 (x1)   10  -0%   -0%   6
+Yunsheng 34   Missile  F  109  80%   3-9  104 (x1)  10  -0%   -0%   6
+Zhiniao 50    Missile  F  123  80%   3-9  124 (x1)  10  -0%   -0%   6
+Nightingale   Missile  F  123  80%   3-9  124 (x1)  10  -0%   -0%   6
+Bjariger      Missile  F  137  80%   3-9  148 (x1)  10  -0%   -0%   6
+Wanzerfaust   Grenade  F  92   60%   3-6  62 (x1)   12  -0%   -0%   4
+Type 10 GR    Grenade  F  109  60%   3-6  74 (x1)   12  -0%   -0%   4
+Type 13 GR    Grenade  F  124  60%   3-6  88 (x1)   12  -0%   -0%   4
+Type 14 GR    Grenade  F  140  60%   3-6  105 (x1)  12  -0%   -0%   4
+Faust GGR     Grenade  F  156  60%   3-6  126 (x1)  12  -0%   -0%   4
+
+Name           Wt   AP  Dur Dmg Red.
+Mk9 Shield     18   2   4   -50%
+SN-100G        24   2   6   -50%
+Buckler        22   2   4   -70%
+Hvy Shield     28   2   6   -70%
+Mk10 Shield    28   2   6   -70%
+SN-107G        36   2   4   -90%
+

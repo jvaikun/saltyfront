@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/headshots.png" type="Texture" id=1]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Game/PilotInfo.gd" type="Script" id=5]
+
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 80 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 4 )
+
+[node name="PilotInfo" type="MarginContainer"]
+margin_right = 122.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 120.0
+
+[node name="Portrait" type="MarginContainer" parent="Body"]
+margin_left = 24.0
+margin_right = 88.0
+margin_bottom = 80.0
+size_flags_horizontal = 4
+
+[node name="TeamColor" type="ColorRect" parent="Body/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+
+[node name="PilotFace" type="TextureRect" parent="Body/Portrait"]
+margin_right = 64.0
+margin_bottom = 80.0
+texture = SubResource( 1 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Body"]
+margin_top = 84.0
+margin_right = 112.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Unknown"
+align = 1
+autowrap = true

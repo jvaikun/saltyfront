@@ -1,0 +1,29 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Items/Mine.gd" type="Script" id=1]
+[ext_resource path="res://Items/Mine.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Items/palette64_gradient.png" type="Texture" id=3]
+[ext_resource path="res://SFX/explode/explode_lg5.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/explode/explode_lg0.wav" type="AudioStream" id=5]
+[ext_resource path="res://SFX/explode/explode_lg4.wav" type="AudioStream" id=6]
+[ext_resource path="res://SFX/explode/explode_lg1.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/explode/explode_lg2.wav" type="AudioStream" id=8]
+[ext_resource path="res://SFX/explode/explode_lg3.wav" type="AudioStream" id=9]
+[ext_resource path="res://SFX/explode/explode_lg6.wav" type="AudioStream" id=10]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+
+[node name="Mine" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Mine" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+material_override = SubResource( 1 )
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+
+[node name="Sounds" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6" ), [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 10 ) ] ]

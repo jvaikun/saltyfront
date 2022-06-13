@@ -1,0 +1,154 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "CommandData",
+"language": "GDScript",
+"path": "res://addons/gift/util/cmd_data.gd"
+}, {
+"base": "Reference",
+"class": "CommandInfo",
+"language": "GDScript",
+"path": "res://addons/gift/util/cmd_info.gd"
+}, {
+"base": "Node",
+"class": "Gift",
+"language": "GDScript",
+"path": "res://addons/gift/gift_node.gd"
+}, {
+"base": "Resource",
+"class": "ImageCache",
+"language": "GDScript",
+"path": "res://addons/gift/util/image_cache.gd"
+}, {
+"base": "Reference",
+"class": "MechArm",
+"language": "GDScript",
+"path": "res://classes/MechArm.gd"
+}, {
+"base": "Reference",
+"class": "MechBody",
+"language": "GDScript",
+"path": "res://classes/MechBody.gd"
+}, {
+"base": "Reference",
+"class": "MechLegs",
+"language": "GDScript",
+"path": "res://classes/MechLegs.gd"
+}, {
+"base": "Reference",
+"class": "MechPack",
+"language": "GDScript",
+"path": "res://classes/MechPack.gd"
+}, {
+"base": "Reference",
+"class": "MechPilot",
+"language": "GDScript",
+"path": "res://classes/MechPilot.gd"
+}, {
+"base": "Reference",
+"class": "MechPod",
+"language": "GDScript",
+"path": "res://classes/MechPod.gd"
+}, {
+"base": "Reference",
+"class": "MechStats",
+"language": "GDScript",
+"path": "res://classes/MechStats.gd"
+}, {
+"base": "Reference",
+"class": "MechWeapon",
+"language": "GDScript",
+"path": "res://classes/MechWeapon.gd"
+}, {
+"base": "Reference",
+"class": "SenderData",
+"language": "GDScript",
+"path": "res://addons/gift/util/sender_data.gd"
+}, {
+"base": "Reference",
+"class": "User",
+"language": "GDScript",
+"path": "res://classes/User.gd"
+} ]
+_global_script_class_icons={
+"CommandData": "",
+"CommandInfo": "",
+"Gift": "",
+"ImageCache": "",
+"MechArm": "",
+"MechBody": "",
+"MechLegs": "",
+"MechPack": "",
+"MechPilot": "",
+"MechPod": "",
+"MechStats": "",
+"MechWeapon": "",
+"SenderData": "",
+"User": ""
+}
+
+[application]
+
+config/name="Salty Front"
+run/main_scene="res://scenes/title/TitleScreen.tscn"
+config/icon="res://sf_icon.png"
+
+[autoload]
+
+GameData="*res://Game/GameData.gd"
+PartDB="*res://scenes/databases/PartDB.gd"
+UserDB="*res://scenes/databases/UserDB.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gift/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg" )
+
+[input]
+
+ui_screenshot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_rot_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_rot_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_rot_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_rot_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[logging]
+
+file_logging/enable_file_logging=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

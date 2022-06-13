@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flame_shoot2.wav-22e4c4f46498729db9d43a260207c80f.sample"
+
+[deps]
+
+source_file="res://SFX/shoot/flame_shoot2.wav"
+dest_files=[ "res://.import/flame_shoot2.wav-22e4c4f46498729db9d43a260207c80f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,14 @@
+{
+    "SaltyFront":{
+        "nick":"SaltyFront",
+        "client":"SaltyFront",
+        "channel":"saltyfront",
+        "oauth":"oauth:6tcow34yqmfvai1a1v1r7ugppli90h"
+    },
+    "Tupperwarez":{
+        "nick":"Tupperwarez",
+        "client":"Tupperwarez",
+        "channel":"tupperwarez",
+        "oauth":"oauth:ua77x0y1uuoa5flkytu1miizzam8d6"
+    }
+}

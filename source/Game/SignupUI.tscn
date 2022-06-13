@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=2]
+[ext_resource path="res://Game/SignupUI.gd" type="Script" id=3]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/fonts/ui_font_med.tres" type="DynamicFont" id=5]
+
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.5, 1, 0.5, 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 1, 0, 1 )
+
+[node name="SignupUI" type="MarginContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -470.0
+margin_right = 470.0
+margin_bottom = 382.0
+grow_horizontal = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panels" type="VBoxContainer" parent="."]
+margin_right = 940.0
+margin_bottom = 382.0
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Help" type="PanelContainer" parent="Panels"]
+margin_right = 940.0
+margin_bottom = 183.0
+rect_min_size = Vector2( 940, 0 )
+custom_styles/panel = ExtResource( 2 )
+
+[node name="Body" type="VBoxContainer" parent="Panels/Help"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 922.0
+margin_bottom = 165.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panels/Help/Body"]
+margin_right = 904.0
+margin_bottom = 31.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "HOW TO PLAY"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="RichTextLabel" parent="Panels/Help/Body"]
+margin_top = 39.0
+margin_right = 904.0
+margin_bottom = 147.0
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Type commands in chat:
+[color=white]!register[/color] - Register your username
+[color=white]!fight[/color] - Sign up for a tournament during signup
+[color=white]!balance[/color] - Check your credit balance"
+text = "Type commands in chat:
+!register - Register your username
+!fight - Sign up for a tournament during signup
+!balance - Check your credit balance"
+fit_content_height = true
+
+[node name="Intro" type="PanelContainer" parent="Panels"]
+margin_top = 191.0
+margin_right = 940.0
+margin_bottom = 382.0
+custom_styles/panel = ExtResource( 2 )
+
+[node name="Body" type="VBoxContainer" parent="Panels/Intro"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 922.0
+margin_bottom = 173.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="Label" parent="Panels/Intro/Body"]
+margin_right = 904.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Tournament #1 starting soon!"
+align = 1
+valign = 1
+
+[node name="Counter" type="Label" parent="Panels/Intro/Body"]
+margin_top = 47.0
+margin_right = 904.0
+margin_bottom = 97.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Signup Time Left: 0"
+align = 1
+valign = 1
+
+[node name="Title" type="Label" parent="Panels/Intro/Body"]
+margin_top = 113.0
+margin_right = 904.0
+margin_bottom = 139.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "Join Queue"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UserList" type="GridContainer" parent="Panels/Intro/Body"]
+margin_top = 155.0
+margin_right = 904.0
+margin_bottom = 155.0
+columns = 2
+
+[node name="Timer" type="Timer" parent="."]

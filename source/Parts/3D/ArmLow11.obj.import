@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ArmLow11.obj-f5be05d607a749ceba79b1cc5d7fbbed.mesh"
+
+[deps]
+
+files=[ "res://.import/ArmLow11.obj-f5be05d607a749ceba79b1cc5d7fbbed.mesh" ]
+
+source_file="res://Parts/3D/ArmLow11.obj"
+dest_files=[ "res://.import/ArmLow11.obj-f5be05d607a749ceba79b1cc5d7fbbed.mesh", "res://.import/ArmLow11.obj-f5be05d607a749ceba79b1cc5d7fbbed.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

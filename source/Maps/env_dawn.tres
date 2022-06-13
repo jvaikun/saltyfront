@@ -1,0 +1,12 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+sun_latitude = 135.0
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 90.0
+background_color = Color( 0.560784, 0.560784, 0.8, 1 )
+background_energy = 0.25
+tonemap_mode = 2

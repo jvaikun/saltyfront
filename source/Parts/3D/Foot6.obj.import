@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Foot6.obj-4249941e18b6444baeb326f6cf8ffa91.mesh"
+
+[deps]
+
+files=[ "res://.import/Foot6.obj-4249941e18b6444baeb326f6cf8ffa91.mesh" ]
+
+source_file="res://Parts/3D/Foot6.obj"
+dest_files=[ "res://.import/Foot6.obj-4249941e18b6444baeb326f6cf8ffa91.mesh", "res://.import/Foot6.obj-4249941e18b6444baeb326f6cf8ffa91.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

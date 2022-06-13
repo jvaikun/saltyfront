@@ -1,0 +1,163 @@
+[gd_scene load_steps=8 format=2]
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lamp:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.9, 0.9, 0.9, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpotLight:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.9, 0.9, 0.9, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpotLight:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lamp:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.9, 0.9, 0.9, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpotLight:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.9, 0.9, 0.9, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpotLight:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "warning"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lamp:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.6, 0.45, 0, 1 ), Color( 1, 0.74902, 0, 1 ), Color( 0.6, 0.45, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpotLight:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.75, 0, 1 ), Color( 1, 0.74902, 0, 1 ), Color( 1, 0.75, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpotLight:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.25, 2.0, 0.25 ]
+}
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+flags_vertex_lighting = true
+albedo_color = Color( 0.9, 0.9, 0.9, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.2, 0.2, 2 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.2, 0.2, 0.2, 1 )
+
+[sub_resource type="PrismMesh" id=6]
+left_to_right = 0.0
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="HangarLight" type="Spatial"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/normal = SubResource( 9 )
+anims/warning = SubResource( 7 )
+
+[node name="Lamp" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.1, 0 )
+material_override = SubResource( 1 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="SpotLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+light_color = Color( 0.9, 0.9, 0.9, 1 )
+
+[node name="Bracket1" type="MeshInstance" parent="."]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, -0.1, 1.1 )
+material_override = SubResource( 3 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="Bracket2" type="MeshInstance" parent="."]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, -0.1, -1.1 )
+material_override = SubResource( 3 )
+mesh = SubResource( 6 )
+material/0 = null

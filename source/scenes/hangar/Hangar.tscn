@@ -1,0 +1,672 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/hangar/mech_hangar.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/hangar/tex_hangar.png" type="Texture" id=2]
+[ext_resource path="res://scenes/hangar/RobotArm.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/hangar/Hangar.gd" type="Script" id=4]
+[ext_resource path="res://scenes/hangar/tex_door.png" type="Texture" id=5]
+[ext_resource path="res://scenes/hangar/HangarLight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Mech/MechV2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/hangar/BaySign.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/hangar/HangarEnv.tres" type="Environment" id=9]
+[ext_resource path="res://scenes/hangar/HangarSign.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorL:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -1, 1.5, -9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorR:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1.5, -9 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Team1/Mech1:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, 6 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Team1/Mech1:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Team1/Mech2:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Team1/Mech2:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Team1/Mech3:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, -2 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Team1/Mech3:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Team1/Mech4:translation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, -6 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Team1/Mech4:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Team2/Mech8:translation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, 6 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Team2/Mech7:translation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, 2 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Team2/Mech8:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Team2/Mech7:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Team2/Mech6:translation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, -2 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Team2/Mech6:rotation_degrees")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Team2/Mech5:translation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, -6 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Team2/Mech5:rotation_degrees")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "door_open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorL:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.6, 1 ),
+"update": 0,
+"values": [ Vector3( -1, 1.5, -9 ), Vector3( -3, 1.5, -9.05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorR:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.6, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1.5, -9 ), Vector3( 3, 1.5, -9.05 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "mechs_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Team1/Mech1:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, 6 ), Vector3( -1, 0, 6 ), Vector3( -1, 0, 6 ), Vector3( -1, 0, -12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Team1/Mech1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Team1/Mech2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, 2 ), Vector3( -1, 0, 2 ), Vector3( -1, 0, 2 ), Vector3( -1, 0, -16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Team1/Mech2:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Team1/Mech3:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, -2 ), Vector3( -1, 0, -2 ), Vector3( -1, 0, -2 ), Vector3( -1, 0, -20 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Team1/Mech3:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Team1/Mech4:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3, 0, -6 ), Vector3( -1, 0, -6 ), Vector3( -1, 0, -6 ), Vector3( -1, 0, -24 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Team1/Mech4:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Team2/Mech8:translation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, 6 ), Vector3( 1, 0, 6 ), Vector3( 1, 0, 6 ), Vector3( 1, 0, -12 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Team2/Mech7:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, 2 ), Vector3( 1, 0, 2 ), Vector3( 1, 0, 2 ), Vector3( 1, 0, -16 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Team2/Mech8:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, -6.83019e-06, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Team2/Mech7:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Team2/Mech6:translation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, -2 ), Vector3( 1, 0, -2 ), Vector3( 1, 0, -2 ), Vector3( 1, 0, -20 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Team2/Mech6:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Team2/Mech5:translation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 0, -6 ), Vector3( 1, 0, -6 ), Vector3( 1, 0, -6 ), Vector3( 1, 0, -24 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Team2/Mech5:rotation_degrees")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_vertex_lighting = true
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_vertex_lighting = true
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 2, 3 )
+
+[node name="Hangar" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="CamTween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/door_open = SubResource( 5 )
+anims/mechs_out = SubResource( 8 )
+
+[node name="mech_hangar" type="MeshInstance" parent="."]
+material_override = SubResource( 7 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="DoorL" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -9 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DoorR" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -9 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DoorL2" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1.5, 9 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DoorR2" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 1.5, 9 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Signs" type="Spatial" parent="."]
+
+[node name="BaySign1" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, 6 )
+
+[node name="BaySign2" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, 2 )
+
+[node name="BaySign3" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -2 )
+
+[node name="BaySign4" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -6 )
+
+[node name="BaySign5" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75, -6 )
+
+[node name="BaySign6" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75, -2 )
+
+[node name="BaySign7" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75, 2 )
+
+[node name="BaySign8" parent="Signs" instance=ExtResource( 8 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75, 6 )
+
+[node name="Lights" type="Spatial" parent="."]
+
+[node name="HangarLight" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -6 )
+
+[node name="HangarLight2" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -2 )
+
+[node name="HangarLight3" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 2 )
+
+[node name="HangarLight4" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 6 )
+
+[node name="HangarLight5" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -6 )
+
+[node name="HangarLight6" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -2 )
+
+[node name="HangarLight7" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 2 )
+
+[node name="HangarLight8" parent="Lights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 6 )
+
+[node name="Team1" type="Spatial" parent="."]
+
+[node name="Mech1" parent="Team1" instance=ExtResource( 7 )]
+transform = Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 )
+
+[node name="Mech2" parent="Team1" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 )
+
+[node name="Mech3" parent="Team1" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 )
+
+[node name="Mech4" parent="Team1" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 )
+
+[node name="Team2" type="Spatial" parent="."]
+
+[node name="Mech5" parent="Team2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 )
+
+[node name="Mech6" parent="Team2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 )
+
+[node name="Mech7" parent="Team2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 )
+
+[node name="Mech8" parent="Team2" instance=ExtResource( 7 )]
+transform = Transform( -4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 3, 0, 6 )
+
+[node name="TopArms" type="Spatial" parent="."]
+
+[node name="RobotArm" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3.5, 2.5, 6 )
+
+[node name="RobotArm2" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3.5, 2.5, 2 )
+
+[node name="RobotArm3" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3.5, 2.5, -2 )
+
+[node name="RobotArm4" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3.5, 2.5, -6 )
+
+[node name="RobotArm5" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -5.96046e-08, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, 5.32907e-15, 5.96046e-08, -3.5, 2.5, -6 )
+
+[node name="RobotArm6" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -5.96046e-08, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, 5.32907e-15, 5.96046e-08, -3.5, 2.5, -2 )
+
+[node name="RobotArm7" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -5.96046e-08, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, 5.32907e-15, 5.96046e-08, -3.5, 2.5, 2 )
+
+[node name="RobotArm8" parent="TopArms" instance=ExtResource( 3 )]
+transform = Transform( -5.96046e-08, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, 5.32907e-15, 5.96046e-08, -3.5, 2.5, 6 )
+
+[node name="SideArms" type="Spatial" parent="."]
+
+[node name="RobotArm" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -7.5 )
+
+[node name="RobotArm2" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -4.5 )
+
+[node name="RobotArm3" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -3.5 )
+
+[node name="RobotArm4" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -0.5 )
+
+[node name="RobotArm5" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, 0.5 )
+
+[node name="RobotArm6" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, 3.5 )
+
+[node name="RobotArm7" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, 4.5 )
+
+[node name="RobotArm8" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, 7.5 )
+
+[node name="RobotArm9" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -7.5 )
+
+[node name="RobotArm10" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -4.5 )
+
+[node name="RobotArm11" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -3.5 )
+
+[node name="RobotArm12" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -0.5 )
+
+[node name="RobotArm13" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, 0.5 )
+
+[node name="RobotArm14" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, 3.5 )
+
+[node name="RobotArm15" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, 4.5 )
+
+[node name="RobotArm16" parent="SideArms" instance=ExtResource( 3 )]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, 7.5 )
+
+[node name="HangarSign" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -9 )
+
+[node name="HangarView" type="Viewport" parent="."]
+size = Vector2( 1920, 1080 )
+render_target_v_flip = true
+
+[node name="HangarCam" type="Camera" parent="HangarView"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 2, 8 )
+environment = ExtResource( 9 )

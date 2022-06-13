@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/LegUp7.obj-3a86959e48dcc52c21011e07393a10bd.mesh"
+
+[deps]
+
+files=[ "res://.import/LegUp7.obj-3a86959e48dcc52c21011e07393a10bd.mesh" ]
+
+source_file="res://Parts/3D/LegUp7.obj"
+dest_files=[ "res://.import/LegUp7.obj-3a86959e48dcc52c21011e07393a10bd.mesh", "res://.import/LegUp7.obj-3a86959e48dcc52c21011e07393a10bd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

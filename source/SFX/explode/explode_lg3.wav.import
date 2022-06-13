@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explode_lg3.wav-b0d4e5fe1053193e741f47dad6be08ab.sample"
+
+[deps]
+
+source_file="res://SFX/explode/explode_lg3.wav"
+dest_files=[ "res://.import/explode_lg3.wav-b0d4e5fe1053193e741f47dad6be08ab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

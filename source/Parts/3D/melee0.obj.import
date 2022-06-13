@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/melee0.obj-4daf242ab9d272d37ce5c536a091870c.mesh"
+
+[deps]
+
+files=[ "res://.import/melee0.obj-4daf242ab9d272d37ce5c536a091870c.mesh" ]
+
+source_file="res://Parts/3D/melee0.obj"
+dest_files=[ "res://.import/melee0.obj-4daf242ab9d272d37ce5c536a091870c.mesh", "res://.import/melee0.obj-4daf242ab9d272d37ce5c536a091870c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

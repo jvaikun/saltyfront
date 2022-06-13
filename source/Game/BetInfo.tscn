@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Game/BetInfo.gd" type="Script" id=5]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0, 1, 0, 1 )
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0, 1, 0, 1 )
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[node name="BetInfo" type="PanelContainer"]
+margin_right = 288.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="HBoxContainer" parent="."]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 286.0
+margin_bottom = 130.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Team1" type="VBoxContainer" parent="Body"]
+margin_right = 128.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamName" type="Label" parent="Body/Team1"]
+margin_right = 128.0
+margin_bottom = 23.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 4 )
+text = "TEAM NAME"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Odds" type="Label" parent="Body/Team1"]
+margin_top = 31.0
+margin_right = 128.0
+margin_bottom = 50.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "TEAM ODDS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bets" type="Label" parent="Body/Team1"]
+margin_top = 58.0
+margin_right = 128.0
+margin_bottom = 77.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "BET INFO"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Body/Team1"]
+margin_top = 85.0
+margin_right = 128.0
+margin_bottom = 89.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="BetList" type="VBoxContainer" parent="Body/Team1"]
+margin_top = 97.0
+margin_right = 128.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="Body"]
+margin_left = 132.0
+margin_right = 136.0
+margin_bottom = 112.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="Team2" type="VBoxContainer" parent="Body"]
+margin_left = 140.0
+margin_right = 268.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamName" type="Label" parent="Body/Team2"]
+margin_right = 128.0
+margin_bottom = 23.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 5 )
+text = "TEAM NAME"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Odds" type="Label" parent="Body/Team2"]
+margin_top = 31.0
+margin_right = 128.0
+margin_bottom = 50.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "TEAM ODDS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bets" type="Label" parent="Body/Team2"]
+margin_top = 58.0
+margin_right = 128.0
+margin_bottom = 77.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "BET INFO"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Body/Team2"]
+margin_top = 85.0
+margin_right = 128.0
+margin_bottom = 89.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="BetList" type="VBoxContainer" parent="Body/Team2"]
+margin_top = 97.0
+margin_right = 128.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
