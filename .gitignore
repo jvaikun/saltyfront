@@ -9,4 +9,4 @@ screenshot/
 # Settings file
 godot/settings.cfg
 # Blender scratch files
-*.blend*
+*.blend?
