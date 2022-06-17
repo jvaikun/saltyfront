@@ -132,8 +132,8 @@ signal glow_done
 var part_mat = preload("res://Parts/mech_base.material")
 var wpn_mat = preload("res://Parts/weapon.material")
 var wpn_tex = preload("res://Parts/wpn_tex0.png")
-var bullet_obj = preload("res://Mech/Bullet.tscn")
-var missile_obj = preload("res://Mech/Missile.tscn")
+var bullet_obj = preload("res://scenes/bullet/Bullet.tscn")
+var missile_obj = preload("res://scenes/bullet/Missile.tscn")
 var obj_dmgtext = preload("res://Effects/DamageNum.tscn")
 
 # Speed settings

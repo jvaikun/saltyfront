@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/items/meshes/Box.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/items/Repair.gd" type="Script" id=2]
+[ext_resource path="res://scenes/items/mat_repair.material" type="Material" id=3]
+
+
+[node name="Repair" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Model" type="Spatial" parent="."]
+
+[node name="Box" type="MeshInstance" parent="Model"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.1, 0 )
+material_override = ExtResource( 3 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="Tween" type="Tween" parent="."]

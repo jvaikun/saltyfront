@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/sgun_ready1.wav-25a9003ed73efc1657f360ce3d522f26.sample"
+path="res://.import/sgun_ready1.wav-67ecc1d10b56bff08a640ccc6fe0ca17.sample"
 
 [deps]
 
-source_file="res://SFX/ready/sgun_ready1.wav"
-dest_files=[ "res://.import/sgun_ready1.wav-25a9003ed73efc1657f360ce3d522f26.sample" ]
+source_file="res://sfx/ready/sgun_ready1.wav"
+dest_files=[ "res://.import/sgun_ready1.wav-67ecc1d10b56bff08a640ccc6fe0ca17.sample" ]
 
 [params]
 

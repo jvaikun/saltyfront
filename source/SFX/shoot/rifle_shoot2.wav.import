@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/rifle_shoot2.wav-d164bfeb399bcdaba9b42dfa97bed3b0.sample"
+path="res://.import/rifle_shoot2.wav-240b8d5ca9c65996024b3b9cef06e0b3.sample"
 
 [deps]
 
-source_file="res://SFX/shoot/rifle_shoot2.wav"
-dest_files=[ "res://.import/rifle_shoot2.wav-d164bfeb399bcdaba9b42dfa97bed3b0.sample" ]
+source_file="res://sfx/shoot/rifle_shoot2.wav"
+dest_files=[ "res://.import/rifle_shoot2.wav-240b8d5ca9c65996024b3b9cef06e0b3.sample" ]
 
 [params]
 

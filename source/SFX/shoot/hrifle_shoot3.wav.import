@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/hrifle_shoot3.wav-31a4e5cf6a2dfacb3b10d982a9ed2b95.sample"
+path="res://.import/hrifle_shoot3.wav-6451944998e5aae475fbd4df95be2b67.sample"
 
 [deps]
 
-source_file="res://SFX/shoot/hrifle_shoot3.wav"
-dest_files=[ "res://.import/hrifle_shoot3.wav-31a4e5cf6a2dfacb3b10d982a9ed2b95.sample" ]
+source_file="res://sfx/shoot/hrifle_shoot3.wav"
+dest_files=[ "res://.import/hrifle_shoot3.wav-6451944998e5aae475fbd4df95be2b67.sample" ]
 
 [params]
 

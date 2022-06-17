@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/explode_lg0.wav-d6bb49245b7bab820ffae06f7114b411.sample"
+path="res://.import/explode_lg0.wav-7c9dff821707973bfb8d63935585c549.sample"
 
 [deps]
 
-source_file="res://SFX/explode/explode_lg0.wav"
-dest_files=[ "res://.import/explode_lg0.wav-d6bb49245b7bab820ffae06f7114b411.sample" ]
+source_file="res://sfx/explode/explode_lg0.wav"
+dest_files=[ "res://.import/explode_lg0.wav-7c9dff821707973bfb8d63935585c549.sample" ]
 
 [params]
 

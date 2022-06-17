@@ -1,9 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Test/Scroll.gd" type="Script" id=1]
-[ext_resource path="res://Test/partial.shader" type="Shader" id=2]
-[ext_resource path="res://Test/tiger1.png" type="Texture" id=3]
-[ext_resource path="res://Test/tiger_scroll.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://test/Scroll.gd" type="Script" id=1]
+[ext_resource path="res://test/partial.shader" type="Shader" id=2]
+[ext_resource path="res://test/tiger1.png" type="Texture" id=3]
+[ext_resource path="res://test/tiger_scroll.obj" type="ArrayMesh" id=4]
+
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.784314, 0, 0, 1 )

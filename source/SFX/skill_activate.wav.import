@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/skill_activate.wav-61688cc879f48d4a4344e1f7a15846d1.sample"
+path="res://.import/skill_activate.wav-eb53e5f67431d3c6a29e87bc0e9de36b.sample"
 
 [deps]
 
-source_file="res://SFX/skill_activate.wav"
-dest_files=[ "res://.import/skill_activate.wav-61688cc879f48d4a4344e1f7a15846d1.sample" ]
+source_file="res://sfx/skill_activate.wav"
+dest_files=[ "res://.import/skill_activate.wav-eb53e5f67431d3c6a29e87bc0e9de36b.sample" ]
 
 [params]
 

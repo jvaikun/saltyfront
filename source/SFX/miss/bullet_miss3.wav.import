@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/bullet_miss3.wav-b9d6f90a7d32be380f267a79e0debae3.sample"
+path="res://.import/bullet_miss3.wav-97fab51cd945e671624e2e97a0ee2a23.sample"
 
 [deps]
 
-source_file="res://SFX/miss/bullet_miss3.wav"
-dest_files=[ "res://.import/bullet_miss3.wav-b9d6f90a7d32be380f267a79e0debae3.sample" ]
+source_file="res://sfx/miss/bullet_miss3.wav"
+dest_files=[ "res://.import/bullet_miss3.wav-97fab51cd945e671624e2e97a0ee2a23.sample" ]
 
 [params]
 

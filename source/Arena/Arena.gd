@@ -12,19 +12,19 @@ const Z_OFFSET = 1
 const skills = ["melee", "short", "long"]
 # Map file paths and names
 const map_list = [
-	{"path":"res://Maps/Map000.tscn", "name":"Industrial Park"},
-	{"path":"res://Maps/Map001.tscn", "name":"Tower Islands"},
-	{"path":"res://Maps/Map002.tscn", "name":"Little Bridge"},
-	{"path":"res://Maps/Map003.tscn", "name":"Hillside Bunker"},
-	{"path":"res://Maps/Map004.tscn", "name":"City Ruins"},
-	{"path":"res://Maps/Map005.tscn", "name":"Old Bridge"},
-	{"path":"res://Maps/Map006.tscn", "name":"Lonely Hills"},
-	{"path":"res://Maps/Map007.tscn", "name":"Canyon Road"},
-	{"path":"res://Maps/Map008.tscn", "name":"Rough Ground"},
-	{"path":"res://Maps/Map009.tscn", "name":"Spiral Tower"},
-	{"path":"res://Maps/Map010.tscn", "name":"Tunnel Entrance"},
-	{"path":"res://Maps/Map011.tscn", "name":"Serpentine"},
-	{"path":"res://Maps/Map012.tscn", "name":"Tower Ruin"},
+	{"path":"res://scenes/maps/Map000.tscn", "name":"Industrial Park"},
+	{"path":"res://scenes/maps/Map001.tscn", "name":"Tower Islands"},
+	{"path":"res://scenes/maps/Map002.tscn", "name":"Little Bridge"},
+	{"path":"res://scenes/maps/Map003.tscn", "name":"Hillside Bunker"},
+	{"path":"res://scenes/maps/Map004.tscn", "name":"City Ruins"},
+	{"path":"res://scenes/maps/Map005.tscn", "name":"Old Bridge"},
+	{"path":"res://scenes/maps/Map006.tscn", "name":"Lonely Hills"},
+	{"path":"res://scenes/maps/Map007.tscn", "name":"Canyon Road"},
+	{"path":"res://scenes/maps/Map008.tscn", "name":"Rough Ground"},
+	{"path":"res://scenes/maps/Map009.tscn", "name":"Spiral Tower"},
+	{"path":"res://scenes/maps/Map010.tscn", "name":"Tunnel Entrance"},
+	{"path":"res://scenes/maps/Map011.tscn", "name":"Serpentine"},
+	{"path":"res://scenes/maps/Map012.tscn", "name":"Tower Ruin"},
 ]
 const map_mods = {
 	"light":["Dawn", "Mid-day", "Dusk"],#, "Night"],
@@ -34,22 +34,22 @@ const map_lights = {
 	"Dawn":{
 		"energy":0.25,
 		"angle":-30,
-		"env":"res://Maps/env_dawn.tres"
+		"env":"res://scenes/maps/env_dawn.tres"
 	},
 	"Mid-day":{
 		"energy":1,
 		"angle":-85,
-		"env":"res://Maps/env_day.tres"
+		"env":"res://scenes/maps/env_day.tres"
 	},
 	"Dusk":{
 		"energy":0.25,
 		"angle":-150,
-		"env":"res://Maps/env_dusk.tres"
+		"env":"res://scenes/maps/env_dusk.tres"
 	},
 	"Night":{
 		"energy":0.01,
 		"angle":-150,
-		"env":"res://Maps/env_night.tres"
+		"env":"res://scenes/maps/env_night.tres"
 	}
 }
 const tile_data = [
@@ -82,9 +82,9 @@ const tile_data = [
 
 # Preloaded resources
 const debris_obj = preload("res://Effects/Debris.tscn")
-const repair_small_obj = preload("res://Items/RepairSmall.tscn")
-const repair_large_obj = preload("res://Items/RepairLarge.tscn")
-const mine_obj = preload("res://Items/Mine.tscn")
+const repair_small_obj = preload("res://scenes/items/RepairSmall.tscn")
+const repair_large_obj = preload("res://scenes/items/RepairLarge.tscn")
+const mine_obj = preload("res://scenes/items/Mine.tscn")
 const mech_obj = preload("res://Mech/MechV2.tscn")
 const nav_obj = preload("res://Arena/NavPoint.tscn")
 const msg_obj = preload("res://ui/DialogText.tscn")
@@ -1100,7 +1100,7 @@ func load_map(tournament):
 	idle_timer = 0
 	# Update map props and load map object into arena
 	var map_obj = load(map_props.path) 
-	#var map_obj = load("res://Maps/RangeTest.tscn")
+	#var map_obj = load("res://scenes/maps/RangeTest.tscn")
 	map_info.text = (msg_map_info % [map_props.name, map_props.light, map_props.effect])
 	arena_map = map_obj.instance()
 	self.add_child(arena_map)

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/step0.wav-3b74b49fbb5843ceccd3da4be0010c29.sample"
+path="res://.import/step0.wav-93528818f6e33ff21bd945c89fbb2ecb.sample"
 
 [deps]
 
-source_file="res://SFX/walk/step0.wav"
-dest_files=[ "res://.import/step0.wav-3b74b49fbb5843ceccd3da4be0010c29.sample" ]
+source_file="res://sfx/walk/step0.wav"
+dest_files=[ "res://.import/step0.wav-93528818f6e33ff21bd945c89fbb2ecb.sample" ]
 
 [params]
 

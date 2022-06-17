@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/flame_shoot3.wav-01868774ef3b2b169af5246b4b1628f6.sample"
+path="res://.import/flame_shoot3.wav-bff35f1f1a509b60d9284cb3faae0c21.sample"
 
 [deps]
 
-source_file="res://SFX/shoot/flame_shoot3.wav"
-dest_files=[ "res://.import/flame_shoot3.wav-01868774ef3b2b169af5246b4b1628f6.sample" ]
+source_file="res://sfx/shoot/flame_shoot3.wav"
+dest_files=[ "res://.import/flame_shoot3.wav-bff35f1f1a509b60d9284cb3faae0c21.sample" ]
 
 [params]
 

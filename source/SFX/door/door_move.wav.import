@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/door_move.wav-b5c281d88e48638022a63488505c4560.sample"
+path="res://.import/door_move.wav-bede02ed0a0517d2222f028ec2312990.sample"
 
 [deps]
 
-source_file="res://SFX/door/door_move.wav"
-dest_files=[ "res://.import/door_move.wav-b5c281d88e48638022a63488505c4560.sample" ]
+source_file="res://sfx/door/door_move.wav"
+dest_files=[ "res://.import/door_move.wav-bede02ed0a0517d2222f028ec2312990.sample" ]
 
 [params]
 

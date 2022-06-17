@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/door_thud.wav-f24309b628b701bb7f0f4d4d65ad8aab.sample"
+path="res://.import/door_thud.wav-c4bff9742f136720878d916762201d2d.sample"
 
 [deps]
 
-source_file="res://SFX/door/door_thud.wav"
-dest_files=[ "res://.import/door_thud.wav-f24309b628b701bb7f0f4d4d65ad8aab.sample" ]
+source_file="res://sfx/door/door_thud.wav"
+dest_files=[ "res://.import/door_thud.wav-c4bff9742f136720878d916762201d2d.sample" ]
 
 [params]
 

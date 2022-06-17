@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/prosperity.obj-4d73ad11f643fff270d82fa22312cb6d.mesh"
+path="res://.import/prosperity.obj-a5b7b910ed2141f168c1949ba5d9166a.mesh"
 
 [deps]
 
-files=[ "res://.import/prosperity.obj-4d73ad11f643fff270d82fa22312cb6d.mesh" ]
+files=[ "res://.import/prosperity.obj-a5b7b910ed2141f168c1949ba5d9166a.mesh" ]
 
-source_file="res://Test/prosperity.obj"
-dest_files=[ "res://.import/prosperity.obj-4d73ad11f643fff270d82fa22312cb6d.mesh", "res://.import/prosperity.obj-4d73ad11f643fff270d82fa22312cb6d.mesh" ]
+source_file="res://test/prosperity.obj"
+dest_files=[ "res://.import/prosperity.obj-a5b7b910ed2141f168c1949ba5d9166a.mesh", "res://.import/prosperity.obj-a5b7b910ed2141f168c1949ba5d9166a.mesh" ]
 
 [params]
 

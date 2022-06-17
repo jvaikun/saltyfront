@@ -671,23 +671,25 @@ func cmd_fight(cmd_info : CommandInfo, arg_ary : PoolStringArray = []):
 			else:
 				next_queue.append({"user":user_id, "pilot":this_user.pilot0})
 				chatbot.chat(user + " signed up for the next tournament!")
-			GameData.write_log(user + ",fight,ok_pilot0", "command")
+			GameData.write_log(user + ",fight,ok_rand", "command")
 			return
 		if arg_ary.size() == 1:
-			if ["0", "1", "2", "3"].has(arg_ary[0]):
+			if tournament.PILOT_CLASS.keys().has(arg_ary[0]):
 				if state == GameState.START:
 					signup(user_id, this_user["pilot" + arg_ary[0]])
-					chatbot.chat(user + " signed up to fight!")
+					chatbot.chat(user + " signed up to fight! Chosen class: " + arg_ary[0])
 				else:
 					next_queue.append({"user":user_id, "pilot":this_user["pilot" + arg_ary[0]]})
-					chatbot.chat(user + " signed up for the next tournament!")
-				GameData.write_log(user + ",fight,ok_pilot" + arg_ary[0], "command")
+					chatbot.chat(user + " signed up for the next tournament! Chosen class: " + arg_ary[0])
+				GameData.write_log(user + ",fight,ok_" + arg_ary[0], "command")
 				return
 			else:
 				chatbot.chat("Invalid pilot slot")
 				GameData.write_log(user + ",fight,err_nopilot", "command")
 				return
 		if arg_ary.size() > 1:
+			if ["l", "h", "light", "heavy"].has(arg_ary[1]):
+				pass
 			chatbot.chat("Skill/equip setting not supported yet.")
 			GameData.write_log(user + ",fight,err_noskill", "command")
 			return

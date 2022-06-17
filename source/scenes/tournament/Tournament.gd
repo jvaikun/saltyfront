@@ -1,9 +1,11 @@
 extends Node
 
 # Table column headers, used when parsing data files
+const ROSTER_SIZE = 8
+const TEAM_SIZE = 4
+const MECH_HEADER = ["id","pilot_type","pilot_id","body","legs","arm_r","wpn_r","pod_r","arm_l","wpn_l","pod_l","pack"]
 const TOUR_HEADER = ["id", "start_time", "end_time", "win_team", "new_champ"]
-const MATCH_HEADER = ["id","tour_id","match","turns","start_time","end_time","result","map",
-"team1","team2","win_team",
+const MATCH_HEADER = ["id","tour_id","match","turns","start_time","end_time","result","map","team1","team2","win_team",
 "team1_1","team1_1_kill","team1_1_dead","team1_1_hit","team1_1_crit","team1_1_miss","team1_1_dmg_in","team1_1_dmg_out",
 "team1_2","team1_2_kill","team1_2_dead","team1_2_hit","team1_2_crit","team1_2_miss","team1_2_dmg_in","team1_2_dmg_out",
 "team1_3","team1_3_kill","team1_3_dead","team1_3_hit","team1_3_crit","team1_3_miss","team1_3_dmg_in","team1_3_dmg_out",
@@ -12,11 +14,6 @@ const MATCH_HEADER = ["id","tour_id","match","turns","start_time","end_time","re
 "team2_2","team2_2_kill","team2_2_dead","team2_2_hit","team2_2_crit","team2_2_miss","team2_2_dmg_in","team2_2_dmg_out",
 "team2_3","team2_3_kill","team2_3_dead","team2_3_hit","team2_3_crit","team2_3_miss","team2_3_dmg_in","team2_3_dmg_out",
 "team2_4","team2_4_kill","team2_4_dead","team2_4_hit","team2_4_crit","team2_4_miss","team2_4_dmg_in","team2_4_dmg_out"]
-const MECH_HEADER = ["id","pilot_type","pilot_id",
-"body","legs","arm_r","wpn_r","pod_r","arm_l","wpn_l","pod_l","pack"]
-
-const ROSTER_SIZE = 8
-const TEAM_SIZE = 4
 const TEAM_DEFS = [
 	{ "name":"red", "color":Color(1, 0, 0), "material":"res://Parts/team_0.material" },
 	{ "name":"blue", "color":Color(0, 0, 1), "material":"res://Parts/team_1.material" },
@@ -38,6 +35,22 @@ const MATCH_TEMPLATE = [
 	{ "name":"Final", "teams": [-1, -1], "next": [7, 0] },
 	{ "name":"Championship", "teams": [-1, 8], "next": [] },
 ]
+const PILOT_CLASS = {
+	"melee": {"melee":"high", "short":"low", "long":"low", "dodge":"mid"},
+	"short": {"melee":"low", "short":"high", "long":"low", "dodge":"mid"},
+	"long": {"melee":"low", "short":"low", "long":"high", "dodge":"mid"},
+	"mixms": {"melee":"mid", "short":"mid", "long":"low", "dodge":"mid"},
+	"mixml": {"melee":"mid", "short":"low", "long":"mid", "dodge":"mid"},
+	"mixsl": {"melee":"low", "short":"mid", "long":"mid", "dodge":"mid"}
+}
+const MECH_LOADOUT = {
+	"melee": {"light":{}, "heavy":{}},
+	"short": {"light":{}, "heavy":{}},
+	"long": {"light":{}, "heavy":{}},
+	"mixms": {"light":{}, "heavy":{}},
+	"mixml": {"light":{}, "heavy":{}},
+	"mixsl": {"light":{}, "heavy":{}}
+}
 
 signal update_bracket(roster, champ)
 signal update_stats(team1, team2)
@@ -284,9 +297,29 @@ func next_match() -> void:
 
 # Roll a new mech stat block
 func new_mech() -> MechStats:
+	var this_class = PILOT_CLASS[PILOT_CLASS.keys()[randi() % PILOT_CLASS.size()]]
+	var weights = []
+	for stat in this_class.keys():
+		for i in this_class[stat]:
+			weights.append(stat)
 	var mech = MechStats.new()
 	mech.id = mech_id
 	mech_id += 1
+	mech.pilot = MechPilot.new()
+	mech.pilot.id = 0
+	mech.pilot.name = "pilotname"
+	mech.pilot.face = randi() % 32
+	mech.pilot.melee = 20
+	mech.pilot.short = 20
+	mech.pilot.long = 20
+	mech.pilot.dodge = 20
+	for i in 16:
+		var pick = weights[randi() % weights.size() - 1]
+		mech.pilot[pick] += 5
+	mech.pilot.skill0 = 0
+	mech.pilot.skill1 = 0
+	mech.pilot.skill2 = 0
+	mech.pilot.skill3 = 0
 	var rand_ind = str(randi() % PartDB.body.size())
 	mech.body = PartDB.body[rand_ind]
 	rand_ind = str(randi() % PartDB.arm.size())
@@ -341,11 +374,12 @@ func new_roster() -> void:
 			var pilot_id = pick_list[i + j*ROSTER_SIZE].pilot
 			var pilot_type = "npc"
 			if str(pick_list[i + j*ROSTER_SIZE].user) != "drone":
-				mech.pilot = PartDB.pilot[pilot_id]
+				#mech.pilot = PartDB.pilot[pilot_id]
+				mech.pilot.name = UserDB[pick_list[i + j*ROSTER_SIZE].user].name
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user
 				pilot_type = "user"
 			else:
-				mech.pilot = PartDB.drone[pilot_id]
+				mech.pilot.name = PartDB.drone[pilot_id].name
 				mech.user_id = "drone"
 				team_dict.open += 1
 			team_dict.data.append(mech)

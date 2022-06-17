@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/coin_lores.png-46bc1656738880f1755a53b63625ece3.s3tc.stex"
-path.etc2="res://.import/coin_lores.png-46bc1656738880f1755a53b63625ece3.etc2.stex"
+path.s3tc="res://.import/coin_lores.png-e2b22cdabba50b79ece2c3db1e26e010.s3tc.stex"
+path.etc2="res://.import/coin_lores.png-e2b22cdabba50b79ece2c3db1e26e010.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Test/coin_lores.png"
-dest_files=[ "res://.import/coin_lores.png-46bc1656738880f1755a53b63625ece3.s3tc.stex", "res://.import/coin_lores.png-46bc1656738880f1755a53b63625ece3.etc2.stex" ]
+source_file="res://test/coin_lores.png"
+dest_files=[ "res://.import/coin_lores.png-e2b22cdabba50b79ece2c3db1e26e010.s3tc.stex", "res://.import/coin_lores.png-e2b22cdabba50b79ece2c3db1e26e010.etc2.stex" ]
 
 [params]
 

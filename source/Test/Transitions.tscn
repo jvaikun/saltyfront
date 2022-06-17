@@ -5,8 +5,9 @@
 [ext_resource path="res://Game/bg_shop.png" type="Texture" id=3]
 [ext_resource path="res://Effects/transition/doom_melt.shader" type="Shader" id=4]
 [ext_resource path="res://Effects/transition/dissolve.shader" type="Shader" id=5]
-[ext_resource path="res://Test/Transitions.gd" type="Script" id=6]
+[ext_resource path="res://test/Transitions.gd" type="Script" id=6]
 [ext_resource path="res://Effects/transition/mask_dissolve.shader" type="Shader" id=7]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "dissolve"

@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh"
+path="res://.import/tiger_scroll.obj-256ee1aa791e841e69edbb53c310264d.mesh"
 
 [deps]
 
-files=[ "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh" ]
+files=[ "res://.import/tiger_scroll.obj-256ee1aa791e841e69edbb53c310264d.mesh" ]
 
-source_file="res://Test/tiger_scroll.obj"
-dest_files=[ "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh", "res://.import/tiger_scroll.obj-07a30f0f6142d5ee9329f86dc5fead61.mesh" ]
+source_file="res://test/tiger_scroll.obj"
+dest_files=[ "res://.import/tiger_scroll.obj-256ee1aa791e841e69edbb53c310264d.mesh", "res://.import/tiger_scroll.obj-256ee1aa791e841e69edbb53c310264d.mesh" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/bullet_hit3.wav-eb9a4590998dc35edf4b884470b986e4.sample"
+path="res://.import/bullet_hit3.wav-33ce74ed52a97ed639e8cb9056d6c55c.sample"
 
 [deps]
 
-source_file="res://SFX/hit/bullet_hit3.wav"
-dest_files=[ "res://.import/bullet_hit3.wav-eb9a4590998dc35edf4b884470b986e4.sample" ]
+source_file="res://sfx/hit/bullet_hit3.wav"
+dest_files=[ "res://.import/bullet_hit3.wav-33ce74ed52a97ed639e8cb9056d6c55c.sample" ]
 
 [params]
 

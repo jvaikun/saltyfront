@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mgun_shoot0.wav-e7c2d49d5c8bcf4af7779295a2565eb4.sample"
+path="res://.import/mgun_shoot0.wav-869a6fd686d5a2c89de57284bf01db53.sample"
 
 [deps]
 
-source_file="res://SFX/shoot/mgun_shoot0.wav"
-dest_files=[ "res://.import/mgun_shoot0.wav-e7c2d49d5c8bcf4af7779295a2565eb4.sample" ]
+source_file="res://sfx/shoot/mgun_shoot0.wav"
+dest_files=[ "res://.import/mgun_shoot0.wav-869a6fd686d5a2c89de57284bf01db53.sample" ]
 
 [params]
 
