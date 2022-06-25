@@ -296,8 +296,12 @@ func next_match() -> void:
 
 
 # Roll a new mech stat block
-func new_mech() -> MechStats:
-	var this_class = PILOT_CLASS[PILOT_CLASS.keys()[randi() % PILOT_CLASS.size()]]
+func new_mech(type) -> MechStats:
+	var this_class = ""
+	if type == "rand":
+		this_class = PILOT_CLASS[PILOT_CLASS.keys()[randi() % PILOT_CLASS.size()]]
+	else:
+		this_class = PILOT_CLASS[type]
 	var weights = []
 	for stat in this_class.keys():
 		for i in this_class[stat]:
@@ -366,20 +370,19 @@ func new_roster() -> void:
 			drone_ids.append(str(i))
 		drone_ids.shuffle()
 		for i in diff:
-			pick_list.append({"user":"drone", "pilot":drone_ids[i]})
+			pick_list.append({"user":"drone", "pilot":"rand"})
 	for i in ROSTER_SIZE:
 		var team_dict = {"active":true, "open":0, "data":[]}
 		for j in TEAM_SIZE:
-			var mech = new_mech()
 			var pilot_id = pick_list[i + j*ROSTER_SIZE].pilot
 			var pilot_type = "npc"
+			var mech = new_mech(pilot_id)
 			if str(pick_list[i + j*ROSTER_SIZE].user) != "drone":
-				#mech.pilot = PartDB.pilot[pilot_id]
-				mech.pilot.name = UserDB[pick_list[i + j*ROSTER_SIZE].user].name
+				mech.pilot.name = UserDB.users[pick_list[i + j*ROSTER_SIZE].user].name
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user
 				pilot_type = "user"
 			else:
-				mech.pilot.name = PartDB.drone[pilot_id].name
+				mech.pilot.name = PartDB.drone[str(i*TEAM_SIZE + j)].name
 				mech.user_id = "drone"
 				team_dict.open += 1
 			team_dict.data.append(mech)

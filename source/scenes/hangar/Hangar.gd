@@ -35,9 +35,12 @@ func _ready():
 		reroll_all()
 
 
-#func _process(delta):
-#	if Input.is_action_just_pressed("ui_screenshot"):
-#		GameData.screenshot()
+func _process(_delta):
+	if debug:
+		if Input.is_action_just_pressed("ui_screenshot"):
+			GameData.screenshot()
+		if Input.is_action_just_pressed("ui_accept"):
+			move_out()
 
 
 func load_mechs(team_list):
@@ -95,14 +98,16 @@ func move_cam(point):
 
 
 func reroll_all():
-	for mech in (team1 + team2):
-		roll_stats(mech)
+	var all_mechs = team1 + team2
+	for i in all_mechs.size():
+		roll_stats(all_mechs[i])
+		signs[i].update_sign(all_mechs[i].mechData)
 
 
 func roll_stats(mech):
 	var stats = MechStats.new()
 	stats.id = 0
-	stats.pilot = PartDB.drone["0"]
+	stats.pilot = PartDB.drone[PartDB.drone.keys()[randi() % PartDB.drone.keys().size()]]
 	var partSet = str(randi() % PartDB.body.size())
 	stats.body = PartDB.body[partSet]
 	stats.arm_r = PartDB.arm[partSet]

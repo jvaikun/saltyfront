@@ -88,6 +88,7 @@ func _ready():
 	tournament.connect("update_stats", stats, "update_info")
 	tournament.connect("next_match", self, "start_transition", [GameState.PREFIGHT])
 	tournament.connect("next_tournament", self, "start_transition", [GameState.TOUR_END])
+# warning-ignore:return_value_discarded
 	$Hangar.connect("mechs_out", self, "start_transition", [GameState.FIGHT])
 	arena.connect("match_end", self, "end_match")
 	chatbot.connect("twitch_disconnected", self, "connect_chat")
@@ -176,6 +177,13 @@ func _process(delta):
 			if $Timer.time_left > 0:
 				if !ui_bracket.visible:
 					header_versus.counter.text = msg_next_counter % [int($Timer.time_left)]
+				if int($Timer.time_left) % focus_timer == 0:
+					if !cycle_next:
+						cycle_next = true
+						var mech_ind = fmod((pay_timer - $Timer.time_left)/focus_timer, 8)
+						$Hangar.move_cam(mech_ind)
+					elif cycle_next:
+						cycle_next = false
 		GameState.TOUR_END:
 			if int($Timer.time_left) % focus_timer == 0:
 				if !cycle_next:
@@ -217,7 +225,7 @@ func signup(user_id, pilot_id):
 	if state == GameState.START:
 		tournament.fight_queue.append({"user":user_id, "pilot":pilot_id})
 		var label = obj_label.instance()
-		label.text = (UserDB.users[user_id].name + " (" + PartDB.pilot[pilot_id].name + ")")
+		label.text = (UserDB.users[user_id].name + " (" + pilot_id + ")")
 		ui_signup.add_user(label)
 		return true
 #	elif tournament.slots_open():
@@ -663,23 +671,23 @@ func cmd_fight(cmd_info : CommandInfo, arg_ary : PoolStringArray = []):
 				if entry.user == user_id:
 					chatbot.chat(user + ", you are already queued for the next tournament.")
 					return
-		var this_user = UserDB.users[user_id]
+		#var this_user = UserDB.users[user_id]
 		if arg_ary.size() == 0:
 			if state == GameState.START:
-				signup(user_id, this_user.pilot0)
-				chatbot.chat(user + " signed up to fight!")
+				signup(user_id, "rand")
+				chatbot.chat(user + " signed up to fight! Chosen class: Random")
 			else:
-				next_queue.append({"user":user_id, "pilot":this_user.pilot0})
-				chatbot.chat(user + " signed up for the next tournament!")
+				next_queue.append({"user":user_id, "pilot":"rand"})
+				chatbot.chat(user + " signed up for the next tournament! Chosen class: Random")
 			GameData.write_log(user + ",fight,ok_rand", "command")
 			return
 		if arg_ary.size() == 1:
 			if tournament.PILOT_CLASS.keys().has(arg_ary[0]):
 				if state == GameState.START:
-					signup(user_id, this_user["pilot" + arg_ary[0]])
+					signup(user_id, arg_ary[0])
 					chatbot.chat(user + " signed up to fight! Chosen class: " + arg_ary[0])
 				else:
-					next_queue.append({"user":user_id, "pilot":this_user["pilot" + arg_ary[0]]})
+					next_queue.append({"user":user_id, "pilot":arg_ary[0]})
 					chatbot.chat(user + " signed up for the next tournament! Chosen class: " + arg_ary[0])
 				GameData.write_log(user + ",fight,ok_" + arg_ary[0], "command")
 				return
@@ -803,6 +811,8 @@ func mid_transition():
 			arena.clear_map()
 			$Hangar.visible = true
 			$Hangar._ready()
+			var view_tex = $Hangar/HangarView.get_texture()
+			$UI/Stats.set_view(view_tex)
 			header_versus.match_info.text = msg_match_result % [
 				tournament.current_match.tour,
 				tournament.current_match.name

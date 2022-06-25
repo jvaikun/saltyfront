@@ -129,6 +129,8 @@ signal run_combat
 signal skill_proc(world_pos, skill_name)
 signal glow_done
 
+export (bool) var prop_mode = false
+
 var part_mat = preload("res://Parts/mech_base.material")
 var wpn_mat = preload("res://Parts/weapon.material")
 var wpn_tex = preload("res://Parts/wpn_tex0.png")
@@ -236,7 +238,8 @@ func set_bodyHP(value):
 func set_armRHP(value):
 	if value <= 0:
 		if armRHP > 0:
-			play_fx("explode_sm")
+			if !prop_mode:
+				play_fx("explode_sm")
 			mechData.part_lost += 1
 			toggle_part("arm_r", false)
 		armRHP = 0
@@ -251,7 +254,8 @@ func set_armRHP(value):
 func set_armLHP(value):
 	if value <= 0:
 		if armLHP > 0:
-			play_fx("explode_sm")
+			if !prop_mode:
+				play_fx("explode_sm")
 			mechData.part_lost += 1
 			toggle_part("arm_l", false)
 		armLHP = 0
@@ -266,7 +270,8 @@ func set_armLHP(value):
 func set_legsHP(value):
 	if value <= 0:
 		if legsHP > 0:
-			play_fx("explode_sm")
+			if !prop_mode:
+				play_fx("explode_sm")
 			mechData.part_lost += 1
 			toggle_part("legs", false)
 		move_range = int(mechData.legs.move / 2)

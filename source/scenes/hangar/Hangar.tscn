@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/hangar/Hangar.gd" type="Script" id=4]
 [ext_resource path="res://scenes/hangar/tex_door.png" type="Texture" id=5]
 [ext_resource path="res://scenes/hangar/HangarLight.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Mech/MechV2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/mech/MechV2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/hangar/BaySign.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/hangar/HangarEnv.tres" type="Environment" id=9]
 [ext_resource path="res://scenes/hangar/HangarSign.tscn" type="PackedScene" id=10]
@@ -560,29 +560,37 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 6 )
 
 [node name="Mech1" parent="Team1" instance=ExtResource( 7 )]
 transform = Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 )
+prop_mode = true
 
 [node name="Mech2" parent="Team1" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 )
+prop_mode = true
 
 [node name="Mech3" parent="Team1" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 )
+prop_mode = true
 
 [node name="Mech4" parent="Team1" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 )
+prop_mode = true
 
 [node name="Team2" type="Spatial" parent="."]
 
 [node name="Mech5" parent="Team2" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 )
+prop_mode = true
 
 [node name="Mech6" parent="Team2" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 )
+prop_mode = true
 
 [node name="Mech7" parent="Team2" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 )
+prop_mode = true
 
 [node name="Mech8" parent="Team2" instance=ExtResource( 7 )]
 transform = Transform( -4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 3, 0, 6 )
+prop_mode = true
 
 [node name="TopArms" type="Spatial" parent="."]
 
@@ -668,5 +676,5 @@ size = Vector2( 1920, 1080 )
 render_target_v_flip = true
 
 [node name="HangarCam" type="Camera" parent="HangarView"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 2, 8 )
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 8 )
 environment = ExtResource( 9 )

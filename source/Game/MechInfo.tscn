@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/headshots.png" type="Texture" id=1]
 [ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://ui/icons/icon_hp.png" type="Texture" id=6]
 [ext_resource path="res://ui/icons/icon_dodge.png" type="Texture" id=7]
 [ext_resource path="res://ui/icons/icon_defense.png" type="Texture" id=8]
+[ext_resource path="res://ui/frames/bar_fg.png" type="Texture" id=9]
+[ext_resource path="res://ui/frames/bar_bg.png" type="Texture" id=10]
+[ext_resource path="res://ui/frames/bar_fill.png" type="Texture" id=11]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.75 )
@@ -92,10 +95,10 @@ __meta__ = {
 
 [node name="PilotData" type="GridContainer" parent="Stats/PilotDetail"]
 margin_left = 80.0
-margin_right = 177.0
+margin_right = 309.0
 margin_bottom = 124.0
 custom_constants/vseparation = 16
-columns = 2
+columns = 3
 
 [node name="Label2" type="Label" parent="Stats/PilotDetail/PilotData"]
 margin_right = 79.0
@@ -105,9 +108,23 @@ custom_fonts/font = SubResource( 3 )
 text = "Melee:"
 align = 2
 
-[node name="Melee" type="Label" parent="Stats/PilotDetail/PilotData"]
+[node name="Bar" type="TextureProgress" parent="Stats/PilotDetail/PilotData"]
 margin_left = 83.0
-margin_right = 97.0
+margin_right = 211.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 128, 16 )
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+
+[node name="Melee" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 215.0
+margin_right = 229.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 3 )
@@ -122,10 +139,25 @@ custom_fonts/font = SubResource( 3 )
 text = "Short:"
 align = 2
 
-[node name="Short" type="Label" parent="Stats/PilotDetail/PilotData"]
+[node name="Bar2" type="TextureProgress" parent="Stats/PilotDetail/PilotData"]
 margin_left = 83.0
 margin_top = 35.0
-margin_right = 97.0
+margin_right = 211.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 128, 16 )
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+
+[node name="Short" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 215.0
+margin_top = 35.0
+margin_right = 229.0
 margin_bottom = 54.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 3 )
@@ -140,10 +172,25 @@ custom_fonts/font = SubResource( 3 )
 text = "Long:"
 align = 2
 
-[node name="Long" type="Label" parent="Stats/PilotDetail/PilotData"]
+[node name="Bar3" type="TextureProgress" parent="Stats/PilotDetail/PilotData"]
 margin_left = 83.0
 margin_top = 70.0
-margin_right = 97.0
+margin_right = 211.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 128, 16 )
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+
+[node name="Long" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 215.0
+margin_top = 70.0
+margin_right = 229.0
 margin_bottom = 89.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 3 )
@@ -158,18 +205,33 @@ custom_fonts/font = SubResource( 3 )
 text = "Dodge:"
 align = 2
 
-[node name="Dodge" type="Label" parent="Stats/PilotDetail/PilotData"]
+[node name="Bar4" type="TextureProgress" parent="Stats/PilotDetail/PilotData"]
 margin_left = 83.0
 margin_top = 105.0
-margin_right = 97.0
+margin_right = 211.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 128, 16 )
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+
+[node name="Dodge" type="Label" parent="Stats/PilotDetail/PilotData"]
+margin_left = 215.0
+margin_top = 105.0
+margin_right = 229.0
 margin_bottom = 124.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "0"
 
 [node name="MechData" type="GridContainer" parent="Stats/PilotDetail"]
-margin_left = 193.0
-margin_right = 401.0
+margin_left = 325.0
+margin_right = 533.0
 margin_bottom = 124.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8

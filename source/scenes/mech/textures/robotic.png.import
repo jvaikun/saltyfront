@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/robotic.png-c02da88c68f657f140dfe145dafac8b6.s3tc.stex"
-path.etc2="res://.import/robotic.png-c02da88c68f657f140dfe145dafac8b6.etc2.stex"
+path.s3tc="res://.import/robotic.png-ea283df2f97add94c056f4c531bbdbee.s3tc.stex"
+path.etc2="res://.import/robotic.png-ea283df2f97add94c056f4c531bbdbee.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Mech/robotic.png"
-dest_files=[ "res://.import/robotic.png-c02da88c68f657f140dfe145dafac8b6.s3tc.stex", "res://.import/robotic.png-c02da88c68f657f140dfe145dafac8b6.etc2.stex" ]
+source_file="res://scenes/mech/textures/robotic.png"
+dest_files=[ "res://.import/robotic.png-ea283df2f97add94c056f4c531bbdbee.s3tc.stex", "res://.import/robotic.png-ea283df2f97add94c056f4c531bbdbee.etc2.stex" ]
 
 [params]
 
@@ -30,6 +30,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

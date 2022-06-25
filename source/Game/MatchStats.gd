@@ -71,3 +71,7 @@ func update_info(team1, team2):
 		else:
 			for item in all_mechs[i].bonuses:
 				pilots[i].bonus.text += "%s +%d\n" % [item.title, item.pay]
+
+
+func set_view(view_tex):
+	$MainBox/Rankings/HangarView.texture = view_tex
