@@ -9,14 +9,14 @@ onready var hangar_cam = $HangarView/HangarCam
 
 const cam_home = {"pos":Vector3(0, 3, 9), "rot":Vector3(-15, 0, 0)}
 const cam_points = [
-	{"pos":Vector3(-1, 1, 6), "rot":Vector3(0, 90, 0)},
-	{"pos":Vector3(-1, 1, 2), "rot":Vector3(0, 90, 0)},
-	{"pos":Vector3(-1, 1, -2), "rot":Vector3(0, 90, 0)},
-	{"pos":Vector3(-1, 1, -6), "rot":Vector3(0, 90, 0)},
-	{"pos":Vector3(1, 1, -6), "rot":Vector3(0, -90, 0)},
-	{"pos":Vector3(1, 1, -2), "rot":Vector3(0, -90, 0)},
-	{"pos":Vector3(1, 1, 2), "rot":Vector3(0, -90, 0)},
-	{"pos":Vector3(1, 1, 6), "rot":Vector3(0, -90, 0)},
+	{"pos":Vector3(-1, 2, 5), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, 1), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, -3), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, -7), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(1, 2, -5), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, -1), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, 3), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, 7), "rot":Vector3(-15, -90, 0)},
 ]
 
 signal mechs_out

@@ -8,55 +8,29 @@ const PITCH_MAX = 0
 
 const nav_obj = preload("res://Arena/NavPoint.tscn")
 const obj_firework = preload("res://Effects/firework/Explosion.tscn")
-# Map file paths and names
-const map_list = [
-	{"path":"res://Maps/Map000.tscn", "name":"Industrial Park"},
-	{"path":"res://Maps/Map001.tscn", "name":"Tower Islands"},
-	{"path":"res://Maps/Map002.tscn", "name":"Little Bridge"},
-	{"path":"res://Maps/Map003.tscn", "name":"Hillside Bunker"},
-	{"path":"res://Maps/Map004.tscn", "name":"City Ruins"},
-	{"path":"res://Maps/Map005.tscn", "name":"Old Bridge"},
-	{"path":"res://Maps/Map006.tscn", "name":"Lonely Hills"},
-	{"path":"res://Maps/Map007.tscn", "name":"Canyon Road"},
-	{"path":"res://Maps/Map008.tscn", "name":"Rough Ground"},
-	{"path":"res://Maps/Map009.tscn", "name":"Spiral Tower"},
-	{"path":"res://Maps/Map010.tscn", "name":"Tunnel Entrance"},
-	{"path":"res://Maps/Map011.tscn", "name":"Serpentine"},
-	{"path":"res://Maps/Map012.tscn", "name":"Tower Ruin"},
-]
-const map_mods = {
-	"light":["Dawn", "Mid-day", "Dusk", "Night"],
-	"weather":["Rain", "Heavy Rain", "Ash Fall"],
-	"effect":["Mines"]
-}
 const map_lights = {
 	"Dawn":{
 		"energy":0.25,
 		"angle":-30,
-		"env":"res://Maps/env_dawn.tres"
+		"env":"res://scenes/maps/env_dawn.tres"
 	},
 	"Mid-day":{
 		"energy":1,
 		"angle":-85,
-		"env":"res://Maps/env_day.tres"
+		"env":"res://scenes/maps/env_day.tres"
 	},
 	"Dusk":{
 		"energy":0.25,
 		"angle":-150,
-		"env":"res://Maps/env_dusk.tres"
+		"env":"res://scenes/maps/env_dusk.tres"
 	},
 	"Night":{
 		"energy":0.01,
 		"angle":-150,
-		"env":"res://Maps/env_night.tres"
+		"env":"res://scenes/maps/env_night.tres"
 	}
 }
-const map_weather = {
-	"Clear":"",
-	"Rain":"res://Effects/Rain.tscn",
-	"Heavy Rain":"res://Effects/HeavyRain.tscn",
-	"Ash Fall":"res://Effects/AshFall.tscn"
-}
+
 const tile_data = [
 	{"name":"wallA", "height":2, "angle":0, "move":2},
 	{"name":"wallA_window", "height":2, "angle":0, "move":2},
@@ -151,10 +125,11 @@ func _process(_delta):
 	if d_zoom:
 		cam_camera.fov = 2.0 * rad2deg(atan(dz_height * 0.5 / cam_camera.translation.z))
 	if Input.is_action_just_pressed("ui_accept"):
-		mech_select += 1
-		if mech_select >= turns_queue.size():
-			mech_select = 0
-		cam_base.follow_mech(turns_queue[mech_select])
+		test_attack()
+#		mech_select += 1
+#		if mech_select >= turns_queue.size():
+#			mech_select = 0
+#		cam_base.follow_mech(turns_queue[mech_select])
 	if Input.is_action_just_pressed("ui_end"):
 		reroll_all()
 	if Input.is_action_just_pressed("ui_page_up"):
@@ -191,15 +166,48 @@ func dolly_zoom():
 	$FlyTween.start()
 
 func test_attack():
-	mech_prod.attack_target = $Mechs/Mech3
+	var test_type = "mgun"
+	mech_prod.attack_target = $Mechs/Mech2
 	for weapon in mech_prod.weapon_list:
-		if weapon.type == "flame":
+		if weapon.type == test_type:
 			mech_prod.attack_wpn = weapon
 	var shots = [
-		{ "type":"flame", "target":$Mechs/Mech3, "part":"body", "dmg":5, "crit":1 },
-		{ "type":"flame", "target":$Mechs/Mech3, "part":"body", "dmg":5, "crit":1 },
-		{ "type":"flame", "target":$Mechs/Mech3, "part":"body", "dmg":5, "crit":1 },
-		{ "type":"flame", "target":$Mechs/Mech3, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
 	]
 	mech_prod.do_attack(shots)
 
@@ -225,7 +233,7 @@ func roll_stats(mech):
 	stats.arm_r = PartDB.arm[partSet]
 	stats.arm_l = PartDB.arm[partSet]
 	stats.legs = PartDB.legs[partSet]
-	var wpnSet = str(randi() % PartDB.weapon.size())
+	var wpnSet = "4" #str(randi() % PartDB.weapon.size())
 	stats.wpn_r = PartDB.weapon[wpnSet]
 	stats.wpn_l = PartDB.weapon[wpnSet]
 	var podSet = str(randi() % PartDB.pod.size())

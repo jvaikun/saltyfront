@@ -1,5 +1,14 @@
 extends Node
 
+const MECH_LOADOUT = {
+	"melee": {"light":{}, "heavy":{}},
+	"short": {"light":{}, "heavy":{}},
+	"long": {"light":{}, "heavy":{}},
+	"mixms": {"light":{}, "heavy":{}},
+	"mixml": {"light":{}, "heavy":{}},
+	"mixsl": {"light":{}, "heavy":{}}
+}
+
 var pilot : Dictionary
 var drone: Dictionary
 var body : Dictionary
@@ -63,3 +72,12 @@ func _ready():
 			for i in tempData.size():
 				get(part)[row][header[i]] = tempData[i]
 		file.close()
+
+
+func get_weapon(primary, secondary):
+	var weapon_pool = []
+	for w_key in weapon.keys():
+		if weapon[w_key].skill in [primary, secondary]:
+			weapon_pool.append(w_key)
+	var weapon_id = weapon_pool[randi() % weapon_pool.size()]
+	return weapon[weapon_id]

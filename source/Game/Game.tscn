@@ -647,12 +647,9 @@ anchor_bottom = 0.5
 margin_left = -980.0
 margin_top = -252.0
 margin_bottom = 252.0
-grow_horizontal = 2
+grow_horizontal = 0
 size_flags_horizontal = 3
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Help" type="PanelContainer" parent="UI/PreFight/Body"]
 margin_right = 980.0

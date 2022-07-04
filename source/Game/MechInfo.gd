@@ -88,6 +88,3 @@ func update_info():
 			else:
 				item.info.icon.texture = ICONS.pack
 
-
-func set_view(view_tex):
-	$Stats/MechStats/HangarView.texture = view_tex

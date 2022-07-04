@@ -324,6 +324,12 @@ func new_mech(type) -> MechStats:
 	mech.pilot.skill1 = 0
 	mech.pilot.skill2 = 0
 	mech.pilot.skill3 = 0
+	var skill_list = [
+		{"skill": "melee", "value": mech.pilot.melee}, 
+		{"skill": "short", "value": mech.pilot.short}, 
+		{"skill": "long", "value": mech.pilot.long}
+	]
+	skill_list.sort_custom(CustomSort, "value_desc")
 	var rand_ind = str(randi() % PartDB.body.size())
 	mech.body = PartDB.body[rand_ind]
 	rand_ind = str(randi() % PartDB.arm.size())
@@ -332,10 +338,10 @@ func new_mech(type) -> MechStats:
 	mech.arm_l = PartDB.arm[rand_ind]
 	rand_ind = str(randi() % PartDB.legs.size())
 	mech.legs = PartDB.legs[rand_ind]
-	rand_ind = str(randi() % PartDB.weapon.size())
-	mech.wpn_r = PartDB.weapon[rand_ind]
-	rand_ind = str(randi() % PartDB.weapon.size())
-	mech.wpn_l = PartDB.weapon[rand_ind]
+	#rand_ind = str(randi() % PartDB.weapon.size())
+	mech.wpn_r = PartDB.get_weapon(skill_list[0].skill, skill_list[1].skill) #PartDB.weapon[rand_ind]
+	#rand_ind = str(randi() % PartDB.weapon.size())
+	mech.wpn_l = PartDB.get_weapon(skill_list[0].skill, skill_list[1].skill) #PartDB.weapon[rand_ind]
 	rand_ind = str(randi() % PartDB.pod.size())
 	mech.pod_r = PartDB.pod[rand_ind]
 	rand_ind = str(randi() % PartDB.pod.size())

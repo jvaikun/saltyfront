@@ -676,5 +676,5 @@ size = Vector2( 1920, 1080 )
 render_target_v_flip = true
 
 [node name="HangarCam" type="Camera" parent="HangarView"]
-transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 8 )
+transform = Transform( -4.37114e-08, 0.258819, -0.965926, 0, 0.965926, 0.258819, 1, 1.13133e-08, -4.2222e-08, 1, 2, -1 )
 environment = ExtResource( 9 )

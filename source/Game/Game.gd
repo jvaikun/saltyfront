@@ -119,6 +119,7 @@ func _ready():
 		startup()
 	$Transition.visible = true
 	start_transition(GameState.START)
+	bgm_player.play_track()
 
 
 func _process(delta):
@@ -778,8 +779,6 @@ func mid_transition():
 			$UI.visible = true
 			$Hangar.load_mechs(tournament.current_match.teams)
 			$UI/Background.texture = $Hangar/HangarView.get_texture() #tex_bg2
-			var view_tex = $Hangar/HangarView.get_texture()
-			$UI/PreFight/MechInfo.set_view(view_tex)
 			var next_map = arena.roll_map()
 			header_versus.match_info.text = msg_match_next % [
 				tournament.current_match.tour,
@@ -847,7 +846,6 @@ func end_transition():
 	match state:
 		GameState.START:
 			bgm_player.play_clip("new_tournament")
-			bgm_player.play_track()
 			if !GameData.offline_mode:
 				chatbot.chat("A new tournament has begun! Sign ups are now open!")
 			commentary("tour_intro")
