@@ -2,15 +2,16 @@
 
 [ext_resource path="res://scenes/bullet/Bullet.gd" type="Script" id=1]
 
-
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 0.05, 0.05, 0.25 )
+extents = Vector3( 0.025, 0.025, 0.125 )
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 0, 1 )
+offsets = PoolRealArray( 0, 0.75, 1 )
+colors = PoolColorArray( 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
+width = 128
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
@@ -19,7 +20,7 @@ params_cull_mode = 2
 albedo_texture = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=4]
-size = Vector2( 0.5, 0.1 )
+size = Vector2( 0.25, 0.05 )
 
 [node name="Bullet" type="Area"]
 script = ExtResource( 1 )

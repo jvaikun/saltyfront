@@ -42,7 +42,7 @@ onready var mech_info = $UI/PreFight/MechInfo
 onready var bet_info = $UI/PreFight/Body/BetInfo
 
 # Accessor vars for post-fight UI
-onready var payout = $UI/Stats/MainBox/SideBox/Payout
+onready var payout = $UI/Stats/SideBox/Payout
 onready var stats = $UI/Stats
 
 onready var comment1 = $Announcer
@@ -810,8 +810,6 @@ func mid_transition():
 			arena.clear_map()
 			$Hangar.visible = true
 			$Hangar._ready()
-			var view_tex = $Hangar/HangarView.get_texture()
-			$UI/Stats.set_view(view_tex)
 			header_versus.match_info.text = msg_match_result % [
 				tournament.current_match.tour,
 				tournament.current_match.name

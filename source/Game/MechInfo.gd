@@ -26,7 +26,6 @@ onready var info_pack = $Stats/MechStats/PartList/InfoPack
 onready var p_face = $Stats/PilotDetail/Portrait/PilotFace
 onready var p_color = $Stats/PilotDetail/Portrait/TeamColor
 onready var p_name = $Stats/PilotName/Name
-onready var t_name = $Stats/PilotName/Team
 onready var t_color = $Stats/PilotName/TeamColor
 onready var melee_bar = $Stats/PilotDetail/PilotData/Bar
 onready var melee = $Stats/PilotDetail/PilotData/Melee
@@ -54,7 +53,6 @@ func update_info():
 		p_face.texture.set_region(faceArea)
 		p_name.text = focus_mech.pilot.name
 		t_color.modulate = GameData.teamColors[focus_mech.team]
-		t_name.text = GameData.teamNames[focus_mech.team].capitalize()
 		melee_bar.value = focus_mech.pilot.melee
 		melee.text = str(focus_mech.pilot.melee)
 		short_bar.value = focus_mech.pilot.short
@@ -79,6 +77,7 @@ func update_info():
 			item.info.head.text = item.title
 			item.info.body.text = focus_mech[item.part].name + "\n" 
 			if item.part in ["pod_l", "pod_r", "wpn_l", "wpn_r"]:
+				item.info.head.text += " [%s]" % focus_mech[item.part].skill.to_upper()
 				item.info.icon.texture = ICONS[focus_mech[item.part].type]
 				item.info.body.text += (str(focus_mech[item.part].damage) + " DMG x " + 
 				str(focus_mech[item.part].fire_rate) + "\n")

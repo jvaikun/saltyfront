@@ -303,17 +303,14 @@ func get_range(from, to):
 
 # functions:
 func _ready():
-	# Set mech params
-	if GameData.fast_wait:
-		spd_wait = GameData.wait_time_fast
-	else:
-		spd_wait = GameData.wait_time
 	if GameData.fast_combat:
 		spd_move = GameData.move_speed_fast
 		spd_anim = GameData.anim_speed_fast
+		spd_wait = GameData.wait_time_fast
 	else:
 		spd_move = GameData.move_speed
 		spd_anim = GameData.anim_speed
+		spd_wait = GameData.wait_time
 
 
 func _physics_process(delta):
@@ -415,32 +412,28 @@ func setup(var my_arena):
 		weapon_list.append(mechData.wpn_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["muzzle"] = mech_parts.wpn_l[0].obj.get_node("Muzzle")
-		if mech_parts.wpn_l[0].obj.get_node("MuzzleFlash"):
-			weapon_list.back()["flash"] = mech_parts.wpn_l[0].obj.get_node("MuzzleFlash")
-		if mech_parts.wpn_l[0].obj.get_node("Eject"):
-			weapon_list.back()["eject"] = mech_parts.wpn_l[0].obj.get_node("Eject")
+		weapon_list.back()["eject"] = mech_parts.wpn_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.wpn_r != null:
 		weapon_list.append(mechData.wpn_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["muzzle"] = mech_parts.wpn_r[0].obj.get_node("Muzzle")
-		if mech_parts.wpn_r[0].obj.get_node("MuzzleFlash"):
-			weapon_list.back()["flash"] = mech_parts.wpn_r[0].obj.get_node("MuzzleFlash")
-		if mech_parts.wpn_r[0].obj.get_node("Eject"):
-			weapon_list.back()["eject"] = mech_parts.wpn_r[0].obj.get_node("Eject")
+		weapon_list.back()["eject"] = mech_parts.wpn_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	if mechData.pod_l != null:
 		weapon_list.append(mechData.pod_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["muzzle"] = mech_parts.pod_l[0].obj.get_node("Muzzle")
+		weapon_list.back()["eject"] = mech_parts.pod_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.pod_r != null:
 		weapon_list.append(mechData.pod_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["muzzle"] = mech_parts.pod_r[0].obj.get_node("Muzzle")
+		weapon_list.back()["eject"] = mech_parts.pod_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	weapon_list.sort_custom(CustomSort, "damage")
@@ -955,8 +948,7 @@ func do_attack(shot_list):
 	$Effects/Flash.global_transform.origin = point.global_transform.origin
 	# Play effects/anims, fire projectiles
 	var last_shot
-	if "eject" in attack_wpn.keys():
-		attack_wpn.eject.emitting = true
+	attack_wpn.eject.emitting = true
 	for shot in shot_list:
 		var bullet
 		var flash_scale = 0.8 + (randi() % 4 * 0.2)
@@ -975,10 +967,10 @@ func do_attack(shot_list):
 					mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim, false)
 					$Effects/AnimEffect.play("shoot_flash")
 					play_fx("sgun_shoot")
-					attack_wpn.flash.scale = Vector3(flash_scale, flash_scale, 1)
-					attack_wpn.flash.show()
+					attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
+					attack_wpn.muzzle.show()
 					yield(mech_anim, "animation_finished")
-					attack_wpn.flash.hide()
+					attack_wpn.muzzle.hide()
 				bullet = projectile(shot.target, bullet_obj, point, 20, 0.4, shot)
 			# If weapon is flamer, spawn invisible bullets with pause, no animation
 			"flame":
@@ -1004,25 +996,24 @@ func do_attack(shot_list):
 				play_fx("mgun_shoot")
 				$Effects/AnimEffect.play("shoot_flash")
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.6, shot)
-				attack_wpn.flash.scale = Vector3(flash_scale, flash_scale, 1)
-				attack_wpn.flash.show()
+				attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
+				attack_wpn.muzzle.show()
 				yield(mech_anim, "animation_finished")
-				attack_wpn.flash.hide()
+				attack_wpn.muzzle.hide()
 			"rifle":
 				mech_anim.stop()
 				mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim, false)
 				play_fx("rifle_shoot")
 				$Effects/AnimEffect.play("shoot_flash")
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.2, shot)
-				attack_wpn.flash.scale = Vector3(flash_scale, flash_scale, 1)
-				attack_wpn.flash.show()
+				attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
+				attack_wpn.muzzle.show()
 				yield(mech_anim, "animation_finished")
-				attack_wpn.flash.hide()
+				attack_wpn.muzzle.hide()
 		if shot_list.find(shot) == shot_list.size()-1:
 			last_shot = bullet
 	# Attack end animation
-	if "eject" in attack_wpn.keys():
-		attack_wpn.eject.emitting = false
+	attack_wpn.eject.emitting = false
 	$Effects/Flame.emitting = false
 	$Effects/Flash.visible = false
 	$Effects/AnimEffect.stop()

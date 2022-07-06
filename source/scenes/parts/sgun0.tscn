@@ -40,9 +40,6 @@ material_override = SubResource( 1 )
 mesh = ExtResource( 2 )
 material/0 = null
 
-[node name="Muzzle" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.8 )
-
 [node name="Eject" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0718325, 0.0504768, -0.169947 )
 emitting = false
@@ -51,17 +48,17 @@ local_coords = false
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 6 )
 
-[node name="MuzzleFlash" type="Spatial" parent="."]
+[node name="Muzzle" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046826, -0.669004 )
 visible = false
 
-[node name="MeshInstance" type="MeshInstance" parent="MuzzleFlash"]
+[node name="MeshInstance" type="MeshInstance" parent="Muzzle"]
 transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="MuzzleFlash"]
+[node name="MeshInstance2" type="MeshInstance" parent="Muzzle"]
 transform = Transform( -1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 1.91069e-15, -1, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )

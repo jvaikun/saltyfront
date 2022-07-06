@@ -35,7 +35,7 @@ func _ready():
 		print("Error loading config file, using PartDB defaults...")
 	# Part data source files
 	var data_files = {
-		"pilot":user_path + "pilot_data.csv",
+		#"pilot":user_path + "pilot_data.csv",
 		"drone":part_path + "drone.csv",
 		"body":part_path + "body.csv",
 		"arm":part_path + "arm.csv",
@@ -53,7 +53,7 @@ func _ready():
 			var tempData = file.get_csv_line()
 			var row = tempData[0]
 			match part:
-				"pilot", "drone":
+				"drone":
 					get(part)[row] = MechPilot.new()
 				"body":
 					get(part)[row] = MechBody.new()
@@ -75,9 +75,16 @@ func _ready():
 
 
 func get_weapon(primary, secondary):
-	var weapon_pool = []
+	var primary_pool = []
+	var secondary_pool = []
 	for w_key in weapon.keys():
-		if weapon[w_key].skill in [primary, secondary]:
-			weapon_pool.append(w_key)
-	var weapon_id = weapon_pool[randi() % weapon_pool.size()]
+		if weapon[w_key].skill == primary:
+			primary_pool.append(w_key)
+		if weapon[w_key].skill == secondary:
+			secondary_pool.append(w_key)
+	var weapon_id = "0"
+	if randf() < 0.5:
+		weapon_id = primary_pool[randi() % primary_pool.size()]
+	else:
+		weapon_id = secondary_pool[randi() % secondary_pool.size()]
 	return weapon[weapon_id]

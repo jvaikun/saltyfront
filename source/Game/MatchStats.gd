@@ -1,23 +1,23 @@
-extends MarginContainer
+extends Control
 
 # Accessor vars
 onready var pilots = [
-	{"pilot":$MainBox/Rankings/Body/List/Team1Mech1/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team1Mech1/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team1Mech2/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team1Mech2/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team1Mech3/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team1Mech3/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team1Mech4/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team1Mech4/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team2Mech1/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team2Mech1/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team2Mech2/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team2Mech2/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team2Mech3/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team2Mech3/Label},
-	{"pilot":$MainBox/Rankings/Body/List/Team2Mech4/PilotInfo, 
-	"bonus":$MainBox/Rankings/Body/List/Team2Mech4/Label},
+	{"pilot":$Rankings/Body/List/Team1Mech1/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team1Mech1/Label},
+	{"pilot":$Rankings/Body/List/Team1Mech2/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team1Mech2/Label},
+	{"pilot":$Rankings/Body/List/Team1Mech3/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team1Mech3/Label},
+	{"pilot":$Rankings/Body/List/Team1Mech4/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team1Mech4/Label},
+	{"pilot":$Rankings/Body/List/Team2Mech1/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team2Mech1/Label},
+	{"pilot":$Rankings/Body/List/Team2Mech2/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team2Mech2/Label},
+	{"pilot":$Rankings/Body/List/Team2Mech3/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team2Mech3/Label},
+	{"pilot":$Rankings/Body/List/Team2Mech4/PilotInfo, 
+	"bonus":$Rankings/Body/List/Team2Mech4/Label},
 ]
 
 func update_info(team1, team2):
@@ -42,25 +42,25 @@ func update_info(team1, team2):
 		results2.part_dest += mech.part_dest
 		results2.part_lost += mech.part_lost
 	# Update Team 1 stats
-	$MainBox/SideBox/TeamStats/Body/Team1/TeamHeader/Name.text = team1.name.capitalize()
-	$MainBox/SideBox/TeamStats/Body/Team1/TeamHeader/TeamColor.modulate = team1.color
-	$MainBox/SideBox/TeamStats/Body/Team1/Hits.text = str(results1.hits)
-	$MainBox/SideBox/TeamStats/Body/Team1/Crits.text = str(results1.crits)
-	$MainBox/SideBox/TeamStats/Body/Team1/Misses.text = str(results1.misses)
-	$MainBox/SideBox/TeamStats/Body/Team1/DamageOut.text = str(results1.dmg_out)
-	$MainBox/SideBox/TeamStats/Body/Team1/DamageIn.text = str(results1.dmg_in)
-	$MainBox/SideBox/TeamStats/Body/Team1/PartDest.text = str(results1.part_dest)
-	$MainBox/SideBox/TeamStats/Body/Team1/PartLost.text = str(results1.part_lost)
+	$SideBox/TeamStats/Body/Team1/TeamHeader/Name.text = team1.name.capitalize()
+	$SideBox/TeamStats/Body/Team1/TeamHeader/TeamColor.modulate = team1.color
+	$SideBox/TeamStats/Body/Team1/Hits.text = str(results1.hits)
+	$SideBox/TeamStats/Body/Team1/Crits.text = str(results1.crits)
+	$SideBox/TeamStats/Body/Team1/Misses.text = str(results1.misses)
+	$SideBox/TeamStats/Body/Team1/DamageOut.text = str(results1.dmg_out)
+	$SideBox/TeamStats/Body/Team1/DamageIn.text = str(results1.dmg_in)
+	$SideBox/TeamStats/Body/Team1/PartDest.text = str(results1.part_dest)
+	$SideBox/TeamStats/Body/Team1/PartLost.text = str(results1.part_lost)
 	# Update Team 2 stats
-	$MainBox/SideBox/TeamStats/Body/Team2/TeamHeader/Name.text = team2.name.capitalize()
-	$MainBox/SideBox/TeamStats/Body/Team2/TeamHeader/TeamColor.modulate = team2.color
-	$MainBox/SideBox/TeamStats/Body/Team2/Hits.text = str(results2.hits)
-	$MainBox/SideBox/TeamStats/Body/Team2/Crits.text = str(results2.crits)
-	$MainBox/SideBox/TeamStats/Body/Team2/Misses.text = str(results2.misses)
-	$MainBox/SideBox/TeamStats/Body/Team2/DamageOut.text = str(results2.dmg_out)
-	$MainBox/SideBox/TeamStats/Body/Team2/DamageIn.text = str(results2.dmg_in)
-	$MainBox/SideBox/TeamStats/Body/Team2/PartDest.text = str(results2.part_dest)
-	$MainBox/SideBox/TeamStats/Body/Team2/PartLost.text = str(results2.part_lost)
+	$SideBox/TeamStats/Body/Team2/TeamHeader/Name.text = team2.name.capitalize()
+	$SideBox/TeamStats/Body/Team2/TeamHeader/TeamColor.modulate = team2.color
+	$SideBox/TeamStats/Body/Team2/Hits.text = str(results2.hits)
+	$SideBox/TeamStats/Body/Team2/Crits.text = str(results2.crits)
+	$SideBox/TeamStats/Body/Team2/Misses.text = str(results2.misses)
+	$SideBox/TeamStats/Body/Team2/DamageOut.text = str(results2.dmg_out)
+	$SideBox/TeamStats/Body/Team2/DamageIn.text = str(results2.dmg_in)
+	$SideBox/TeamStats/Body/Team2/PartDest.text = str(results2.part_dest)
+	$SideBox/TeamStats/Body/Team2/PartLost.text = str(results2.part_lost)
 	# Create rankings
 	var all_mechs = team1.mechs + team2.mechs
 	for i in all_mechs.size():
@@ -71,7 +71,3 @@ func update_info(team1, team2):
 		else:
 			for item in all_mechs[i].bonuses:
 				pilots[i].bonus.text += "%s +%d\n" % [item.title, item.pay]
-
-
-func set_view(view_tex):
-	$MainBox/Rankings/HangarView.texture = view_tex

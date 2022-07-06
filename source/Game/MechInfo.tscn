@@ -40,7 +40,7 @@ script = ExtResource( 5 )
 margin_left = 18.0
 margin_top = 18.0
 margin_right = 608.0
-margin_bottom = 486.0
+margin_bottom = 644.0
 custom_constants/separation = 16
 
 [node name="PilotName" type="MarginContainer" parent="Stats"]
@@ -59,14 +59,6 @@ margin_bottom = 19.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Pilot Name"
-
-[node name="Team" type="Label" parent="Stats/PilotName"]
-margin_right = 590.0
-margin_bottom = 19.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "Team"
-align = 2
 
 [node name="PilotDetail" type="HBoxContainer" parent="Stats"]
 margin_top = 35.0
@@ -315,64 +307,34 @@ align = 1
 
 [node name="MechStats" type="MarginContainer" parent="Stats"]
 margin_top = 175.0
-margin_right = 590.0
-margin_bottom = 468.0
-
-[node name="PartList" type="GridContainer" parent="Stats/MechStats"]
-margin_right = 590.0
-margin_bottom = 293.0
-custom_constants/vseparation = 16
-custom_constants/hseparation = 16
-columns = 3
-
-[node name="InfoPodL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
 margin_right = 186.0
-margin_bottom = 87.0
+margin_bottom = 626.0
+size_flags_horizontal = 0
 
-[node name="Label" type="Label" parent="Stats/MechStats/PartList"]
-margin_left = 202.0
-margin_top = 36.0
-margin_right = 388.0
-margin_bottom = 50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PartList" type="VBoxContainer" parent="Stats/MechStats"]
+margin_right = 186.0
+margin_bottom = 451.0
 
 [node name="InfoPodR" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
-margin_left = 404.0
-margin_right = 590.0
+margin_right = 186.0
 margin_bottom = 87.0
 
-[node name="InfoWpnL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
-margin_top = 103.0
+[node name="InfoPodL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_top = 91.0
 margin_right = 186.0
-margin_bottom = 190.0
-
-[node name="Label2" type="Label" parent="Stats/MechStats/PartList"]
-margin_left = 202.0
-margin_top = 139.0
-margin_right = 388.0
-margin_bottom = 153.0
+margin_bottom = 178.0
 
 [node name="InfoWpnR" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
-margin_left = 404.0
-margin_top = 103.0
-margin_right = 590.0
-margin_bottom = 190.0
-
-[node name="Label3" type="Label" parent="Stats/MechStats/PartList"]
-margin_top = 242.0
+margin_top = 182.0
 margin_right = 186.0
-margin_bottom = 256.0
+margin_bottom = 269.0
+
+[node name="InfoWpnL" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
+margin_top = 273.0
+margin_right = 186.0
+margin_bottom = 360.0
 
 [node name="InfoPack" parent="Stats/MechStats/PartList" instance=ExtResource( 4 )]
-margin_left = 202.0
-margin_top = 206.0
-margin_right = 388.0
-margin_bottom = 293.0
-
-[node name="Label4" type="Label" parent="Stats/MechStats/PartList"]
-margin_left = 404.0
-margin_top = 242.0
-margin_right = 590.0
-margin_bottom = 256.0
+margin_top = 364.0
+margin_right = 186.0
+margin_bottom = 451.0
