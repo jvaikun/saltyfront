@@ -1,28 +1,18 @@
-[gd_scene load_steps=134 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Effects/fire_01.png" type="Texture" id=1]
 [ext_resource path="res://Effects/blackSmoke05.png" type="Texture" id=2]
-[ext_resource path="res://sfx/shoot/flame_shoot0.wav" type="AudioStream" id=3]
 [ext_resource path="res://sfx/explode/explode_sm3.wav" type="AudioStream" id=4]
-[ext_resource path="res://sfx/shoot/missile_shoot0.ogg" type="AudioStream" id=5]
 [ext_resource path="res://sfx/explode/explode_sm6.wav" type="AudioStream" id=6]
 [ext_resource path="res://sfx/walk/step_mech.wav" type="AudioStream" id=7]
 [ext_resource path="res://sfx/explode/explode_sm1.wav" type="AudioStream" id=8]
-[ext_resource path="res://sfx/shoot/missile_shoot2.ogg" type="AudioStream" id=9]
 [ext_resource path="res://sfx/explode/explode_sm2.wav" type="AudioStream" id=10]
-[ext_resource path="res://sfx/shoot/mgun_shoot6.wav" type="AudioStream" id=11]
 [ext_resource path="res://sfx/explode/explode_sm4.wav" type="AudioStream" id=12]
 [ext_resource path="res://sfx/explode/explode_sm5.wav" type="AudioStream" id=13]
-[ext_resource path="res://sfx/shoot/flame_shoot1.wav" type="AudioStream" id=14]
-[ext_resource path="res://sfx/shoot/flame_shoot3.wav" type="AudioStream" id=15]
 [ext_resource path="res://sfx/walk/step0.wav" type="AudioStream" id=16]
-[ext_resource path="res://sfx/shoot/mgun_shoot7.wav" type="AudioStream" id=17]
 [ext_resource path="res://sfx/walk/step1.wav" type="AudioStream" id=18]
 [ext_resource path="res://scenes/mech/textures/tex_glow.png" type="Texture" id=19]
 [ext_resource path="res://sfx/explode/explode_sm0.wav" type="AudioStream" id=20]
-[ext_resource path="res://sfx/shoot/missile_shoot1.ogg" type="AudioStream" id=21]
-[ext_resource path="res://sfx/shoot/flame_shoot2.wav" type="AudioStream" id=22]
-[ext_resource path="res://sfx/shoot/mgun_shoot8.wav" type="AudioStream" id=23]
 [ext_resource path="res://sfx/explode/explode_lg1.wav" type="AudioStream" id=24]
 [ext_resource path="res://sfx/explode/explode_lg0.wav" type="AudioStream" id=25]
 [ext_resource path="res://sfx/explode/explode_lg6.wav" type="AudioStream" id=26]
@@ -30,53 +20,20 @@
 [ext_resource path="res://sfx/explode/explode_lg2.wav" type="AudioStream" id=28]
 [ext_resource path="res://sfx/explode/explode_lg4.wav" type="AudioStream" id=29]
 [ext_resource path="res://sfx/explode/explode_lg5.wav" type="AudioStream" id=30]
-[ext_resource path="res://sfx/shoot/rifle_shoot7.wav" type="AudioStream" id=31]
-[ext_resource path="res://sfx/ready/sgun_ready0.wav" type="AudioStream" id=32]
-[ext_resource path="res://sfx/shoot/hrifle_shoot0.wav" type="AudioStream" id=33]
-[ext_resource path="res://sfx/shoot/sgun_shoot3.wav" type="AudioStream" id=34]
-[ext_resource path="res://sfx/shoot/rifle_shoot8.wav" type="AudioStream" id=35]
-[ext_resource path="res://sfx/shoot/rifle_shoot1.wav" type="AudioStream" id=36]
 [ext_resource path="res://sfx/hit/bullet_hit8.wav" type="AudioStream" id=37]
 [ext_resource path="res://sfx/hit/bullet_hit0.wav" type="AudioStream" id=38]
-[ext_resource path="res://sfx/shoot/sgun_shoot2.wav" type="AudioStream" id=39]
-[ext_resource path="res://sfx/shoot/rifle_shoot9.wav" type="AudioStream" id=40]
 [ext_resource path="res://sfx/hit/bullet_hit1.wav" type="AudioStream" id=41]
 [ext_resource path="res://sfx/hit/bullet_hit4.wav" type="AudioStream" id=42]
 [ext_resource path="res://sfx/hit/bullet_hit3.wav" type="AudioStream" id=43]
-[ext_resource path="res://sfx/ready/sgun_ready1.wav" type="AudioStream" id=44]
-[ext_resource path="res://sfx/shoot/rifle_shoot6.wav" type="AudioStream" id=45]
-[ext_resource path="res://sfx/shoot/sgun_shoot0.wav" type="AudioStream" id=46]
 [ext_resource path="res://sfx/miss/bullet_miss9.wav" type="AudioStream" id=47]
-[ext_resource path="res://sfx/shoot/mgun_shoot4.wav" type="AudioStream" id=48]
-[ext_resource path="res://sfx/shoot/mgun_shoot5.wav" type="AudioStream" id=49]
 [ext_resource path="res://sfx/miss/bullet_miss6.wav" type="AudioStream" id=50]
-[ext_resource path="res://sfx/shoot/rifle_shoot2.wav" type="AudioStream" id=51]
-[ext_resource path="res://sfx/shoot/rifle_shoot5.wav" type="AudioStream" id=52]
-[ext_resource path="res://sfx/ready/sgun_ready2.wav" type="AudioStream" id=53]
-[ext_resource path="res://sfx/shoot/sgun_shoot1.wav" type="AudioStream" id=54]
-[ext_resource path="res://sfx/ready/rifle_ready2.wav" type="AudioStream" id=55]
-[ext_resource path="res://sfx/shoot/mgun_shoot0.wav" type="AudioStream" id=56]
-[ext_resource path="res://sfx/ready/rifle_ready1.wav" type="AudioStream" id=57]
-[ext_resource path="res://sfx/shoot/mgun_shoot2.wav" type="AudioStream" id=58]
-[ext_resource path="res://sfx/shoot/rifle_shoot0.wav" type="AudioStream" id=59]
-[ext_resource path="res://sfx/shoot/rifle_shoot4.wav" type="AudioStream" id=60]
 [ext_resource path="res://Effects/spark_04.png" type="Texture" id=61]
 [ext_resource path="res://sfx/miss/bullet_miss8.wav" type="AudioStream" id=62]
 [ext_resource path="res://Effects/spark_02.png" type="Texture" id=63]
-[ext_resource path="res://sfx/shoot/hrifle_shoot1.wav" type="AudioStream" id=64]
-[ext_resource path="res://sfx/ready/mgun_ready0.wav" type="AudioStream" id=65]
 [ext_resource path="res://Effects/spark_03.png" type="Texture" id=66]
 [ext_resource path="res://sfx/skill_activate.wav" type="AudioStream" id=67]
-[ext_resource path="res://sfx/shoot/hrifle_shoot3.wav" type="AudioStream" id=68]
 [ext_resource path="res://Effects/spark_01.png" type="Texture" id=69]
-[ext_resource path="res://sfx/shoot/rifle_shoot3.wav" type="AudioStream" id=70]
-[ext_resource path="res://sfx/ready/mgun_ready1.wav" type="AudioStream" id=71]
-[ext_resource path="res://sfx/shoot/mgun_shoot1.wav" type="AudioStream" id=72]
 [ext_resource path="res://sfx/miss/bullet_miss7.wav" type="AudioStream" id=73]
-[ext_resource path="res://sfx/ready/mgun_ready2.wav" type="AudioStream" id=74]
-[ext_resource path="res://sfx/shoot/mgun_shoot3.wav" type="AudioStream" id=75]
-[ext_resource path="res://sfx/shoot/hrifle_shoot2.wav" type="AudioStream" id=76]
-[ext_resource path="res://sfx/ready/rifle_ready0.wav" type="AudioStream" id=77]
 [ext_resource path="res://scenes/mech/MechV2.gd" type="Script" id=78]
 [ext_resource path="res://sfx/hit/bullet_hit14.wav" type="AudioStream" id=79]
 [ext_resource path="res://sfx/hit/bullet_hit6.wav" type="AudioStream" id=80]
@@ -198,51 +155,6 @@ albedo_texture = ExtResource( 19 )
 
 [sub_resource type="Animation" id=35]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flash:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 2.0 ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "flame_glow"
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flash:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 2.0, 3.0, 2.0 ]
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "shoot_flash"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flash:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [sub_resource type="Animation" id=19]
 resource_name = "skill_proc"
@@ -2446,7 +2358,7 @@ collision_layer = 2
 script = ExtResource( 78 )
 
 [node name="Resources" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "bullet_hit0", "bullet_hit1", "bullet_hit10", "bullet_hit11", "bullet_hit12", "bullet_hit13", "bullet_hit14", "bullet_hit15", "bullet_hit2", "bullet_hit3", "bullet_hit4", "bullet_hit5", "bullet_hit6", "bullet_hit7", "bullet_hit8", "bullet_hit9", "bullet_miss0", "bullet_miss1", "bullet_miss2", "bullet_miss3", "bullet_miss4", "bullet_miss5", "bullet_miss6", "bullet_miss7", "bullet_miss8", "bullet_miss9", "explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6", "explode_sm0", "explode_sm1", "explode_sm2", "explode_sm3", "explode_sm4", "explode_sm5", "explode_sm6", "flame_shoot0", "flame_shoot1", "flame_shoot2", "flame_shoot3", "hrifle_shoot0", "hrifle_shoot1", "hrifle_shoot2", "hrifle_shoot3", "mgun_ready0", "mgun_ready1", "mgun_ready2", "mgun_shoot0", "mgun_shoot1", "mgun_shoot2", "mgun_shoot3", "mgun_shoot4", "mgun_shoot5", "mgun_shoot6", "mgun_shoot7", "mgun_shoot8", "missile_shoot0", "missile_shoot1", "missile_shoot2", "rifle_ready0", "rifle_ready1", "rifle_ready2", "rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "rifle_shoot3", "rifle_shoot4", "rifle_shoot5", "rifle_shoot6", "rifle_shoot7", "rifle_shoot8", "rifle_shoot9", "sgun_ready0", "sgun_ready1", "sgun_ready2", "sgun_shoot0", "sgun_shoot1", "sgun_shoot2", "sgun_shoot3", "skill_activate", "step0", "step1", "step_mech" ), [ ExtResource( 38 ), ExtResource( 41 ), ExtResource( 87 ), ExtResource( 92 ), ExtResource( 86 ), ExtResource( 88 ), ExtResource( 79 ), ExtResource( 95 ), ExtResource( 84 ), ExtResource( 43 ), ExtResource( 42 ), ExtResource( 93 ), ExtResource( 80 ), ExtResource( 85 ), ExtResource( 37 ), ExtResource( 90 ), ExtResource( 81 ), ExtResource( 89 ), ExtResource( 91 ), ExtResource( 82 ), ExtResource( 94 ), ExtResource( 83 ), ExtResource( 50 ), ExtResource( 73 ), ExtResource( 62 ), ExtResource( 47 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 14 ), ExtResource( 22 ), ExtResource( 15 ), ExtResource( 33 ), ExtResource( 64 ), ExtResource( 76 ), ExtResource( 68 ), ExtResource( 65 ), ExtResource( 71 ), ExtResource( 74 ), ExtResource( 56 ), ExtResource( 72 ), ExtResource( 58 ), ExtResource( 75 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 11 ), ExtResource( 17 ), ExtResource( 23 ), ExtResource( 5 ), ExtResource( 21 ), ExtResource( 9 ), ExtResource( 77 ), ExtResource( 57 ), ExtResource( 55 ), ExtResource( 59 ), ExtResource( 36 ), ExtResource( 51 ), ExtResource( 70 ), ExtResource( 60 ), ExtResource( 52 ), ExtResource( 45 ), ExtResource( 31 ), ExtResource( 35 ), ExtResource( 40 ), ExtResource( 32 ), ExtResource( 44 ), ExtResource( 53 ), ExtResource( 46 ), ExtResource( 54 ), ExtResource( 39 ), ExtResource( 34 ), ExtResource( 67 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 7 ) ] ]
+resources = [ PoolStringArray( "bullet_hit0", "bullet_hit1", "bullet_hit10", "bullet_hit11", "bullet_hit12", "bullet_hit13", "bullet_hit14", "bullet_hit15", "bullet_hit2", "bullet_hit3", "bullet_hit4", "bullet_hit5", "bullet_hit6", "bullet_hit7", "bullet_hit8", "bullet_hit9", "bullet_miss0", "bullet_miss1", "bullet_miss2", "bullet_miss3", "bullet_miss4", "bullet_miss5", "bullet_miss6", "bullet_miss7", "bullet_miss8", "bullet_miss9", "explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6", "explode_sm0", "explode_sm1", "explode_sm2", "explode_sm3", "explode_sm4", "explode_sm5", "explode_sm6", "skill_activate", "step0", "step1", "step_mech" ), [ ExtResource( 38 ), ExtResource( 41 ), ExtResource( 87 ), ExtResource( 92 ), ExtResource( 86 ), ExtResource( 88 ), ExtResource( 79 ), ExtResource( 95 ), ExtResource( 84 ), ExtResource( 43 ), ExtResource( 42 ), ExtResource( 93 ), ExtResource( 80 ), ExtResource( 85 ), ExtResource( 37 ), ExtResource( 90 ), ExtResource( 81 ), ExtResource( 89 ), ExtResource( 91 ), ExtResource( 82 ), ExtResource( 94 ), ExtResource( 83 ), ExtResource( 50 ), ExtResource( 73 ), ExtResource( 62 ), ExtResource( 47 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 67 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 7 ) ] ]
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -2484,7 +2396,6 @@ transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.5, 0 )
 visible = false
 billboard = 1
 frames = SubResource( 15 )
-frame = 2
 playing = true
 
 [node name="Glow" type="MeshInstance" parent="Effects"]
@@ -2493,17 +2404,8 @@ cast_shadow = 0
 mesh = ExtResource( 98 )
 material/0 = null
 
-[node name="Flash" type="OmniLight" parent="Effects"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-visible = false
-light_color = Color( 1, 1, 0.4, 1 )
-light_energy = 2.0
-omni_range = 2.0
-
 [node name="AnimEffect" type="AnimationPlayer" parent="Effects"]
 anims/RESET = SubResource( 35 )
-anims/flame_glow = SubResource( 17 )
-anims/shoot_flash = SubResource( 18 )
 anims/skill_proc = SubResource( 19 )
 
 [node name="Headlight" type="SpotLight" parent="Effects"]
@@ -2647,7 +2549,7 @@ skin = SubResource( 37 )
 material/0 = null
 
 [node name="PodL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 1, -8.27782e-13, 2.38419e-07, 8.85465e-08, 0.928478, -0.371387, -2.21366e-07, 0.371387, 0.928478, 0.698615, 1.77565, 1.81608e-08 )
+transform = Transform( 0.5, 0.470162, -0.727288, 6.35428e-08, 0.8398, 0.542896, 0.866026, -0.271448, 0.4199, 0.349307, 1.77565, 0.605018 )
 bone_name = "arm_shoulder.l"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/PodL" instance=ExtResource( 96 )]
@@ -2655,7 +2557,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.96046
 emitting = false
 
 [node name="PodR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 1, 8.27782e-13, -2.38419e-07, -8.85465e-08, 0.928478, -0.371387, 2.21366e-07, 0.371387, 0.928478, -0.698615, 1.77565, 1.81608e-08 )
+transform = Transform( 0.499999, 0.244989, -0.830651, -9.94051e-08, 0.959153, 0.282888, 0.866026, -0.141444, 0.479576, -0.349307, 1.77565, -0.605019 )
 bone_name = "arm_shoulder.r"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/PodR" instance=ExtResource( 96 )]
@@ -2663,23 +2565,23 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 emitting = false
 
 [node name="WpnL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 6.84905e-07, 5.92294e-07, 8.04297e-07, 0.371389, 0.928477, 4.15948e-07, 0.928476, -0.371387, 0.698615, 1.04792, 8.9407e-08 )
+transform = Transform( -0.996156, 0.00710187, 0.0872854, 0.0036934, 0.999225, -0.0391549, -0.0874984, -0.0386832, -0.99541, 0.301662, 1.43848, 1.13324 )
 bone_name = "arm_hand.l"
 
 [node name="WpnR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -7.17324e-07, -5.79326e-07, -8.04297e-07, 0.371389, 0.928477, -4.50864e-07, 0.928476, -0.371387, -0.698615, 1.04792, 1.78814e-07 )
+transform = Transform( -0.463382, -0.55386, 0.691745, -0.0913963, 0.806321, 0.584374, -0.881433, 0.207564, -0.424254, -0.698615, 1.16957, -0.358539 )
 bone_name = "arm_hand.r"
 
 [node name="ArmLowL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 2.48101e-07, 5.43694e-07, -5.07836e-08, -0.941741, 0.336335, 5.95464e-07, 0.336333, 0.94174, 0.698615, 1.45545, -0.145543 )
+transform = Transform( -0.996156, -0.0874894, 0.00382594, 0.00369329, 0.0016838, 0.99999, -0.0874976, 0.99616, -0.00135538, 0.339522, 1.43775, 0.702163 )
 bone_name = "arm_lower.l"
 
 [node name="ArmLowR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -2.59845e-07, -5.76576e-07, 5.07836e-08, -0.941741, 0.336335, -6.3038e-07, 0.336333, 0.94174, -0.698615, 1.45545, -0.145543 )
+transform = Transform( -0.463381, -0.670505, -0.579393, -0.0913957, -0.614178, 0.783856, -0.881433, 0.416177, 0.223316, -0.408464, 1.43535, -0.538634 )
 bone_name = "arm_lower.r"
 
 [node name="Body" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3099, 0 )
+transform = Transform( 0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 0, 1.3099, 0 )
 bone_name = "torso"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/Body" instance=ExtResource( 96 )]
@@ -2695,27 +2597,27 @@ transform = Transform( 1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, 
 emitting = false
 
 [node name="LegUpL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 3.78914e-07, -4.37106e-08, -3.71541e-07, -0.941742, 0.336332, 8.62774e-08, 0.336333, 0.94174, 0.349308, 1.13525, 6.81604e-08 )
+transform = Transform( -1, 3.81342e-07, -8.07445e-09, -3.46156e-07, -0.89843, 0.439114, 1.60198e-07, 0.439115, 0.898428, 0.349308, 1.13525, 6.81604e-08 )
 bone_name = "leg_upper.l"
 
 [node name="LegUpR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -3.67562e-07, 7.54972e-08, 3.71541e-07, -0.941742, 0.336333, -5.25242e-08, 0.336333, 0.94174, -0.349308, 1.13525, 6.81604e-08 )
+transform = Transform( -1, -3.73129e-07, -3.96998e-08, 3.70306e-07, -0.964231, -0.265063, 6.06227e-08, -0.265061, 0.964228, -0.349308, 1.13525, 6.81604e-08 )
 bone_name = "leg_upper.r"
 
 [node name="LegLowL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -2.86707e-07, 4.61667e-07, 1.59776e-07, -0.967074, -0.254493, 5.1943e-07, -0.254491, 0.967072, 0.349308, 0.727724, 0.145544 )
+transform = Transform( -1, -2.20787e-07, 5.35423e-07, 2.30093e-07, -0.999846, 0.0174475, 5.31489e-07, 0.0174493, 0.999845, 0.349308, 0.746467, 0.190021 )
 bone_name = "leg_lower.l"
 
 [node name="LegLowR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 2.78118e-07, -4.29025e-07, -1.59776e-07, -0.967074, -0.254492, -4.85677e-07, -0.254491, 0.967072, -0.349308, 0.727724, 0.145544 )
+transform = Transform( -1, 2.96277e-08, -6.2589e-07, 1.83803e-07, -0.941069, -0.338213, -5.99025e-07, -0.33821, 0.941066, -0.349308, 0.717993, -0.114701 )
 bone_name = "leg_lower.r"
 
 [node name="FootL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -7.95808e-13, 1.50995e-07, 1.29477e-07, -0.514495, 0.857491, 7.76858e-08, 0.85749, 0.514493, 0.349308, 0.174653, 1.3411e-07 )
+transform = Transform( -1, -1.44951e-12, 1.50996e-07, 1.29477e-07, -0.514494, 0.857492, 7.76862e-08, 0.857489, 0.514493, 0.349308, 0.174654, 0.2 )
 bone_name = "leg_foot.l"
 
 [node name="FootR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 6.82121e-13, -1.50996e-07, -1.29478e-07, -0.514494, 0.857492, -7.76856e-08, 0.85749, 0.514493, -0.349308, 0.174653, 1.63913e-07 )
+transform = Transform( -1, 2.16005e-12, -1.50996e-07, -1.29478e-07, -0.514495, 0.857492, -7.76852e-08, 0.857489, 0.514493, -0.349308, 0.179794, -0.308124 )
 bone_name = "leg_foot.r"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="mech_frame"]

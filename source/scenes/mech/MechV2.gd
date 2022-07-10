@@ -411,29 +411,33 @@ func setup(var my_arena):
 	if mechData.wpn_l != null:
 		weapon_list.append(mechData.wpn_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
-		weapon_list.back()["muzzle"] = mech_parts.wpn_l[0].obj.get_node("Muzzle")
-		weapon_list.back()["eject"] = mech_parts.wpn_l[0].obj.get_node("Eject")
+		weapon_list.back()["obj"] = mech_parts.wpn_l[0].obj
+#		weapon_list.back()["muzzle"] = mech_parts.wpn_l[0].obj.get_node("Muzzle")
+#		weapon_list.back()["eject"] = mech_parts.wpn_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.wpn_r != null:
 		weapon_list.append(mechData.wpn_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
-		weapon_list.back()["muzzle"] = mech_parts.wpn_r[0].obj.get_node("Muzzle")
-		weapon_list.back()["eject"] = mech_parts.wpn_r[0].obj.get_node("Eject")
+		weapon_list.back()["obj"] = mech_parts.wpn_r[0].obj
+#		weapon_list.back()["muzzle"] = mech_parts.wpn_r[0].obj.get_node("Muzzle")
+#		weapon_list.back()["eject"] = mech_parts.wpn_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	if mechData.pod_l != null:
 		weapon_list.append(mechData.pod_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
-		weapon_list.back()["muzzle"] = mech_parts.pod_l[0].obj.get_node("Muzzle")
-		weapon_list.back()["eject"] = mech_parts.pod_l[0].obj.get_node("Eject")
+		weapon_list.back()["obj"] = mech_parts.pod_l[0].obj
+#		weapon_list.back()["muzzle"] = mech_parts.pod_l[0].obj.get_node("Muzzle")
+#		weapon_list.back()["eject"] = mech_parts.pod_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.pod_r != null:
 		weapon_list.append(mechData.pod_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
-		weapon_list.back()["muzzle"] = mech_parts.pod_r[0].obj.get_node("Muzzle")
-		weapon_list.back()["eject"] = mech_parts.pod_r[0].obj.get_node("Eject")
+		weapon_list.back()["obj"] = mech_parts.pod_r[0].obj
+#		weapon_list.back()["muzzle"] = mech_parts.pod_r[0].obj.get_node("Muzzle")
+#		weapon_list.back()["eject"] = mech_parts.pod_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	weapon_list.sort_custom(CustomSort, "damage")
@@ -932,31 +936,29 @@ func do_attack(shot_list):
 		yield(get_tree(), "idle_frame")
 		emit_signal("attack_done")
 		return
-	# Attack start animation
+	# Turn toward target
 	var aim = attack_target.global_transform.origin
 	aim.y = self.global_transform.origin.y
 	look_at(aim, Vector3.UP)
-	var point = attack_wpn.muzzle
+	# Attack lead-in animation
+	var point = attack_wpn.obj.get_node("Muzzle")
 	if attack_wpn.type == "missile":
 		mech_anim.play("launch_in_" + attack_wpn.side, -1, spd_anim, false)
 		yield(mech_anim, "animation_finished")
 	elif attack_wpn.type != "melee":
 		mech_anim.play("shoot_in_" + attack_wpn.side, -1, spd_anim, false)
 		yield(mech_anim, "animation_finished")
-	if attack_wpn.type + "_ready" in sound_fx.keys():
-		play_fx(attack_wpn.type + "_ready")
-	$Effects/Flash.global_transform.origin = point.global_transform.origin
-	# Play effects/anims, fire projectiles
+	attack_wpn.obj.start_loop()
+	# Attack loop
 	var last_shot
-	attack_wpn.eject.emitting = true
 	for shot in shot_list:
 		var bullet
-		var flash_scale = 0.8 + (randi() % 4 * 0.2)
 		match (attack_wpn.type):
 			# If weapon is melee, spawn invisible bullet, animate
 			"melee":
 				mech_anim.stop()
 				mech_anim.play("melee_" + attack_wpn.side, -1, spd_anim, false)
+				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 20, 0, shot)
 				bullet.visible = false
 				yield(mech_anim, "animation_finished")
@@ -965,57 +967,41 @@ func do_attack(shot_list):
 				if shot_list.find(shot) == 0:
 					mech_anim.stop()
 					mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim, false)
-					$Effects/AnimEffect.play("shoot_flash")
-					play_fx("sgun_shoot")
-					attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
-					attack_wpn.muzzle.show()
+					attack_wpn.obj.shoot()
 					yield(mech_anim, "animation_finished")
-					attack_wpn.muzzle.hide()
 				bullet = projectile(shot.target, bullet_obj, point, 20, 0.4, shot)
 			# If weapon is flamer, spawn invisible bullets with pause, no animation
 			"flame":
 				if shot_list.find(shot) == 0:
-					play_fx("flame_shoot")
+					attack_wpn.obj.shoot()
 					$Effects/Flame.global_transform.origin = point.global_transform.origin
 					$Effects/Flame.look_at(attack_target.global_transform.origin + Vector3.UP, Vector3.UP)
 					$Effects/Flame.emitting = true
-					$Effects/Flash.visible = true
-					$Effects/AnimEffect.play("flame_glow")
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.4, shot)
 				bullet.visible = false
 				yield(get_tree().create_timer(0.1), "timeout")
 			"missile":
 				mech_anim.play("launch_" + attack_wpn.side, -1, spd_anim, false)
-				play_fx("missile_shoot")
-				$Effects/AnimEffect.play("shoot_flash")
+				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, missile_obj, point, 20, 0, shot)
 				yield(mech_anim, "animation_finished")
 			"mgun":
 				mech_anim.stop()
 				mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim * 2, false)
-				play_fx("mgun_shoot")
-				$Effects/AnimEffect.play("shoot_flash")
+				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.6, shot)
-				attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
-				attack_wpn.muzzle.show()
 				yield(mech_anim, "animation_finished")
-				attack_wpn.muzzle.hide()
 			"rifle":
 				mech_anim.stop()
 				mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim, false)
-				play_fx("rifle_shoot")
-				$Effects/AnimEffect.play("shoot_flash")
+				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.2, shot)
-				attack_wpn.muzzle.scale = Vector3(flash_scale, flash_scale, 1)
-				attack_wpn.muzzle.show()
 				yield(mech_anim, "animation_finished")
-				attack_wpn.muzzle.hide()
 		if shot_list.find(shot) == shot_list.size()-1:
 			last_shot = bullet
 	# Attack end animation
-	attack_wpn.eject.emitting = false
+	attack_wpn.obj.end_loop()
 	$Effects/Flame.emitting = false
-	$Effects/Flash.visible = false
 	$Effects/AnimEffect.stop()
 	mech_anim.stop()
 	if attack_wpn.type == "missile":

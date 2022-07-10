@@ -1,5 +1,7 @@
 extends Area
 
+const obj_spark = preload("res://Effects/HitSpark.tscn")
+
 var speed = 30
 var target_mech = null
 var adjust = Vector3.ZERO
@@ -25,3 +27,9 @@ func set_target(target, spread):
 	)
 	direction = target_mech.global_transform.origin + adjust - self.global_transform.origin
 	look_at(target_mech.global_transform.origin + adjust, Vector3.UP)
+
+
+func _on_Bullet_tree_exiting():
+	var inst_spark = obj_spark.instance()
+	get_parent().add_child(inst_spark)
+	inst_spark.global_transform.origin = global_transform.origin
