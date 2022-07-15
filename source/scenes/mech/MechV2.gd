@@ -130,6 +130,7 @@ signal skill_proc(world_pos, skill_name)
 signal glow_done
 
 export (bool) var prop_mode = false
+export (bool) var debug_mode = false
 
 var part_mat = preload("res://Parts/mech_base.material")
 var wpn_mat = preload("res://Parts/weapon.material")
@@ -621,7 +622,6 @@ func think_move():
 			if this_tile.curr_mech == null:
 				this_tile.can_move = true
 				move_tiles.append(this_tile)
-	
 	for unit in unit_list:
 		if !unit.mech.is_dead:
 			unit.threat = 0.0
@@ -636,7 +636,6 @@ func think_move():
 			if !unit.friend:
 				unit.aggro += float(unit.last_dmg / unit.last_attack)
 	unit_list.sort_custom(CustomSort, "target_sort")
-	
 	# Nearest repair kit
 	var near_repair = null
 	var d_min = 999
@@ -646,7 +645,6 @@ func think_move():
 			if item_dist < d_min:
 				d_min = item_dist
 				near_repair = item.curr_tile
-	
 	# Determine our AI state
 	var aggression = 1.0
 	if (armRHP <= 0 and armLHP <= 0):
@@ -679,7 +677,6 @@ func think_move():
 		AIState.RETREAT:
 			if !(near_repair == null):
 				tile_goal = near_repair
-	
 	# Go through movement squares and calculate position values
 	update_wpn()
 	priority_list.clear()
@@ -723,7 +720,6 @@ func think_move():
 			if item.is_in_group("bomb"):
 				priority += get_range(tile, item.curr_tile) * ai_weights[ai_state].splash
 		priority_list.append({"tile":tile, "priority":priority})
-	
 	# If priority_list isn't empty, choose a move target, default to current tile if empty
 	if !priority_list.empty():
 		# Sort priority list, get max values
@@ -741,12 +737,12 @@ func think_move():
 		move_target = curr_tile
 	#print("READY state done")
 	get_move_path()
-	if GameData.debug_mode:
-		yield(get_tree().create_timer(0.5), "timeout")
-	is_moving = true
 	is_thinking = false
-	nextState = MechState.MOVE
-	state = MechState.WAIT
+	if !debug_mode:
+		is_moving = true
+		nextState = MechState.MOVE
+		state = MechState.WAIT
+
 
 # Decision making function for action
 func think_action():

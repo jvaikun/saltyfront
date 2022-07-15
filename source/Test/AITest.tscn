@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://test/AITest.gd" type="Script" id=1]
+[ext_resource path="res://Arena/MapCamera.gd" type="Script" id=2]
+[ext_resource path="res://scenes/mech/MechV2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/maps/Map000.tscn" type="PackedScene" id=4]
+[ext_resource path="res://test/Vectors.gd" type="Script" id=5]
+[ext_resource path="res://scenes/items/RepairLarge.tscn" type="PackedScene" id=6]
+
+[node name="AITest" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="MapCamera" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="Pivot" type="Spatial" parent="MapCamera"]
+
+[node name="Camera" type="Camera" parent="MapCamera/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+projection = 1
+size = 15.0
+
+[node name="Tween" type="Tween" parent="MapCamera"]
+
+[node name="ZoomTween" type="Tween" parent="MapCamera"]
+
+[node name="Nav" type="Spatial" parent="."]
+
+[node name="Mechs" type="Spatial" parent="."]
+
+[node name="Mech1" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 21 )
+debug_mode = true
+
+[node name="Mech2" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 15 )
+
+[node name="Mech3" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 13 )
+
+[node name="Mech4" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 23 )
+
+[node name="Mech5" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 27 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="Repair" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15 )
+
+[node name="Repair2" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 21 )
+
+[node name="Repair3" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 19 )
+
+[node name="Map" parent="." instance=ExtResource( 4 )]
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="DebugInfo" type="Label" parent="Debug"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="Vectors" type="Control" parent="Debug"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug"]
+margin_right = 14.0
+margin_bottom = 14.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 185.0
+margin_bottom = 133.0
+
+[node name="Label" type="Label" parent="Debug/PanelContainer/VBoxContainer"]
+margin_right = 178.0
+margin_bottom = 14.0
+text = "Filter List:"
+
+[node name="CheckBox" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 178.0
+margin_bottom = 42.0
+text = "Distance to main target"
+
+[node name="CheckBox2" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 178.0
+margin_bottom = 70.0
+text = "Distance to repair kit"
+
+[node name="CheckBox3" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 178.0
+margin_bottom = 98.0
+text = "Distance to enemy"
+
+[node name="CheckBox4" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 178.0
+margin_bottom = 126.0
+text = "Distance to enemy"

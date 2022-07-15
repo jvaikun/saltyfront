@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/fonts/font_square_mini.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/title/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://scenes/title/title_bg.png" type="Texture" id=3]
 [ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/fonts/ui_font_terminal.tres" type="DynamicFont" id=5]
+[ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -37,6 +39,13 @@ font_data = ExtResource( 1 )
 size = 48
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 1, 0, 1 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -53,9 +62,6 @@ margin_top = -1.49835
 margin_bottom = -1.49829
 texture = ExtResource( 3 )
 stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainCont" type="HBoxContainer" parent="."]
 anchor_left = 0.5
@@ -68,9 +74,6 @@ margin_right = 643.0
 margin_bottom = 245.0
 custom_constants/separation = 32
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="VBoxContainer" parent="MainCont"]
 margin_left = 118.0
@@ -192,6 +195,220 @@ margin_bottom = 359.0
 custom_fonts/font = ExtResource( 4 )
 pressed = true
 text = "Fast Combat"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Users" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 216.0
+margin_bottom = 122.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer/Users"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer/Users/Body"]
+margin_right = 180.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "USER DATA"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer/Users/Body"]
+margin_top = 56.0
+margin_right = 180.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
+
+[node name="Parts" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 126.0
+margin_right = 216.0
+margin_bottom = 248.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer/Parts"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer/Parts/Body"]
+margin_right = 180.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "PARTS DATA"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer/Parts/Body"]
+margin_top = 56.0
+margin_right = 180.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
+
+[node name="Records" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 252.0
+margin_right = 216.0
+margin_bottom = 374.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer/Records"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer/Records/Body"]
+margin_right = 180.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "RECORDS"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer/Records/Body"]
+margin_top = 56.0
+margin_right = 180.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Text" type="PanelContainer" parent="VBoxContainer2"]
+margin_right = 220.0
+margin_bottom = 122.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer2/Text"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 202.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer2/Text/Body"]
+margin_right = 184.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "TEXT DATA"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer2/Text/Body"]
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
+
+[node name="Music" type="PanelContainer" parent="VBoxContainer2"]
+margin_top = 126.0
+margin_right = 220.0
+margin_bottom = 248.0
+rect_pivot_offset = Vector2( -432, 188 )
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer2/Music"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 202.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer2/Music/Body"]
+margin_right = 184.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "MUSIC FILES"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer2/Music/Body"]
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
+
+[node name="Misc" type="PanelContainer" parent="VBoxContainer2"]
+margin_top = 252.0
+margin_right = 220.0
+margin_bottom = 374.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer2/Misc"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 202.0
+margin_bottom = 104.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="VBoxContainer2/Misc/Body"]
+margin_right = 184.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "MISC"
+align = 1
+
+[node name="List" type="Label" parent="VBoxContainer2/Misc/Body"]
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Directory: "
 
 [connection signal="pressed" from="MainCont/Title/MainGame" to="." method="_on_MainGame_pressed"]
 [connection signal="pressed" from="MainCont/Title/TestRoom" to="." method="_on_TestRoom_pressed"]
