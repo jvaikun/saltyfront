@@ -691,12 +691,12 @@ func think_move():
 		calc_paths(tile)
 		if !(tile_goal == null):
 			goal_dist = get_distance(tile_goal)
-			priority += clamp((move_range / goal_dist), 0, 1)
+			priority += clamp(1-(goal_dist / move_range), 0, 1)
 		for unit in unit_list:
 			if !unit.mech.is_dead:
 				unit_dist = get_distance(unit.mech.curr_tile)
 				if !unit.friend:
-					priority += clamp((move_range / unit_dist), 0, 1) * unit.target * ai_weights[ai_state].enemy
+					priority += clamp(1-(unit_dist / move_range), 0, 1) * unit.target * ai_weights[ai_state].enemy
 					unit_range = get_range(tile, unit.mech.curr_tile)
 					if tile.get_los(unit.mech.curr_tile):
 						var in_range_count = 0.0
@@ -708,7 +708,7 @@ func think_move():
 							if weapon.active && (unit_range >= weapon.range_min && unit_range <= weapon.range_max):
 								enemy_attack_threats += 1
 				else:
-					priority += clamp((move_range / unit_dist), 0, 1) * ai_weights[ai_state].allies
+					priority += clamp(1-(unit_dist / move_range), 0, 1) * ai_weights[ai_state].allies
 		priority += (1.0 - float(enemy_attack_threats/16.0)) * ai_weights[ai_state].cover
 		for item in item_list:
 			if item.is_in_group("repair"):
@@ -716,7 +716,7 @@ func think_move():
 					priority += ai_weights[ai_state].repair
 				else: 
 					var item_dist = get_distance(item.curr_tile)
-					priority += clamp((move_range / item_dist), 0, 1) * ai_weights[ai_state].repair
+					priority += clamp(1-(item_dist/move_range), 0, 1) * ai_weights[ai_state].repair
 			if item.is_in_group("bomb"):
 				priority += get_range(tile, item.curr_tile) * ai_weights[ai_state].splash
 		priority_list.append({"tile":tile, "priority":priority})

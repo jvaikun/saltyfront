@@ -72,6 +72,7 @@ var nav_focus = 0
 var part_set = 0
 var mouse_sensitivity = 0.05
 var mech_select = 0
+var test_range = 15
 
 
 # Custom sort class for sorting list vars
@@ -107,8 +108,8 @@ func _ready():
 	$Debug/Vectors.camera = cam_camera
 	$Debug/Vectors.focus_mech = mech_prod
 	$Debug/Vectors.nav_points = $Nav.get_children()
-	$MapCamera.rotation_degrees.y = 0
-	$MapCamera/Pivot.rotation_degrees.x = -90
+	#$MapCamera.rotation_degrees.y = 0
+	#$MapCamera/Pivot.rotation_degrees.x = -90
 	mech_prod.connect("move_done", self, "nav_update")
 	turns_queue = $Mechs.get_children()
 	for mech in turns_queue:
@@ -120,6 +121,7 @@ func _ready():
 		roll_stats(mech)
 		mech.state = mech.MechState.DONE
 	nav_update()
+	mech_prod.move_range = test_range
 	cam_base.follow_mech(turns_queue[mech_select])
 
 
@@ -138,6 +140,7 @@ func _process(_delta):
 func reroll_all():
 	for mech in $Mechs.get_children():
 		roll_stats(mech)
+	mech_prod.move_range = test_range
 
 
 func roll_stats(mech):
@@ -169,6 +172,7 @@ func roll_stats(mech):
 func nav_update():
 	nav_reset()
 	var mechs = $Mechs.get_children()
+	var items = $Items.get_children()
 	for point in $Nav.get_children():
 		point.curr_mech = null
 		point.curr_item = null
@@ -177,6 +181,10 @@ func nav_update():
 				if (point.translation - mech.translation).length() < 0.1:
 					point.curr_mech = mech
 					mech.curr_tile = point
+		for item in items:
+			if (point.translation - item.translation).length() < 0.1:
+				point.curr_item = item
+				item.curr_tile = point
 
 
 func nav_reset():
@@ -191,11 +199,11 @@ func load_map():
 	
 	# Setup light direction and intensity
 	if is_instance_valid($Map/DirectionalLight):
-		$Map/DirectionalLight.light_energy = map_lights["Mid-day"].energy
+		$Map/DirectionalLight.light_energy = map_lights["Dawn"].energy
 		$Map/DirectionalLight.rotation_degrees.x = map_lights["Dawn"].angle
 	# Load world environment
 	if is_instance_valid($Map/WorldEnvironment):
-		$Map/WorldEnvironment.environment = load(map_lights["Mid-day"].env)
+		$Map/WorldEnvironment.environment = load(map_lights["Dawn"].env)
 	# Build list of navigation points
 	var curr_index = 0
 	for coord in arena_map.tiles.get_used_cells():
@@ -289,7 +297,7 @@ func calc_values(focus_mech):
 	# Nearest repair kit
 	var near_repair = null
 	var d_min = 999
-	for item in focus_mech.item_list:
+	for item in $Items.get_children():
 		if item.is_in_group("repair"):
 			var item_dist = focus_mech.get_distance(item.curr_tile)
 			if item_dist < d_min:
@@ -350,16 +358,12 @@ func calc_values(focus_mech):
 		if $Debug/PanelContainer/VBoxContainer/CheckBox.pressed:
 			if !(tile_goal == null):
 				goal_dist = focus_mech.get_distance(tile_goal)
-				priority += clamp((focus_mech.move_range / goal_dist), 0, 1)
+				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
 		# Distance to repair kit
 		if $Debug/PanelContainer/VBoxContainer/CheckBox2.pressed:
-			for item in focus_mech.item_list:
-				if item.is_in_group("repair"):
-					if (tile == item.curr_tile):
-						priority += 1.0
-					else: 
-						var item_dist = focus_mech.get_distance(item.curr_tile)
-						priority += clamp((focus_mech.move_range / item_dist), 0, 1)
+			if !(near_repair == null):
+				goal_dist = focus_mech.get_distance(near_repair)
+				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
 		# Has line of sight to enemy
 		if $Debug/PanelContainer/VBoxContainer/CheckBox3.pressed:
 			if tile.get_los(focus_mech.curr_tile):

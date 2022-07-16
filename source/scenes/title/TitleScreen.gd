@@ -1,16 +1,10 @@
 extends Control
 
-onready var validation = {
-	"data": ["announcer.json", "bet_ai.json", "bootup.json", "intro_text.json",
-		"pilot_talk.json", "streams.json"
-	],
+const validation = {
+	"data": ["announcer.json", "bet_ai.json", "bootup.json", "intro_text.json", "pilot_talk.json", "streams.json"],
 	"user": ["user_data.csv"],
-	"records": ["champ_rec.json", "command_log.csv", "error_log.csv", "tbl_match.csv",
-		"tbl_mech.csv", "tbl_tour.csv", "team_stats.json"
-	],
-	"parts": ["arm.csv", "body.csv", "drone.csv", "leg.csv", "pack.csv",
-		"pod.csv", "weapon.csv"
-	]
+	"records": ["champ_rec.json", "command_log.csv", "error_log.csv", "tbl_match.csv", "tbl_mech.csv", "tbl_tour.csv", "team_stats.json"],
+	"parts": ["arm.csv", "body.csv", "drone.csv", "leg.csv", "pack.csv", "pod.csv", "weapon.csv"]
 }
 
 func _ready():
@@ -82,12 +76,6 @@ func _ready():
 			$VBoxContainer2/Misc/Body/List.text = "Screenshot dir: Valid"
 	else:
 		print("Config file not found!")
-	
-	err = $Timer.connect("timeout", self, "_on_MainGame_pressed")
-	if err != OK:
-		print("Error connecting auto start timer to script!")
-	$Timer.one_shot = true
-	$Timer.start(120)
 	$MainCont/Settings/Offline.pressed = GameData.offline_mode
 	$MainCont/Settings/FastWait.pressed = GameData.fast_wait
 	$MainCont/Settings/FastCombat.pressed = GameData.fast_combat
@@ -96,10 +84,6 @@ func _ready():
 	$MainCont/Settings/Channel.selected = 0
 	if !OS.is_window_maximized():
 		OS.set_window_maximized(true)
-
-
-func _process(_delta):
-	$MainCont/Title/Countdown.text = "Auto start in " + str(int($Timer.time_left)) + " seconds"
 
 
 func get_file_list(dir):

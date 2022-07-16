@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/fonts/ui_font_terminal.tres" type="DynamicFont" id=5]
 [ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=6]
+[ext_resource path="res://ui/OverlayCRT.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -31,10 +32,6 @@ font_data = ExtResource( 1 )
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
-size = 32
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFont" id=8]
 size = 48
 font_data = ExtResource( 1 )
@@ -50,10 +47,6 @@ bg_color = Color( 0, 1, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 30.0
-one_shot = true
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -85,24 +78,24 @@ __meta__ = {
 }
 
 [node name="MainTitle" type="Label" parent="MainCont/Title"]
-margin_top = 42.0
+margin_top = 64.0
 margin_right = 780.0
-margin_bottom = 162.0
+margin_bottom = 184.0
 custom_fonts/font = SubResource( 1 )
 text = "S A L T Y F R O N T"
 align = 1
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MainCont/Title"]
-margin_top = 166.0
+margin_top = 188.0
 margin_right = 780.0
-margin_bottom = 170.0
+margin_bottom = 192.0
 custom_styles/separator = SubResource( 2 )
 
 [node name="SubTitle" type="Label" parent="MainCont/Title"]
-margin_top = 174.0
+margin_top = 196.0
 margin_right = 780.0
-margin_bottom = 254.0
+margin_bottom = 276.0
 custom_fonts/font = SubResource( 3 )
 text = "GET PAID OR GET SMOKED"
 align = 1
@@ -112,33 +105,25 @@ __meta__ = {
 }
 
 [node name="MainGame" type="Button" parent="MainCont/Title"]
-margin_top = 258.0
+margin_top = 280.0
 margin_right = 780.0
-margin_bottom = 304.0
+margin_bottom = 326.0
 custom_fonts/font = SubResource( 4 )
 text = "RUN GAME"
 
 [node name="TestRoom" type="Button" parent="MainCont/Title"]
-margin_top = 308.0
+margin_top = 330.0
 margin_right = 780.0
-margin_bottom = 354.0
+margin_bottom = 376.0
 custom_fonts/font = SubResource( 5 )
 text = "TEST ROOM"
 
 [node name="Exit" type="Button" parent="MainCont/Title"]
-margin_top = 358.0
+margin_top = 380.0
 margin_right = 780.0
-margin_bottom = 404.0
+margin_bottom = 426.0
 custom_fonts/font = SubResource( 6 )
 text = "EXIT"
-
-[node name="Countdown" type="Label" parent="MainCont/Title"]
-margin_top = 408.0
-margin_right = 780.0
-margin_bottom = 448.0
-custom_fonts/font = SubResource( 7 )
-text = "Auto-start in 30 seconds"
-align = 1
 
 [node name="Settings" type="VBoxContainer" parent="MainCont"]
 margin_left = 930.0
@@ -409,6 +394,8 @@ grow_horizontal = 2
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "Directory: "
+
+[node name="OverlayCRT" parent="." instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="MainCont/Title/MainGame" to="." method="_on_MainGame_pressed"]
 [connection signal="pressed" from="MainCont/Title/TestRoom" to="." method="_on_TestRoom_pressed"]
