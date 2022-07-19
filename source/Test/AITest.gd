@@ -94,6 +94,13 @@ class CustomSort:
 		elif a["threat"] > b["threat"]:
 			return true
 		return false
+	# Sort by threat AND target value, descending
+	static func threat_sort(a, b):
+		if a["threat"] > b["threat"]:
+			return true
+		elif a["target"] > b["target"]:
+			return true
+		return false
 	# Sort by distance, ascending
 	static func distance(a, b):
 		if a["distance"] < b["distance"]:
@@ -108,8 +115,8 @@ func _ready():
 	$Debug/Vectors.camera = cam_camera
 	$Debug/Vectors.focus_mech = mech_prod
 	$Debug/Vectors.nav_points = $Nav.get_children()
-	#$MapCamera.rotation_degrees.y = 0
-	#$MapCamera/Pivot.rotation_degrees.x = -90
+#	$MapCamera.rotation_degrees.y = 0
+#	$MapCamera/Pivot.rotation_degrees.x = -90
 	mech_prod.connect("move_done", self, "nav_update")
 	turns_queue = $Mechs.get_children()
 	for mech in turns_queue:
@@ -265,11 +272,12 @@ func load_map():
 
 func calc_values(focus_mech):
 	focus_mech.move_target = null
-	# Calculate paths from starting point and get movement tiles
+	# Calculate paths from starting point
 	for tile in focus_mech.move_tiles:
 		tile.unmark()
 	focus_mech.move_tiles.clear()
 	focus_mech.calc_paths(focus_mech.curr_tile)
+	# Generate list of movement tiles
 	var this_node = null
 	var this_tile = null
 	for index in focus_mech.nav_paths:
@@ -280,6 +288,7 @@ func calc_values(focus_mech):
 			if this_tile.curr_mech == null:
 				this_tile.can_move = true
 				focus_mech.move_tiles.append(this_tile)
+	# Calculate threat and target levels for other units
 	for unit in focus_mech.unit_list:
 		if !unit.mech.is_dead:
 			unit.threat = 0.0
@@ -294,7 +303,14 @@ func calc_values(focus_mech):
 			if !unit.friend:
 				unit.aggro += float(unit.last_dmg / unit.last_attack)
 	focus_mech.unit_list.sort_custom(CustomSort, "target_sort")
-	# Nearest repair kit
+	var main_target = focus_mech.unit_list[0].mech
+	if is_instance_valid(main_target):
+		$MarkTarget.translation = main_target.translation
+	focus_mech.unit_list.sort_custom(CustomSort, "threat_sort")
+	var main_threat = focus_mech.unit_list[0].mech
+	if is_instance_valid(main_threat):
+		$MarkThreat.translation = main_threat.translation
+	# Find the nearest repair kit
 	var near_repair = null
 	var d_min = 999
 	for item in $Items.get_children():
@@ -303,34 +319,22 @@ func calc_values(focus_mech):
 			if item_dist < d_min:
 				d_min = item_dist
 				near_repair = item.curr_tile
-	# Determine our AI state
-	var aggression = 1.0
-	if (focus_mech.armRHP <= 0 and focus_mech.armLHP <= 0):
-		aggression = 0
-		focus_mech.ai_state = focus_mech.AIState.RETREAT
-	else:
-		aggression = float(focus_mech.bodyHP / focus_mech.mechData.body.hp) * 0.5
-		aggression += float(focus_mech.armLHP / focus_mech.mechData.arm_l.hp) * 0.2
-		aggression += float(focus_mech.armRHP / focus_mech.mechData.arm_r.hp) * 0.2
-		aggression += float(focus_mech.legsHP / focus_mech.mechData.legs.hp) * 0.1
-		if aggression >= 0.5:
-			focus_mech.ai_state = focus_mech.AIState.NORMAL
-		else:
-			focus_mech.ai_state = focus_mech.AIState.DEFENSIVE
+	if is_instance_valid(near_repair):
+		$MarkRepair.translation = near_repair.translation
 	var tile_goal = null
-	match focus_mech.ai_state:
+	match $Debug/AIControl/Controls/State.selected:
 		# Aggressive: Attack nearest armed target, ignore repair kits and cover
 		focus_mech.AIState.AGGRESSIVE:
-			tile_goal = focus_mech.unit_list[0].mech.curr_tile
+			tile_goal = main_target.curr_tile
 		# Standard: Attack nearest armed target, consider cover
 		focus_mech.AIState.NORMAL:
-			tile_goal = focus_mech.unit_list[0].mech.curr_tile
+			tile_goal = main_target.curr_tile
 		# Defensive: Only attack safe targets, consider cover and repair kits
 		focus_mech.AIState.DEFENSIVE:
 			if !(near_repair == null):
 				tile_goal = near_repair
 			else:
-				tile_goal = focus_mech.unit_list[0].mech.curr_tile
+				tile_goal = main_target.curr_tile
 		# Retreat: Avoid enemies, seek repair kits and cover, move toward allies
 		focus_mech.AIState.RETREAT:
 			if !(near_repair == null):
@@ -340,45 +344,57 @@ func calc_values(focus_mech):
 	focus_mech.priority_list.clear()
 	var priority = 0
 	var max_priority = 0
-	if $Debug/PanelContainer/VBoxContainer/CheckBox.pressed:
-		max_priority += 1
-	if $Debug/PanelContainer/VBoxContainer/CheckBox2.pressed:
-		max_priority += 1
-	if $Debug/PanelContainer/VBoxContainer/CheckBox3.pressed:
-		max_priority += 1
-	if $Debug/PanelContainer/VBoxContainer/CheckBox4.pressed:
-		max_priority += 1
-	if max_priority == 0:
-		max_priority = 1
+	for check in $Debug/AIControl/Controls/Filters.get_children():
+		max_priority += int(check.pressed)
+	max_priority = max(max_priority, 1)
 	for tile in focus_mech.move_tiles:
 		var goal_dist = 0
 		priority = 0
 		focus_mech.calc_paths(tile)
-		# Distance to main target
-		if $Debug/PanelContainer/VBoxContainer/CheckBox.pressed:
-			if !(tile_goal == null):
-				goal_dist = focus_mech.get_distance(tile_goal)
+		# Distance from tile to main target
+		if $Debug/AIControl/Controls/Filters/CheckBox.pressed:
+			if !(main_target == null):
+				goal_dist = focus_mech.get_distance(main_target.curr_tile)
 				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
-		# Distance to repair kit
-		if $Debug/PanelContainer/VBoxContainer/CheckBox2.pressed:
+		# Distance from tile to nearest repair kit
+		if $Debug/AIControl/Controls/Filters/CheckBox2.pressed:
 			if !(near_repair == null):
 				goal_dist = focus_mech.get_distance(near_repair)
 				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
-		# Has line of sight to enemy
-		if $Debug/PanelContainer/VBoxContainer/CheckBox3.pressed:
-			if tile.get_los(focus_mech.curr_tile):
-				priority += 1.0
-		if $Debug/PanelContainer/VBoxContainer/CheckBox4.pressed:
-			pass
+		# Tile has LOS to main target
+		if $Debug/AIControl/Controls/Filters/CheckBox3.pressed:
+			if !(main_target == null):
+				if tile.get_los(main_target.curr_tile):
+					priority += 1.0
+		# Main target is in range of tile
+		if $Debug/AIControl/Controls/Filters/CheckBox4.pressed:
+			if !(main_target == null):
+				# Magic number is 6 for now, replace with max. range in actual function
+				var goal_range = focus_mech.get_range(tile, main_target.curr_tile)
+				priority += clamp(1 - (goal_range / 6), 0, 1)
+		# Distance from tile to main threat
+		if $Debug/AIControl/Controls/Filters/CheckBox5.pressed:
+			if !(main_threat == null):
+				goal_dist = focus_mech.get_distance(main_threat.curr_tile)
+				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
+		# Main threat has LOS to tile
+		if $Debug/AIControl/Controls/Filters/CheckBox6.pressed:
+			if !(main_threat == null):
+				if tile.get_los(main_threat.curr_tile):
+					priority += 1.0
+		# Tile in range of main threat
+		if $Debug/AIControl/Controls/Filters/CheckBox7.pressed:
+			if !(main_threat == null):
+				# Magic number is 6 for now, replace with max. range in actual function
+				var goal_range = focus_mech.get_range(tile, main_threat.curr_tile)
+				priority += clamp(1 - (goal_range / 6), 0, 1)
 		focus_mech.priority_list.append({"tile":tile, "priority":priority})
 	# If priority_list isn't empty, choose a move target, default to current tile if empty
 	if !focus_mech.priority_list.empty():
 		var heat_min = Color(0, 0, 1)
 		var heat_max = Color(1, 0, 0)
-		var heat_color = Color(0, 0, 1)
 		for item in focus_mech.priority_list:
-			heat_color = heat_min.linear_interpolate(heat_max, item.priority / max_priority)
-			item.tile.highlight.material_override.albedo_color = heat_color
+			item.tile.highlight.material_override.albedo_color = heat_min.linear_interpolate(heat_max, item.priority / max_priority)
 		# Sort priority list, get max values
 		focus_mech.priority_list.sort_custom(CustomSort, "priority")
 		var max_list = []
@@ -393,3 +409,4 @@ func calc_values(focus_mech):
 	else:
 		focus_mech.move_target = focus_mech.curr_tile
 	focus_mech.get_move_path()
+

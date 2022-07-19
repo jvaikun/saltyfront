@@ -6,8 +6,6 @@ enum GameState {START, PREFIGHT, FIGHT, POSTFIGHT, TOUR_END, RESET, TRANSITION}
 # Preload resources
 const obj_label = preload("res://ui/obj_label.tscn")
 const tex_bg1 = preload("res://Game/bg_shop.png")
-const tex_bg2 = preload("res://Game/bg_arena.png")
-const tex_bg3 = preload("res://Game/bg_town.png")
 const shader_melt = preload("res://Effects/transition/doom_melt.shader")
 const shader_dissolve = preload("res://Effects/transition/dissolve.shader")
 const shader_mask = preload("res://Effects/transition/mask_dissolve.shader")
@@ -200,7 +198,7 @@ func _process(delta):
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		UserDB.save_data()
+		UserDB.save_users()
 		get_tree().quit() # default behavior
 
 
@@ -229,13 +227,6 @@ func signup(user_id, pilot_id):
 		label.text = (UserDB.users[user_id].name + " (" + pilot_id + ")")
 		ui_signup.add_user(label)
 		return true
-#	elif tournament.slots_open():
-#		for team in tournament.roster:
-#			for mech in team.data:
-#				if mech.mechData.user_id == user_id:
-#					return false
-#		tournament.fight_queue.append({"user":user_id, "pilot":pilot_id})
-#		return true
 	else:
 		return false
 
@@ -284,7 +275,7 @@ func end_match(fight_data):
 	# Go through teams and pay out bonuses
 	for mech in (tournament.current_match.teams[0].mechs + tournament.current_match.teams[1].mechs):
 		for bonus in mech.bonuses:
-			if mech.user_id != "drone":
+			if mech.user_id != "npc":
 				UserDB.users[mech.user_id].money += bonus.pay
 				var title_str = bonus.title.to_lower().replace(" ", "_")
 				GameData.log_transaction(mech.user_id, UserDB.users[mech.user_id].money, title_str)
@@ -324,13 +315,13 @@ func calc_odds():
 func auto_bet():
 	var coin_flip = 0
 	var money = 0
-	# Drone pilot bets
+	# NPC pilot bets
 	for team in tournament.roster:
 		for mech in team.data:
-			if mech.user_id == "drone":
+			if mech.user_id == "npc":
 				coin_flip = int(randf() / 0.5)
 				money = (randi() % 5 + 1) * 100
-				add_bet("drone", mech.pilot.name, money, tournament.current_match.teams[coin_flip].index)
+				add_bet("npc", mech.pilot.name, money, tournament.current_match.teams[coin_flip].index)
 	# Corporate sponsor bets
 	for corp in bet_ai.corps:
 		var this_corp = bet_ai.corps[corp]
@@ -391,7 +382,7 @@ func ui_update():
 					bet.money,
 					books[win_side].odds]
 					match bet.type:
-						"drone":
+						"npc":
 							lbl_inst.modulate = Color(1,1,1)
 						"corp":
 							lbl_inst.modulate = Color(1,0.85,0)
@@ -736,7 +727,7 @@ func start_transition(next):
 			for team in tournament.current_match.teams:
 				mech_list += team.mechs
 			for mech in mech_list:
-				if mech.user_id != "drone":
+				if mech.user_id != "npc":
 					active_users.append(mech.user_id)
 			var message = ("Tournament " + str(tournament.current_match.tour) + ", " +
 			tournament.current_match.name + " start, " +

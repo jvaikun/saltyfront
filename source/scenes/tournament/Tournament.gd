@@ -3,7 +3,8 @@ extends Node
 # Table column headers, used when parsing data files
 const ROSTER_SIZE = 8
 const TEAM_SIZE = 4
-const MECH_HEADER = ["id","pilot_type","pilot_id","body","legs","arm_r","wpn_r","pod_r","arm_l","wpn_l","pod_l","pack"]
+const MECH_HEADER = ["id","pilot_type","name","face","melee","short","long","dodge",
+"body","legs","arm_r","wpn_r","pod_r","arm_l","wpn_l","pod_l","pack"]
 const TOUR_HEADER = ["id", "start_time", "end_time", "win_team", "new_champ"]
 const MATCH_HEADER = ["id","tour_id","match","turns","start_time","end_time","result","map","team1","team2","win_team",
 "team1_1","team1_1_kill","team1_1_dead","team1_1_hit","team1_1_crit","team1_1_miss","team1_1_dmg_in","team1_1_dmg_out",
@@ -92,10 +93,13 @@ var file = File.new()
 var tour_file = ""
 var match_file = ""
 var mech_file = ""
+var stats_file = ""
+var champ_file = ""
 var tour_id : int = 0
 var match_id : int = 0
 var mech_id : int = 0
-
+var team_stats : Array = []
+var champ_stats : Array = []
 
 class CustomSort:
 	static func value_desc(a, b):
@@ -163,6 +167,28 @@ func _ready() -> void:
 		file.store_csv_line(MECH_HEADER)
 		mech_id = 0
 	file.close()
+	# Load team stats from file. If not, initialize stats.
+	stats_file = "%team_stats.json" % rec_path
+	team_stats.clear()
+	if file.file_exists(stats_file):
+		file.open(stats_file, File.READ)
+		while file.get_position() < file.get_len():
+			var teamData = parse_json(file.get_line())
+			team_stats.append(teamData)
+		file.close()
+	else:
+		for team in TEAM_DEFS:
+			team_stats.append({"name":team.name, "win":0, "lose":0, "champ":0})
+	# Load previous champion data
+	champ_file = "%champ_rec.json" % rec_path
+	champ_stats.clear()
+	if file.file_exists(champ_file):
+		file.open(champ_file, File.READ)
+		while file.get_position() < file.get_len():
+			var champ_data = parse_json(file.get_line())
+			champ_stats.append(champ_data)
+		file.close()
+
 
 # Initialize tournament
 func new_tournament() -> void:
@@ -376,24 +402,26 @@ func new_roster() -> void:
 			drone_ids.append(str(i))
 		drone_ids.shuffle()
 		for i in diff:
-			pick_list.append({"user":"drone", "pilot":"rand"})
+			pick_list.append({"user":"npc", "pilot":"rand"})
 	for i in ROSTER_SIZE:
 		var team_dict = {"active":true, "open":0, "data":[]}
 		for j in TEAM_SIZE:
 			var pilot_id = pick_list[i + j*ROSTER_SIZE].pilot
 			var pilot_type = "npc"
 			var mech = new_mech(pilot_id)
-			if str(pick_list[i + j*ROSTER_SIZE].user) != "drone":
+			if str(pick_list[i + j*ROSTER_SIZE].user) != "npc":
 				mech.pilot.name = UserDB.users[pick_list[i + j*ROSTER_SIZE].user].name
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user
 				pilot_type = "user"
 			else:
 				mech.pilot.name = PartDB.drone[str(i*TEAM_SIZE + j)].name
-				mech.user_id = "drone"
+				mech.user_id = "npc"
 				team_dict.open += 1
 			team_dict.data.append(mech)
 			# Record mech stats to file
-			var data_row = [mech.id, pilot_type, mech.pilot.id, mech.body.id, mech.legs.id, 
+			var data_row = [mech.id, pilot_type,
+			mech.pilot.name, mech.pilot.melee, mech.pilot.short, mech.pilot.long, mech.pilot.dodge,
+			mech.body.id, mech.legs.id, 
 			mech.arm_r.id, mech.wpn_r.id, mech.pod_r.id, 
 			mech.arm_l.id, mech.wpn_l.id, mech.pod_l.id, 
 			mech.pack.id]
@@ -430,7 +458,7 @@ func update_roster() -> void:
 			for slot in fight_queue:
 				if randf()*100 <= UserDB.users[slot.user].priority:
 					UserDB.users[slot.user].priority = 30
-					# Swap out a drone for a user pilot in the queue
+					# Swap out a NPC for a user pilot in the queue
 					var slot_max = 0
 					var dest_team = null
 					for team in roster:
@@ -439,7 +467,7 @@ func update_roster() -> void:
 							slot_max = team.open
 					if dest_team != null:
 						for mech in dest_team:
-							if mech.pilot.user_id == "drone":
+							if mech.pilot.user_id == "npc":
 								mech.user_id = slot.user
 								mech.pilot = PartDB.pilot[slot.pilot]
 								fight_queue.erase(slot)
@@ -457,10 +485,16 @@ func save_champ() -> void:
 		"team":champ.team,
 		"streak":champ.streak,
 		"mechdata":[],
-		"pilotdata":[],
 		}
 	for mech in champ.data:
-		champ_data.mechdata.append({
+		var temp_data = {
+			"name":mech.pilot.name,
+			"type":"",
+			"face":mech.pilot.face,
+			"melee":mech.pilot.melee,
+			"short":mech.pilot.short,
+			"long":mech.pilot.long,
+			"dodge":mech.pilot.dodge,
 			"body":mech.body.id,
 			"legs":mech.legs.id,
 			"arm_r":mech.arm_r.id,
@@ -470,12 +504,27 @@ func save_champ() -> void:
 			"wpn_l":mech.wpn_l.id,
 			"pod_l":mech.pod_l.id,
 			"pack":mech.pack.id
-		})
-		if mech.user_id == "drone":
-			champ_data.pilotdata.append(PartDB.drone[mech.pilot.id])
+		}
+		if mech.user_id == "npc":
+			temp_data.type = "npc"
 		else:
-			champ_data.pilotdata.append(PartDB.pilot[mech.pilot.id])
+			temp_data.type = "user"
+		champ_data.mechdata.append(temp_data)
 	UserDB.champ_stats.append(champ_data)
+
+
+# Save stats
+func save_stats() -> void:
+	# Write team stats to file
+	file.open(stats_file, File.WRITE)
+	for team in team_stats:
+		file.store_line(to_json(team))
+	file.close()
+	# Write champ data to file
+	file.open(champ_file, File.WRITE)
+	for data in champ_stats:
+		file.store_line(to_json(data))
+	file.close()
 
 
 # Record match results

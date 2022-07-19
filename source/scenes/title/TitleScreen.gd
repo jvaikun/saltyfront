@@ -86,6 +86,11 @@ func _ready():
 		OS.set_window_maximized(true)
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_screenshot"):
+		GameData.screenshot()
+
+
 func get_file_list(dir):
 	var file_list = []
 	dir.list_dir_begin()

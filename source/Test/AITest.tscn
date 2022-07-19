@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://test/AITest.gd" type="Script" id=1]
 [ext_resource path="res://Arena/MapCamera.gd" type="Script" id=2]
@@ -6,6 +6,20 @@
 [ext_resource path="res://scenes/maps/Map000.tscn" type="PackedScene" id=4]
 [ext_resource path="res://test/Vectors.gd" type="Script" id=5]
 [ext_resource path="res://scenes/items/RepairLarge.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 1, 1 )
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.5
+bottom_radius = 0.0
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 1, 0, 1 )
 
 [node name="AITest" type="Spatial"]
 script = ExtResource( 1 )
@@ -68,41 +82,83 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 5 )
 
-[node name="PanelContainer" type="PanelContainer" parent="Debug"]
+[node name="AIControl" type="PanelContainer" parent="Debug"]
 margin_right = 14.0
 margin_bottom = 14.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Debug/PanelContainer"]
+[node name="Controls" type="VBoxContainer" parent="Debug/AIControl"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 185.0
-margin_bottom = 133.0
+margin_right = 186.0
+margin_bottom = 223.0
 
-[node name="Label" type="Label" parent="Debug/PanelContainer/VBoxContainer"]
-margin_right = 178.0
-margin_bottom = 14.0
-text = "Filter List:"
+[node name="State" type="OptionButton" parent="Debug/AIControl/Controls"]
+margin_right = 179.0
+margin_bottom = 20.0
+text = "Aggressive"
+items = [ "Aggressive", null, false, 0, null, "Normal", null, false, 1, null, "Defensive", null, false, 2, null, "Retreat", null, false, 3, null ]
+selected = 0
 
-[node name="CheckBox" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 178.0
-margin_bottom = 42.0
+[node name="Filters" type="VBoxContainer" parent="Debug/AIControl/Controls"]
+margin_top = 24.0
+margin_right = 179.0
+margin_bottom = 216.0
+
+[node name="CheckBox" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_right = 179.0
+margin_bottom = 24.0
 text = "Distance to main target"
 
-[node name="CheckBox2" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 178.0
-margin_bottom = 70.0
+[node name="CheckBox2" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 28.0
+margin_right = 179.0
+margin_bottom = 52.0
 text = "Distance to repair kit"
 
-[node name="CheckBox3" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
-margin_top = 74.0
-margin_right = 178.0
-margin_bottom = 98.0
-text = "Distance to enemy"
+[node name="CheckBox3" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 56.0
+margin_right = 179.0
+margin_bottom = 80.0
+text = "LOS to main target"
 
-[node name="CheckBox4" type="CheckBox" parent="Debug/PanelContainer/VBoxContainer"]
-margin_top = 102.0
-margin_right = 178.0
-margin_bottom = 126.0
-text = "Distance to enemy"
+[node name="CheckBox4" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 84.0
+margin_right = 179.0
+margin_bottom = 108.0
+text = "Main target in range"
+
+[node name="CheckBox5" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 112.0
+margin_right = 179.0
+margin_bottom = 136.0
+text = "Distance to main threat"
+
+[node name="CheckBox6" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 140.0
+margin_right = 179.0
+margin_bottom = 164.0
+text = "Main threat has LOS"
+
+[node name="CheckBox7" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 168.0
+margin_right = 179.0
+margin_bottom = 192.0
+text = "In range of main threat"
+
+[node name="MarkTarget" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MarkThreat" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+material_override = SubResource( 3 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MarkRepair" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+material_override = SubResource( 4 )
+mesh = SubResource( 2 )
+material/0 = null
