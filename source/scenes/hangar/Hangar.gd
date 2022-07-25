@@ -1,12 +1,5 @@
 extends Spatial
 
-onready var arms_top = $TopArms.get_children()
-onready var arms_side = $SideArms.get_children()
-onready var team1 = $Team1.get_children()
-onready var team2 = $Team2.get_children()
-onready var signs = $Signs.get_children()
-onready var hangar_cam = $HangarView/HangarCam
-
 const cam_home = {"pos":Vector3(0, 3, 9), "rot":Vector3(-15, 0, 0)}
 const cam_points = [
 	{"pos":Vector3(-1, 2, 5), "rot":Vector3(-15, 90, 0)},
@@ -19,9 +12,17 @@ const cam_points = [
 	{"pos":Vector3(1, 2, 7), "rot":Vector3(-15, -90, 0)},
 ]
 
+onready var arms_top = $TopArms.get_children()
+onready var arms_side = $SideArms.get_children()
+onready var team1 = $Team1.get_children()
+onready var team2 = $Team2.get_children()
+onready var signs = $Signs.get_children()
+onready var hangar_cam = $HangarView/HangarCam
+
+export var debug = false
+
 signal mechs_out
 
-var debug = false
 
 func _ready():
 	for arm in arms_top:
@@ -39,6 +40,8 @@ func _process(_delta):
 	if debug:
 		if Input.is_action_just_pressed("ui_screenshot"):
 			GameData.screenshot()
+		if Input.is_action_just_pressed("ui_end"):
+			reroll_all()
 		if Input.is_action_just_pressed("ui_accept"):
 			move_out()
 

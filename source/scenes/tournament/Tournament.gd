@@ -168,7 +168,7 @@ func _ready() -> void:
 		mech_id = 0
 	file.close()
 	# Load team stats from file. If not, initialize stats.
-	stats_file = "%team_stats.json" % rec_path
+	stats_file = "%steam_stats.json" % rec_path
 	team_stats.clear()
 	if file.file_exists(stats_file):
 		file.open(stats_file, File.READ)
@@ -180,7 +180,7 @@ func _ready() -> void:
 		for team in TEAM_DEFS:
 			team_stats.append({"name":team.name, "win":0, "lose":0, "champ":0})
 	# Load previous champion data
-	champ_file = "%champ_rec.json" % rec_path
+	champ_file = "%schamp_rec.json" % rec_path
 	champ_stats.clear()
 	if file.file_exists(champ_file):
 		file.open(champ_file, File.READ)

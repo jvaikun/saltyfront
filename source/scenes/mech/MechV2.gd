@@ -1,30 +1,31 @@
 extends KinematicBody
 
 enum MechState {READY, MOVE, ACTION, DONE, WAIT}
-enum AIState {AGGRESSIVE, NORMAL, DEFENSIVE, RETREAT}
 
-const skills = ["melee", "short", "long"]
+const part_mat = preload("res://Parts/mech_base.material")
+const wpn_mat = preload("res://Parts/weapon.material")
+const wpn_tex = preload("res://Parts/wpn_tex0.png")
+const bullet_obj = preload("res://scenes/bullet/Bullet.tscn")
+const missile_obj = preload("res://scenes/bullet/Missile.tscn")
+const obj_dmgtext = preload("res://Effects/DamageNum.tscn")
+const ai_state = {
+	"aggressive": {"target_dist":1, "target_los":0.5, "target_range":0.5, 
+		"threat_dist":0, "threat_los":0, "threat_range":0, 
+		"friend_dist":0, "repair":0},
+	"defensive": {"target_dist":1, "target_los":0.5, "target_range":0.5, 
+		"threat_dist":0, "threat_los":0, "threat_range":0, 
+		"friend_dist":0.5, "repair":0.5},
+	"retreat": {"target_dist":0, "target_los":0, "target_range":0, 
+		"threat_dist":1, "threat_los":0.5, "threat_range":0.5, 
+		"friend_dist":1, "repair":1},
+}
 const part_path = "res://Parts/3D/"
 const sound_fx = {
-	"mgun_ready":3,
-	"mgun_shoot":9,
-	"rifle_ready":3,
-	"rifle_shoot":10,
-	"sgun_ready":3,
-	"sgun_shoot":4,
-	"flame_shoot":4,
-	"missile_shoot":3,
 	"bullet_hit":16,
 	"bullet_miss":10,
 	"explode_sm":7,
 	"explode_lg":7,
 }
-const ai_weights = [
-	{"enemy":1.0, "aggro":1.0, "allies":0.0, "cover":0.0, "repair":0.0, "splash":0.0}, # Aggressive
-	{"enemy":1.0, "aggro":0.0, "allies":0.5, "cover":0.5, "repair":0.5, "splash":-0.5}, # Normal
-	{"enemy":0.5, "aggro":0.0, "allies":0.5, "cover":0.5, "repair":0.5, "splash":-0.5}, # Defensive
-	{"enemy":-1.0, "aggro":-1.0, "allies":1.0, "cover":1.0, "repair":1.0, "splash":-1.0} # Retreat
-]
 
 onready var mech_parts = {
 	"body":[
@@ -132,17 +133,10 @@ signal glow_done
 export (bool) var prop_mode = false
 export (bool) var debug_mode = false
 
-var part_mat = preload("res://Parts/mech_base.material")
-var wpn_mat = preload("res://Parts/weapon.material")
-var wpn_tex = preload("res://Parts/wpn_tex0.png")
-var bullet_obj = preload("res://scenes/bullet/Bullet.tscn")
-var missile_obj = preload("res://scenes/bullet/Missile.tscn")
-var obj_dmgtext = preload("res://Effects/DamageNum.tscn")
-
 # Speed settings
-var spd_move = GameData.move_speed
-var spd_anim = GameData.anim_speed
-var spd_wait = GameData.wait_time
+var spd_move = 10.0
+var spd_anim = 1.0
+var spd_wait = 0.25
 
 # Movement variables:
 var curr_tile = null
@@ -160,7 +154,10 @@ var priority_list = []
 var attack_tiles = []
 var attack_target = null
 var attack_wpn = null
+var range_max = 0
 var unit_list = []
+var enemies = []
+var friends = []
 var weapon_list = []
 var item_list = []
 
@@ -176,7 +173,7 @@ var in_combat = false
 var turn_finished = true
 var state = MechState.DONE
 var nextState = MechState.DONE
-var ai_state = AIState.NORMAL
+var ai_weights = ai_state.aggressive
 var timer = 0
 var effects = []
 var step = 0
@@ -207,16 +204,19 @@ class CustomSort:
 		if a["damage"] > b["damage"]:
 			return true
 		return false
-	# Sort by target AND threat value, descending
-	static func target_sort(a, b):
-		if a["target"] > b["target"]:
-			return true
-		elif a["threat"] > b["threat"]:
-			return true
-		return false
 	# Sort by distance, ascending
 	static func distance(a, b):
 		if a["distance"] < b["distance"]:
+			return true
+		return false
+	# Sort by target, descending
+	static func target(a, b):
+		if a["target"] > b["target"]:
+			return true
+		return false
+	# Sort by threat, descending
+	static func threat(a, b):
+		if a["threat"] > b["threat"]:
 			return true
 		return false
 
@@ -300,18 +300,6 @@ func get_distance(tile):
 func get_range(from, to):
 	var manhattan = (abs(to.grid_pos.x - from.grid_pos.x) + abs(to.grid_pos.z - from.grid_pos.z))
 	return manhattan
-
-
-# functions:
-func _ready():
-	if GameData.fast_combat:
-		spd_move = GameData.move_speed_fast
-		spd_anim = GameData.anim_speed_fast
-		spd_wait = GameData.wait_time_fast
-	else:
-		spd_move = GameData.move_speed
-		spd_anim = GameData.anim_speed
-		spd_wait = GameData.wait_time
 
 
 func _physics_process(delta):
@@ -409,49 +397,50 @@ func setup(var my_arena):
 		sparks[spark].emitting = false
 	# Build weapon list
 	weapon_list.clear()
+	range_max = 0
 	if mechData.wpn_l != null:
+		if mechData.wpn_l.range_max > range_max:
+			range_max = mechData.wpn_l.range_max
 		weapon_list.append(mechData.wpn_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["obj"] = mech_parts.wpn_l[0].obj
-#		weapon_list.back()["muzzle"] = mech_parts.wpn_l[0].obj.get_node("Muzzle")
-#		weapon_list.back()["eject"] = mech_parts.wpn_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.wpn_r != null:
+		if mechData.wpn_r.range_max > range_max:
+			range_max = mechData.wpn_r.range_max
 		weapon_list.append(mechData.wpn_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["obj"] = mech_parts.wpn_r[0].obj
-#		weapon_list.back()["muzzle"] = mech_parts.wpn_r[0].obj.get_node("Muzzle")
-#		weapon_list.back()["eject"] = mech_parts.wpn_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	if mechData.pod_l != null:
+		if mechData.pod_l.range_max > range_max:
+			range_max = mechData.pod_l.range_max
 		weapon_list.append(mechData.pod_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["obj"] = mech_parts.pod_l[0].obj
-#		weapon_list.back()["muzzle"] = mech_parts.pod_l[0].obj.get_node("Muzzle")
-#		weapon_list.back()["eject"] = mech_parts.pod_l[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.pod_r != null:
+		if mechData.pod_r.range_max > range_max:
+			range_max = mechData.pod_r.range_max
 		weapon_list.append(mechData.pod_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["obj"] = mech_parts.pod_r[0].obj
-#		weapon_list.back()["muzzle"] = mech_parts.pod_r[0].obj.get_node("Muzzle")
-#		weapon_list.back()["eject"] = mech_parts.pod_r[0].obj.get_node("Eject")
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	weapon_list.sort_custom(CustomSort, "damage")
-	# Build target list
-	var is_friend = true
+	# Build friends and enemies lists
 	if my_arena != null:
 		for mech in my_arena.turns_queue:
 			if mech != self:
-				is_friend = (mech.team == self.team)
-				unit_list.append({
-					"mech":mech, "friend":is_friend,
-					"target":0.0, "aggro":0.0,
-					"last_attack":1.0, "last_dmg":0.0})
+				var info = {"mech":mech, "target":0.0, "threat":0.0, "last_attack":1.0, "last_dmg":0.0}
+				if (mech.team == self.team):
+					friends.append(info)
+				else:
+					enemies.append(info)
+		unit_list = friends + enemies
 
 
 func toggle_part(part, flag):
@@ -474,6 +463,7 @@ func reset_acts():
 		turn_finished = false
 		state = MechState.READY
 
+
 # aux functions:
 func impact(part, damage, crit, hitsound):
 	var dmgtxt = obj_dmgtext.instance()
@@ -493,10 +483,10 @@ func impact(part, damage, crit, hitsound):
 
 # Update recent damage amount of attacker
 func update_threats(attacker, damage):
-	for unit in unit_list:
-		if unit.mech == attacker:
-			unit.last_attack = 1
-			unit.last_dmg = damage
+	for enemy in enemies:
+		if enemy.mech == attacker:
+			enemy.last_attack = 1
+			enemy.last_dmg = damage
 
 # Update weapon availability based on weapon ammo or arm HP
 func update_wpn():
@@ -559,9 +549,8 @@ func add_effect(new_effect):
 # Check for active effects and act appropriately
 func proc_effects():
 	# Update count of turns since units last attacked us
-	for unit in unit_list:
-		if !unit.friend:
-			unit.last_attack += 1
+	for enemy in enemies:
+		enemy.last_attack += 1
 	# Apply active effects and update timers
 	for effect in effects:
 		match effect.type:
@@ -622,21 +611,35 @@ func think_move():
 			if this_tile.curr_mech == null:
 				this_tile.can_move = true
 				move_tiles.append(this_tile)
+	# Calculate threat and target levels for other units
+	var unit_dist = 0
+	var max_dist = 100 #move_range * 2
 	for unit in unit_list:
 		if !unit.mech.is_dead:
+			unit_dist = get_distance(unit.mech.curr_tile)
 			unit.threat = 0.0
 			unit.threat += float(unit.mech.armRHP / unit.mech.mechData.arm_r.hp) * 0.5
 			unit.threat += float(unit.mech.armLHP / unit.mech.mechData.arm_l.hp) * 0.5
+			unit.threat += unit.threat * clamp(1 - (unit_dist / max_dist), 0, 1)
 			unit.target = 0.0
 			unit.target += float(unit.mech.bodyHP / unit.mech.mechData.body.hp) * 0.5
 			unit.target += float(unit.mech.armRHP / unit.mech.mechData.arm_r.hp) * 0.2
 			unit.target += float(unit.mech.armLHP / unit.mech.mechData.arm_l.hp) * 0.2
 			unit.target += float(unit.mech.legsHP / unit.mech.mechData.legs.hp) * 0.1
-			unit.aggro = 0.0
-			if !unit.friend:
-				unit.aggro += float(unit.last_dmg / unit.last_attack)
-	unit_list.sort_custom(CustomSort, "target_sort")
-	# Nearest repair kit
+			unit.target += unit.target * clamp(1 - (unit_dist / max_dist), 0, 1)
+	# Main target position
+	var main_target = null
+	enemies.sort_custom(CustomSort, "target")
+	main_target = enemies[0].mech.curr_tile
+	# Main threat position
+	var main_threat = null
+	enemies.sort_custom(CustomSort, "threat")
+	main_threat = enemies[0].mech.curr_tile
+	# Closest friend position
+	var close_friend = null
+	friends.sort_custom(CustomSort, "threat")
+	close_friend = friends[0].mech.curr_tile
+	# Nearest repair kit position
 	var near_repair = null
 	var d_min = 999
 	for item in item_list:
@@ -649,76 +652,66 @@ func think_move():
 	var aggression = 1.0
 	if (armRHP <= 0 and armLHP <= 0):
 		aggression = 0
-		ai_state = AIState.RETREAT
+		if near_repair != null:
+			ai_weights = ai_state.retreat
+		else:
+			ai_weights = ai_state.defensive
 	else:
 		aggression = float(bodyHP / mechData.body.hp) * 0.5
 		aggression += float(armLHP / mechData.arm_l.hp) * 0.2
 		aggression += float(armRHP / mechData.arm_r.hp) * 0.2
 		aggression += float(legsHP / mechData.legs.hp) * 0.1
-		if aggression >= 0.5:
-			ai_state = AIState.NORMAL
+		if aggression >= 0.4:
+			ai_weights = ai_state.aggressive
 		else:
-			ai_state = AIState.DEFENSIVE
-	var tile_goal = null
-	match ai_state:
-		# Aggressive: Attack nearest armed target, ignore repair kits and cover
-		AIState.AGGRESSIVE:
-			tile_goal = unit_list[0].mech.curr_tile
-		# Standard: Attack nearest armed target, consider cover
-		AIState.NORMAL:
-			tile_goal = unit_list[0].mech.curr_tile
-		# Defensive: Only attack safe targets, consider cover and repair kits
-		AIState.DEFENSIVE:
-			if !(near_repair == null):
-				tile_goal = near_repair
-			else:
-				tile_goal = unit_list[0].mech.curr_tile
-		# Retreat: Avoid enemies, seek repair kits and cover, move toward allies
-		AIState.RETREAT:
-			if !(near_repair == null):
-				tile_goal = near_repair
+			ai_weights = ai_state.defensive
 	# Go through movement squares and calculate position values
 	update_wpn()
 	priority_list.clear()
 	var priority = 0
-	#var unit_tile = null
+	var goal_dist = 0
+	var goal_range = 0
+	var tile_value = 0
 	for tile in move_tiles:
-		var unit_dist = 0
-		var unit_range = 0
-		var enemy_attack_threats = 0
-		var goal_dist = 0
 		priority = 0
 		calc_paths(tile)
-		if !(tile_goal == null):
-			goal_dist = get_distance(tile_goal)
-			priority += clamp(1-(goal_dist / move_range), 0, 1)
-		for unit in unit_list:
-			if !unit.mech.is_dead:
-				unit_dist = get_distance(unit.mech.curr_tile)
-				if !unit.friend:
-					priority += clamp(1-(unit_dist / move_range), 0, 1) * unit.target * ai_weights[ai_state].enemy
-					unit_range = get_range(tile, unit.mech.curr_tile)
-					if tile.get_los(unit.mech.curr_tile):
-						var in_range_count = 0.0
-						for weapon in weapon_list:
-							if weapon.active && (unit_range >= weapon.range_min && unit_range <= weapon.range_max):
-								in_range_count += 0.25
-						priority += in_range_count * ai_weights[ai_state].enemy
-						for weapon in unit.mech.weapon_list:
-							if weapon.active && (unit_range >= weapon.range_min && unit_range <= weapon.range_max):
-								enemy_attack_threats += 1
-				else:
-					priority += clamp(1-(unit_dist / move_range), 0, 1) * ai_weights[ai_state].allies
-		priority += (1.0 - float(enemy_attack_threats/16.0)) * ai_weights[ai_state].cover
-		for item in item_list:
-			if item.is_in_group("repair"):
-				if (tile == item.curr_tile):
-					priority += ai_weights[ai_state].repair
-				else: 
-					var item_dist = get_distance(item.curr_tile)
-					priority += clamp(1-(item_dist/move_range), 0, 1) * ai_weights[ai_state].repair
-			if item.is_in_group("bomb"):
-				priority += get_range(tile, item.curr_tile) * ai_weights[ai_state].splash
+		if main_target != null:
+			# Distance from tile to main target
+			goal_dist = get_distance(main_target)
+			tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+			priority += tile_value * ai_weights.target_dist
+			# Tile has LOS to main target
+			if tile.get_los(main_target):
+				priority += ai_weights.target_los
+			# Main target is within range_max
+			goal_range = get_range(tile, main_target)
+			tile_value = clamp(1 - (goal_range / range_max), 0, 1)
+			priority += tile_value * ai_weights.target_range
+		if main_threat != null:
+			# Distance from tile to main threat
+			goal_dist = get_distance(main_threat)
+			tile_value = clamp(goal_dist / max_dist, 0, 1)
+			priority += tile_value * ai_weights.threat_dist
+			# Main threat has LOS to tile
+			if !tile.get_los(main_threat):
+				priority += ai_weights.threat_los
+			# Tile is within range_max of main threat
+			goal_range = get_range(tile, main_threat)
+			tile_value = clamp(goal_range / range_max, 0, 1)
+			priority += tile_value * ai_weights.threat_range
+		# Distance from tile to nearest repair kit
+		if near_repair != null:
+			if tile == near_repair:
+				priority += ai_weights.repair
+			else:
+				goal_dist = get_distance(near_repair)
+				tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+				priority += tile_value * ai_weights.repair
+		# Distance to closest fighting ally
+		if close_friend != null:
+			goal_dist = get_distance(close_friend)
+			tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+			priority += tile_value * ai_weights.friend_dist
 		priority_list.append({"tile":tile, "priority":priority})
 	# If priority_list isn't empty, choose a move target, default to current tile if empty
 	if !priority_list.empty():
@@ -757,15 +750,15 @@ func think_action():
 		return
 	# Check Manhattan distance of enemy units,
 	# and find the highest damage weapon within range
-	var unit_range = 0
-	for unit in unit_list:
-		if (!unit.friend && !unit.mech.is_dead && curr_tile.get_los(unit.mech.curr_tile)):
-			unit_range = get_range(curr_tile, unit.mech.curr_tile)
+	var enemy_range = 0
+	for enemy in enemies:
+		if (!enemy.mech.is_dead && curr_tile.get_los(enemy.mech.curr_tile)):
+			enemy_range = get_range(curr_tile, enemy.mech.curr_tile)
 			for weapon in weapon_list:
 				if (weapon.active && 
-				unit_range >= weapon.range_min &&
-				unit_range <= weapon.range_max):
-					attack_target = unit.mech
+				enemy_range >= weapon.range_min &&
+				enemy_range <= weapon.range_max):
+					attack_target = enemy.mech
 					attack_wpn = weapon
 					break
 			break

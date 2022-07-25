@@ -52,10 +52,17 @@ var autoBet = false
 # Game variables
 var state = null
 var next_state = null
-var prep_timer = GameData.prep_time
-var bet_timer = GameData.bet_time
-var pay_timer = GameData.pay_time
-var focus_timer = GameData.focus_time
+var focus_time = 4
+var prep_time = 60
+var prep_time_fast = 15
+var pay_time = 30
+var pay_time_fast = 15
+var bet_time = 60
+var bet_time_fast = 15
+var prep_timer = prep_time
+var bet_timer = bet_time
+var pay_timer = pay_time
+var focus_timer = focus_time
 var bracket_timer = 5
 var bet_warned = false
 var ping_timer = 0
@@ -81,25 +88,37 @@ var next_queue : Array = []
 func _ready():
 	randomize()
 	regex_valid.compile("\\D|^0")
+	var config = ConfigFile.new()
+	var err = config.load("settings.cfg")
+	if err == OK:
+		print("Config file loaded, getting settings...")
+		focus_time = config.get_value("game", "focus_time", 4)
+		prep_time = config.get_value("game", "prep_time", 60)
+		prep_time_fast = config.get_value("game", "prep_time_fast", 4)
+		pay_time = config.get_value("game", "pay_time", 30)
+		pay_time_fast = config.get_value("game", "pay_time_fast", 2)
+		bet_time = config.get_value("game", "bet_time", 60)
+		bet_time_fast = config.get_value("game", "bet_time_fast", 2)
+	else:
+		print("Error loading config file, using defaults...")
 	# Connect signals, load assets
 	tournament.connect("update_bracket", ui_bracket, "set_teams")
 	tournament.connect("update_stats", stats, "update_info")
 	tournament.connect("next_match", self, "start_transition", [GameState.PREFIGHT])
 	tournament.connect("next_tournament", self, "start_transition", [GameState.TOUR_END])
-# warning-ignore:return_value_discarded
-	$Hangar.connect("mechs_out", self, "start_transition", [GameState.FIGHT])
+	var _err = $Hangar.connect("mechs_out", self, "start_transition", [GameState.FIGHT])
 	arena.connect("match_end", self, "end_match")
 	chatbot.connect("twitch_disconnected", self, "connect_chat")
 	chatbot.connect("unhandled_message", self, "twitch_message")
 	chatbot.connect("chat_message", self, "chat_msg")
 	if GameData.fast_wait:
-		prep_timer = GameData.prep_time_fast
-		bet_timer = GameData.bet_time_fast
-		pay_timer = GameData.pay_time_fast
+		prep_timer = prep_time_fast
+		bet_timer = bet_time_fast
+		pay_timer = pay_time_fast
 	else:
-		prep_timer = GameData.prep_time
-		bet_timer = GameData.bet_time
-		pay_timer = GameData.pay_time
+		prep_timer = prep_time
+		bet_timer = bet_time
+		pay_timer = pay_time
 	# Load announcer commentary
 	var data_path : String = "../data/"
 	var file = File.new()
@@ -248,14 +267,14 @@ func end_match(fight_data):
 		header_versus.team2.set_loss(true)
 	ui_bracket.eliminate(tournament.current_loser)
 	# Pay out bets and update stats
-	for i in UserDB.team_stats.size():
+	for i in tournament.team_stats.size():
 		if i == tournament.current_winner:
 			if tournament.match_index == tournament.ROSTER_SIZE:
-				UserDB.team_stats[i].champ += 1
+				tournament.team_stats[i].champ += 1
 			else:
-				UserDB.team_stats[i].win += 1
+				tournament.team_stats[i].win += 1
 		if i == tournament.current_loser:
-			UserDB.team_stats[i].lose += 1
+			tournament.team_stats[i].lose += 1
 	var win_side = 0
 	if tournament.current_winner != tournament.current_match.teams[0].index:
 		win_side = 1

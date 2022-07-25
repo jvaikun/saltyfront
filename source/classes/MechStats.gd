@@ -25,16 +25,6 @@ var mech_dodge : float = 0.0
 var move_range : int = 0
 var jump_height : int = 0
 
-# Skill progression
-var melee_xp : int = 0
-var short_xp : int = 0
-var long_xp : int = 0
-var dodge_xp : int = 0
-var skill0_xp : int = 0
-var skill1_xp : int = 0
-var skill2_xp : int = 0
-var skill3_xp : int = 0
-
 # Stat tracking vars
 var team : int = 0
 var kill : int = 0
@@ -89,17 +79,17 @@ func get_dodge() -> float:
 
 
 func get_move() -> int:
-	if hp_legs >= legs.hp / 2:
+	if hp_legs >= legs.hp / 2.0:
 		return (legs.move)
 	else:
-		return int(max(1, legs.move/2))
+		return int(max(1, legs.move/2.0))
 
 
 func get_jump() -> int:
-	if hp_legs >= legs.hp / 2:
+	if hp_legs >= legs.hp / 2.0:
 		return (legs.jump)
 	else:
-		return int(max(1, legs.jump/2))
+		return int(max(1, legs.jump/2.0))
 
 
 func get_statblock():

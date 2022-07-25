@@ -237,11 +237,11 @@ func load_map():
 	
 	# Setup light direction and intensity
 	if is_instance_valid($Map/DirectionalLight):
-		$Map/DirectionalLight.light_energy = map_lights["Mid-day"].energy
-		$Map/DirectionalLight.rotation_degrees.x = map_lights["Dawn"].angle
+		$Map/DirectionalLight.light_energy = map_lights["Night"].energy
+		$Map/DirectionalLight.rotation_degrees.x = map_lights["Night"].angle
 	# Load world environment
 	if is_instance_valid($Map/WorldEnvironment):
-		$Map/WorldEnvironment.environment = load(map_lights["Mid-day"].env)
+		$Map/WorldEnvironment.environment = load(map_lights["Night"].env)
 	# Build list of navigation points
 	var curr_index = 0
 	for coord in arena_map.tiles.get_used_cells():

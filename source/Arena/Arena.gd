@@ -27,7 +27,7 @@ const map_list = [
 	{"path":"res://scenes/maps/Map012.tscn", "name":"Tower Ruin"},
 ]
 const map_mods = {
-	"light":["Dawn", "Mid-day", "Dusk"],#, "Night"],
+	"light":["Dawn", "Mid-day", "Dusk", "Night"],
 	"effect":["Mines"]
 }
 const map_lights = {
@@ -116,6 +116,12 @@ var turn_timeout : int = 80
 var idle_timeout : int = 30
 var match_start_time : int = 0
 var match_end_time : int = 0
+var move_speed : float = 20.0
+var move_speed_fast : float = 40.0
+var anim_speed : float = 1.0
+var anim_speed_fast : float = 2.0
+var wait_time : float = 0.25
+var wait_time_fast : float = 0.0
 
 # Map variables
 var arena_map = null
@@ -151,6 +157,12 @@ func _ready():
 		print("Config file loaded, getting map settings...")
 		turn_timeout = config.get_value("map", "turn_timeout", 80)
 		idle_timeout = config.get_value("map", "idle_timeout", 30)
+		move_speed = config.get_value("mech", "move_speed", 20.0)
+		move_speed_fast = config.get_value("mech", "move_speed_fast", 40.0)
+		anim_speed = config.get_value("mech", "anim_speed", 1.0)
+		anim_speed_fast = config.get_value("mech", "anim_speed_fast", 2.0)
+		wait_time = config.get_value("mech", "wait_time", 0.25)
+		wait_time_fast = config.get_value("mech", "wait_time_fast", 0)
 	else:
 		print("Error loading map config, using defaults...")
 	$Debug/Vectors.camera = $Camera.cam
@@ -234,7 +246,7 @@ func roll_map() -> Dictionary:
 		map_list.shuffle()
 	map_props.name = map_list[map_props.index].name
 	map_props.path = map_list[map_props.index].path
-	map_props.light = map_mods.light[randi() % map_mods.light.size()]
+	map_props.light = "Dawn" #map_mods.light[randi() % map_mods.light.size()]
 #	if randf() <= 0.3:
 #		map_props.effect = "Mines"
 #	else:
@@ -1063,6 +1075,14 @@ func spawn_mechs(tournament):
 			mech_inst.mechData.reset_data()
 			mech_inst.team = team_list[i]
 			mech_inst.num = j
+			if GameData.fast_combat:
+				mech_inst.spd_move = move_speed_fast
+				mech_inst.spd_anim = anim_speed_fast
+				mech_inst.spd_wait = wait_time_fast
+			else:
+				mech_inst.spd_move = move_speed
+				mech_inst.spd_anim = anim_speed
+				mech_inst.spd_wait = wait_time
 			mech_inst.global_translate(deploy_tiles[i][j])
 			if map_props.light == "Night":
 				mech_inst.get_node("Effects/Headlight").visible = true
@@ -1220,6 +1240,10 @@ func load_map(tournament):
 			team_info2.get_child(mech.num).focus_mech = mech
 	ui_update()
 	mapCam.translation = mapCam.origin + Vector3(0, 25, 0)
+	if map_props.light == "Night":
+		mech_pov.environment = load("res://scenes/maps/env_nightvision.tres")
+	else:
+		mech_pov.environment = null
 	$Camera/Pivot/Camera.current = true
 	$MapUI/Tags.visible = false
 	$MapUI.visible = false

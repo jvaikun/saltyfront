@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://test/AITest.gd" type="Script" id=1]
 [ext_resource path="res://Arena/MapCamera.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/maps/Map000.tscn" type="PackedScene" id=4]
 [ext_resource path="res://test/Vectors.gd" type="Script" id=5]
 [ext_resource path="res://scenes/items/RepairLarge.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0, 1, 1 )
@@ -14,6 +15,7 @@ albedo_color = Color( 0, 0, 1, 1 )
 top_radius = 0.5
 bottom_radius = 0.0
 height = 1.0
+radial_segments = 8
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0, 0, 1 )
@@ -43,7 +45,7 @@ size = 15.0
 [node name="Mechs" type="Spatial" parent="."]
 
 [node name="Mech1" parent="Mechs" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 19 )
 debug_mode = true
 
 [node name="Mech2" parent="Mechs" instance=ExtResource( 3 )]
@@ -53,10 +55,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 13 )
 
 [node name="Mech4" parent="Mechs" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 23 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 11 )
 
 [node name="Mech5" parent="Mechs" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 27 )
+
+[node name="Mech6" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 25 )
+
+[node name="Mech7" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 35 )
+
+[node name="Mech8" parent="Mechs" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 35 )
 
 [node name="Items" type="Spatial" parent="."]
 
@@ -89,76 +100,174 @@ margin_bottom = 14.0
 [node name="Controls" type="VBoxContainer" parent="Debug/AIControl"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 186.0
-margin_bottom = 223.0
+margin_right = 454.0
+margin_bottom = 187.0
 
-[node name="State" type="OptionButton" parent="Debug/AIControl/Controls"]
-margin_right = 179.0
-margin_bottom = 20.0
-text = "Aggressive"
-items = [ "Aggressive", null, false, 0, null, "Normal", null, false, 1, null, "Defensive", null, false, 2, null, "Retreat", null, false, 3, null ]
-selected = 0
+[node name="Filters" type="GridContainer" parent="Debug/AIControl/Controls"]
+margin_right = 447.0
+margin_bottom = 180.0
+columns = 2
 
-[node name="Filters" type="VBoxContainer" parent="Debug/AIControl/Controls"]
-margin_top = 24.0
-margin_right = 179.0
-margin_bottom = 216.0
-
-[node name="CheckBox" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_right = 179.0
-margin_bottom = 24.0
+[node name="Label" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_right = 315.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 7 )
 text = "Distance to main target"
 
-[node name="CheckBox2" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 28.0
-margin_right = 179.0
-margin_bottom = 52.0
-text = "Distance to repair kit"
+[node name="Filter1" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_right = 447.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
 
-[node name="CheckBox3" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 56.0
-margin_right = 179.0
-margin_bottom = 80.0
-text = "LOS to main target"
+[node name="Label3" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 23.0
+margin_right = 315.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 7 )
+text = "Has LOS to main target"
 
-[node name="CheckBox4" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 84.0
-margin_right = 179.0
-margin_bottom = 108.0
-text = "Main target in range"
+[node name="Filter3" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 23.0
+margin_right = 447.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
 
-[node name="CheckBox5" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 112.0
-margin_right = 179.0
-margin_bottom = 136.0
+[node name="Label4" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 46.0
+margin_right = 315.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 7 )
+text = "In range of main target"
+
+[node name="Filter4" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 46.0
+margin_right = 447.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
+
+[node name="Label5" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 69.0
+margin_right = 315.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 7 )
 text = "Distance to main threat"
 
-[node name="CheckBox6" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 140.0
-margin_right = 179.0
-margin_bottom = 164.0
-text = "Main threat has LOS"
+[node name="Filter5" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 69.0
+margin_right = 447.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
 
-[node name="CheckBox7" type="CheckBox" parent="Debug/AIControl/Controls/Filters"]
-margin_top = 168.0
-margin_right = 179.0
-margin_bottom = 192.0
+[node name="Label6" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 92.0
+margin_right = 315.0
+margin_bottom = 111.0
+custom_fonts/font = ExtResource( 7 )
+text = "Has LOS to main threat"
+
+[node name="Filter6" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 92.0
+margin_right = 447.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
+
+[node name="Label7" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 115.0
+margin_right = 315.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 7 )
 text = "In range of main threat"
 
-[node name="MarkTarget" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+[node name="Filter7" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 115.0
+margin_right = 447.0
+margin_bottom = 131.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
+
+[node name="Label8" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 138.0
+margin_right = 315.0
+margin_bottom = 157.0
+custom_fonts/font = ExtResource( 7 )
+text = "Distance to closest ally"
+
+[node name="Filter8" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 138.0
+margin_right = 447.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
+
+[node name="Label2" type="Label" parent="Debug/AIControl/Controls/Filters"]
+margin_top = 161.0
+margin_right = 315.0
+margin_bottom = 180.0
+custom_fonts/font = ExtResource( 7 )
+text = "Distance to repair"
+
+[node name="Filter2" type="HSlider" parent="Debug/AIControl/Controls/Filters"]
+margin_left = 319.0
+margin_top = 161.0
+margin_right = 447.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 128, 0 )
+max_value = 1.0
+step = 0.1
+tick_count = 10
+
+[node name="MarkTarget" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 20 )
+
+[node name="Marker" type="MeshInstance" parent="MarkTarget"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 material_override = SubResource( 1 )
 mesh = SubResource( 2 )
+skeleton = NodePath("../..")
 material/0 = null
 
-[node name="MarkThreat" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+[node name="MarkThreat" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 20 )
+
+[node name="Marker" type="MeshInstance" parent="MarkThreat"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 material_override = SubResource( 3 )
 mesh = SubResource( 2 )
+skeleton = NodePath("../..")
 material/0 = null
 
-[node name="MarkRepair" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 20 )
+[node name="MarkRepair" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 20 )
+
+[node name="Marker" type="MeshInstance" parent="MarkRepair"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 material_override = SubResource( 4 )
 mesh = SubResource( 2 )
+skeleton = NodePath("../..")
 material/0 = null

@@ -56,6 +56,12 @@ const tile_data = [
 	{"name":"dirt_low", "height":1, "angle":0, "move":3},
 	{"name":"dirt_tall", "height":2, "angle":0, "move":3},
 ]
+const ai_weights = [
+	{"target":1, "threat":0, "repair":0}, # Aggressive
+	{"target":1, "threat":0, "repair":1}, # Normal
+	{"target":1, "threat":1, "repair":1}, # Defensive
+	{"target":0, "threat":1, "repair":1} # Retreat
+]
 
 onready var debug_info = $Debug/DebugInfo
 onready var mech_prod = $Mechs/Mech1
@@ -87,23 +93,19 @@ class CustomSort:
 		if a["damage"] > b["damage"]:
 			return true
 		return false
-	# Sort by target AND threat value, descending
-	static func target_sort(a, b):
-		if a["target"] > b["target"]:
-			return true
-		elif a["threat"] > b["threat"]:
-			return true
-		return false
-	# Sort by threat AND target value, descending
-	static func threat_sort(a, b):
-		if a["threat"] > b["threat"]:
-			return true
-		elif a["target"] > b["target"]:
-			return true
-		return false
 	# Sort by distance, ascending
 	static func distance(a, b):
 		if a["distance"] < b["distance"]:
+			return true
+		return false
+	# Sort by target, descending
+	static func target(a, b):
+		if a["target"] > b["target"]:
+			return true
+		return false
+	# Sort by threat, descending
+	static func threat(a, b):
+		if a["threat"] > b["threat"]:
 			return true
 		return false
 
@@ -115,15 +117,22 @@ func _ready():
 	$Debug/Vectors.camera = cam_camera
 	$Debug/Vectors.focus_mech = mech_prod
 	$Debug/Vectors.nav_points = $Nav.get_children()
-#	$MapCamera.rotation_degrees.y = 0
-#	$MapCamera/Pivot.rotation_degrees.x = -90
+	$MapCamera.rotation_degrees.y = 0
+	$MapCamera/Pivot.rotation_degrees.x = -90
+	cam_camera.size = 30
 	mech_prod.connect("move_done", self, "nav_update")
+	for child in $Debug/AIControl/Controls/Filters.get_children():
+		if child is Slider:
+			child.connect("value_changed", self, "calc_values")
 	turns_queue = $Mechs.get_children()
-	for mech in turns_queue:
-		if mech == mech_prod:
-			mech.team = 0
-		else:
-			mech.team = 1
+	$Mechs/Mech1.team = 0
+	$Mechs/Mech2.team = 0
+	$Mechs/Mech3.team = 0
+	$Mechs/Mech4.team = 0
+	$Mechs/Mech5.team = 1
+	$Mechs/Mech6.team = 1
+	$Mechs/Mech7.team = 1
+	$Mechs/Mech8.team = 1
 	for mech in turns_queue:
 		roll_stats(mech)
 		mech.state = mech.MechState.DONE
@@ -134,8 +143,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_home"):
-		calc_values(mech_prod)
+	if Input.is_action_just_pressed("ui_up"):
+		calc_values(1.0)
 	if Input.is_action_just_pressed("ui_end"):
 		reroll_all()
 	# Screenshot
@@ -270,143 +279,141 @@ func load_map():
 	nav_update()
 
 
-func calc_values(focus_mech):
-	focus_mech.move_target = null
+func calc_values(_value):
+	mech_prod.move_target = null
 	# Calculate paths from starting point
-	for tile in focus_mech.move_tiles:
+	for tile in mech_prod.move_tiles:
 		tile.unmark()
-	focus_mech.move_tiles.clear()
-	focus_mech.calc_paths(focus_mech.curr_tile)
+	mech_prod.move_tiles.clear()
+	mech_prod.calc_paths(mech_prod.curr_tile)
 	# Generate list of movement tiles
 	var this_node = null
 	var this_tile = null
-	for index in focus_mech.nav_paths:
-		this_tile = focus_mech.map_grid[index].tile
-		this_node = focus_mech.nav_paths[index]
+	for index in mech_prod.nav_paths:
+		this_tile = mech_prod.map_grid[index].tile
+		this_node = mech_prod.nav_paths[index]
 		# Tile available for standing and within move range
-		if this_node.distance <= focus_mech.move_range && this_node.distance > 0:
+		if this_node.distance <= mech_prod.move_range && this_node.distance > 0:
 			if this_tile.curr_mech == null:
 				this_tile.can_move = true
-				focus_mech.move_tiles.append(this_tile)
+				mech_prod.move_tiles.append(this_tile)
 	# Calculate threat and target levels for other units
-	for unit in focus_mech.unit_list:
+	var unit_dist = 0
+	for unit in mech_prod.unit_list:
 		if !unit.mech.is_dead:
+			unit_dist = mech_prod.get_distance(unit.mech.curr_tile)
 			unit.threat = 0.0
 			unit.threat += float(unit.mech.armRHP / unit.mech.mechData.arm_r.hp) * 0.5
 			unit.threat += float(unit.mech.armLHP / unit.mech.mechData.arm_l.hp) * 0.5
+			unit.threat = unit.threat * (1 - (unit_dist / mech_prod.move_range))
 			unit.target = 0.0
 			unit.target += float(unit.mech.bodyHP / unit.mech.mechData.body.hp) * 0.5
 			unit.target += float(unit.mech.armRHP / unit.mech.mechData.arm_r.hp) * 0.2
 			unit.target += float(unit.mech.armLHP / unit.mech.mechData.arm_l.hp) * 0.2
 			unit.target += float(unit.mech.legsHP / unit.mech.mechData.legs.hp) * 0.1
-			unit.aggro = 0.0
-			if !unit.friend:
-				unit.aggro += float(unit.last_dmg / unit.last_attack)
-	focus_mech.unit_list.sort_custom(CustomSort, "target_sort")
-	var main_target = focus_mech.unit_list[0].mech
+			unit.target = unit.target * (1 - (unit_dist / mech_prod.move_range))
+	var main_target = null
+	mech_prod.enemies.sort_custom(CustomSort, "target")
+	main_target = mech_prod.enemies[0].mech.curr_tile
 	if is_instance_valid(main_target):
 		$MarkTarget.translation = main_target.translation
-	focus_mech.unit_list.sort_custom(CustomSort, "threat_sort")
-	var main_threat = focus_mech.unit_list[0].mech
+	var main_threat = null
+	mech_prod.enemies.sort_custom(CustomSort, "threat")
+	main_threat = mech_prod.enemies[0].mech.curr_tile
 	if is_instance_valid(main_threat):
 		$MarkThreat.translation = main_threat.translation
+	var close_friend = null
+	mech_prod.friends.sort_custom(CustomSort, "threat")
+	if mech_prod.friends.size() > 0:
+		close_friend = mech_prod.friends[0].mech.curr_tile
 	# Find the nearest repair kit
 	var near_repair = null
 	var d_min = 999
 	for item in $Items.get_children():
 		if item.is_in_group("repair"):
-			var item_dist = focus_mech.get_distance(item.curr_tile)
+			var item_dist = mech_prod.get_distance(item.curr_tile)
 			if item_dist < d_min:
 				d_min = item_dist
 				near_repair = item.curr_tile
 	if is_instance_valid(near_repair):
 		$MarkRepair.translation = near_repair.translation
-	var tile_goal = null
-	match $Debug/AIControl/Controls/State.selected:
-		# Aggressive: Attack nearest armed target, ignore repair kits and cover
-		focus_mech.AIState.AGGRESSIVE:
-			tile_goal = main_target.curr_tile
-		# Standard: Attack nearest armed target, consider cover
-		focus_mech.AIState.NORMAL:
-			tile_goal = main_target.curr_tile
-		# Defensive: Only attack safe targets, consider cover and repair kits
-		focus_mech.AIState.DEFENSIVE:
-			if !(near_repair == null):
-				tile_goal = near_repair
-			else:
-				tile_goal = main_target.curr_tile
-		# Retreat: Avoid enemies, seek repair kits and cover, move toward allies
-		focus_mech.AIState.RETREAT:
-			if !(near_repair == null):
-				tile_goal = near_repair
 	# Go through movement squares and calculate position values
-	focus_mech.update_wpn()
-	focus_mech.priority_list.clear()
+	mech_prod.update_wpn()
+	mech_prod.priority_list.clear()
 	var priority = 0
 	var max_priority = 0
-	for check in $Debug/AIControl/Controls/Filters.get_children():
-		max_priority += int(check.pressed)
+	for child in $Debug/AIControl/Controls/Filters.get_children():
+		if child is Slider:
+			if child.value > 0:
+				max_priority += 1
 	max_priority = max(max_priority, 1)
-	for tile in focus_mech.move_tiles:
-		var goal_dist = 0
+	var goal_dist = 0
+	var tile_value = 0
+	for tile in mech_prod.move_tiles:
 		priority = 0
-		focus_mech.calc_paths(tile)
+		mech_prod.calc_paths(tile)
 		# Distance from tile to main target
-		if $Debug/AIControl/Controls/Filters/CheckBox.pressed:
-			if !(main_target == null):
-				goal_dist = focus_mech.get_distance(main_target.curr_tile)
-				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
+		if !(main_target == null):
+			goal_dist = mech_prod.get_distance(main_target)
+			tile_value = clamp(1 - (goal_dist / mech_prod.move_range), 0, 1)
+			priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter1.value)
 		# Distance from tile to nearest repair kit
-		if $Debug/AIControl/Controls/Filters/CheckBox2.pressed:
-			if !(near_repair == null):
-				goal_dist = focus_mech.get_distance(near_repair)
-				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
+		if !(near_repair == null):
+			if tile == near_repair:
+				priority += float($Debug/AIControl/Controls/Filters/Filter2.value)
+			else:
+				goal_dist = mech_prod.get_distance(near_repair)
+				tile_value = clamp(1 - (goal_dist / mech_prod.move_range), 0, 1)
+				priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter2.value)
 		# Tile has LOS to main target
-		if $Debug/AIControl/Controls/Filters/CheckBox3.pressed:
-			if !(main_target == null):
-				if tile.get_los(main_target.curr_tile):
-					priority += 1.0
+		if !(main_target == null):
+			if tile.get_los(main_target):
+				priority += float($Debug/AIControl/Controls/Filters/Filter3.value)
 		# Main target is in range of tile
-		if $Debug/AIControl/Controls/Filters/CheckBox4.pressed:
-			if !(main_target == null):
-				# Magic number is 6 for now, replace with max. range in actual function
-				var goal_range = focus_mech.get_range(tile, main_target.curr_tile)
-				priority += clamp(1 - (goal_range / 6), 0, 1)
+		if !(main_target == null):
+			# Magic number is 6 for now, replace with max. range in actual function
+			var goal_range = mech_prod.get_range(tile, main_target)
+			tile_value = clamp(1 - (goal_range / 6), 0, 1)
+			priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter4.value)
 		# Distance from tile to main threat
-		if $Debug/AIControl/Controls/Filters/CheckBox5.pressed:
-			if !(main_threat == null):
-				goal_dist = focus_mech.get_distance(main_threat.curr_tile)
-				priority += clamp(1 - (goal_dist / focus_mech.move_range), 0, 1)
+		if !(main_threat == null):
+			goal_dist = mech_prod.get_distance(main_threat)
+			tile_value = clamp(goal_dist / mech_prod.move_range, 0, 1)
+			priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter5.value)
 		# Main threat has LOS to tile
-		if $Debug/AIControl/Controls/Filters/CheckBox6.pressed:
-			if !(main_threat == null):
-				if tile.get_los(main_threat.curr_tile):
-					priority += 1.0
+		if !(main_threat == null):
+			if !tile.get_los(main_threat):
+				priority += float($Debug/AIControl/Controls/Filters/Filter6.value)
 		# Tile in range of main threat
-		if $Debug/AIControl/Controls/Filters/CheckBox7.pressed:
-			if !(main_threat == null):
-				# Magic number is 6 for now, replace with max. range in actual function
-				var goal_range = focus_mech.get_range(tile, main_threat.curr_tile)
-				priority += clamp(1 - (goal_range / 6), 0, 1)
-		focus_mech.priority_list.append({"tile":tile, "priority":priority})
+		if !(main_threat == null):
+			# Magic number is 6 for now, replace with max. range in actual function
+			var goal_range = mech_prod.get_range(tile, main_threat)
+			tile_value = clamp(goal_range / 6, 0, 1)
+			priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter7.value)
+		# Distance to closest fighting ally
+		if !(close_friend == null):
+			goal_dist = mech_prod.get_distance(close_friend)
+			tile_value = clamp(1 - (goal_dist / mech_prod.move_range), 0, 1)
+			priority += tile_value * float($Debug/AIControl/Controls/Filters/Filter8.value)
+		mech_prod.priority_list.append({"tile":tile, "priority":priority})
 	# If priority_list isn't empty, choose a move target, default to current tile if empty
-	if !focus_mech.priority_list.empty():
+	if !mech_prod.priority_list.empty():
 		var heat_min = Color(0, 0, 1)
 		var heat_max = Color(1, 0, 0)
-		for item in focus_mech.priority_list:
+		for item in mech_prod.priority_list:
 			item.tile.highlight.material_override.albedo_color = heat_min.linear_interpolate(heat_max, item.priority / max_priority)
 		# Sort priority list, get max values
-		focus_mech.priority_list.sort_custom(CustomSort, "priority")
+		mech_prod.priority_list.sort_custom(CustomSort, "priority")
 		var max_list = []
-		for item in focus_mech.priority_list:
-			if item.priority == focus_mech.priority_list[0].priority:
+		for item in mech_prod.priority_list:
+			if item.priority == mech_prod.priority_list[0].priority:
 				max_list.append(item)
 		# Pick one of the max priority tiles, get the path to it
 		if max_list.size() == 1:
-			focus_mech.move_target = max_list[0].tile
+			mech_prod.move_target = max_list[0].tile
 		else:
-			focus_mech.move_target = max_list[randi() % max_list.size()].tile
+			mech_prod.move_target = max_list[randi() % max_list.size()].tile
 	else:
-		focus_mech.move_target = focus_mech.curr_tile
-	focus_mech.get_move_path()
+		mech_prod.move_target = mech_prod.curr_tile
+	mech_prod.get_move_path()
 

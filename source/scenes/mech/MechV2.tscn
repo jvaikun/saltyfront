@@ -2549,7 +2549,7 @@ skin = SubResource( 37 )
 material/0 = null
 
 [node name="PodL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 0.5, 0.470162, -0.727288, 6.35428e-08, 0.8398, 0.542896, 0.866026, -0.271448, 0.4199, 0.349307, 1.77565, 0.605018 )
+transform = Transform( 1, -8.27782e-13, 2.38419e-07, 8.85465e-08, 0.928478, -0.371387, -2.21366e-07, 0.371387, 0.928478, 0.698615, 1.76597, 2.30502e-08 )
 bone_name = "arm_shoulder.l"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/PodL" instance=ExtResource( 96 )]
@@ -2557,7 +2557,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.96046
 emitting = false
 
 [node name="PodR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 0.499999, 0.244989, -0.830651, -9.94051e-08, 0.959153, 0.282888, 0.866026, -0.141444, 0.479576, -0.349307, 1.77565, -0.605019 )
+transform = Transform( 1, 8.27782e-13, -2.38419e-07, -8.85465e-08, 0.928478, -0.371387, 2.21366e-07, 0.371387, 0.928478, -0.698615, 1.76597, 2.30502e-08 )
 bone_name = "arm_shoulder.r"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/PodR" instance=ExtResource( 96 )]
@@ -2565,23 +2565,23 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 emitting = false
 
 [node name="WpnL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -0.996156, 0.00710187, 0.0872854, 0.0036934, 0.999225, -0.0391549, -0.0874984, -0.0386832, -0.99541, 0.301662, 1.43848, 1.13324 )
+transform = Transform( -1, 6.84905e-07, 5.92294e-07, 8.04295e-07, 0.371388, 0.928477, 4.15948e-07, 0.928476, -0.371387, 0.698615, 1.03825, 2.5332e-07 )
 bone_name = "arm_hand.l"
 
 [node name="WpnR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -0.463382, -0.55386, 0.691745, -0.0913963, 0.806321, 0.584374, -0.881433, 0.207564, -0.424254, -0.698615, 1.16957, -0.358539 )
+transform = Transform( -1, -7.17323e-07, -5.79326e-07, -8.04296e-07, 0.371388, 0.928477, -4.50864e-07, 0.928476, -0.371387, -0.698615, 1.03825, 2.38419e-07 )
 bone_name = "arm_hand.r"
 
 [node name="ArmLowL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -0.996156, -0.0874894, 0.00382594, 0.00369329, 0.0016838, 0.99999, -0.0874976, 0.99616, -0.00135538, 0.339522, 1.43775, 0.702163 )
+transform = Transform( -1, 2.48102e-07, 5.43693e-07, -5.0785e-08, -0.941742, 0.336335, 5.95463e-07, 0.336333, 0.94174, 0.698615, 1.44577, -0.145543 )
 bone_name = "arm_lower.l"
 
 [node name="ArmLowR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -0.463381, -0.670505, -0.579393, -0.0913957, -0.614178, 0.783856, -0.881433, 0.416177, 0.223316, -0.408464, 1.43535, -0.538634 )
+transform = Transform( -1, -2.59845e-07, -5.76575e-07, 5.07841e-08, -0.941742, 0.336335, -6.30379e-07, 0.336333, 0.94174, -0.698615, 1.44577, -0.145543 )
 bone_name = "arm_lower.r"
 
 [node name="Body" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( 0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 0, 1.3099, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3099, 0 )
 bone_name = "torso"
 
 [node name="Sparks" parent="mech_frame/Armature/Skeleton/Body" instance=ExtResource( 96 )]
@@ -2597,27 +2597,27 @@ transform = Transform( 1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, 
 emitting = false
 
 [node name="LegUpL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 3.81342e-07, -8.07445e-09, -3.46156e-07, -0.89843, 0.439114, 1.60198e-07, 0.439115, 0.898428, 0.349308, 1.13525, 6.81604e-08 )
+transform = Transform( -1, 3.79586e-07, -3.74229e-08, -3.62022e-07, -0.913649, 0.406501, 1.20111e-07, 0.406502, 0.913647, 0.349308, 1.13525, 6.81604e-08 )
 bone_name = "leg_upper.l"
 
 [node name="LegUpR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -3.73129e-07, -3.96998e-08, 3.70306e-07, -0.964231, -0.265063, 6.06227e-08, -0.265061, 0.964228, -0.349308, 1.13525, 6.81604e-08 )
+transform = Transform( -1, -3.68519e-07, 7.06762e-08, 3.74598e-07, -0.969465, 0.245228, -2.18532e-08, 0.245229, 0.969462, -0.349308, 1.13525, 6.81604e-08 )
 bone_name = "leg_upper.r"
 
 [node name="LegLowL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -2.20787e-07, 5.35423e-07, 2.30093e-07, -0.999846, 0.0174475, 5.31489e-07, 0.0174493, 0.999845, 0.349308, 0.746467, 0.190021 )
+transform = Transform( -1, -2.76126e-07, 4.75386e-07, 2.00494e-07, -0.98833, -0.152315, 5.11896e-07, -0.152313, 0.988329, 0.349308, 0.739881, 0.175908 )
 bone_name = "leg_lower.l"
 
 [node name="LegLowR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 2.96277e-08, -6.2589e-07, 1.83803e-07, -0.941069, -0.338213, -5.99025e-07, -0.33821, 0.941066, -0.349308, 0.717993, -0.114701 )
+transform = Transform( -1, 2.70112e-07, -4.39805e-07, -1.13108e-07, -0.946098, -0.32388, -5.03581e-07, -0.323877, 0.946096, -0.349308, 0.715727, 0.10612 )
 bone_name = "leg_lower.r"
 
 [node name="FootL" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, -1.44951e-12, 1.50996e-07, 1.29477e-07, -0.514494, 0.857492, 7.76862e-08, 0.857489, 0.514493, 0.349308, 0.174654, 0.2 )
+transform = Transform( -1, -1.87583e-12, 1.50995e-07, 1.29476e-07, -0.514494, 0.857491, 7.7685e-08, 0.857489, 0.514493, 0.349308, 0.174654, 0.0888002 )
 bone_name = "leg_foot.l"
 
 [node name="FootR" type="BoneAttachment" parent="mech_frame/Armature/Skeleton"]
-transform = Transform( -1, 2.16005e-12, -1.50996e-07, -1.29478e-07, -0.514495, 0.857492, -7.76852e-08, 0.857489, 0.514493, -0.349308, 0.179794, -0.308124 )
+transform = Transform( -1, 1.08002e-12, -1.50995e-07, -1.29477e-07, -0.514495, 0.857492, -7.76852e-08, 0.85749, 0.514493, -0.349308, 0.174653, -0.0791061 )
 bone_name = "leg_foot.r"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="mech_frame"]

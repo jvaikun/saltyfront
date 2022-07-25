@@ -18,28 +18,8 @@ var screenshot_path = "../screenshot"
 var screenshot_count = 0
 var streams : Dictionary
 
-# Map variables
-var turn_timeout = 80
-var idle_timeout = 30
-
-# Mech variables
-var move_speed = 10.0
-var move_speed_fast = 15.0
-var anim_speed = 1.0
-var anim_speed_fast = 2.0
-var wait_time = 15
-var wait_time_fast = 10
-
 # Game variables
 var debug_mode = false
-var focus_time = 4
-var prep_time = 60
-var prep_time_fast = 4
-var pay_time = 10
-var pay_time_fast = 2
-var bet_time = 60
-var bet_time_fast = 2
-
 var offline_mode = true
 var fast_wait = true
 var fast_combat = false
@@ -63,19 +43,6 @@ func _ready():
 		offline_mode = config.get_value("flags", "offline_mode", false)
 		fast_combat = config.get_value("flags", "fast_combat", false)
 		fast_wait = config.get_value("flags", "fast_wait", false)
-		move_speed = config.get_value("mech", "move_speed", 20.0)
-		move_speed_fast = config.get_value("mech", "move_speed_fast", 40.0)
-		anim_speed = config.get_value("mech", "anim_speed", 1.0)
-		anim_speed_fast = config.get_value("mech", "anim_speed_fast", 2.0)
-		wait_time = config.get_value("mech", "wait_time", 0.25)
-		wait_time_fast = config.get_value("mech", "wait_time_fast", 0)
-		focus_time = config.get_value("game", "focus_time", 4)
-		prep_time = config.get_value("game", "prep_time", 60)
-		prep_time_fast = config.get_value("game", "prep_time_fast", 4)
-		pay_time = config.get_value("game", "pay_time", 30)
-		pay_time_fast = config.get_value("game", "pay_time_fast", 2)
-		bet_time = config.get_value("game", "bet_time", 60)
-		bet_time_fast = config.get_value("game", "bet_time_fast", 2)
 	else:
 		print("Error loading config file, using defaults...")
 	# Load announcer commentary
