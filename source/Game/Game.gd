@@ -189,8 +189,6 @@ func _process(delta):
 							$Hangar.move_cam(mech_ind)
 						elif cycle_next:
 							cycle_next = false
-		GameState.FIGHT:
-			pass
 		GameState.POSTFIGHT:
 			if $Timer.time_left > 0:
 				if !ui_bracket.visible:
@@ -211,8 +209,6 @@ func _process(delta):
 					$UI/TourStats.update_stats(stat_cycle[stat_ind], tournament.tour_stats)
 			elif cycle_next:
 				cycle_next = false
-		GameState.TRANSITION:
-			pass
 
 
 func _notification(what):
@@ -425,7 +421,6 @@ func startup():
 	chatbot.add_command("bet", self, "cmd_bet", 2, 0)
 	chatbot.add_command("allin", self, "cmd_allin", 1, 0)
 	chatbot.add_command("fight", self, "cmd_fight", 2, 0)
-	#chatbot.add_command("nextfight", self, "cmd_nextfight", 2, 0)
 	connect_chat()
 
 
@@ -479,7 +474,7 @@ func cmd_balance(cmd_info : CommandInfo):
 	if user_id != "":
 		var thisUser = UserDB.users[user_id]
 		chatbot.chat(user + ", your balance is "
-		+ str(thisUser.money) + "G, with " + str(thisUser.insurance) + "G of insurance.")
+		+ str(thisUser.money) + "C, with " + str(thisUser.insurance) + "C of insurance.")
 		GameData.write_log(user + ",balance,ok", "command")
 		return
 	else:
