@@ -8,17 +8,6 @@ const wpn_tex = preload("res://Parts/wpn_tex0.png")
 const bullet_obj = preload("res://scenes/bullet/Bullet.tscn")
 const missile_obj = preload("res://scenes/bullet/Missile.tscn")
 const obj_dmgtext = preload("res://Effects/DamageNum.tscn")
-const ai_state = {
-	"aggressive": {"target_dist":1, "target_los":0.5, "target_range":0.5, 
-		"threat_dist":0, "threat_los":0, "threat_range":0, 
-		"friend_dist":0, "repair":0},
-	"defensive": {"target_dist":1, "target_los":0.5, "target_range":0.5, 
-		"threat_dist":0, "threat_los":0, "threat_range":0, 
-		"friend_dist":0.5, "repair":0.5},
-	"retreat": {"target_dist":0, "target_los":0, "target_range":0, 
-		"threat_dist":1, "threat_los":0.5, "threat_range":0.5, 
-		"friend_dist":1, "repair":1},
-}
 const part_path = "res://Parts/3D/"
 const sound_fx = {
 	"bullet_hit":16,
@@ -173,7 +162,11 @@ var in_combat = false
 var turn_finished = true
 var state = MechState.DONE
 var nextState = MechState.DONE
-var ai_weights = ai_state.aggressive
+var ai_weights = {
+	"target_dist":1, "target_los":0.5, "target_range":0.5, 
+	"threat_dist":0, "threat_los":0, "threat_range":0, 
+	"friend_dist":0, "repair":0
+}
 var timer = 0
 var effects = []
 var step = 0
@@ -648,23 +641,28 @@ func think_move():
 			if item_dist < d_min:
 				d_min = item_dist
 				near_repair = item.curr_tile
-	# Determine our AI state
-	var aggression = 1.0
-	if (armRHP <= 0 and armLHP <= 0):
-		aggression = 0
-		if near_repair != null:
-			ai_weights = ai_state.retreat
-		else:
-			ai_weights = ai_state.defensive
+	
+	# Determine our AI weights
+	var aggression = ( float(bodyHP / mechData.body.hp) * 0.5 +
+		float(armLHP / mechData.arm_l.hp) * 0.2 +
+		float(armRHP / mechData.arm_r.hp) * 0.2 +
+		float(legsHP / mechData.legs.hp) * 0.1 )
+	ai_weights.target_dist = aggression
+	ai_weights.target_los = aggression * 0.5
+	ai_weights.target_range = aggression * 0.5
+	ai_weights.threat_dist = 0.0
+	ai_weights.threat_los = 0.0
+	ai_weights.threat_range = 0.0
+	if close_friend != null:
+		ai_weights.friend_dist = (int(armLHP <= 0) * 0.5) + (int(armRHP <= 0) * 0.5)
 	else:
-		aggression = float(bodyHP / mechData.body.hp) * 0.5
-		aggression += float(armLHP / mechData.arm_l.hp) * 0.2
-		aggression += float(armRHP / mechData.arm_r.hp) * 0.2
-		aggression += float(legsHP / mechData.legs.hp) * 0.1
-		if aggression >= 0.4:
-			ai_weights = ai_state.aggressive
-		else:
-			ai_weights = ai_state.defensive
+		ai_weights.friend_dist = 0.0
+	if near_repair != null:
+		ai_weights.repair = (int(armLHP <= 0) * 0.5) + (int(armRHP <= 0) * 0.5)
+		ai_weights.repair += (1.0 - aggression)
+	else:
+		ai_weights.repair = 0.0
+	
 	# Go through movement squares and calculate position values
 	update_wpn()
 	priority_list.clear()
