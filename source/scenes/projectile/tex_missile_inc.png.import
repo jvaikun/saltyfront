@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/tex_missile_sm.png-4ff8215a130217841bbf882c5e35ed57.s3tc.stex"
-path.etc2="res://.import/tex_missile_sm.png-4ff8215a130217841bbf882c5e35ed57.etc2.stex"
+path.s3tc="res://.import/tex_missile_inc.png-e870ffb6c41297201a9cb3b357dad1e5.s3tc.stex"
+path.etc2="res://.import/tex_missile_inc.png-e870ffb6c41297201a9cb3b357dad1e5.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/bullet/tex_missile_sm.png"
-dest_files=[ "res://.import/tex_missile_sm.png-4ff8215a130217841bbf882c5e35ed57.s3tc.stex", "res://.import/tex_missile_sm.png-4ff8215a130217841bbf882c5e35ed57.etc2.stex" ]
+source_file="res://scenes/projectile/tex_missile_inc.png"
+dest_files=[ "res://.import/tex_missile_inc.png-e870ffb6c41297201a9cb3b357dad1e5.s3tc.stex", "res://.import/tex_missile_inc.png-e870ffb6c41297201a9cb3b357dad1e5.etc2.stex" ]
 
 [params]
 

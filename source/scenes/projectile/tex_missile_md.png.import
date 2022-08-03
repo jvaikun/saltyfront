@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/missile.png-6e90d3c7e0cc691747347bf5350f32e5.s3tc.stex"
-path.etc2="res://.import/missile.png-6e90d3c7e0cc691747347bf5350f32e5.etc2.stex"
+path.s3tc="res://.import/tex_missile_md.png-9041bad0473d7ec52f1ad323279e1984.s3tc.stex"
+path.etc2="res://.import/tex_missile_md.png-9041bad0473d7ec52f1ad323279e1984.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/bullet/missile.png"
-dest_files=[ "res://.import/missile.png-6e90d3c7e0cc691747347bf5350f32e5.s3tc.stex", "res://.import/missile.png-6e90d3c7e0cc691747347bf5350f32e5.etc2.stex" ]
+source_file="res://scenes/projectile/tex_missile_md.png"
+dest_files=[ "res://.import/tex_missile_md.png-9041bad0473d7ec52f1ad323279e1984.s3tc.stex", "res://.import/tex_missile_md.png-9041bad0473d7ec52f1ad323279e1984.etc2.stex" ]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
+flags/filter=false
 flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=1

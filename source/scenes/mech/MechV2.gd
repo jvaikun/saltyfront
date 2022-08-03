@@ -5,8 +5,8 @@ enum MechState {READY, MOVE, ACTION, DONE, WAIT}
 const part_mat = preload("res://Parts/mech_base.material")
 const wpn_mat = preload("res://Parts/weapon.material")
 const wpn_tex = preload("res://Parts/wpn_tex0.png")
-const bullet_obj = preload("res://scenes/bullet/Bullet.tscn")
-const missile_obj = preload("res://scenes/bullet/Missile.tscn")
+const bullet_obj = preload("res://scenes/projectile/Bullet.tscn")
+const missile_obj = preload("res://scenes/projectile/MissileLarge.tscn")
 const obj_dmgtext = preload("res://Effects/DamageNum.tscn")
 const part_path = "res://Parts/3D/"
 const sound_fx = {
@@ -163,8 +163,8 @@ var turn_finished = true
 var state = MechState.DONE
 var nextState = MechState.DONE
 var ai_weights = {
-	"target_dist":1, "target_los":0.5, "target_range":0.5, 
-	"threat_dist":0, "threat_los":0, "threat_range":0, 
+	"target_dist":1, "target_range":0.5, 
+	"threat_dist":0, "threat_range":0, 
 	"friend_dist":0, "repair":0
 }
 var timer = 0
@@ -648,10 +648,8 @@ func think_move():
 		float(armRHP / mechData.arm_r.hp) * 0.2 +
 		float(legsHP / mechData.legs.hp) * 0.1 )
 	ai_weights.target_dist = aggression
-	ai_weights.target_los = aggression * 0.5
 	ai_weights.target_range = aggression * 0.5
 	ai_weights.threat_dist = 0.0
-	ai_weights.threat_los = 0.0
 	ai_weights.threat_range = 0.0
 	if close_friend != null:
 		ai_weights.friend_dist = (int(armLHP <= 0) * 0.5) + (int(armRHP <= 0) * 0.5)
@@ -678,25 +676,21 @@ func think_move():
 			goal_dist = get_distance(main_target)
 			tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
 			priority += tile_value * ai_weights.target_dist
-			# Tile has LOS to main target
+			# Can we shoot at this tile?
 			if tile.get_los(main_target):
-				priority += ai_weights.target_los
-			# Main target is within range_max
-			goal_range = get_range(tile, main_target)
-			tile_value = clamp(1 - (goal_range / range_max), 0, 1)
-			priority += tile_value * ai_weights.target_range
+				goal_range = get_range(tile, main_target)
+				tile_value = clamp(1 - (goal_range / range_max), 0, 1)
+				priority += tile_value * ai_weights.target_range
 		if main_threat != null:
 			# Distance from tile to main threat
 			goal_dist = get_distance(main_threat)
 			tile_value = clamp(goal_dist / max_dist, 0, 1)
 			priority += tile_value * ai_weights.threat_dist
-			# Main threat has LOS to tile
+			# Can the threat shoot at this tile?
 			if !tile.get_los(main_threat):
-				priority += ai_weights.threat_los
-			# Tile is within range_max of main threat
-			goal_range = get_range(tile, main_threat)
-			tile_value = clamp(goal_range / range_max, 0, 1)
-			priority += tile_value * ai_weights.threat_range
+				goal_range = get_range(tile, main_threat)
+				tile_value = clamp(goal_range / range_max, 0, 1)
+				priority += tile_value * ai_weights.threat_range
 		# Distance from tile to nearest repair kit
 		if near_repair != null:
 			if tile == near_repair:
