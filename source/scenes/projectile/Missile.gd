@@ -13,6 +13,7 @@ var data = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	connect("tree_exiting", self, "on_exiting")
 	add_to_group("projectiles")
 
 
@@ -36,7 +37,8 @@ func set_target(target, spread):
 	look_at(target_mech.global_transform.origin + adjust, Vector3.UP)
 
 
-func _on_Bullet_tree_exiting():
+func on_exiting():
 	var inst_spark = obj_spark.instance()
 	get_parent().add_child(inst_spark)
 	inst_spark.global_transform.origin = global_transform.origin
+

@@ -6,7 +6,6 @@ var speed = 30
 var target_mech = null
 var adjust = Vector3.ZERO
 var direction = Vector3.ZERO
-var exhaust = null
 var data = null
 
 # Called when the node enters the scene tree for the first time.

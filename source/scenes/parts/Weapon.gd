@@ -1,8 +1,34 @@
 extends Spatial
 
+const bullet_obj = preload("res://scenes/projectile/Bullet.tscn")
+const missile_obj = preload("res://scenes/projectile/MissileLarge.tscn")
+const projectiles = {
+	"melee": {"bullet": bullet_obj, "speed": 20, "spread": 0},
+	"sgun": {"bullet": bullet_obj, "speed": 20, "spread": 0.4},
+	"flame": {"bullet": bullet_obj, "speed": 30, "spread": 0.4},
+	"missile": {"bullet": missile_obj, "speed": 20, "spread": 0},
+	"mgun": {"bullet": bullet_obj, "speed": 30, "spread": 0.6},
+	"rifle": {"bullet": bullet_obj, "speed": 30, "spread": 0.2}
+}
+
 var sfx_shoot = []
 var sfx_aim = []
+var id : String = "0"
+var wpn_name : String = "Default"
+var model : String = "0"
+var texture : String = "0"
 
+var type : String = "mgun"
+var accuracy : float = 0.8
+var acc_loss_h : float = 0.05
+var acc_loss_v : float = 0.05
+var damage : int = 10
+var fire_rate : int = 1
+var range_min : int = 1
+var range_max : int = 3
+var skill : String = "short"
+var special : String = "none"
+var spc_name : String = "none"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
