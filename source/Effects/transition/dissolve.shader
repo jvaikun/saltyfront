@@ -4,7 +4,7 @@ shader_type canvas_item;
 uniform float progress : hint_range(0, 1);
 
 // Size of each diamond, in pixels.
-uniform float diamondPixelSize = 10f;
+uniform float diamondPixelSize = 10.0;
 
 void fragment() {
     float xFraction = fract(FRAGCOORD.x / diamondPixelSize);
@@ -13,7 +13,7 @@ void fragment() {
     float xDistance = abs(xFraction - 0.5);
     float yDistance = abs(yFraction - 0.5);
     
-    if (xDistance + yDistance + UV.x + UV.y < progress * 4f) {
+    if (xDistance + yDistance + UV.x + UV.y < progress * 4.0) {
         discard;
     }
 }

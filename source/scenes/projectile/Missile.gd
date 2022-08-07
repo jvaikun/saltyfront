@@ -18,10 +18,13 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(_delta):
 	var inst_smoke = obj_smoke.instance()
 	get_parent().add_child(inst_smoke)
 	inst_smoke.global_transform.origin = exhaust.global_transform.origin
+
+
+func _physics_process(delta):
 	var velocity = direction.normalized() * delta * speed
 	global_translate(velocity)
 

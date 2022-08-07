@@ -143,7 +143,8 @@ var priority_list = []
 var attack_tiles = []
 var attack_target = null
 var attack_wpn = null
-var range_max = 0
+var global_range_max = 0
+var global_range_min = 0
 var unit_list = []
 var enemies = []
 var friends = []
@@ -390,34 +391,43 @@ func setup(var my_arena):
 		sparks[spark].emitting = false
 	# Build weapon list
 	weapon_list.clear()
-	range_max = 0
+	global_range_max = 0
+	global_range_min = 999
 	if mechData.wpn_l != null:
-		if mechData.wpn_l.range_max > range_max:
-			range_max = mechData.wpn_l.range_max
+		if mechData.wpn_l.range_max > global_range_max:
+			global_range_max = mechData.wpn_l.range_max
+		if mechData.wpn_l.range_min < global_range_min:
+			global_range_min = mechData.wpn_l.range_min
 		weapon_list.append(mechData.wpn_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["obj"] = mech_parts.wpn_l[0].obj
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.wpn_r != null:
-		if mechData.wpn_r.range_max > range_max:
-			range_max = mechData.wpn_r.range_max
+		if mechData.wpn_r.range_max > global_range_max:
+			global_range_max = mechData.wpn_r.range_max
+		if mechData.wpn_r.range_min < global_range_min:
+			global_range_min = mechData.wpn_r.range_min
 		weapon_list.append(mechData.wpn_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["obj"] = mech_parts.wpn_r[0].obj
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
 	if mechData.pod_l != null:
-		if mechData.pod_l.range_max > range_max:
-			range_max = mechData.pod_l.range_max
+		if mechData.pod_l.range_max > global_range_max:
+			global_range_max = mechData.pod_l.range_max
+		if mechData.pod_l.range_min < global_range_min:
+			global_range_min = mechData.pod_l.range_min
 		weapon_list.append(mechData.pod_l.get_data())
 		weapon_list.back()["stability"] = mechData.arm_l.stability
 		weapon_list.back()["obj"] = mech_parts.pod_l[0].obj
 		weapon_list.back()["side"] = "left"
 		weapon_list.back()["active"] = true
 	if mechData.pod_r != null:
-		if mechData.pod_r.range_max > range_max:
-			range_max = mechData.pod_r.range_max
+		if mechData.pod_r.range_max > global_range_max:
+			global_range_max = mechData.pod_r.range_max
+		if mechData.pod_r.range_min < global_range_min:
+			global_range_min = mechData.pod_r.range_min
 		weapon_list.append(mechData.pod_r.get_data())
 		weapon_list.back()["stability"] = mechData.arm_r.stability
 		weapon_list.back()["obj"] = mech_parts.pod_r[0].obj
@@ -484,6 +494,8 @@ func update_threats(attacker, damage):
 # Update weapon availability based on weapon ammo or arm HP
 func update_wpn():
 	var hp_check = 0
+	global_range_max = 0
+	global_range_min = 999
 	for weapon in weapon_list:
 		if weapon.side == "left":
 			hp_check = armLHP
@@ -495,6 +507,11 @@ func update_wpn():
 				weapon.active = (weapon.ammo > 0)
 		else:
 			weapon.active = false
+		if weapon.active:
+			if weapon.range_max > global_range_max:
+				global_range_max = weapon.range_max
+			if weapon.range_min < global_range_min:
+				global_range_min = weapon.range_min
 
 # Get tiles in attack range
 func get_attack_tiles():
@@ -643,10 +660,17 @@ func think_move():
 				near_repair = item.curr_tile
 	
 	# Determine our AI weights
-	var aggression = ( float(bodyHP / mechData.body.hp) * 0.5 +
+	var aggression = 1.0
+	var hp_percent = ( float(bodyHP / mechData.body.hp) * 0.5 +
 		float(armLHP / mechData.arm_l.hp) * 0.2 +
 		float(armRHP / mechData.arm_r.hp) * 0.2 +
 		float(legsHP / mechData.legs.hp) * 0.1 )
+	if hp_percent > 0.6:
+		aggression = 1.0
+	elif hp_percent > 0.25:
+		aggression = 0.5
+	else:
+		aggression = 0.1
 	ai_weights.target_dist = aggression
 	ai_weights.target_range = aggression * 0.5
 	ai_weights.threat_dist = 0.0
@@ -679,7 +703,7 @@ func think_move():
 			# Can we shoot at this tile?
 			if tile.get_los(main_target):
 				goal_range = get_range(tile, main_target)
-				tile_value = clamp(1 - (goal_range / range_max), 0, 1)
+				tile_value = clamp(1 - (goal_range / global_range_max), 0, 1)
 				priority += tile_value * ai_weights.target_range
 		if main_threat != null:
 			# Distance from tile to main threat
@@ -689,7 +713,7 @@ func think_move():
 			# Can the threat shoot at this tile?
 			if !tile.get_los(main_threat):
 				goal_range = get_range(tile, main_threat)
-				tile_value = clamp(goal_range / range_max, 0, 1)
+				tile_value = clamp(goal_range / global_range_max, 0, 1)
 				priority += tile_value * ai_weights.threat_range
 		# Distance from tile to nearest repair kit
 		if near_repair != null:
