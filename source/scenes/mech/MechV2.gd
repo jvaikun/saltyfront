@@ -623,7 +623,8 @@ func think_move():
 				move_tiles.append(this_tile)
 	# Calculate threat and target levels for other units
 	var unit_dist = 0
-	var max_dist = 100 #move_range * 2
+	var max_dist = 100 
+	var near_dist = move_range * 2
 	for unit in unit_list:
 		if !unit.mech.is_dead:
 			unit_dist = get_distance(unit.mech.curr_tile)
@@ -639,51 +640,64 @@ func think_move():
 			unit.target += unit.target * clamp(1 - (unit_dist / max_dist), 0, 1)
 	# Main target position
 	var main_target = null
+	var target_near = false
 	enemies.sort_custom(CustomSort, "target")
 	main_target = enemies[0].mech.curr_tile
+	if is_instance_valid(main_target):
+		unit_dist = get_distance(main_target)
+		if unit_dist <= near_dist:
+			target_near = true
 	# Main threat position
 	var main_threat = null
+	var threat_near = false
 	enemies.sort_custom(CustomSort, "threat")
 	main_threat = enemies[0].mech.curr_tile
+	if is_instance_valid(main_threat):
+		unit_dist = get_distance(main_threat)
+		if unit_dist <= near_dist:
+			threat_near = true
 	# Closest friend position
 	var close_friend = null
 	friends.sort_custom(CustomSort, "threat")
 	close_friend = friends[0].mech.curr_tile
 	# Nearest repair kit position
-	var near_repair = null
+	var close_repair = null
 	var d_min = 999
 	for item in item_list:
 		if item.is_in_group("repair"):
 			var item_dist = get_distance(item.curr_tile)
 			if item_dist < d_min:
 				d_min = item_dist
-				near_repair = item.curr_tile
+				close_repair = item.curr_tile
 	
-	# Determine our AI weights
-	var aggression = 1.0
-	var hp_percent = ( float(bodyHP / mechData.body.hp) * 0.5 +
-		float(armLHP / mechData.arm_l.hp) * 0.2 +
-		float(armRHP / mechData.arm_r.hp) * 0.2 +
-		float(legsHP / mechData.legs.hp) * 0.1 )
-	if hp_percent > 0.6:
-		aggression = 1.0
-	elif hp_percent > 0.25:
-		aggression = 0.5
-	else:
-		aggression = 0.1
-	ai_weights.target_dist = aggression
-	ai_weights.target_range = aggression * 0.5
-	ai_weights.threat_dist = 0.0
-	ai_weights.threat_range = 0.0
-	if close_friend != null:
-		ai_weights.friend_dist = (int(armLHP <= 0) * 0.5) + (int(armRHP <= 0) * 0.5)
-	else:
-		ai_weights.friend_dist = 0.0
-	if near_repair != null:
-		ai_weights.repair = (int(armLHP <= 0) * 0.5) + (int(armRHP <= 0) * 0.5)
-		ai_weights.repair += (1.0 - aggression)
+	# Damage percentages
+	var body_pct = float(bodyHP / mechData.body.hp)
+	var armr_pct = float(armRHP / mechData.arm_r.hp)
+	var arml_pct = float(armLHP / mechData.arm_l.hp)
+	var legs_pct = float(legsHP / mechData.legs.hp)
+	var total_pct = body_pct * 0.5 + armr_pct * 0.2 + arml_pct * 0.2 + legs_pct * 0.1
+	
+	if close_repair != null:
+		ai_weights.repair = int(armr_pct > 0.25) * 0.5 + int(arml_pct > 0.25) * 0.5
+		ai_weights.repair += (1.0 - total_pct)
 	else:
 		ai_weights.repair = 0.0
+	
+	if target_near:
+		ai_weights.target_dist = 0.5
+		ai_weights.target_range = 1.0
+		ai_weights.friend_dist = 0.0
+	else:
+		ai_weights.target_dist = 1.0
+		ai_weights.target_range = 0.0
+		ai_weights.friend_dist = 0.5
+	
+	if threat_near:
+		ai_weights.threat_dist = 0.0
+		ai_weights.threat_range = 0.0
+	else:
+		ai_weights.threat_dist = 0.0
+		ai_weights.threat_range = 0.0
 	
 	# Go through movement squares and calculate position values
 	update_wpn()
@@ -702,8 +716,11 @@ func think_move():
 			priority += tile_value * ai_weights.target_dist
 			# Can we shoot at this tile?
 			if tile.get_los(main_target):
+				tile_value = 0
 				goal_range = get_range(tile, main_target)
-				tile_value = clamp(1 - (goal_range / global_range_max), 0, 1)
+				for weapon in weapon_list:
+					if weapon.active and (goal_range >= weapon.range_min) and (goal_range <= weapon.range_max):
+						tile_value = clamp(1 - (goal_range / weapon.range_max), 0, 1) * 0.25
 				priority += tile_value * ai_weights.target_range
 		if main_threat != null:
 			# Distance from tile to main threat
@@ -711,16 +728,17 @@ func think_move():
 			tile_value = clamp(goal_dist / max_dist, 0, 1)
 			priority += tile_value * ai_weights.threat_dist
 			# Can the threat shoot at this tile?
-			if !tile.get_los(main_threat):
-				goal_range = get_range(tile, main_threat)
-				tile_value = clamp(goal_range / global_range_max, 0, 1)
-				priority += tile_value * ai_weights.threat_range
+			if global_range_max != 0:
+				if !tile.get_los(main_threat):
+					goal_range = get_range(tile, main_threat)
+					tile_value = clamp(goal_range / global_range_max, 0, 1)
+					priority += tile_value * ai_weights.threat_range
 		# Distance from tile to nearest repair kit
-		if near_repair != null:
-			if tile == near_repair:
+		if close_repair != null:
+			if tile == close_repair:
 				priority += ai_weights.repair
 			else:
-				goal_dist = get_distance(near_repair)
+				goal_dist = get_distance(close_repair)
 				tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
 				priority += tile_value * ai_weights.repair
 		# Distance to closest fighting ally
