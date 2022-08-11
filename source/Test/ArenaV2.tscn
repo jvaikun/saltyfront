@@ -1,0 +1,106 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://test/ArenaV2.gd" type="Script" id=1]
+[ext_resource path="res://scenes/maps/Map000.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Arena/MapCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Arena/target.png" type="Texture" id=4]
+[ext_resource path="res://Arena/move.png" type="Texture" id=5]
+[ext_resource path="res://Arena/select.png" type="Texture" id=6]
+[ext_resource path="res://Arena/target2.png" type="Texture" id=7]
+[ext_resource path="res://test/MechActor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Arena/move2.png" type="Texture" id=9]
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="PlaneMesh" id=11]
+
+[sub_resource type="AnimatedTexture" id=6]
+flags = 19
+frames = 2
+frame_0/texture = ExtResource( 5 )
+frame_1/texture = ExtResource( 9 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = SubResource( 6 )
+
+[sub_resource type="PlaneMesh" id=13]
+
+[sub_resource type="AnimatedTexture" id=9]
+flags = 19
+frames = 2
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+flags_unshaded = true
+flags_disable_ambient_light = true
+albedo_texture = SubResource( 9 )
+
+[sub_resource type="PlaneMesh" id=15]
+
+[node name="ArenaV2" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="MapCamera" parent="." instance=ExtResource( 3 )]
+
+[node name="NavPoints" type="Spatial" parent="."]
+
+[node name="Markers" type="Spatial" parent="."]
+
+[node name="Select" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 10 )
+mesh = SubResource( 11 )
+
+[node name="Move" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 12 )
+mesh = SubResource( 13 )
+
+[node name="Target" type="MeshInstance" parent="Markers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
+visible = false
+material_override = SubResource( 14 )
+mesh = SubResource( 15 )
+
+[node name="Mechs" type="Spatial" parent="."]
+
+[node name="Mech1" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 17 )
+
+[node name="Mech2" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 19 )
+
+[node name="Mech3" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 21 )
+
+[node name="Mech4" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 23 )
+
+[node name="Mech5" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, 17 )
+
+[node name="Mech6" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, 19 )
+
+[node name="Mech7" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, 21 )
+
+[node name="Mech8" parent="Mechs" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, 23 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="Map" parent="." instance=ExtResource( 2 )]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Arena/Arena.gd" type="Script" id=1]
 [ext_resource path="res://Arena/target.png" type="Texture" id=2]
@@ -29,7 +29,7 @@ albedo_texture = ExtResource( 5 )
 
 [sub_resource type="PlaneMesh" id=5]
 
-[sub_resource type="AnimatedTexture" id=6]
+[sub_resource type="AnimatedTexture" id=18]
 flags = 19
 frames = 2
 frame_0/texture = ExtResource( 4 )
@@ -40,11 +40,11 @@ frame_1/delay_sec = 0.0
 flags_transparent = true
 flags_unshaded = true
 flags_disable_ambient_light = true
-albedo_texture = SubResource( 6 )
+albedo_texture = SubResource( 18 )
 
 [sub_resource type="PlaneMesh" id=8]
 
-[sub_resource type="AnimatedTexture" id=9]
+[sub_resource type="AnimatedTexture" id=19]
 flags = 19
 frames = 2
 frame_0/texture = ExtResource( 2 )
@@ -55,16 +55,9 @@ frame_1/delay_sec = 0.0
 flags_transparent = true
 flags_unshaded = true
 flags_disable_ambient_light = true
-albedo_texture = SubResource( 9 )
+albedo_texture = SubResource( 19 )
 
 [sub_resource type="PlaneMesh" id=11]
-
-[sub_resource type="PrismMesh" id=12]
-
-[sub_resource type="SpatialMaterial" id=13]
-flags_unshaded = true
-flags_disable_ambient_light = true
-albedo_color = Color( 0, 1, 0, 1 )
 
 [sub_resource type="Animation" id=14]
 tracks/0/type = "value"
@@ -215,27 +208,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 visible = false
 material_override = SubResource( 4 )
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="Move" type="MeshInstance" parent="Markers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 visible = false
 material_override = SubResource( 7 )
 mesh = SubResource( 8 )
-material/0 = null
 
 [node name="Target" type="MeshInstance" parent="Markers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 visible = false
 material_override = SubResource( 10 )
 mesh = SubResource( 11 )
-material/0 = null
-
-[node name="North" type="MeshInstance" parent="Markers"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 0.1, 0, -1, -4.37114e-09, 0, 0, -1 )
-visible = false
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
 
 [node name="MapUI" type="Control" parent="."]
 anchor_right = 1.0

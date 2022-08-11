@@ -5,9 +5,11 @@
 [node name="MapCamera" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Pivot" type="Spatial" parent="."]
+[node name="Yaw" type="Spatial" parent="."]
 
-[node name="Camera" type="Camera" parent="Pivot"]
+[node name="Pitch" type="Spatial" parent="Yaw"]
+
+[node name="Camera" type="Camera" parent="Yaw/Pitch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
 projection = 1
 size = 15.0

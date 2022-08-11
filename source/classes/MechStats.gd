@@ -96,6 +96,10 @@ func get_statblock():
 	pass
 
 
+func update_weapons():
+	pass
+
+
 func import_data():
 	pass
 

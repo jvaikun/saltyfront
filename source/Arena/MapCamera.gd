@@ -2,6 +2,10 @@ extends Spatial
 
 # Constants
 enum CamState {NORMAL, DEBUG, PHOTO}
+
+const ROTATION_SPEED = 6.0
+const MOVEMENT_SPEED = 6.0
+const TWEEN_TIME = 3.0
 const configs = [
 	{ # NORMAL state
 		"zoom_min":5.0, 
@@ -28,66 +32,65 @@ const configs = [
 		"base_yaw":45.0
 	},
 ]
-const ROTATION_SPEED = 6.0
-const MOVEMENT_SPEED = 6.0
-const TWEEN_TIME = 3.0
-const TWEEN_TIME_FAST = 2.0
 
 # Accessor vars
-onready var pivot = $Pivot
-onready var cam = $Pivot/Camera
+onready var yaw_node = $Yaw
+onready var pitch_node = $Yaw/Pitch
+onready var cam = $Yaw/Pitch/Camera
 
 # Camera variables
 var cam_mode = CamState.NORMAL setget set_mode
+var yaw = configs[cam_mode].base_yaw setget set_yaw
+var pitch = configs[cam_mode].base_pitch setget set_pitch
 var cam_above = Vector3(0, 25, 0)
 var origin = Vector3.ZERO
-var pitch = configs[cam_mode].base_pitch
-var yaw = configs[cam_mode].base_yaw
 var tween_done = true
-var cam_effect = null
+
 
 func set_mode(value):
-	cam.translation = Vector3(0, 0, configs[value].arm_length)
-	cam.size = configs[value].zoom_max
-	pitch = configs[value].base_pitch
-	yaw = configs[value].base_yaw
 	cam_mode = value
-	set_angles()
+	cam.translation = Vector3(0, 0, configs[cam_mode].arm_length)
+	cam.size = configs[cam_mode].zoom_max
+	self.yaw = configs[cam_mode].base_yaw
+	self.pitch = configs[cam_mode].base_pitch
+
+
+func set_yaw(value):
+	yaw = value
+	yaw_node.rotation_degrees.y = yaw
+
+
+func set_pitch(value):
+	pitch = value
+	pitch_node.rotation_degrees.x = pitch
+
 
 func _ready():
 	var err = $Tween.connect("tween_all_completed", self, "move_done")
 	if err != OK:
 		print("Error connecting camera to camera tween!")
-	cam.size = configs[cam_mode].zoom_max
-	set_angles()
+	self.cam_mode = CamState.NORMAL
+
 
 func intro():
 	cam.size = configs[cam_mode].zoom_max
 	tween_done = false
-	var rotate_to = self.rotation_degrees
-	rotate_to.y += 360
-	var time = TWEEN_TIME
-	if GameData.fast_combat:
-		time = TWEEN_TIME_FAST
 	$Tween.interpolate_property(self, "translation",
-	origin + cam_above, origin, time)
+	origin + cam_above, origin, TWEEN_TIME)
 	$Tween.start()
+
 
 func outro():
 	cam.size = configs[cam_mode].zoom_max
 	tween_done = false
-	var rotate_to = self.rotation_degrees
-	rotate_to.y += 360
-	var time = TWEEN_TIME
-	if GameData.fast_combat:
-		time = TWEEN_TIME_FAST
 	$Tween.interpolate_property(self, "translation",
-	origin, origin + cam_above, time)
+	origin, origin + cam_above, TWEEN_TIME)
 	$Tween.start()
+
 
 func move_done():
 	tween_done = true
-	set_angles()
+
 
 func follow_mech(mech):
 	if tween_done:
@@ -106,21 +109,6 @@ func follow_mech(mech):
 			cam.size, next_zoom, 0.25)
 		$ZoomTween.resume_all()
 
-
-func set_angles():
-	rotation_degrees.y = yaw
-	pivot.rotation_degrees.x = pitch
-
-func zero_angles():
-	yaw = 0
-	pitch = 0
-	set_angles()
-
-func reset_angles():
-	cam.translation = Vector3(0, 0, configs[cam_mode].arm_length)
-	pitch = configs[cam_mode].base_pitch
-	yaw = configs[cam_mode].base_yaw
-	set_angles()
 
 func get_tile():
 	var tap = get_viewport().get_mouse_position()

@@ -6,7 +6,6 @@ func hide():
 	$Select.visible = false
 	$Move.visible = false
 	$Target.visible = false
-	$North.visible = false
 
 func update_target(mech):
 	focus_mech = mech

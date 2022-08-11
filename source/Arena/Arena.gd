@@ -91,7 +91,7 @@ const msg_obj = preload("res://ui/DialogText.tscn")
 const obj_explosion = preload("res://Effects/Explosion.tscn")
 
 # Accessor variables for child nodes
-onready var mapCam = $Camera
+onready var map_cam = $Camera
 
 # Accessor vars for UI elements
 onready var map_info = $MapUI/TopBar/MapInfo/InfoLabel
@@ -165,12 +165,12 @@ func _ready():
 		wait_time_fast = config.get_value("mech", "wait_time_fast", 0)
 	else:
 		print("Error loading map config, using defaults...")
-	$Debug/Vectors.camera = $Camera.cam
+	$Debug/Vectors.camera = map_cam.cam
 	if GameData.debug_mode:
-		mapCam.cam_mode = mapCam.CamState.DEBUG
+		map_cam.cam_mode = map_cam.CamState.DEBUG
 		$Debug/Vectors.visible = true
 	else:
-		mapCam.cam_mode = mapCam.CamState.NORMAL
+		map_cam.cam_mode = map_cam.CamState.NORMAL
 		$Debug/Vectors.visible = false
 	var file = File.new()
 	# Load pilot chatter
@@ -185,21 +185,21 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_page_up"):
 		GameData.debug_mode = !GameData.debug_mode
 		if GameData.debug_mode:
-			mapCam.cam_mode = mapCam.CamState.DEBUG
+			map_cam.cam_mode = map_cam.CamState.DEBUG
 			$Debug/Vectors.visible = true
 		else:
-			mapCam.cam_mode = mapCam.CamState.NORMAL
+			map_cam.cam_mode = map_cam.CamState.NORMAL
 			$Debug/Vectors.visible = false
 	if Input.is_action_just_pressed("ui_home"):
-		if mapCam.cam_mode == mapCam.CamState.PHOTO:
-			mapCam.cam_mode = mapCam.CamState.NORMAL
+		if map_cam.cam_mode == map_cam.CamState.PHOTO:
+			map_cam.cam_mode = map_cam.CamState.NORMAL
 		else:
-			mapCam.cam_mode = mapCam.CamState.PHOTO
+			map_cam.cam_mode = map_cam.CamState.PHOTO
 	match state:
 		MapState.IDLE:
 			pass
 		MapState.INTRO:
-			if mapCam.tween_done:
+			if map_cam.tween_done:
 				nav_update()
 				turns_queue.front().reset_acts()
 				turns_queue.front().item_list = $Items.get_children()
@@ -211,12 +211,12 @@ func _process(delta):
 				check_win()
 			if turns_queue.front().turn_finished:
 				next_turn()
-			mapCam.follow_mech(turns_queue.front())
+			map_cam.follow_mech(turns_queue.front())
 			idle_timer += delta
 			$Markers.update_target(turns_queue.front())
 			ui_update()
 		MapState.OUTRO:
-			if mapCam.tween_done:
+			if map_cam.tween_done:
 				state = MapState.IDLE
 				var hp_list = []
 				for mech in $Mechs.get_children():
@@ -766,11 +766,11 @@ func ui_update():
 				info_mini.focus = false
 			info_mini.update_data()
 		if $MapUI/SkillTag.visible && is_instance_valid($MapUI/SkillTag.focus_mech):
-			$MapUI/SkillTag.rect_position = $Camera.cam.unproject_position($MapUI/SkillTag.focus_mech.translation + Vector3.UP)
+			$MapUI/SkillTag.rect_position = map_cam.cam.unproject_position($MapUI/SkillTag.focus_mech.translation + Vector3.UP)
 		for tag in mech_tags:
 			if is_instance_valid(tag):
 				if !tag.focus_mech.is_dead:
-					var tag_pos = $Camera.cam.unproject_position(tag.focus_mech.global_transform.origin + 
+					var tag_pos = map_cam.cam.unproject_position(tag.focus_mech.global_transform.origin + 
 					Vector3(0, 1.5, 0))
 					tag.rect_position = tag_pos
 				else:
@@ -829,7 +829,7 @@ func check_win():
 		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", msg_bot)
 		$MapUI/AnimationPlayer.play_backwards("intro")
-		mapCam.outro()
+		map_cam.outro()
 		self.state = MapState.OUTRO
 		end_match = true
 	elif teamInfo[1].size == 0:
@@ -838,7 +838,7 @@ func check_win():
 		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", msg_bot)
 		$MapUI/AnimationPlayer.play_backwards("intro")
-		mapCam.outro()
+		map_cam.outro()
 		self.state = MapState.OUTRO
 		end_match = true
 	# Abnormal match end: All mechs disarmed, turn timeout, idle timeout
@@ -877,7 +877,7 @@ func check_win():
 		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", "WINNER BY DECISION")
 		$MapUI/AnimationPlayer.play_backwards("intro")
-		mapCam.outro()
+		map_cam.outro()
 		self.state = MapState.OUTRO
 		end_match = true
 	if end_match:
@@ -1200,7 +1200,7 @@ func load_map(tournament):
 	var world_min = arena_map.tiles.map_to_world(map_min.x, map_min.y, map_min.z)
 	var world_max = arena_map.tiles.map_to_world(map_max.x, map_max.y, map_max.z)
 	$Debug/Vectors.map_grid = nav_grid
-	mapCam.origin = 0.5 * (world_min + world_max)
+	map_cam.origin = 0.5 * (world_min + world_max)
 	deploy_tiles.clear()
 	for i in tournament.current_match.teams.size():
 		deploy_tiles.append([])
@@ -1239,12 +1239,12 @@ func load_map(tournament):
 		elif mech.team == tournament.current_match.teams[1].index:
 			team_info2.get_child(mech.num).focus_mech = mech
 	ui_update()
-	mapCam.translation = mapCam.origin + Vector3(0, 25, 0)
+	map_cam.translation = map_cam.origin + Vector3(0, 25, 0)
 	if map_props.light == "Night":
 		mech_pov.environment = load("res://scenes/maps/env_nightvision.tres")
 	else:
 		mech_pov.environment = null
-	$Camera/Pivot/Camera.current = true
+	map_cam.cam.current = true
 	$MapUI/Tags.visible = false
 	$MapUI.visible = false
 
@@ -1252,5 +1252,5 @@ func start_match():
 	$MapUI.visible = true
 	$MapUI/IntroOutro.start()
 	$MapUI/AnimationPlayer.play("intro")
-	mapCam.intro()
+	map_cam.intro()
 	state = MapState.INTRO
