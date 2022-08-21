@@ -1,5 +1,5 @@
 extends Reference
-class_name MechStats
+class_name MechData
 
 # Mech primary stats
 var id : int = 0
@@ -25,12 +25,21 @@ var move_range : int = 0 setget ,get_move
 var jump_height : int = 0 setget ,get_jump
 var global_range_min : int = 0
 var global_range_max : int = 0
+var mech_actor : KinematicBody
 
 # Weapon and skill lists
 var action_list : Array = []
+var mech_stats
+var move_target
+var attack_target : KinematicBody
+var is_dead : bool = false
+var is_stunned : bool = false
+var dont_act : bool = false
+var dont_move : bool = false
 
 # Stat tracking vars
 var team : int = 0
+var num : int = 0
 var kill : int = 0
 var dead : int = 0
 var dmg_in : int = 0

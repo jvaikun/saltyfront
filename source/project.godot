@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://classes/MechBody.gd"
 }, {
 "base": "Reference",
+"class": "MechData",
+"language": "GDScript",
+"path": "res://classes/MechData.gd"
+}, {
+"base": "Reference",
 "class": "MechLegs",
 "language": "GDScript",
 "path": "res://classes/MechLegs.gd"
@@ -86,6 +91,7 @@ _global_script_class_icons={
 "ImageCache": "",
 "MechArm": "",
 "MechBody": "",
+"MechData": "",
 "MechLegs": "",
 "MechPack": "",
 "MechPilot": "",
@@ -155,4 +161,5 @@ file_logging/enable_file_logging=true
 
 [rendering]
 
+gles3/shaders/shader_compilation_mode=2
 environment/default_environment="res://default_env.tres"

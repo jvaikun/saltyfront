@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scenes/hangar/robot_arm.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/hangar/mesh/robot_arm.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/hangar/RobotArm.gd" type="Script" id=2]
-[ext_resource path="res://scenes/hangar/tex_robotarm.png" type="Texture" id=3]
+[ext_resource path="res://scenes/hangar/texture/tex_robotarm.png" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=15]
 flags_vertex_lighting = true

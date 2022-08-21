@@ -1,5 +1,7 @@
 extends Spatial
 
+const cam_home_workshop = {"pos":Vector3(-2.5, 2, 17), "rot":Vector3(0, -15, 0)}
+const cam_home_hangar = {"pos":Vector3(0, 3, -0.5), "rot":Vector3(-15, 0, 0)}
 const cam_home = {"pos":Vector3(0, 3, 9), "rot":Vector3(-15, 0, 0)}
 const cam_points = [
 	{"pos":Vector3(-1, 2, 5), "rot":Vector3(-15, 90, 0)},
@@ -25,11 +27,17 @@ signal mechs_out
 
 
 func _ready():
+	if debug:
+		hangar_cam = $HangarCam
+		$HangarCam.translation = Vector3(0, 3, -0.5)
+		$HangarCam.rotation_degrees = Vector3(-15, 0, 0)
+	else:
+		hangar_cam = $HangarView/HangarCam
+		$AnimationPlayer.play("RESET")
 	for arm in arms_top:
 		arm.top = true
 	for light in $Lights.get_children():
 		light.get_node("AnimationPlayer").play("normal")
-	$AnimationPlayer.play("RESET")
 	for mech in (team1 + team2):
 		mech.get_node("mech_frame/AnimationPlayer").stop()
 	if debug:
@@ -75,15 +83,15 @@ func update_hp(hp_list):
 
 func move_out():
 	$CamTween.interpolate_property(hangar_cam, "translation", 
-	hangar_cam.translation, cam_home.pos, 0.5)
+	hangar_cam.translation, cam_home_hangar.pos, 0.5)
 	$CamTween.interpolate_property(hangar_cam, "rotation_degrees", 
-	hangar_cam.rotation_degrees, cam_home.rot, 0.5)
+	hangar_cam.rotation_degrees, cam_home_hangar.rot, 0.5)
 	$CamTween.start()
 	for light in $Lights.get_children():
 		light.get_node("AnimationPlayer").play("warning")
 	for arm in (arms_top + arms_side):
 		arm.reset_arm()
-	$AnimationPlayer.play("door_open")
+	$AnimationPlayer.play("hangar_open")
 	yield($AnimationPlayer, "animation_finished")
 	for mech in (team1 + team2):
 		mech.get_node("mech_frame/AnimationPlayer").play("walk")

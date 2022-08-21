@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/robot_arm.glb-9f567fb35b869241fa28e4e75153b275.scn"
+path="res://.import/robot_arm.glb-cce8d6202b37bdb8942111e9fc78222b.scn"
 
 [deps]
 
-source_file="res://scenes/hangar/robot_arm.glb"
-dest_files=[ "res://.import/robot_arm.glb-9f567fb35b869241fa28e4e75153b275.scn" ]
+source_file="res://scenes/hangar/mesh/robot_arm.glb"
+dest_files=[ "res://.import/robot_arm.glb-cce8d6202b37bdb8942111e9fc78222b.scn" ]
 
 [params]
 

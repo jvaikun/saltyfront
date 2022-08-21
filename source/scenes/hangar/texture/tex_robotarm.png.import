@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/tex_door.png-fef09b2a22d6c2dcf8b0347ed76fc0df.s3tc.stex"
-path.etc2="res://.import/tex_door.png-fef09b2a22d6c2dcf8b0347ed76fc0df.etc2.stex"
+path.s3tc="res://.import/tex_robotarm.png-0122d19fcb00cd9f3886246937a85183.s3tc.stex"
+path.etc2="res://.import/tex_robotarm.png-0122d19fcb00cd9f3886246937a85183.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/hangar/tex_door.png"
-dest_files=[ "res://.import/tex_door.png-fef09b2a22d6c2dcf8b0347ed76fc0df.s3tc.stex", "res://.import/tex_door.png-fef09b2a22d6c2dcf8b0347ed76fc0df.etc2.stex" ]
+source_file="res://scenes/hangar/texture/tex_robotarm.png"
+dest_files=[ "res://.import/tex_robotarm.png-0122d19fcb00cd9f3886246937a85183.s3tc.stex", "res://.import/tex_robotarm.png-0122d19fcb00cd9f3886246937a85183.etc2.stex" ]
 
 [params]
 

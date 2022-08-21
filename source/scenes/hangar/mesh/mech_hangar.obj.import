@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/mech_hangar.obj-30621d6bdeda4bf4d0e349ceb3b7b4f1.mesh"
+
+[deps]
+
+files=[ "res://.import/mech_hangar.obj-30621d6bdeda4bf4d0e349ceb3b7b4f1.mesh" ]
+
+source_file="res://scenes/hangar/mesh/mech_hangar.obj"
+dest_files=[ "res://.import/mech_hangar.obj-30621d6bdeda4bf4d0e349ceb3b7b4f1.mesh", "res://.import/mech_hangar.obj-30621d6bdeda4bf4d0e349ceb3b7b4f1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

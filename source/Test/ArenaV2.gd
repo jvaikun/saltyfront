@@ -86,10 +86,43 @@ var map_props : Dictionary = {
 # Team variables
 var team_list : Array = []
 var turn_queue : Array = []
-var winTeam : int = 0
+var win_team : int = 0
 var mech_tags : Array = []
 var active_mech = null
 
+# Movement variables:
+var curr_tile = null
+var move_tiles = []
+var move_target = null
+var move_path = []
+# Format for map_grid entries: {index:{tile, neighbors[]}}
+var map_grid = {}
+# Format for nav_paths entries: {index:{root, distance}}
+var nav_paths = {}
+# Format for priority_list entries: [{tile, priority}]
+var priority_list = []
+
+# Attack/targeting variables
+var attack_tiles = []
+var attack_target = null
+var attack_wpn = null
+var global_range_max = 0
+var global_range_min = 0
+var unit_list = []
+var enemies = []
+var friends = []
+var weapon_list = []
+var item_list = []
+
+# Turn/action variables:
+var ai_weights = {
+	"target_dist":1, "target_range":0.5, 
+	"threat_dist":0, "threat_range":0, 
+	"friend_dist":0, "repair":0
+}
+var timer = 0
+var effects = []
+var step = 0
 
 # Custom sort class for sorting list vars
 class CustomSort:
@@ -124,32 +157,34 @@ class CustomSort:
 # --- REMOVE WHEN DEPLOYING ---
 func roll_stats(mech):
 	# Create new mech stat block
-	var stats = MechStats.new()
-	stats.id = 0
-	stats.pilot = PartDB.drone["0"]
+	var mech_data = MechData.new()
+	mech_data.id = 0
+	mech_data.pilot = PartDB.drone["0"]
 	var partSet = str(randi() % PartDB.body.size())
-	stats.body = PartDB.body[partSet]
-	stats.arm_r = PartDB.arm[partSet]
-	stats.arm_l = PartDB.arm[partSet]
-	stats.legs = PartDB.legs[partSet]
+	mech_data.body = PartDB.body[partSet]
+	mech_data.arm_r = PartDB.arm[partSet]
+	mech_data.arm_l = PartDB.arm[partSet]
+	mech_data.legs = PartDB.legs[partSet]
 	var wpnSet = str(randi() % PartDB.weapon.size())
-	stats.wpn_r = PartDB.weapon[wpnSet]
-	stats.wpn_l = PartDB.weapon[wpnSet]
+	mech_data.wpn_r = PartDB.weapon[wpnSet]
+	mech_data.wpn_l = PartDB.weapon[wpnSet]
 	var podSet = str(randi() % PartDB.pod.size())
-	stats.pod_r = PartDB.pod[podSet]
-	stats.pod_l = PartDB.pod[podSet]
-	stats.pack = PartDB.pack[str(randi() % PartDB.pack.size())]
-	# Attach stat block to mech
-	mech.mech_stats = stats
-	mech.setup()
+	mech_data.pod_r = PartDB.pod[podSet]
+	mech_data.pod_l = PartDB.pod[podSet]
+	mech_data.pack = PartDB.pack[str(randi() % PartDB.pack.size())]
+	mech_data.mech_actor = mech
+	turn_queue.append(mech_data)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	turn_queue = $Mechs.get_children()
+	load_map()
+	var mech_list = $Mechs.get_children()
 	for i in 2:
 		for j in 4:
-			roll_stats(turn_queue[i*4 + j])
+			roll_stats(mech_list[i*4 + j])
+			turn_queue[i*4 + j].team = i
+			mech_list[i*4 + j].connect("turn_done", self, "next_turn")
 	start_match()
 
 
@@ -157,6 +192,7 @@ func _ready():
 func _process(_delta):
 	if is_instance_valid(active_mech):
 		map_cam.follow_mech(active_mech)
+	update_markers()
 
 
 # --- MAP ---
@@ -195,7 +231,7 @@ func load_map():
 					clear = false
 			if clear:
 				var nav_inst = nav_obj.instance()
-				$Nav.add_child(nav_inst)
+				$NavPoints.add_child(nav_inst)
 				nav_inst.index = str(curr_index)
 				curr_index += 1
 				nav_inst.grid_pos = coord
@@ -210,9 +246,9 @@ func load_map():
 	var to = Vector3.ZERO
 	var space_state
 	var raycast
-	for point in $Nav.get_children():
+	for point in $NavPoints.get_children():
 		nav_points[point.index] = {"point":point, "neighbors":[], "root": null, "distance": 0}
-		for n_point in $Nav.get_children():
+		for n_point in $NavPoints.get_children():
 			var diff = n_point.translation - point.translation
 			if (abs(diff.x) == TILE_WIDTH && diff.z == 0) || (abs(diff.z) == TILE_WIDTH && diff.x == 0):
 				from = point.translation + Vector3.UP
@@ -244,14 +280,16 @@ func clear_map():
 
 # --- TURNS ---
 func start_match():
-	active_mech = turn_queue.front()
+	active_mech = turn_queue.front().mech_actor
+	active_mech.move()
 
 
 func next_turn():
 	turn_queue.push_back(turn_queue.pop_front())
 	while turn_queue.front().is_dead:
 		turn_queue.push_back(turn_queue.pop_front())
-	active_mech = turn_queue.front()
+	active_mech = turn_queue.front().mech_actor
+	active_mech.move()
 
 
 func update_markers():
@@ -337,8 +375,6 @@ func get_range(from, to):
 
 func get_distance(tile):
 	var d_min = 999.0
-	var map_grid = []
-	var nav_paths = []
 	for n_index in map_grid[tile.index].neighbors:
 		if nav_paths[n_index].distance < d_min && nav_paths[n_index].distance > 0:
 			d_min = float(nav_paths[n_index].distance)

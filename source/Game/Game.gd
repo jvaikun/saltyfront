@@ -151,12 +151,15 @@ func _process(delta):
 		ping_timer += delta
 		if ping_timer >= 150:
 			ping_timer = 0
-			chatbot.send("PING\r\n")
-			if got_pong:
-				got_pong = false
-			else:
-				missed_pongs += 1
-				print_debug(str(missed_pongs) + " missed pongs")
+			if chatbot.websocket.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED:
+				chatbot.send("PING\r\n")
+				if got_pong:
+					got_pong = false
+				else:
+					missed_pongs += 1
+					print_debug(str(missed_pongs) + " missed pongs")
+			elif chatbot.websocket.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED:
+				connect_chat()
 	# Run state machine
 	match state:
 		GameState.START:

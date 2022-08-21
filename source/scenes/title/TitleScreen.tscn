@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/fonts/font_square_mini.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/title/TitleScreen.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/fonts/ui_font_terminal.tres" type="DynamicFont" id=5]
 [ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=6]
-[ext_resource path="res://ui/OverlayCRT.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -394,8 +393,6 @@ grow_horizontal = 2
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "Directory: "
-
-[node name="OverlayCRT" parent="." instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="MainCont/Title/MainGame" to="." method="_on_MainGame_pressed"]
 [connection signal="pressed" from="MainCont/Title/TestRoom" to="." method="_on_TestRoom_pressed"]
