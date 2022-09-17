@@ -13,7 +13,7 @@
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("HangarCam:transform")
+tracks/0/path = NodePath("HangarView/HangarCam:transform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -299,18 +299,18 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "workshop_out"
-length = 2.0
+length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("HangarCam:transform")
+tracks/0/path = NodePath("HangarView/HangarCam:transform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 ), Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, -0.5 ) ]
+"values": [ Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9 ), Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, -0.5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("DoorL2:translation")
@@ -319,7 +319,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1.5, 0.2 ), Vector3( 3, 1.5, 0.15 ) ]
@@ -331,7 +331,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( -1, 1.5, 0.2 ), Vector3( -3, 1.5, 0.15 ) ]
@@ -346,7 +346,6 @@ size = Vector2( 2, 3 )
 
 [node name="Hangar" type="Spatial"]
 script = ExtResource( 4 )
-debug = true
 
 [node name="CamTween" type="Tween" parent="."]
 
@@ -575,10 +574,10 @@ transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.742
 [node name="HangarSign" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -18.2 )
 
-[node name="HangarCam" type="Camera" parent="."]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 )
-environment = ExtResource( 9 )
-
 [node name="HangarView" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
 render_target_v_flip = true
+
+[node name="HangarCam" type="Camera" parent="HangarView"]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 )
+environment = ExtResource( 9 )

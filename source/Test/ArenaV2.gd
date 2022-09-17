@@ -70,6 +70,9 @@ const map_lights = {
 # Accessor variables for child nodes
 onready var map_cam = $MapCamera
 
+# General variables
+export var debug : bool = false
+
 # Map variables
 var arena_map = null
 var deploy_points : Array = []
@@ -91,14 +94,9 @@ var mech_tags : Array = []
 var active_mech = null
 
 # Movement variables:
-var curr_tile = null
 var move_tiles = []
 var move_target = null
 var move_path = []
-# Format for map_grid entries: {index:{tile, neighbors[]}}
-var map_grid = {}
-# Format for nav_paths entries: {index:{root, distance}}
-var nav_paths = {}
 # Format for priority_list entries: [{tile, priority}]
 var priority_list = []
 
@@ -176,6 +174,7 @@ func roll_stats(mech):
 	turn_queue.append(mech_data)
 
 
+# --- MAIN FUNCTIONS ---
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_map()
@@ -184,18 +183,21 @@ func _ready():
 		for j in 4:
 			roll_stats(mech_list[i*4 + j])
 			turn_queue[i*4 + j].team = i
+			mech_list[i*4 + j].connect("move_done", self, "think_act")
 			mech_list[i*4 + j].connect("turn_done", self, "next_turn")
+	yield(get_tree(), "idle_frame")
+	map_cam.cam_mode = map_cam.CamState.DEBUG
 	start_match()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if is_instance_valid(active_mech):
-		map_cam.follow_mech(active_mech)
+#	if is_instance_valid(active_mech.mech_actor):
+#		map_cam.follow_mech(active_mech.mech_actor)
 	update_markers()
 
 
-# --- MAP ---
+# --- MAP FUNCTIONS ---
 func load_map():
 	arena_map = $Map
 	var map_min = Vector3.ZERO
@@ -203,11 +205,11 @@ func load_map():
 	
 	# Setup light direction and intensity
 	if is_instance_valid($Map/DirectionalLight):
-		$Map/DirectionalLight.light_energy = map_lights["Night"].energy
-		$Map/DirectionalLight.rotation_degrees.x = map_lights["Night"].angle
+		$Map/DirectionalLight.light_energy = map_lights["Dawn"].energy
+		$Map/DirectionalLight.rotation_degrees.x = map_lights["Dawn"].angle
 	# Load world environment
 	if is_instance_valid($Map/WorldEnvironment):
-		$Map/WorldEnvironment.environment = load(map_lights["Night"].env)
+		$Map/WorldEnvironment.environment = load(map_lights["Dawn"].env)
 	# Build list of navigation points
 	var curr_index = 0
 	for coord in arena_map.tiles.get_used_cells():
@@ -235,8 +237,8 @@ func load_map():
 				nav_inst.index = str(curr_index)
 				curr_index += 1
 				nav_inst.grid_pos = coord
-				nav_inst.base_move = tile_data[this_cell].move
-				nav_inst.move_cost = tile_data[this_cell].move
+				nav_inst.base_move = 2 #tile_data[this_cell].move
+				nav_inst.move_cost = 2 #tile_data[this_cell].move
 				nav_inst.translation = (
 					arena_map.tiles.map_to_world(coord.x, coord.y, coord.z) + 
 					Vector3(0, tile_height, 0))
@@ -261,9 +263,11 @@ func load_map():
 				raycast = space_state.intersect_ray(from, to, [], 1)
 				if raycast.empty():
 					nav_points[point.index].neighbors.append(n_point.index)
+		if randf() <= 0.3:
+			point.add_effect("burn")
 	var world_min = arena_map.tiles.map_to_world(map_min.x, map_min.y, map_min.z)
 	var world_max = arena_map.tiles.map_to_world(map_max.x, map_max.y, map_max.z)
-	map_cam.origin = 0.5 * (world_min + world_max)
+	map_cam.global_translation = 0.5 * (world_min + world_max)
 	nav_reset()
 
 
@@ -278,31 +282,210 @@ func clear_map():
 		item.queue_free()
 
 
-# --- TURNS ---
+# --- TURN AND ACTION FUNCTIONS ---
 func start_match():
-	active_mech = turn_queue.front().mech_actor
-	active_mech.move()
+	active_mech = turn_queue.front()
+	nav_update_positions()
+	update_lists()
+	think_move()
 
 
 func next_turn():
+	for point in $NavPoints.get_children():
+		point.proc_effects()
 	turn_queue.push_back(turn_queue.pop_front())
 	while turn_queue.front().is_dead:
 		turn_queue.push_back(turn_queue.pop_front())
-	active_mech = turn_queue.front().mech_actor
-	active_mech.move()
+	active_mech = turn_queue.front()
+	nav_reset()
+	nav_update_positions()
+	update_lists()
+	think_move()
+
+
+func update_lists():
+	for mech in turn_queue:
+		if mech != active_mech:
+			var info = {"mech":mech, "target":0.0, "threat":0.0}
+			if (mech.team == active_mech.team):
+				friends.append(info)
+			else:
+				enemies.append(info)
+	unit_list = friends + enemies
+
+
+func think_move():
+	move_target = null
+	# Don't do anything if stunned, dead, or move disabled
+	# Calculate paths from starting point and get movement tiles
+	for tile in move_tiles:
+		tile.unmark()
+	move_tiles.clear()
+	nav_calc_paths(active_mech.curr_point, active_mech)
+	var this_point = null
+	for index in nav_points:
+		this_point = nav_points[index]
+		# Tile available for standing and within move range
+		if this_point.distance <= active_mech.move_range && this_point.distance > 0:
+			if this_point.point.curr_mech == null:
+				this_point.point.can_move = true
+				move_tiles.append(this_point.point)
+	# Calculate threat and target levels for other units
+	var unit_dist = 0
+	var max_dist = 100 
+	var near_dist = active_mech.move_range * 2
+	for unit in unit_list:
+		if !unit.mech.is_dead:
+			unit_dist = get_distance(unit.mech.curr_point)
+			unit.threat = 0.0
+			unit.threat += unit.mech.get_hp_pct("arm_r") * 0.5
+			unit.threat += unit.mech.get_hp_pct("arm_l") * 0.5
+			unit.threat += unit.threat * clamp(1 - (unit_dist / max_dist), 0, 1)
+			unit.target = 0.0
+			unit.target += unit.mech.get_hp_pct("body") * 0.5
+			unit.target += unit.mech.get_hp_pct("arm_r") * 0.2
+			unit.target += unit.mech.get_hp_pct("arm_l") * 0.2
+			unit.target += unit.mech.get_hp_pct("legs") * 0.1
+			unit.target += unit.target * clamp(1 - (unit_dist / max_dist), 0, 1)
+	# Main target position
+	var main_target = null
+	var target_near = false
+	enemies.sort_custom(CustomSort, "target")
+	main_target = enemies[0].mech.curr_point
+	if is_instance_valid(main_target):
+		unit_dist = get_distance(main_target)
+		if unit_dist <= near_dist:
+			target_near = true
+	# Main threat position
+	var main_threat = null
+	var threat_near = false
+	enemies.sort_custom(CustomSort, "threat")
+	main_threat = enemies[0].mech.curr_point
+	if is_instance_valid(main_threat):
+		unit_dist = get_distance(main_threat)
+		if unit_dist <= near_dist:
+			threat_near = true
+	# Closest friend position
+	var close_friend = null
+	friends.sort_custom(CustomSort, "threat")
+	close_friend = friends[0].mech.curr_point
+	# Nearest repair kit position
+	var close_repair = null
+	var d_min = 999
+	for item in item_list:
+		if item.is_in_group("repair"):
+			var item_dist = get_distance(item.curr_tile)
+			if item_dist < d_min:
+				d_min = item_dist
+				close_repair = item.curr_tile
+	# Damage percentages
+	var total_pct = (active_mech.get_hp_pct("body") * 0.5 +
+		active_mech.get_hp_pct("arm_r") * 0.2 +
+		active_mech.get_hp_pct("arm_l") * 0.2 +
+		active_mech.get_hp_pct("legs") * 0.1)
+	if close_repair != null:
+		ai_weights.repair = (int(active_mech.get_hp_pct("arm_r") > 0.25) * 0.5 + 
+			int(active_mech.get_hp_pct("arm_l") > 0.25) * 0.5)
+		ai_weights.repair += (1.0 - total_pct)
+	else:
+		ai_weights.repair = 0.0
+	if target_near:
+		ai_weights.target_dist = 0.5
+		ai_weights.target_range = 1.0
+		ai_weights.friend_dist = 0.0
+	else:
+		ai_weights.target_dist = 1.0
+		ai_weights.target_range = 0.0
+		ai_weights.friend_dist = 0.5
+	if threat_near:
+		ai_weights.threat_dist = 0.0
+		ai_weights.threat_range = 0.0
+	else:
+		ai_weights.threat_dist = 0.0
+		ai_weights.threat_range = 0.0
+	# Go through movement squares and calculate position values
+	priority_list.clear()
+	var priority = 0
+	var goal_dist = 0
+	var goal_range = 0
+	var tile_value = 0
+	for tile in move_tiles:
+		priority = 0
+		nav_calc_paths(active_mech.curr_point, active_mech)
+		if main_target != null:
+			# Distance from tile to main target
+			goal_dist = get_distance(main_target)
+			tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+			priority += tile_value * ai_weights.target_dist
+			# Can we shoot at this tile?
+			if tile.get_los(main_target):
+				tile_value = 0
+				goal_range = get_range(tile, main_target)
+				for weapon in weapon_list:
+					if weapon.active and (goal_range >= weapon.range_min) and (goal_range <= weapon.range_max):
+						tile_value = clamp(1 - (goal_range / weapon.range_max), 0, 1) * 0.25
+				priority += tile_value * ai_weights.target_range
+		if main_threat != null:
+			# Distance from tile to main threat
+			goal_dist = get_distance(main_threat)
+			tile_value = clamp(goal_dist / max_dist, 0, 1)
+			priority += tile_value * ai_weights.threat_dist
+			# Can the threat shoot at this tile?
+			if global_range_max != 0:
+				if !tile.get_los(main_threat):
+					goal_range = get_range(tile, main_threat)
+					tile_value = clamp(goal_range / global_range_max, 0, 1)
+					priority += tile_value * ai_weights.threat_range
+		# Distance from tile to nearest repair kit
+		if close_repair != null:
+			if tile == close_repair:
+				priority += ai_weights.repair
+			else:
+				goal_dist = get_distance(close_repair)
+				tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+				priority += tile_value * ai_weights.repair
+		# Distance to closest fighting ally
+		if close_friend != null:
+			goal_dist = get_distance(close_friend)
+			tile_value = clamp(1 - (goal_dist / max_dist), 0, 1)
+			priority += tile_value * ai_weights.friend_dist
+		priority_list.append({"tile":tile, "priority":priority})
+	# If priority_list isn't empty, choose a move target, default to current tile if empty
+	if !priority_list.empty():
+		# Sort priority list, get max values
+		priority_list.sort_custom(CustomSort, "priority")
+		var max_list = []
+		for item in priority_list:
+			if item.priority == priority_list[0].priority:
+				max_list.append(item)
+		# Pick one of the max priority tiles, get the path to it
+		if max_list.size() == 1:
+			move_target = max_list[0].tile
+		else:
+			move_target = max_list[randi() % max_list.size()].tile
+	else:
+		move_target = active_mech.curr_point
+	#print("Think move")
+	active_mech.mech_actor.move(move_target)
+
+
+func think_act():
+	#print("Think act")
+	active_mech.mech_actor.act()
 
 
 func update_markers():
-	if is_instance_valid(active_mech):
-		$Markers/Select.translation = active_mech.translation + Vector3(0, 0.02, 0)
+	var this_actor = active_mech.mech_actor
+	if is_instance_valid(this_actor):
+		$Markers/Select.translation = this_actor.translation + Vector3(0, 0.02, 0)
 		$Markers/Select.visible = true
-		if is_instance_valid(active_mech.move_target):
-			$Markers/Move.translation = active_mech.move_target.translation + Vector3(0, 0.02, 0)
+		if is_instance_valid(move_target):
+			$Markers/Move.translation = move_target.translation + Vector3(0, 0.02, 0)
 			$Markers/Move.visible = true
 		else:
 			$Markers/Move.visible = false
-		if is_instance_valid(active_mech.attack_target):
-			$Markers/Target.translation = active_mech.attack_target.translation + Vector3(0, 0.02, 0)
+		if is_instance_valid(attack_target):
+			$Markers/Target.translation = attack_target.translation + Vector3(0, 0.02, 0)
 			$Markers/Target.visible = true
 		else:
 			$Markers/Target.visible = false
@@ -357,7 +540,10 @@ func nav_calc_paths(origin, mech):
 
 # Update positions of all objects in map
 func nav_update_positions():
-	pass
+	for mech in turn_queue:
+		mech.curr_point = mech.mech_actor.update_pos()
+	for item in $Items.get_children():
+		pass
 
 
 # Reset pathing variables (root and distance)
@@ -373,11 +559,11 @@ func get_range(from, to):
 	return (abs(to.grid_pos.x - from.grid_pos.x) + abs(to.grid_pos.z - from.grid_pos.z))
 
 
-func get_distance(tile):
+func get_distance(point):
 	var d_min = 999.0
-	for n_index in map_grid[tile.index].neighbors:
-		if nav_paths[n_index].distance < d_min && nav_paths[n_index].distance > 0:
-			d_min = float(nav_paths[n_index].distance)
+	for n_index in nav_points[point.index].neighbors:
+		if nav_points[n_index].distance < d_min && nav_points[n_index].distance > 0:
+			d_min = float(nav_points[n_index].distance)
 	return d_min
 
 

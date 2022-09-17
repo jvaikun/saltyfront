@@ -106,7 +106,8 @@ func _ready():
 	tournament.connect("update_stats", stats, "update_info")
 	tournament.connect("next_match", self, "start_transition", [GameState.PREFIGHT])
 	tournament.connect("next_tournament", self, "start_transition", [GameState.TOUR_END])
-	var _err = $Hangar.connect("mechs_out", self, "start_transition", [GameState.FIGHT])
+	var _err = $Hangar.connect("workshop_out", self, "start_transition", [GameState.PREFIGHT])
+	_err = $Hangar.connect("mechs_out", self, "start_transition", [GameState.FIGHT])
 	arena.connect("match_end", self, "end_match")
 	chatbot.connect("twitch_disconnected", self, "connect_chat")
 	chatbot.connect("unhandled_message", self, "twitch_message")
@@ -772,7 +773,7 @@ func mid_transition():
 		GameState.START:
 			did_comment = false
 			$UI.visible = true
-			$UI/Background.texture = tex_bg1
+			$UI/Background.texture = $Hangar/HangarView.get_texture() #tex_bg1
 			$UI/Background.visible = true
 			ui_signup.message.text = msg_signup % tournament.tour_count
 			ui_signup.counter.text = msg_signup_counter % [prep_timer]
@@ -784,6 +785,7 @@ func mid_transition():
 			$UI/TourStats.visible = false
 			$Transition/AnimationPlayer.play("door_open")
 		GameState.PREFIGHT:
+			$UI/SignupUI.modulate = Color(1, 1, 1, 1)
 			$UI.visible = true
 			$Hangar.load_mechs(tournament.current_match.teams)
 			$UI/Background.texture = $Hangar/HangarView.get_texture() #tex_bg2
@@ -894,7 +896,10 @@ func _on_Timer_timeout():
 				var this_corp = bet_ai.corps[corp]
 				this_corp.funds = stepify(rand_range(this_corp.budget[0], this_corp.budget[1]), this_corp.budget[2])
 			tournament.new_tournament()
-			start_transition(GameState.PREFIGHT)
+			$TweenUI.interpolate_property($UI/SignupUI, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0)
+			$TweenUI.start()
+			yield($TweenUI, "tween_all_completed")
+			$Hangar.workshop_out() #start_transition(GameState.PREFIGHT)
 		GameState.PREFIGHT:
 			if ui_bracket.visible:
 				ui_bracket.visible = false

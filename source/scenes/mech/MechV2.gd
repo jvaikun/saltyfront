@@ -3,8 +3,6 @@ extends KinematicBody
 enum MechState {READY, MOVE, ACTION, DONE, WAIT}
 
 const part_mat = preload("res://Parts/mech_base.material")
-const wpn_mat = preload("res://Parts/weapon.material")
-const wpn_tex = preload("res://Parts/wpn_tex0.png")
 const bullet_obj = preload("res://scenes/projectile/Bullet.tscn")
 const missile_obj = preload("res://scenes/projectile/MissileLarge.tscn")
 const obj_dmgtext = preload("res://Effects/DamageNum.tscn")
@@ -357,7 +355,9 @@ func setup(var my_arena):
 	# Set up new body parts
 	var part_set = "0"
 	var part_inst = null
-	var team_mat = load("res://Parts/team_" + str(team) + ".material")
+	var team_mat = load("res://Parts/team.material")
+	var temp_mat = null
+	#load("res://Parts/team_" + str(team) + ".material")
 	for part in mech_parts:
 		var this_part = mech_parts[part]
 		if part in ["wpn_r", "wpn_l"]:
@@ -376,8 +376,13 @@ func setup(var my_arena):
 				piece.obj = part_inst
 				part_inst.mesh = load(part_path + piece.model + part_set + ".obj")
 				part_inst.set_surface_material(0, part_mat)
+				temp_mat = part_inst.get_surface_material(0)
+				temp_mat.albedo_color = GameData.teamColors[team]
+				temp_mat = null
 				if piece.model in ["Torso", "ArmUp"]:
 					part_inst.set_surface_material(1, team_mat)
+					#temp_mat = part_inst.get_surface_material(1)
+					#temp_mat.albedo_color = GameData.teamColors[team]
 			if part in ["pod_r", "pod_l"]:
 				part_inst.translation += Vector3(0, 0.15, 0)
 			if piece.has("offset"):

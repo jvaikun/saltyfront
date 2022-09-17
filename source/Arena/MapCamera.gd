@@ -17,7 +17,7 @@ const configs = [
 	},
 	{ # DEBUG state
 		"zoom_min":20.0, 
-		"zoom_max":20.0,
+		"zoom_max":40.0,
 		"zoom_mod":1.5, 
 		"arm_length":50,
 		"base_pitch":-90.0,
@@ -42,6 +42,7 @@ onready var cam = $Yaw/Pitch/Camera
 var cam_mode = CamState.NORMAL setget set_mode
 var yaw = configs[cam_mode].base_yaw setget set_yaw
 var pitch = configs[cam_mode].base_pitch setget set_pitch
+var zoom = configs[cam_mode].zoom_max setget set_zoom
 var cam_above = Vector3(0, 25, 0)
 var origin = Vector3.ZERO
 var tween_done = true
@@ -63,6 +64,14 @@ func set_yaw(value):
 func set_pitch(value):
 	pitch = value
 	pitch_node.rotation_degrees.x = pitch
+	#pitch_node.rotation_degrees.x = clamp(cam_pivot.rotation_degrees.x, PITCH_MIN, PITCH_MAX)
+
+
+func set_zoom(value):
+	if cam.projection == Camera.PROJECTION_PERSPECTIVE:
+		cam.translation.z = clamp(value, configs[cam_mode].zoom_min, configs[cam_mode].zoom_max)
+	else:
+		cam.size = clamp(value, configs[cam_mode].zoom_min, configs[cam_mode].zoom_max)
 
 
 func _ready():

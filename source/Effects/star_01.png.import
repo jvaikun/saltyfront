@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/mech_santa.png-75f378d580a2316a08ee3560c30aa595.s3tc.stex"
-path.etc2="res://.import/mech_santa.png-75f378d580a2316a08ee3560c30aa595.etc2.stex"
+path.s3tc="res://.import/star_01.png-3b71c28bb9cc17431df753046918ef23.s3tc.stex"
+path.etc2="res://.import/star_01.png-3b71c28bb9cc17431df753046918ef23.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Parts/mech_santa.png"
-dest_files=[ "res://.import/mech_santa.png-75f378d580a2316a08ee3560c30aa595.s3tc.stex", "res://.import/mech_santa.png-75f378d580a2316a08ee3560c30aa595.etc2.stex" ]
+source_file="res://Effects/star_01.png"
+dest_files=[ "res://.import/star_01.png-3b71c28bb9cc17431df753046918ef23.s3tc.stex", "res://.import/star_01.png-3b71c28bb9cc17431df753046918ef23.etc2.stex" ]
 
 [params]
 

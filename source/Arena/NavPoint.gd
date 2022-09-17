@@ -1,4 +1,4 @@
-extends Spatial
+extends Area
 
 # Editor variables
 export var base_move : int = 1
@@ -12,7 +12,13 @@ var index : String = "0"
 var grid_pos : Vector3 = Vector3.ZERO
 var move_cost : int = 1
 var cover : float = 0.0
-var effects : Array = []
+var effects : Dictionary = {
+	"burn":{"turns":0, "instance":null},
+	"acid":{"turns":0, "instance":null},
+	"sludge":{"turns":0, "instance":null},
+	"smoke":{"turns":0, "instance":null},
+	"chaff":{"turns":0, "instance":null}
+	}
 var curr_mech = null
 var curr_item = null
 
@@ -42,24 +48,70 @@ func check_state():
 
 func proc_effects():
 	for effect in effects:
-		match effect.type:
+		if effects[effect].turns > 0:
+			match effect:
+				"burn":
+					if is_instance_valid(curr_mech):
+						if !curr_mech.is_dead:
+							for part in ["body", "arm_r", "arm_l", "legs"]:
+								curr_mech.damage({"type":"fire", 
+								"part":part, 
+								"dmg":20, 
+								"crit":1})
+				"acid":
+					if is_instance_valid(curr_mech):
+						if !curr_mech.is_dead:
+							for part in ["body", "arm_r", "arm_l", "legs"]:
+								curr_mech.damage({"type":"fire", 
+								"part":part, 
+								"dmg":20, 
+								"crit":1})
+			effects[effect].turns -= 1
+		if effects[effect].turns <= 0:
+			if is_instance_valid(effects[effect].instance):
+				effects[effect].instance.queue_free()
+
+func add_effect(effect):
+	if effects[effect].turns <= 0:
+		var effect_obj
+		var effect_inst
+		match effect:
 			"burn":
-				if is_instance_valid(curr_mech):
-					if !curr_mech.is_dead:
-						for part in ["body", "arm_r", "arm_l", "legs"]:
-							curr_mech.damage({"type":"fire", 
-							"part":part, 
-							"dmg":20, 
-							"crit":1})
+				effect_obj = load("res://Effects/map/MapFire.tscn")
+				effect_inst = effect_obj.instance()
+				add_child(effect_inst)
+				effects[effect].instance = effect_inst
+				effects[effect].turns = 4
 			"acid":
-				pass
+				effect_obj = load("res://Effects/map/MapAcid.tscn")
+				effect_inst = effect_obj.instance()
+				add_child(effect_inst)
+				effects[effect].instance = effect_inst
+				effects[effect].turns = 4
 			"sludge":
-				pass
+				effects[effect].turns = 4
 			"smoke":
-				pass
+				effect_obj = load("res://Effects/map/MapSmoke.tscn")
+				effect_inst = effect_obj.instance()
+				add_child(effect_inst)
+				effects[effect].instance = effect_inst
+				effects[effect].turns = 4
 			"chaff":
-				pass
-		effect.duration -= 1
+				effect_obj = load("res://Effects/map/MapChaff.tscn")
+				effect_inst = effect_obj.instance()
+				add_child(effect_inst)
+				effects[effect].instance = effect_inst
+				effects[effect].turns = 4
+	else:
+		effects[effect].turns = 4
+
+
+func clear_effects():
+	for effect in effects:
+		effects[effect].turns = 0
+		if is_instance_valid(effects[effect].instance):
+			effects[effect].instance.queue_free()
+
 
 # Reset all data. self is used here to trigger the setter functions
 func reset_data():

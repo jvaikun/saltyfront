@@ -1,5 +1,7 @@
 extends Spatial
 
+enum HangarState {WORKSHOP, HANGAR}
+
 const cam_home_workshop = {"pos":Vector3(-2.5, 2, 17), "rot":Vector3(0, -15, 0)}
 const cam_home_hangar = {"pos":Vector3(0, 3, -0.5), "rot":Vector3(-15, 0, 0)}
 const cam_home = {"pos":Vector3(0, 3, 9), "rot":Vector3(-15, 0, 0)}
@@ -23,17 +25,19 @@ onready var hangar_cam = $HangarView/HangarCam
 
 export var debug = false
 
+var state = HangarState.WORKSHOP
+
+signal workshop_out
 signal mechs_out
 
 
 func _ready():
 	if debug:
 		hangar_cam = $HangarCam
-		$HangarCam.translation = Vector3(0, 3, -0.5)
-		$HangarCam.rotation_degrees = Vector3(-15, 0, 0)
 	else:
 		hangar_cam = $HangarView/HangarCam
-		$AnimationPlayer.play("RESET")
+	$AnimationPlayer.play("RESET")
+	$HangarSign.update_sign("ready")
 	for arm in arms_top:
 		arm.top = true
 	for light in $Lights.get_children():
@@ -51,7 +55,11 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			reroll_all()
 		if Input.is_action_just_pressed("ui_accept"):
-			move_out()
+			match state:
+				HangarState.WORKSHOP:
+					workshop_out()
+				HangarState.HANGAR:
+					move_out()
 
 
 func load_mechs(team_list):
@@ -81,6 +89,13 @@ func update_hp(hp_list):
 		arm._ready()
 
 
+func workshop_out():
+	$AnimationPlayer.play("workshop_out")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("workshop_out")
+	state = HangarState.HANGAR
+
+
 func move_out():
 	$CamTween.interpolate_property(hangar_cam, "translation", 
 	hangar_cam.translation, cam_home_hangar.pos, 0.5)
@@ -93,6 +108,7 @@ func move_out():
 		arm.reset_arm()
 	$AnimationPlayer.play("hangar_open")
 	yield($AnimationPlayer, "animation_finished")
+	$HangarSign.update_sign("deploy")
 	for mech in (team1 + team2):
 		mech.get_node("mech_frame/AnimationPlayer").play("walk")
 	$AnimationPlayer.play("mechs_out")

@@ -6,8 +6,8 @@ const Z_OFFSET = 1
 const PITCH_MIN = -45
 const PITCH_MAX = 0
 
+const missile_obj = preload("res://scenes/projectile/MissileFire.tscn")
 const nav_obj = preload("res://Arena/NavPoint.tscn")
-const obj_firework = preload("res://Effects/firework/Explosion.tscn")
 const map_lights = {
 	"Dawn":{
 		"energy":0.25,
@@ -62,9 +62,7 @@ const tile_data = [
 onready var debug_info = $Debug/DebugInfo
 onready var mech_prod = $Mechs/Mech1
 onready var mech_targ = $Mechs/Mech2
-onready var cam_base = $MapCamera
-onready var cam_pivot = $MapCamera.pivot
-onready var cam_camera = $MapCamera.cam
+onready var map_cam = $MapCamera
 
 var nav_grid = {}
 var turns_queue = []
@@ -75,95 +73,102 @@ var nav_focus = 0
 var part_set = 0
 var mouse_sensitivity = 0.05
 var mech_select = 0
-var cam_flyby
-var d_zoom = false
-var dz_height = 0.0
-var fireworks_on = false
+var lighting = "Dawn"
+var aoe_tile_index = "208"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	load_map()
-	cam_flyby = $Map.flyby_cam
-	$Debug/Vectors.camera = cam_camera
+	#cam_flyby = $Map.flyby_cam
+	$Debug/Vectors.camera = map_cam.cam
 	$Debug/Vectors.focus_mech = mech_prod
 	$Debug/Vectors.nav_points = $Nav.get_children()
+	nav_update()
 	mech_prod.connect("move_done", self, "nav_update")
+	$Items/Bomb.connect("exploded", self, "test_aoe")
 	turns_queue = $Mechs.get_children()
 	for mech in turns_queue:
 		mech.team = randi() % 8
 	for mech in turns_queue:
 		roll_stats(mech)
 		mech.state = mech.MechState.DONE
-	cam_base.follow_mech(turns_queue[mech_select])
+	map_cam.follow_mech(turns_queue[mech_select])
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(1):
-			var cam_fwd = cam_base.global_transform.basis.z
+			var cam_fwd = map_cam.yaw_node.global_transform.basis.z
 			var move_z = -cam_fwd * event.relative.y * mouse_sensitivity
 			var move_y = cam_fwd.cross(Vector3.UP) * event.relative.x * mouse_sensitivity
-			cam_base.global_translate(move_z + move_y)
+			map_cam.global_translate(move_z + move_y)
 		elif Input.is_mouse_button_pressed(2):
-			cam_base.rotation_degrees.y -= event.relative.x * mouse_sensitivity
-			cam_pivot.rotation_degrees.x -= event.relative.y * mouse_sensitivity
-			cam_pivot.rotation_degrees.x = clamp(cam_pivot.rotation_degrees.x, PITCH_MIN, PITCH_MAX)
+			map_cam.yaw -= event.relative.x * mouse_sensitivity
+			map_cam.pitch -= event.relative.y * mouse_sensitivity
 	elif event is InputEventMouseButton:
 		if Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
-			if cam_camera.projection == Camera.PROJECTION_PERSPECTIVE:
-				cam_camera.translation.z += 2
-			else:
-				cam_camera.size += 1
+			map_cam.zoom += 2
 		elif Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
-			if cam_camera.projection == Camera.PROJECTION_PERSPECTIVE:
-				cam_camera.translation.z -= 2
-			else:
-				cam_camera.size -= 1
+			map_cam.zoom -= 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if d_zoom:
-		cam_camera.fov = 2.0 * rad2deg(atan(dz_height * 0.5 / cam_camera.translation.z))
 	if Input.is_action_just_pressed("ui_accept"):
-		test_attack()
+		$Items/Bomb.explode()
+	if Input.is_key_pressed(KEY_1):
+		$Items/Bomb.type = "acid"
+	if Input.is_key_pressed(KEY_2):
+		$Items/Bomb.type = "burn"
+	if Input.is_key_pressed(KEY_3):
+		$Items/Bomb.type = "chaff"
+	if Input.is_key_pressed(KEY_4):
+		$Items/Bomb.type = "smoke"
+	if Input.is_action_just_pressed("ui_home"):
+		if $Items.get_child_count() == 0:
+			for point in $Nav.get_children():
+				point.clear_effects()
+			var bomb_obj = load("res://scenes/items/Bomb.tscn")
+			var bomb_inst = bomb_obj.instance()
+			$Items.add_child(bomb_inst)
+			bomb_inst.name = "Bomb"
+			bomb_inst.translation = Vector3(13, 0, 19)
+			#bomb_inst.explode_radius = Vector3(8, 0.25, 8)
+			bomb_inst.connect("exploded", self, "test_aoe")
+			nav_update()
+#		test_attack()
 #		mech_select += 1
 #		if mech_select >= turns_queue.size():
 #			mech_select = 0
 #		cam_base.follow_mech(turns_queue[mech_select])
 	if Input.is_action_just_pressed("ui_end"):
 		reroll_all()
-	if Input.is_action_just_pressed("ui_page_up"):
-#		fireworks_on = !fireworks_on
-#		if fireworks_on:
-#			$FWTimer.start(randf() * 2.0)
-		flyby()
 	if Input.is_action_just_pressed("ui_page_down"):
-		if cam_camera.projection == Camera.PROJECTION_PERSPECTIVE:
-			cam_camera.projection = Camera.PROJECTION_ORTHOGONAL
+		if map_cam.cam.projection == Camera.PROJECTION_PERSPECTIVE:
+			map_cam.cam.projection = Camera.PROJECTION_ORTHOGONAL
 		else:
-			cam_camera.projection = Camera.PROJECTION_PERSPECTIVE
-		#dolly_zoom()
+			map_cam.cam.projection = Camera.PROJECTION_PERSPECTIVE
 	# Screenshot
 	if Input.is_action_just_pressed("ui_screenshot"):
 		GameData.screenshot()
 	$Debug/Vectors.update()
 
-func flyby():
-	if !$FlyTween.is_active() and is_instance_valid($Map.flyby_cam):
-		$Map.flyby_cam.current = true
-		$FlyTween.interpolate_property($Map.flyby_track, "unit_offset", 0.0, 1.0, 5.0)
-		$FlyTween.start()
-
-func dolly_zoom():
-	cam_base.follow_mech(mech_prod)
-	cam_base.pitch = -15
-	cam_base.set_angles()
-	cam_camera.projection = Camera.PROJECTION_PERSPECTIVE
-	cam_camera.translation.z = 4
-	dz_height = 2.0 * cam_camera.translation.z * tan(deg2rad(cam_camera.fov * 0.5))
-	$FlyTween.interpolate_property(cam_camera, "translation:z", 4, 32, 20)
-	d_zoom = true
-	$FlyTween.start()
+func test_aoe(center, radius, effect):
+	var final_list = []
+	var curr_list = []
+	var next_list = []
+	final_list.append(nav_grid[center])
+	curr_list.append(nav_grid[center])
+	nav_grid[center].tile.add_effect(effect)
+	for i in radius:
+		for point in curr_list:
+			for neighbor in point.neighbors:
+				if !(nav_grid[neighbor] in final_list):
+					final_list.append(nav_grid[neighbor])
+					nav_grid[neighbor].tile.add_effect(effect)
+					next_list.append(nav_grid[neighbor])
+		curr_list = next_list.duplicate(true)
+		next_list.clear()
+		#yield(get_tree().create_timer(0.2), "timeout")
 
 func test_attack():
 	var test_type = "mgun"
@@ -217,6 +222,7 @@ func roll_stats(mech):
 func nav_update():
 	nav_reset()
 	var mechs = $Mechs.get_children()
+	var items = $Items.get_children()
 	for point in $Nav.get_children():
 		point.curr_mech = null
 		point.curr_item = null
@@ -225,10 +231,16 @@ func nav_update():
 				if (point.translation - mech.translation).length() < 0.1:
 					point.curr_mech = mech
 					mech.curr_tile = point
+		for item in items:
+			if (point.translation - item.translation).length() < 0.1:
+				point.curr_item = item
+				item.curr_tile = point
+
 
 func nav_reset():
 	for point in $Nav.get_children():
 		point.reset_data()
+
 
 func load_map():
 	arena_map = $Map
@@ -237,11 +249,11 @@ func load_map():
 	
 	# Setup light direction and intensity
 	if is_instance_valid($Map/DirectionalLight):
-		$Map/DirectionalLight.light_energy = map_lights["Night"].energy
-		$Map/DirectionalLight.rotation_degrees.x = map_lights["Night"].angle
+		$Map/DirectionalLight.light_energy = map_lights[lighting].energy
+		$Map/DirectionalLight.rotation_degrees.x = map_lights[lighting].angle
 	# Load world environment
 	if is_instance_valid($Map/WorldEnvironment):
-		$Map/WorldEnvironment.environment = load(map_lights["Night"].env)
+		$Map/WorldEnvironment.environment = load(map_lights[lighting].env)
 	# Build list of navigation points
 	var curr_index = 0
 	for coord in arena_map.tiles.get_used_cells():
@@ -295,25 +307,10 @@ func load_map():
 				raycast = space_state.intersect_ray(from, to, [], 1)
 				if raycast.empty():
 					nav_grid[point.index].neighbors.append(n_point.index)
+#		if randf() <= 0.3:
+#			point.add_effect("smoke")
 	var world_min = arena_map.tiles.map_to_world(map_min.x, map_min.y, map_min.z)
 	var world_max = arena_map.tiles.map_to_world(map_max.x, map_max.y, map_max.z)
-	cam_base.origin = 0.5 * (world_min + world_max)
+	map_cam.origin = 0.5 * (world_min + world_max)
 	nav_update()
-	#cam_base.attach_effect(map_weather["Ash Fall"])
 
-
-func _on_FlyTween_tween_all_completed():
-	cam_camera.current = true
-	cam_base.reset_angles()
-	cam_base.follow_mech(mech_prod)
-	d_zoom = false
-
-
-func _on_FWTimer_timeout():
-	for i in (randi() % 3 + 2):
-		var inst_firework = obj_firework.instance()
-		add_child(inst_firework)
-		inst_firework.translation = Vector3(rand_range(0, 20), rand_range(-1, 1)+15.0, rand_range(0, 20))
-		yield(get_tree().create_timer(randf() * 0.5), "timeout")
-	$FWTimer.start(randf() + 1.0)
-	pass # Replace with function body.

@@ -16,10 +16,10 @@ var legs : MechLegs
 var pack : MechPack
 
 # Mech derived/calculated stats
-var hp_body : int = 0
-var hp_armr : int = 0
-var hp_arml : int = 0
-var hp_legs : int = 0
+var hp_body : float = 0
+var hp_arm_r : float = 0
+var hp_arm_l : float = 0
+var hp_legs : float = 0
 var dodge : float = 0.0 setget ,get_dodge
 var move_range : int = 0 setget ,get_move
 var jump_height : int = 0 setget ,get_jump
@@ -36,6 +36,7 @@ var is_dead : bool = false
 var is_stunned : bool = false
 var dont_act : bool = false
 var dont_move : bool = false
+var curr_point = null
 
 # Stat tracking vars
 var team : int = 0
@@ -84,8 +85,8 @@ func get_jump() -> int:
 # Member functions
 func reset_data():
 	hp_body = body.hp
-	hp_armr = arm_r.hp
-	hp_arml = arm_l.hp
+	hp_arm_r = arm_r.hp
+	hp_arm_l = arm_l.hp
 	hp_legs = legs.hp
 	kill = 0
 	dead = 0
@@ -107,54 +108,37 @@ func reset_data():
 	bonuses.clear()
 
 
-func update_weapons():
-	if wpn_l != null:
-		if wpn_l.range_max > global_range_max:
-			global_range_max = wpn_l.range_max
-		if wpn_l.range_min < global_range_min:
-			global_range_min = wpn_l.range_min
-		action_list.append(wpn_l.get_data())
-		action_list.back()["stability"] = arm_l.stability
-		action_list.back()["side"] = "left"
-		action_list.back()["active"] = true
-	if wpn_r != null:
-		if wpn_r.range_max > global_range_max:
-			global_range_max = wpn_r.range_max
-		if wpn_r.range_min < global_range_min:
-			global_range_min = wpn_r.range_min
-		action_list.append(wpn_r.get_data())
-		action_list.back()["stability"] = arm_r.stability
-		action_list.back()["side"] = "right"
-		action_list.back()["active"] = true
-	if pod_l != null:
-		if pod_l.range_max > global_range_max:
-			global_range_max = pod_l.range_max
-		if pod_l.range_min < global_range_min:
-			global_range_min = pod_l.range_min
-		action_list.append(pod_l.get_data())
-		action_list.back()["stability"] = arm_l.stability
-		action_list.back()["side"] = "left"
-		action_list.back()["active"] = true
-	if pod_r != null:
-		if pod_r.range_max > global_range_max:
-			global_range_max = pod_r.range_max
-		if pod_r.range_min < global_range_min:
-			global_range_min = pod_r.range_min
-		action_list.append(pod_r.get_data())
-		action_list.back()["stability"] = arm_r.stability
-		action_list.back()["side"] = "right"
-		action_list.back()["active"] = true
-	#action_list.sort_custom(CustomSort, "damage")
+func can_move() -> bool:
+	return !(is_dead or is_stunned or dont_move)
 
 
-func get_statblock():
-	pass
+func can_act() -> bool:
+	return !(is_dead or is_stunned or dont_act)
 
 
-func import_data():
-	pass
+func get_hp_pct(part : String):
+	match part:
+		"body":
+			return hp_body / body.hp
+		"arm_r":
+			return hp_arm_r / arm_r.hp
+		"arm_l":
+			return hp_arm_l / arm_l.hp
+		"legs":
+			return hp_legs / legs.hp
+		_:
+			return 0
 
 
-func export_data():
-	pass
+func update_actions():
+	var action_info = {
+		"range_min": 1,
+		"range_max": 3,
+		"fire_rate": 1,
+		"ammo": 0,
+		"damage": 0,
+		"to_hit": 0, #weapon.accuracy * (1 + weapon.stability) + skill/100.0
+		"side": "right",
+		"active": true
+	}
 

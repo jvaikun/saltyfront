@@ -98,11 +98,12 @@ onready var sparks = {
 var move_target
 var attack_target
 
+signal move_done
 signal turn_done
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$RayDown.add_exception($HurtBox)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -114,10 +115,19 @@ func setup():
 	pass
 
 
-func move():
-	attack()
+func move(target):
+	yield(get_tree().create_timer(0.5), "timeout")
+	#print("Actor move")
+	global_transform.origin = target.global_transform.origin
+	emit_signal("move_done")
 
 
-func attack():
-	yield(get_tree().create_timer(0.25), "timeout")
+func act():
+	yield(get_tree().create_timer(0.5), "timeout")
+	#print("Actor act")
 	emit_signal("turn_done")
+
+
+func update_pos():
+	var collider = $RayDown.get_collider()
+	return collider
