@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/parts/textures/tex_rifle0.png" type="Texture" id=1]
 [ext_resource path="res://scenes/parts/meshes/rifle0.obj" type="ArrayMesh" id=2]
@@ -18,10 +18,23 @@
 [ext_resource path="res://sfx/ready/rifle_ready1.wav" type="AudioStream" id=16]
 [ext_resource path="res://sfx/ready/rifle_ready0.wav" type="AudioStream" id=17]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=10]
+resource_local_to_scene = true
+flags_transparent = true
 flags_vertex_lighting = true
+params_depth_draw_mode = 1
 albedo_texture = ExtResource( 1 )
 roughness = 0.6
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+render_priority = -1
+next_pass = SubResource( 10 )
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+params_depth_draw_mode = 1
 
 [sub_resource type="ParticlesMaterial" id=8]
 flag_align_y = true
@@ -61,7 +74,6 @@ resources = [ PoolStringArray( "rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "
 [node name="Mesh" type="MeshInstance" parent="."]
 material_override = SubResource( 1 )
 mesh = ExtResource( 2 )
-material/0 = null
 
 [node name="Eject" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0647093, 0.0970791, -0.154514 )
@@ -79,13 +91,11 @@ visible = false
 transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="Muzzle"]
 transform = Transform( -1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 1.91069e-15, -1, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="Flash" type="OmniLight" parent="Muzzle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.161698 )

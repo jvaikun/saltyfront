@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/parts/meshes/pod3.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://scenes/parts/textures/tex_pod3.png" type="Texture" id=2]
@@ -11,8 +11,22 @@
 [ext_resource path="res://sfx/ready/rifle_ready0.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/parts/Weapon.gd" type="Script" id=10]
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=10]
+resource_local_to_scene = true
+flags_transparent = true
+flags_vertex_lighting = true
+params_depth_draw_mode = 1
 albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=9]
+resource_local_to_scene = true
+render_priority = -1
+next_pass = SubResource( 10 )
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+params_depth_draw_mode = 1
 
 [sub_resource type="Gradient" id=8]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -67,7 +81,6 @@ resources = [ PoolStringArray( "missile_shoot0", "missile_shoot1", "missile_shoo
 material_override = SubResource( 9 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="Muzzle" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0 )

@@ -90,6 +90,7 @@ func _ready():
 	turns_queue = $Mechs.get_children()
 	for mech in turns_queue:
 		mech.team = randi() % 8
+		print(mech.team)
 	for mech in turns_queue:
 		roll_stats(mech)
 		mech.state = mech.MechState.DONE

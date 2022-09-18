@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/parts/meshes/melee2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://scenes/parts/textures/tex_melee2.png" type="Texture" id=2]
@@ -9,10 +9,23 @@
 [ext_resource path="res://sfx/ready/rifle_ready0.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/parts/Weapon.gd" type="Script" id=8]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=17]
+resource_local_to_scene = true
+flags_transparent = true
 flags_vertex_lighting = true
+params_depth_draw_mode = 1
 albedo_texture = ExtResource( 2 )
 roughness = 0.6
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+render_priority = -1
+next_pass = SubResource( 17 )
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+params_depth_draw_mode = 1
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
@@ -64,7 +77,6 @@ resources = [ PoolStringArray( "step0", "step1" ), [ ExtResource( 3 ), ExtResour
 [node name="Mesh" type="MeshInstance" parent="."]
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )
-material/0 = null
 
 [node name="Muzzle" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4 )
