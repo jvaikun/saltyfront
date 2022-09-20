@@ -11,6 +11,8 @@ const projectiles = {
 	"rifle": {"bullet": bullet_obj, "speed": 30, "spread": 0.2}
 }
 
+onready var mesh = $Mesh
+
 var sfx_shoot = []
 var sfx_aim = []
 var id : String = "0"

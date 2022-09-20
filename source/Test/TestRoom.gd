@@ -74,7 +74,6 @@ var part_set = 0
 var mouse_sensitivity = 0.05
 var mech_select = 0
 var lighting = "Dawn"
-var aoe_tile_index = "208"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -90,7 +89,6 @@ func _ready():
 	turns_queue = $Mechs.get_children()
 	for mech in turns_queue:
 		mech.team = randi() % 8
-		print(mech.team)
 	for mech in turns_queue:
 		roll_stats(mech)
 		mech.state = mech.MechState.DONE

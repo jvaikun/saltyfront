@@ -368,6 +368,7 @@ func setup(var my_arena):
 			if part in ["pod_r", "pod_l", "wpn_r", "wpn_l"]:
 				var part_path = "res://scenes/parts/%s%s.tscn" % [piece.model, part_set]
 				part_inst = load(part_path).instance()
+				part_inst.get_node("Mesh").material_override.albedo_color = GameData.teamColors[team]
 				piece.point.add_child(part_inst)
 				piece.obj = part_inst
 			else:

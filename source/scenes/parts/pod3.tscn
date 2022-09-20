@@ -77,7 +77,7 @@ resources = [ PoolStringArray( "missile_shoot0", "missile_shoot1", "missile_shoo
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="pod3" type="MeshInstance" parent="."]
+[node name="Mesh" type="MeshInstance" parent="."]
 material_override = SubResource( 9 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
