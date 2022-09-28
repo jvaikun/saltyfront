@@ -113,7 +113,9 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		$Items/Bomb.explode()
+		#$Items/Bomb.explode()
+		$ModularArmature.anim_walk()
+		$ModularArmature2.anim_walk()
 	if Input.is_key_pressed(KEY_1):
 		$Items/Bomb.type = "acid"
 	if Input.is_key_pressed(KEY_2):
@@ -142,10 +144,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_end"):
 		reroll_all()
 	if Input.is_action_just_pressed("ui_page_down"):
-		if map_cam.cam.projection == Camera.PROJECTION_PERSPECTIVE:
-			map_cam.cam.projection = Camera.PROJECTION_ORTHOGONAL
+		if map_cam.cam_mode == map_cam.CamState.NORMAL:
+			map_cam.cam_mode = map_cam.CamState.PHOTO
 		else:
-			map_cam.cam.projection = Camera.PROJECTION_PERSPECTIVE
+			map_cam.cam_mode = map_cam.CamState.NORMAL
 	# Screenshot
 	if Input.is_action_just_pressed("ui_screenshot"):
 		GameData.screenshot()

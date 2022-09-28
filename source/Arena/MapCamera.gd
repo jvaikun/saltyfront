@@ -24,8 +24,8 @@ const configs = [
 		"base_yaw":0.0
 	},
 	{ # PHOTO state
-		"zoom_min":5.0, 
-		"zoom_max":10.0,
+		"zoom_min":1.0, 
+		"zoom_max":50.0,
 		"zoom_mod":1.0,
 		"arm_length":20,
 		"base_pitch":-30.0,
@@ -50,6 +50,13 @@ var tween_done = true
 
 func set_mode(value):
 	cam_mode = value
+	match cam_mode:
+		CamState.DEBUG:
+			cam.projection = Camera.PROJECTION_ORTHOGONAL
+		CamState.NORMAL:
+			cam.projection = Camera.PROJECTION_ORTHOGONAL
+		CamState.PHOTO:
+			cam.projection = Camera.PROJECTION_PERSPECTIVE
 	cam.translation = Vector3(0, 0, configs[cam_mode].arm_length)
 	cam.size = configs[cam_mode].zoom_max
 	self.yaw = configs[cam_mode].base_yaw
@@ -68,10 +75,11 @@ func set_pitch(value):
 
 
 func set_zoom(value):
-	if cam.projection == Camera.PROJECTION_PERSPECTIVE:
-		cam.translation.z = clamp(value, configs[cam_mode].zoom_min, configs[cam_mode].zoom_max)
+	var clamped = clamp(value, configs[cam_mode].zoom_min, configs[cam_mode].zoom_max)
+	if cam_mode == CamState.PHOTO:
+		cam.translation = Vector3(0, 0, clamped)
 	else:
-		cam.size = clamp(value, configs[cam_mode].zoom_min, configs[cam_mode].zoom_max)
+		cam.size = clamped
 
 
 func _ready():
