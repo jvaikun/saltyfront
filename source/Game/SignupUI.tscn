@@ -5,7 +5,6 @@
 [ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/fonts/ui_font_med.tres" type="DynamicFont" id=5]
 
-
 [sub_resource type="DynamicFont" id=3]
 size = 40
 font_data = ExtResource( 4 )
@@ -31,24 +30,21 @@ bg_color = Color( 0, 1, 0, 1 )
 [node name="SignupUI" type="MarginContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -470.0
-margin_right = 470.0
-margin_bottom = 382.0
+margin_left = -837.0
+margin_right = 837.0
+margin_bottom = 345.0
 grow_horizontal = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panels" type="VBoxContainer" parent="."]
-margin_right = 940.0
-margin_bottom = 382.0
+[node name="Panels" type="HBoxContainer" parent="."]
+margin_right = 1674.0
+margin_bottom = 345.0
 custom_constants/separation = 8
 alignment = 1
 
 [node name="Help" type="PanelContainer" parent="Panels"]
 margin_right = 940.0
-margin_bottom = 183.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 940, 0 )
 custom_styles/panel = ExtResource( 2 )
 
@@ -56,7 +52,7 @@ custom_styles/panel = ExtResource( 2 )
 margin_left = 18.0
 margin_top = 18.0
 margin_right = 922.0
-margin_bottom = 165.0
+margin_bottom = 327.0
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,38 +74,50 @@ __meta__ = {
 [node name="Instructions" type="RichTextLabel" parent="Panels/Help/Body"]
 margin_top = 39.0
 margin_right = 904.0
-margin_bottom = 147.0
+margin_bottom = 309.0
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "Type commands in chat:
-[color=white]!register[/color] - Register your username
-[color=white]!fight[/color] - Sign up for a tournament during signup
-[color=white]!balance[/color] - Check your credit balance"
+[color=white]!register[/color] or [color=white]!reg[/color] - Register your username
+[color=white]!balance[/color] or [color=white]!bal[/color] - Check your credit balance
+[color=white]!fight[/color] - Join the fight with a random class
+[color=white]!fight melee[/color] - Join as a melee class
+[color=white]!fight short[/color] - Join as a short-range class
+[color=white]!fight long[/color] - Join as a long-range class
+[color=white]!fight mixms[/color] - Join as a melee+short class
+[color=white]!fight mixml[/color] - Join as a melee+long class
+[color=white]!fight mixsl[/color] - Join as a short+long class"
 text = "Type commands in chat:
-!register - Register your username
-!fight - Sign up for a tournament during signup
-!balance - Check your credit balance"
+!register or !reg - Register your username
+!balance or !bal - Check your credit balance
+!fight - Join the fight with a random class
+!fight melee - Join as a melee class
+!fight short - Join as a short-range class
+!fight long - Join as a long-range class
+!fight mixms - Join as a melee+short class
+!fight mixml - Join as a melee+long class
+!fight mixsl - Join as a short+long class"
 fit_content_height = true
 
 [node name="Intro" type="PanelContainer" parent="Panels"]
-margin_top = 191.0
-margin_right = 940.0
-margin_bottom = 382.0
+margin_left = 948.0
+margin_right = 1674.0
+margin_bottom = 345.0
 custom_styles/panel = ExtResource( 2 )
 
 [node name="Body" type="VBoxContainer" parent="Panels/Intro"]
 margin_left = 18.0
 margin_top = 18.0
-margin_right = 922.0
-margin_bottom = 173.0
+margin_right = 708.0
+margin_bottom = 327.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Message" type="Label" parent="Panels/Intro/Body"]
-margin_right = 904.0
+margin_right = 690.0
 margin_bottom = 31.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -119,7 +127,7 @@ valign = 1
 
 [node name="Counter" type="Label" parent="Panels/Intro/Body"]
 margin_top = 47.0
-margin_right = 904.0
+margin_right = 690.0
 margin_bottom = 97.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 2 )
@@ -129,7 +137,7 @@ valign = 1
 
 [node name="Title" type="Label" parent="Panels/Intro/Body"]
 margin_top = 113.0
-margin_right = 904.0
+margin_right = 690.0
 margin_bottom = 139.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -143,7 +151,7 @@ __meta__ = {
 
 [node name="UserList" type="GridContainer" parent="Panels/Intro/Body"]
 margin_top = 155.0
-margin_right = 904.0
+margin_right = 690.0
 margin_bottom = 155.0
 columns = 2
 

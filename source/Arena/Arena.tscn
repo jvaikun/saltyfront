@@ -233,13 +233,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MapUI"]
 anims/intro = SubResource( 14 )
 
-[node name="Tags" type="Control" parent="MapUI"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="IntroOutro" parent="MapUI" instance=ExtResource( 25 )]
 
 [node name="TopBar" type="Control" parent="MapUI"]

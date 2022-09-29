@@ -108,6 +108,7 @@ onready var sparks = {
 	"legs":$mech_frame/Armature/Skeleton/Hip/Sparks,
 }
 onready var cam_point = $CamPoint
+onready var mech_tag = $MechTag
 
 signal move_done
 signal attack_done
@@ -442,6 +443,10 @@ func setup(var my_arena):
 				else:
 					enemies.append(info)
 		unit_list = friends + enemies
+	if !prop_mode:
+		$Viewport/Tag.modulate = GameData.teamColors[team]
+		$Viewport/Label.text = str(num)
+		$MechTag.show()
 
 
 func toggle_part(part, flag):

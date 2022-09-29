@@ -47,7 +47,7 @@ onready var comment1 = $Announcer
 onready var comment2 = $Announcer2
 
 # Flags for offline test mode
-var autoBet = false
+var auto_bet_done = false
 
 # Game variables
 var state = null
@@ -172,9 +172,9 @@ func _process(delta):
 						did_comment = true
 						commentary(status)
 		GameState.PREFIGHT:
-			if !autoBet:
+			if !auto_bet_done:
 				auto_bet()
-				autoBet = true
+				auto_bet_done = true
 			if $Timer.time_left > 0:
 				if !ui_bracket.visible:
 					header_versus.counter.text = msg_next_counter % [int($Timer.time_left)]
@@ -733,7 +733,7 @@ func start_transition(next):
 			$Transition/Bootup.start(tournament.tour_count)
 		GameState.PREFIGHT:
 			bets.clear()
-			autoBet = false
+			auto_bet_done = false
 			bet_warned = false
 			ui_bracket.update_info(tournament.matches)
 			buffer_screen()

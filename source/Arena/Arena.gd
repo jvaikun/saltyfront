@@ -139,7 +139,6 @@ var map_props = {
 var team_list = []
 var turns_queue = []
 var winTeam = null
-var mech_tags = []
 
 # UI variables
 var msg_queue = []
@@ -203,7 +202,6 @@ func _process(delta):
 				nav_update()
 				turns_queue.front().reset_acts()
 				turns_queue.front().item_list = $Items.get_children()
-				$MapUI/Tags.visible = true
 				match_start_time = OS.get_unix_time()
 				state = MapState.FIGHT
 		MapState.FIGHT:
@@ -767,14 +765,6 @@ func ui_update():
 			info_mini.update_data()
 		if $MapUI/SkillTag.visible && is_instance_valid($MapUI/SkillTag.focus_mech):
 			$MapUI/SkillTag.rect_position = map_cam.cam.unproject_position($MapUI/SkillTag.focus_mech.translation + Vector3.UP)
-		for tag in mech_tags:
-			if is_instance_valid(tag):
-				if !tag.focus_mech.is_dead:
-					var tag_pos = map_cam.cam.unproject_position(tag.focus_mech.global_transform.origin + 
-					Vector3(0, 1.5, 0))
-					tag.rect_position = tag_pos
-				else:
-					tag.visible = false
 		var debug_info = "Idle Timer: %f\n" % idle_timer
 		if thisMech != null:
 			if GameData.debug_mode:
@@ -826,7 +816,6 @@ func check_win():
 	if teamInfo[0].size == 0:
 		winTeam = team_list[1]
 		match_result = "normal"
-		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", msg_bot)
 		$MapUI/AnimationPlayer.play_backwards("intro")
 		map_cam.outro()
@@ -835,7 +824,6 @@ func check_win():
 	elif teamInfo[1].size == 0:
 		winTeam = team_list[0]
 		match_result = "normal"
-		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", msg_bot)
 		$MapUI/AnimationPlayer.play_backwards("intro")
 		map_cam.outro()
@@ -874,7 +862,6 @@ func check_win():
 				if teamInfo[i].hp > maxHP:
 					winIndex = i
 		winTeam = team_list[winIndex]
-		$MapUI/Tags.visible = false
 		$MapUI/IntroOutro.outro(msg_top, GameData.teamNames[winTeam].to_upper() + " WINS", "WINNER BY DECISION")
 		$MapUI/AnimationPlayer.play_backwards("intro")
 		map_cam.outro()
@@ -1109,8 +1096,6 @@ func clear_map():
 		mech.free()
 	for item in $Items.get_children():
 		item.free()
-	for tag in $MapUI/Tags.get_children():
-		tag.free()
 	if is_instance_valid(arena_map):
 		arena_map.free()
 
@@ -1226,18 +1211,9 @@ func load_map(tournament):
 	tournament.current_match.name, 
 	tournament.current_match.teams[0], 
 	tournament.current_match.teams[1])
-	var tag_obj = load("res://Arena/MechTag.tscn")
-	for mech in turns_queue:
-		var tag_inst = tag_obj.instance()
-		$MapUI/Tags.add_child(tag_inst)
-		mech_tags.append(tag_inst)
-		tag_inst.focus_mech = mech
-		tag_inst.label.text = str(mech.num) # + ":" + mech.mechData.pilot.name
-		tag_inst.tag.modulate = GameData.teamColors[mech.team]
-		if mech.team == tournament.current_match.teams[0].index:
-			team_info1.get_child(mech.num).focus_mech = mech
-		elif mech.team == tournament.current_match.teams[1].index:
-			team_info2.get_child(mech.num).focus_mech = mech
+	var all_info = team_info1.get_children() + team_info2.get_children()
+	for i in turns_queue.size():
+		all_info[i].focus_mech = turns_queue[i]
 	ui_update()
 	map_cam.translation = map_cam.origin + Vector3(0, 25, 0)
 	if map_props.light == "Night":
@@ -1245,7 +1221,6 @@ func load_map(tournament):
 	else:
 		mech_pov.environment = null
 	map_cam.cam.current = true
-	$MapUI/Tags.visible = false
 	$MapUI.visible = false
 
 func start_match():
