@@ -355,9 +355,7 @@ func setup(var my_arena):
 	# Set up new body parts
 	var part_set = "0"
 	var part_inst = null
-	var team_mat = load("res://Parts/team.material")
-	var temp_mat = null
-	#load("res://Parts/team_" + str(team) + ".material")
+	var team_mat = load("res://Parts/team_" + str(team) + ".material")
 	for part in mech_parts:
 		var this_part = mech_parts[part]
 		if part in ["wpn_r", "wpn_l"]:
@@ -368,7 +366,6 @@ func setup(var my_arena):
 			if part in ["pod_r", "pod_l", "wpn_r", "wpn_l"]:
 				var part_path = "res://scenes/parts/%s%s.tscn" % [piece.model, part_set]
 				part_inst = load(part_path).instance()
-				part_inst.get_node("Mesh").material_override.albedo_color = GameData.teamColors[team]
 				piece.point.add_child(part_inst)
 				piece.obj = part_inst
 			else:
@@ -376,16 +373,9 @@ func setup(var my_arena):
 				piece.point.add_child(part_inst)
 				piece.obj = part_inst
 				part_inst.mesh = load(part_path + piece.model + part_set + ".obj")
-				part_inst.set_surface_material(0, part_mat.duplicate(true))
-				temp_mat = part_inst.get_surface_material(0)
-				temp_mat.albedo_color = GameData.teamColors[team]
-				temp_mat = null
+				part_inst.set_surface_material(0, part_mat)
 				if piece.model in ["Torso", "ArmUp"]:
-					part_inst.set_surface_material(1, team_mat.duplicate(true))
-					temp_mat = part_inst.get_surface_material(1)
-					temp_mat.albedo_color = GameData.teamColors[team]
-					temp_mat.next_pass.albedo_color = GameData.teamColors[team]
-					temp_mat = null
+					part_inst.set_surface_material(1, team_mat)
 			if part in ["pod_r", "pod_l"]:
 				part_inst.translation += Vector3(0, 0.15, 0)
 			if piece.has("offset"):

@@ -4,16 +4,15 @@ enum HangarState {WORKSHOP, HANGAR}
 
 const cam_home_workshop = {"pos":Vector3(-2.5, 2, 17), "rot":Vector3(0, -15, 0)}
 const cam_home_hangar = {"pos":Vector3(0, 3, -0.5), "rot":Vector3(-15, 0, 0)}
-const cam_home = {"pos":Vector3(0, 3, 9), "rot":Vector3(-15, 0, 0)}
 const cam_points = [
-	{"pos":Vector3(-1, 2, 5), "rot":Vector3(-15, 90, 0)},
-	{"pos":Vector3(-1, 2, 1), "rot":Vector3(-15, 90, 0)},
-	{"pos":Vector3(-1, 2, -3), "rot":Vector3(-15, 90, 0)},
-	{"pos":Vector3(-1, 2, -7), "rot":Vector3(-15, 90, 0)},
-	{"pos":Vector3(1, 2, -5), "rot":Vector3(-15, -90, 0)},
-	{"pos":Vector3(1, 2, -1), "rot":Vector3(-15, -90, 0)},
-	{"pos":Vector3(1, 2, 3), "rot":Vector3(-15, -90, 0)},
-	{"pos":Vector3(1, 2, 7), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(-1, 2, -4.5), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, -8.5), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, -12.5), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(-1, 2, -16.5), "rot":Vector3(-15, 90, 0)},
+	{"pos":Vector3(1, 2, -14), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, -10), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, -6), "rot":Vector3(-15, -90, 0)},
+	{"pos":Vector3(1, 2, -2), "rot":Vector3(-15, -90, 0)},
 ]
 
 onready var arms_top = $TopArms.get_children()
@@ -34,18 +33,10 @@ signal mechs_out
 func _ready():
 	if debug:
 		hangar_cam = $HangarCam
+		reroll_all()
 	else:
 		hangar_cam = $HangarView/HangarCam
-	$AnimationPlayer.play("RESET")
-	$HangarSign.update_sign("ready")
-	for arm in arms_top:
-		arm.top = true
-	for light in $Lights.get_children():
-		light.get_node("AnimationPlayer").play("normal")
-	for mech in (team1 + team2):
-		mech.get_node("mech_frame/AnimationPlayer").stop()
-	if debug:
-		reroll_all()
+	set_state(HangarState.WORKSHOP)
 
 
 func _process(_delta):
@@ -60,6 +51,26 @@ func _process(_delta):
 					workshop_out()
 				HangarState.HANGAR:
 					move_out()
+
+
+func set_state(new_state):
+	$AnimationPlayer.play("RESET")
+	$HangarSign.update_sign("ready")
+	for arm in arms_top:
+		arm.top = true
+	for light in $Lights.get_children():
+		light.get_node("AnimationPlayer").play("normal")
+	for mech in (team1 + team2):
+		mech.get_node("mech_frame/AnimationPlayer").stop()
+	match new_state:
+		HangarState.WORKSHOP:
+			state = new_state
+			hangar_cam.translation = cam_home_workshop.pos
+			hangar_cam.rotation_degrees = cam_home_workshop.rot
+		HangarState.HANGAR:
+			state = new_state
+			hangar_cam.translation = cam_home_hangar.pos
+			hangar_cam.rotation_degrees = cam_home_hangar.rot
 
 
 func load_mechs(team_list):
@@ -93,7 +104,6 @@ func workshop_out():
 	$AnimationPlayer.play("workshop_out")
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("workshop_out")
-	state = HangarState.HANGAR
 
 
 func move_out():

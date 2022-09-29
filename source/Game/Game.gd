@@ -1,7 +1,7 @@
 extends Spatial
 
 # Game constants and enums
-enum GameState {START, PREFIGHT, FIGHT, POSTFIGHT, TOUR_END, RESET, TRANSITION}
+enum GameState {START, PREFIGHT, FIGHT, POSTFIGHT, TOUR_END, RESET}
 
 # Preload resources
 const obj_label = preload("res://ui/obj_label.tscn")
@@ -727,7 +727,6 @@ func buffer_screen():
 
 
 func start_transition(next):
-	state = GameState.TRANSITION
 	next_state = next
 	match next_state:
 		GameState.START:
@@ -818,8 +817,8 @@ func mid_transition():
 		GameState.POSTFIGHT:
 			$UI.visible = true
 			arena.clear_map()
+			$Hangar.set_state($Hangar.HangarState.HANGAR)
 			$Hangar.visible = true
-			$Hangar._ready()
 			header_versus.match_info.text = msg_match_result % [
 				tournament.current_match.tour,
 				tournament.current_match.name
@@ -839,6 +838,7 @@ func mid_transition():
 			header_versus.visible = false
 			prefight.visible = false
 			stats.visible = false
+			$Hangar.set_state($Hangar.HangarState.WORKSHOP)
 			$Hangar.visible = true
 			$UI/TourStats.visible = true
 			scrn_buffer.material.shader = shader_dissolve
@@ -877,7 +877,6 @@ func end_transition():
 			bgm_player.play_clip("end_tournament")
 			$Timer.start(prep_timer)
 		GameState.RESET:
-			state = GameState.TRANSITION
 			next_state = GameState.START
 			$Transition/Bootup.start(tournament.tour_count)
 
@@ -897,6 +896,7 @@ func _on_Timer_timeout():
 				this_corp.funds = stepify(rand_range(this_corp.budget[0], this_corp.budget[1]), this_corp.budget[2])
 			tournament.new_tournament()
 			$TweenUI.interpolate_property($UI/SignupUI, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0)
+			$Hangar.load_mechs(tournament.current_match.teams)
 			$TweenUI.start()
 			yield($TweenUI, "tween_all_completed")
 			$Hangar.workshop_out() #start_transition(GameState.PREFIGHT)

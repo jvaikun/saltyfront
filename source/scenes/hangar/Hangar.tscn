@@ -13,7 +13,7 @@
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("HangarView/HangarCam:transform")
+tracks/0/path = NodePath("DoorL2:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -22,10 +22,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 ) ]
+"values": [ Vector3( 1, 1.5, 0.2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DoorL2:translation")
+tracks/1/path = NodePath("DoorR2:translation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -34,10 +34,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1.5, 0.2 ) ]
+"values": [ Vector3( -1, 1.5, 0.2 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DoorR2:translation")
+tracks/2/path = NodePath("DoorL:translation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -46,10 +46,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1, 1.5, 0.2 ) ]
+"values": [ Vector3( -1, 1.5, -18.2 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("DoorL:translation")
+tracks/3/path = NodePath("DoorR:translation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -58,10 +58,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1, 1.5, -18.2 ) ]
+"values": [ Vector3( 1, 1.5, -18.2 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("DoorR:translation")
+tracks/4/path = NodePath("Team1/Mech1:transform")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -70,10 +70,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1.5, -18.2 ) ]
+"values": [ Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Team1/Mech1:transform")
+tracks/5/path = NodePath("Team1/Mech2:transform")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -82,10 +82,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Team1/Mech2:transform")
+tracks/6/path = NodePath("Team1/Mech3:transform")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -94,10 +94,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Team1/Mech3:transform")
+tracks/7/path = NodePath("Team1/Mech4:transform")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -106,10 +106,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Team1/Mech4:transform")
+tracks/8/path = NodePath("Team2/Mech5:transform")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -118,10 +118,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Team2/Mech5:transform")
+tracks/9/path = NodePath("Team2/Mech6:transform")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -130,10 +130,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Team2/Mech6:transform")
+tracks/10/path = NodePath("Team2/Mech7:transform")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -142,27 +142,15 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Team2/Mech7:transform")
+tracks/11/path = NodePath("Team2/Mech8:transform")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Team2/Mech8:transform")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
