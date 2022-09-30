@@ -47,7 +47,7 @@ const map_lights = {
 		"env":"res://scenes/maps/env_dusk.tres"
 	},
 	"Night":{
-		"energy":0.01,
+		"energy":0.02,
 		"angle":-150,
 		"env":"res://scenes/maps/env_night.tres"
 	}
@@ -244,7 +244,7 @@ func roll_map() -> Dictionary:
 		map_list.shuffle()
 	map_props.name = map_list[map_props.index].name
 	map_props.path = map_list[map_props.index].path
-	map_props.light = "Dawn" #map_mods.light[randi() % map_mods.light.size()]
+	map_props.light = map_mods.light[randi() % map_mods.light.size()]
 #	if randf() <= 0.3:
 #		map_props.effect = "Mines"
 #	else:

@@ -2367,6 +2367,7 @@ resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 flags_no_depth_test = true
+flags_fixed_size = true
 flags_do_not_receive_shadows = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1
@@ -2375,8 +2376,7 @@ particles_anim_loop = false
 albedo_texture = SubResource( 50 )
 
 [sub_resource type="QuadMesh" id=52]
-size = Vector2( 0.25, 0.25 )
-center_offset = Vector3( 0.125, 0.125, 0 )
+size = Vector2( 0.05, 0.05 )
 
 [node name="Mech" type="KinematicBody"]
 collision_layer = 2

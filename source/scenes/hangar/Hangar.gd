@@ -17,6 +17,8 @@ const cam_points = [
 
 onready var arms_top = $TopArms.get_children()
 onready var arms_side = $SideArms.get_children()
+onready var hangar_lights = $HangarLights.get_children()
+onready var workshop_lights = $WorkshopLights.get_children()
 onready var team1 = $Team1.get_children()
 onready var team2 = $Team2.get_children()
 onready var signs = $Signs.get_children()
@@ -58,17 +60,19 @@ func set_state(new_state):
 	$HangarSign.update_sign("ready")
 	for arm in arms_top:
 		arm.top = true
-	for light in $Lights.get_children():
-		light.get_node("AnimationPlayer").play("normal")
 	for mech in (team1 + team2):
 		mech.get_node("mech_frame/AnimationPlayer").stop()
 	match new_state:
 		HangarState.WORKSHOP:
 			state = new_state
+			for light in hangar_lights:
+				light.get_node("AnimationPlayer").play("off")
 			hangar_cam.translation = cam_home_workshop.pos
 			hangar_cam.rotation_degrees = cam_home_workshop.rot
 		HangarState.HANGAR:
 			state = new_state
+			for light in hangar_lights:
+				light.get_node("AnimationPlayer").play("normal")
 			hangar_cam.translation = cam_home_hangar.pos
 			hangar_cam.rotation_degrees = cam_home_hangar.rot
 
@@ -101,9 +105,27 @@ func update_hp(hp_list):
 
 
 func workshop_out():
+	for arm in (arms_top + arms_side):
+		arm.reset_arm()
 	$AnimationPlayer.play("workshop_out")
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("workshop_out")
+
+
+func lights_on(row : int):
+	match row:
+		1:
+			$HangarLights/HangarLight4/AnimationPlayer.play("turn_on")
+			$HangarLights/HangarLight8/AnimationPlayer.play("turn_on")
+		2:
+			$HangarLights/HangarLight3/AnimationPlayer.play("turn_on")
+			$HangarLights/HangarLight7/AnimationPlayer.play("turn_on")
+		3:
+			$HangarLights/HangarLight2/AnimationPlayer.play("turn_on")
+			$HangarLights/HangarLight6/AnimationPlayer.play("turn_on")
+		4:
+			$HangarLights/HangarLight/AnimationPlayer.play("turn_on")
+			$HangarLights/HangarLight5/AnimationPlayer.play("turn_on")
 
 
 func move_out():
@@ -112,7 +134,7 @@ func move_out():
 	$CamTween.interpolate_property(hangar_cam, "rotation_degrees", 
 	hangar_cam.rotation_degrees, cam_home_hangar.rot, 0.5)
 	$CamTween.start()
-	for light in $Lights.get_children():
+	for light in hangar_lights:
 		light.get_node("AnimationPlayer").play("warning")
 	for arm in (arms_top + arms_side):
 		arm.reset_arm()

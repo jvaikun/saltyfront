@@ -281,6 +281,7 @@ func match_end(fight_data) -> void:
 		var link_match = matches[match_index].next[0]
 		var link_slot = matches[match_index].next[1]
 		matches[link_match].teams[link_slot] = current_winner
+	save_stats()
 
 
 # Calculate summary stats for end of tournament display

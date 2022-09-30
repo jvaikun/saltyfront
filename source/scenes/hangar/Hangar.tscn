@@ -287,7 +287,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "workshop_out"
-length = 4.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("HangarView/HangarCam:transform")
 tracks/0/interp = 1
@@ -323,6 +323,29 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( -1, 1.5, 0.2 ), Vector3( -3, 1.5, 0.15 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4, 4.5, 5, 5.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "lights_on"
+}, {
+"args": [ 2 ],
+"method": "lights_on"
+}, {
+"args": [ 3 ],
+"method": "lights_on"
+}, {
+"args": [ 4 ],
+"method": "lights_on"
+} ]
 }
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -392,55 +415,57 @@ transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75
 [node name="BaySign8" parent="Signs" instance=ExtResource( 8 )]
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.2, 2.75, 6 )
 
-[node name="Lights" type="Spatial" parent="."]
+[node name="HangarLights" type="Spatial" parent="."]
+
+[node name="HangarLight" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -15.2 )
+
+[node name="HangarLight2" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -11.2 )
+
+[node name="HangarLight3" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -7.2 )
+
+[node name="HangarLight4" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -3.2 )
+
+[node name="HangarLight5" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -15.2 )
+
+[node name="HangarLight6" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -11.2 )
+
+[node name="HangarLight7" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -7.2 )
+
+[node name="HangarLight8" parent="HangarLights" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -3.2 )
+
+[node name="WorkshopLights" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.2 )
 
-[node name="HangarLight" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -6 )
-
-[node name="HangarLight2" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -2 )
-
-[node name="HangarLight3" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 2 )
-
-[node name="HangarLight4" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 6 )
-
-[node name="HangarLight5" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -6 )
-
-[node name="HangarLight6" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -2 )
-
-[node name="HangarLight7" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 2 )
-
-[node name="HangarLight8" parent="Lights" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 6 )
-
-[node name="HangarLight9" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight9" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 12.4 )
 
-[node name="HangarLight10" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight10" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 16.4 )
 
-[node name="HangarLight11" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight11" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 20.4 )
 
-[node name="HangarLight12" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight12" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 24.4 )
 
-[node name="HangarLight13" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight13" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 12.4 )
 
-[node name="HangarLight14" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight14" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 16.4 )
 
-[node name="HangarLight15" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight15" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 20.4 )
 
-[node name="HangarLight16" parent="Lights" instance=ExtResource( 6 )]
+[node name="HangarLight16" parent="WorkshopLights" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 24.4 )
 
 [node name="Team1" type="Spatial" parent="."]
@@ -567,5 +592,5 @@ size = Vector2( 1920, 1080 )
 render_target_v_flip = true
 
 [node name="HangarCam" type="Camera" parent="HangarView"]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 )
+transform = Transform( 0.983255, 0, -0.182235, 0, 1, 0, 0.182235, 0, 0.983255, -1.75, 1.7, 14.6 )
 environment = ExtResource( 9 )
