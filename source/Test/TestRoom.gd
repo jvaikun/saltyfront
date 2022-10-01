@@ -116,6 +116,10 @@ func _process(_delta):
 		#$Items/Bomb.explode()
 		$ModularArmature.anim_walk()
 		$ModularArmature2.anim_walk()
+#		var tween = get_tree().create_tween()
+#		tween.tween_property($ModularArmature, "translation", $ModularArmature.translation + Vector3(0,0,36), 12)
+#		tween.parallel().tween_property($ModularArmature2, "translation", $ModularArmature2.translation + Vector3(0,0,36), 12)
+#		tween.play()
 	if Input.is_key_pressed(KEY_1):
 		$Items/Bomb.type = "acid"
 	if Input.is_key_pressed(KEY_2):

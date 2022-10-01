@@ -64,7 +64,7 @@ script = ExtResource( 3 )
 [node name="Map" parent="." instance=ExtResource( 2 )]
 
 [node name="ModularArmature" parent="." instance=ExtResource( 8 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 0, 15 )
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 35, 0, 3 )
 
 [node name="ModularArmature2" parent="." instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 0, 13 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 3 )
