@@ -512,7 +512,7 @@ func save_champ() -> void:
 		else:
 			temp_data.type = "user"
 		champ_data.mechdata.append(temp_data)
-	UserDB.champ_stats.append(champ_data)
+	champ_stats.append(champ_data)
 
 
 # Save stats

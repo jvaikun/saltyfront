@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
+[ext_resource path="res://test/Hangar2.gd" type="Script" id=1]
 [ext_resource path="res://scenes/hangar/RobotArm.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/hangar/Hangar.gd" type="Script" id=4]
 [ext_resource path="res://scenes/hangar/texture/tex_door.png" type="Texture" id=5]
 [ext_resource path="res://scenes/hangar/HangarLight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/mech/MechV2.tscn" type="PackedScene" id=7]
@@ -289,7 +289,7 @@ tracks/7/keys = {
 resource_name = "workshop_out"
 length = 6.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("HangarView/HangarCam:transform")
+tracks/0/path = NodePath("HangarCam:transform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -356,7 +356,8 @@ albedo_texture = ExtResource( 5 )
 size = Vector2( 2, 3 )
 
 [node name="Hangar" type="Spatial"]
-script = ExtResource( 4 )
+script = ExtResource( 1 )
+debug = true
 
 [node name="CamTween" type="Tween" parent="."]
 
@@ -380,11 +381,13 @@ mesh = SubResource( 3 )
 
 [node name="DoorL2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0.2 )
+visible = false
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
 
 [node name="DoorR2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0.2 )
+visible = false
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
 
@@ -587,10 +590,14 @@ transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.742
 [node name="HangarSign" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -18.2 )
 
+[node name="HangarCam" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16 )
+environment = ExtResource( 9 )
+
 [node name="HangarView" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
 render_target_v_flip = true
 
-[node name="HangarCam" type="Camera" parent="HangarView"]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17 )
-environment = ExtResource( 9 )
+[node name="Mech" parent="." instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -17 )
+prop_mode = true

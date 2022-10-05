@@ -1,5 +1,5 @@
 {
-  "intro": "E T A I O N  S H R D L U\nSaltyFront Media Management System\nDeveloped by Pizza Illuminati\n%s\nInitiate new tournament cycle\nSequential designation: %d\n\n",
+  "intro": "E T A I O N  S H R D L U\n\nSaltyFront Media Management System\n\nDeveloped by Pizza Illuminati\n\n%s\nInitiate new tournament cycle\nSequential designation: %d\n\n",
   "credits": "Code = Tupperwarez\nBackend = VRTemjin\nSupple Thought = Zen\nMorale = Proclick Crew\n",
   "video": [
     "Calibrate pilot feed",

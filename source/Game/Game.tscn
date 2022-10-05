@@ -693,15 +693,15 @@ margin_top = 179.0
 margin_right = 980.0
 margin_bottom = 312.0
 
-[node name="TourBracket" parent="UI" instance=ExtResource( 6 )]
-visible = false
-
 [node name="Stats" parent="UI" instance=ExtResource( 18 )]
 visible = false
 margin_top = 0.0
 margin_bottom = 0.0
 
 [node name="TourStats" parent="UI" instance=ExtResource( 17 )]
+visible = false
+
+[node name="TourBracket" parent="UI" instance=ExtResource( 6 )]
 visible = false
 
 [node name="ScreenBuffer" type="TextureRect" parent="UI"]

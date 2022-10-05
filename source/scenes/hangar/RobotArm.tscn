@@ -47,6 +47,9 @@ size = Vector3( 0.01, 0.2, 0.01 )
 [node name="RobotArm" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Skeleton" parent="Armature" index="0"]
+bones/3/bound_children = [ NodePath("Wrist") ]
+
 [node name="Cube" parent="Armature/Skeleton" index="0"]
 material_override = SubResource( 15 )
 

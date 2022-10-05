@@ -205,14 +205,15 @@ func _process(delta):
 					elif cycle_next:
 						cycle_next = false
 		GameState.TOUR_END:
-			if int($Timer.time_left) % focus_timer == 0:
-				if !cycle_next:
-					cycle_next = true
-					var stat_ind = fmod((prep_timer - $Timer.time_left)/focus_timer, 7)
-					$UI/TourStats.update_head(tournament.tour_stats)
-					$UI/TourStats.update_stats(stat_cycle[stat_ind], tournament.tour_stats)
-			elif cycle_next:
-				cycle_next = false
+			if !ui_bracket.visible:
+				if int($Timer.time_left) % focus_timer == 0:
+					if !cycle_next:
+						cycle_next = true
+						var stat_ind = fmod((prep_timer - $Timer.time_left)/focus_timer, 7)
+						$UI/TourStats.update_head(tournament.tour_stats)
+						$UI/TourStats.update_stats(stat_cycle[stat_ind], tournament.tour_stats)
+				elif cycle_next:
+					cycle_next = false
 
 
 func _notification(what):
@@ -758,6 +759,9 @@ func start_transition(next):
 		GameState.POSTFIGHT:
 			$Transition/AnimationPlayer.play("door_close")
 		GameState.TOUR_END:
+			ui_bracket.update_info(tournament.matches)
+			$UI/TourStats.update_head(tournament.tour_stats)
+			$UI/TourStats.update_stats(stat_cycle[0], tournament.tour_stats)
 			buffer_screen()
 			mid_transition()
 		GameState.RESET:
@@ -771,6 +775,7 @@ func mid_transition():
 	match next_state:
 		GameState.START:
 			did_comment = false
+			$Hangar.reset_scene("workshop")
 			$UI.visible = true
 			$UI/Background.texture = $Hangar/HangarView.get_texture() #tex_bg1
 			$UI/Background.visible = true
@@ -787,6 +792,7 @@ func mid_transition():
 			$UI/SignupUI.modulate = Color(1, 1, 1, 1)
 			$UI.visible = true
 			$Hangar.load_mechs(tournament.current_match.teams)
+			$Hangar.reset_scene("hangar")
 			$UI/Background.texture = $Hangar/HangarView.get_texture() #tex_bg2
 			var next_map = arena.roll_map()
 			header_versus.match_info.text = msg_match_next % [
@@ -817,7 +823,7 @@ func mid_transition():
 		GameState.POSTFIGHT:
 			$UI.visible = true
 			arena.clear_map()
-			$Hangar.set_state($Hangar.HangarState.HANGAR)
+			$Hangar.reset_scene("hangar")
 			$Hangar.visible = true
 			header_versus.match_info.text = msg_match_result % [
 				tournament.current_match.tour,
@@ -833,14 +839,15 @@ func mid_transition():
 			ui_update()
 			$Transition/AnimationPlayer.play("door_open")
 		GameState.TOUR_END:
+			$Hangar.reset_scene("workshop")
+			$Hangar.visible = true
+			$UI/Background.texture = $Hangar/HangarView.get_texture()
+			$UI/TourStats.visible = true
 			ui_signup.visible = false
-			ui_bracket.visible = false
+			ui_bracket.visible = true
 			header_versus.visible = false
 			prefight.visible = false
 			stats.visible = false
-			$Hangar.set_state($Hangar.HangarState.WORKSHOP)
-			$Hangar.visible = true
-			$UI/TourStats.visible = true
 			scrn_buffer.material.shader = shader_dissolve
 			$Transition/AnimationPlayer.play("dissolve")
 		GameState.RESET:
@@ -875,7 +882,7 @@ func end_transition():
 			$Timer.start(pay_timer)
 		GameState.TOUR_END:
 			bgm_player.play_clip("end_tournament")
-			$Timer.start(prep_timer)
+			$Timer.start(bracket_timer)
 		GameState.RESET:
 			next_state = GameState.START
 			$Transition/Bootup.start(tournament.tour_count)
@@ -917,7 +924,13 @@ func _on_Timer_timeout():
 		GameState.POSTFIGHT:
 			tournament.next_match()
 		GameState.TOUR_END:
-			start_transition(GameState.RESET)
+			if ui_bracket.visible:
+				ui_bracket.visible = false
+				buffer_screen()
+				scrn_buffer.material.shader = shader_melt
+				$Transition/AnimationPlayer.play("dissolve")
+			else:
+				start_transition(GameState.RESET)
 
 
 # Transition between game states
@@ -931,6 +944,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		if state == GameState.PREFIGHT:
 			commentary("pre_fight")
 			$Timer.start(bet_timer)
+		elif state == GameState.TOUR_END:
+			$Timer.start(prep_timer)
 		else:
 			end_transition()
 

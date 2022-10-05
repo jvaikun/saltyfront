@@ -22,7 +22,7 @@ onready var workshop_lights = $WorkshopLights.get_children()
 onready var team1 = $Team1.get_children()
 onready var team2 = $Team2.get_children()
 onready var signs = $Signs.get_children()
-onready var hangar_cam = $HangarView/HangarCam
+onready var hangar_cam = null
 
 export var debug = false
 
@@ -33,12 +33,18 @@ signal mechs_out
 
 
 func _ready():
+	$AnimationPlayer.play("RESET")
+	$HangarSign.update_sign("ready")
+	for arm in arms_top:
+		arm.top = true
+	for mech in (team1 + team2):
+		mech.get_node("mech_frame/AnimationPlayer").stop()
 	if debug:
 		hangar_cam = $HangarCam
 		reroll_all()
 	else:
 		hangar_cam = $HangarView/HangarCam
-	reset_scene("hangar")
+	#set_state(HangarState.WORKSHOP)
 
 
 func _process(_delta):
@@ -47,6 +53,9 @@ func _process(_delta):
 			GameData.screenshot()
 		if Input.is_action_just_pressed("ui_end"):
 			reroll_all()
+		if Input.is_action_just_pressed("ui_page_down"):
+			$CamTween.interpolate_property(hangar_cam, "translation", hangar_cam.translation, Vector3(0, 2, 0), 60)
+			$CamTween.start()
 		if Input.is_action_just_pressed("ui_accept"):
 			match state:
 				HangarState.WORKSHOP:
@@ -55,27 +64,26 @@ func _process(_delta):
 					move_out()
 
 
-func reset_scene(type):
-	$CamTween.stop_all()
+func set_state(new_state):
 	$AnimationPlayer.play("RESET")
-	match type:
-		"workshop":
-			state = HangarState.WORKSHOP
-			hangar_cam.translation = Vector3(-2.5, 2, 17)
-			hangar_cam.rotation_degrees = Vector3(0, -15, 0)
-			for light in hangar_lights:
-				light.get_node("AnimationPlayer").play("off")
-		"hangar":
-			state = HangarState.HANGAR
-			hangar_cam.translation = cam_home_hangar.pos
-			hangar_cam.rotation_degrees = cam_home_hangar.rot
-			for light in hangar_lights:
-				light.get_node("AnimationPlayer").play("normal")
 	$HangarSign.update_sign("ready")
 	for arm in arms_top:
 		arm.top = true
 	for mech in (team1 + team2):
 		mech.get_node("mech_frame/AnimationPlayer").stop()
+	match new_state:
+		HangarState.WORKSHOP:
+			state = new_state
+			for light in hangar_lights:
+				light.get_node("AnimationPlayer").play("off")
+			hangar_cam.translation = cam_home_workshop.pos
+			hangar_cam.rotation_degrees = cam_home_workshop.rot
+		HangarState.HANGAR:
+			state = new_state
+			for light in hangar_lights:
+				light.get_node("AnimationPlayer").play("normal")
+			hangar_cam.translation = cam_home_hangar.pos
+			hangar_cam.rotation_degrees = cam_home_hangar.rot
 
 
 func load_mechs(team_list):
@@ -159,6 +167,7 @@ func move_cam(point):
 
 func reroll_all():
 	var all_mechs = team1 + team2
+	roll_stats($Mech)
 	for i in all_mechs.size():
 		roll_stats(all_mechs[i])
 		signs[i].update_sign(all_mechs[i].mechData)
