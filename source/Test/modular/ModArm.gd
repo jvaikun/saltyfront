@@ -17,9 +17,9 @@ func anim_idle():
 
 
 func anim_walk():
-	anim_arm_l.play("walk", -1, 2.0)
-	anim_arm_r.play("walk", -1, 2.0)
-	anim_legs.play("walk", -1, 2.0)
+	anim_arm_l.play("walk")
+	anim_arm_r.play("walk")
+	anim_legs.play("walk")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
