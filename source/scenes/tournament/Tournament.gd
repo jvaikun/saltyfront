@@ -206,8 +206,7 @@ func new_tournament() -> void:
 		tour_stats.matches.append({"name":bout.name, "turns":0, "time":0})
 	matches = MATCH_TEMPLATE
 	match_index = 0
-	var time = OS.get_datetime()
-	tour_stats.start = "%d-%02d-%02dT%02d:%02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute, time.second]
+	tour_stats.start = OS.get_unix_time()
 	update_match_info()
 
 
@@ -246,7 +245,7 @@ func match_end(fight_data) -> void:
 			time_total += item.time
 	tour_stats.avg_turns = int(turns_total / count)
 	tour_stats.avg_time = int(time_total / count)
-	record_match(str(fight_data.start), str(fight_data.end), fight_data.result, fight_data.turns, fight_data.map)
+	record_match(fight_data.start, fight_data.end, fight_data.result, fight_data.turns, fight_data.map)
 	# If it's the final and there is no champ yet:
 	#	Copy champ data and info
 	#	Generate summary stats
@@ -403,7 +402,7 @@ func new_roster() -> void:
 			drone_ids.append(str(i))
 		drone_ids.shuffle()
 		for i in diff:
-			pick_list.append({"user":"npc", "pilot":"rand"})
+			pick_list.append({"user":"npc", "pilot":drone_ids[i]})
 	for i in ROSTER_SIZE:
 		var team_dict = {"active":true, "open":0, "data":[]}
 		for j in TEAM_SIZE:
@@ -415,14 +414,14 @@ func new_roster() -> void:
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user
 				pilot_type = "user"
 			else:
-				mech.pilot.name = PartDB.drone[str(i*TEAM_SIZE + j)].name
-				mech.pilot.face = PartDB.drone[str(i*TEAM_SIZE + j)].face
+				mech.pilot.name = PartDB.drone[pick_list[i + j*ROSTER_SIZE].pilot].name
+				mech.pilot.face = PartDB.drone[pick_list[i + j*ROSTER_SIZE].pilot].face
 				mech.user_id = "npc"
 				team_dict.open += 1
 			team_dict.data.append(mech)
 			# Record mech stats to file
-			var data_row = [mech.id, pilot_type,
-			mech.pilot.name, mech.pilot.melee, mech.pilot.short, mech.pilot.long, mech.pilot.dodge,
+			var data_row = [mech.id, pilot_type, mech.pilot.name, mech.pilot.face, 
+			mech.pilot.melee, mech.pilot.short, mech.pilot.long, mech.pilot.dodge,
 			mech.body.id, mech.legs.id, 
 			mech.arm_r.id, mech.wpn_r.id, mech.pod_r.id, 
 			mech.arm_l.id, mech.wpn_l.id, mech.pod_l.id, 
@@ -530,7 +529,7 @@ func save_stats() -> void:
 
 
 # Record match results
-func record_match(start: String, end: String, result : String, turns : int, map : String) -> void:
+func record_match(start: int, end: int, result : String, turns : int, map : String) -> void:
 	var match_row = [match_id, tour_id, match_index, turns, start, end, result, map,
 	current_match.teams[0].index, current_match.teams[1].index, current_winner]
 	for mech in (current_match.teams[0].mechs + current_match.teams[1].mechs):
@@ -547,8 +546,7 @@ func record_match(start: String, end: String, result : String, turns : int, map 
 # Record tournament results
 func record_tour():
 	var new_champ = (current_winner != ROSTER_SIZE)
-	var time = OS.get_datetime()
-	tour_stats.end = "%d-%02d-%02dT%02d:%02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute, time.second]
+	tour_stats.end = OS.get_unix_time()
 	var tour_row = [tour_id, tour_stats.start, tour_stats.end, current_winner, new_champ]
 	file.open(tour_file, File.READ_WRITE)
 	file.seek_end()

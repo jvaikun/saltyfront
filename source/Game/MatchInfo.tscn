@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/frames/bar2_fill.png" type="Texture" id=2]
 [ext_resource path="res://Arena/team_pip.png" type="Texture" id=3]
 [ext_resource path="res://Game/MatchInfo.gd" type="Script" id=4]
 [ext_resource path="res://Arena/team_pip_frame.png" type="Texture" id=5]
 [ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=6]
-
+[ext_resource path="res://ui/frames/bar2_fg.png" type="Texture" id=7]
+[ext_resource path="res://ui/frames/bar2_bg.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
@@ -25,24 +27,21 @@ font_data = ExtResource( 1 )
 [node name="MatchInfo" type="MarginContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -320.0
-margin_right = 320.0
-margin_bottom = 112.0
+margin_left = -318.0
+margin_right = 318.0
+margin_bottom = 119.0
 grow_horizontal = 2
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PanelRow" type="HBoxContainer" parent="."]
-margin_right = 640.0
-margin_bottom = 112.0
+margin_right = 636.0
+margin_bottom = 119.0
 custom_constants/separation = -16
 
 [node name="Team1" type="PanelContainer" parent="PanelRow"]
-margin_top = 8.0
+margin_top = 11.0
 margin_right = 224.0
-margin_bottom = 104.0
+margin_bottom = 107.0
 rect_min_size = Vector2( 224, 96 )
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 6 )
@@ -66,6 +65,7 @@ align = 1
 margin_top = 39.0
 margin_right = 188.0
 margin_bottom = 60.0
+rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 4.0
@@ -79,10 +79,27 @@ stretch_margin_top = 4
 stretch_margin_right = 4
 stretch_margin_bottom = 4
 
+[node name="TeamHype" type="TextureProgress" parent="PanelRow/Team1/TeamInfo"]
+visible = false
+margin_top = 59.0
+margin_right = 188.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 24 )
+value = 50.0
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 2 )
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+
 [node name="Versus" type="PanelContainer" parent="PanelRow"]
 margin_left = 208.0
 margin_right = 428.0
-margin_bottom = 112.0
+margin_bottom = 119.0
 size_flags_horizontal = 5
 custom_styles/panel = ExtResource( 6 )
 
@@ -90,7 +107,7 @@ custom_styles/panel = ExtResource( 6 )
 margin_left = 18.0
 margin_top = 18.0
 margin_right = 202.0
-margin_bottom = 94.0
+margin_bottom = 101.0
 
 [node name="Tournament" type="Label" parent="PanelRow/Versus/MatchInfo"]
 margin_right = 184.0
@@ -121,9 +138,9 @@ align = 1
 [node name="Team2" type="PanelContainer" parent="PanelRow"]
 show_behind_parent = true
 margin_left = 412.0
-margin_top = 8.0
+margin_top = 11.0
 margin_right = 636.0
-margin_bottom = 104.0
+margin_bottom = 107.0
 rect_min_size = Vector2( 224, 96 )
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 6 )
@@ -147,12 +164,29 @@ align = 1
 margin_top = 39.0
 margin_right = 188.0
 margin_bottom = 60.0
+rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 4.0
 value = 4.0
 texture_over = ExtResource( 5 )
 texture_progress = ExtResource( 3 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+
+[node name="TeamHype" type="TextureProgress" parent="PanelRow/Team2/TeamInfo"]
+visible = false
+margin_top = 59.0
+margin_right = 188.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 24 )
+value = 50.0
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 2 )
 nine_patch_stretch = true
 stretch_margin_left = 4
 stretch_margin_top = 4

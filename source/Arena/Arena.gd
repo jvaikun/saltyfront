@@ -941,6 +941,10 @@ func next_turn():
 		turns_queue.front().item_list = $Items.get_children()
 
 
+func add_hype(team_index, money):
+	print("GET HYPE! Added %d to %s!", [money, team_index])
+
+
 func chat_msg(user_id, text):
 	# Instance and move/scale dialog box at mini-info panel's position
 	var target = null

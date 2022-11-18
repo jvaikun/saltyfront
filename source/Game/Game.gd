@@ -426,6 +426,7 @@ func startup():
 	chatbot.add_command("bet", self, "cmd_bet", 2, 0)
 	chatbot.add_command("allin", self, "cmd_allin", 1, 0)
 	chatbot.add_command("fight", self, "cmd_fight", 2, 0)
+	chatbot.add_command("hype", self, "cmd_hype", 2, 0)
 	connect_chat()
 
 
@@ -449,6 +450,8 @@ func twitch_message(message, _tags):
 # CHAT MESSAGE HANDLER
 func chat_msg(sender_data, message):
 	var sender_id = UserDB.get_user_id(sender_data.user)
+	if sender_data.user.to_lower() != GameData.CLIENT_ID.to_lower():
+		GameData.write_log("%s,%s" % [sender_data.user, message], "chat")
 	if sender_id in active_users:
 		arena.chat_msg(sender_id, message)
 
@@ -716,6 +719,25 @@ func cmd_fight(cmd_info : CommandInfo, arg_ary : PoolStringArray = []):
 		chatbot.chat("Please register before signing up.")
 		GameData.write_log(user + ",fight,err_noreg", "command")
 		return
+
+
+func cmd_hype(cmd_info : CommandInfo, arg_ary : PoolStringArray = []):
+	var user = cmd_info.sender_data.user
+	if self.state != GameState.FIGHT:
+		chatbot.chat("There's no fight to get hype about, %s!" % user)
+		GameData.write_log(user + ",hype,err_closed", "command")
+		return
+	# Validation cleared, prepare parameter variables
+	var current_teams = []
+	for team in tournament.current_match.teams:
+		current_teams.append(team.index)
+	var team = arg_ary[1].to_lower().strip_edges()
+	if team == "champ":
+		team = "champion"
+	var team_index = GameData.teamNames.find(team)
+	var money = arg_ary[0].to_lower().strip_edges()
+	chatbot.chat("GET HYPE! %s put %dC on %s" % [user, money, team])
+	arena.add_hype(team_index, money)
 
 
 func buffer_screen():
