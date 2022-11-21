@@ -39,9 +39,8 @@ margin_bottom = 119.0
 custom_constants/separation = -16
 
 [node name="Team1" type="PanelContainer" parent="PanelRow"]
-margin_top = 11.0
 margin_right = 224.0
-margin_bottom = 107.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 224, 96 )
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 6 )
@@ -50,7 +49,7 @@ custom_styles/panel = ExtResource( 6 )
 margin_left = 18.0
 margin_top = 18.0
 margin_right = 206.0
-margin_bottom = 78.0
+margin_bottom = 101.0
 
 [node name="TeamName" type="Label" parent="PanelRow/Team1/TeamInfo"]
 margin_right = 188.0
@@ -64,7 +63,7 @@ align = 1
 [node name="TeamCount" type="TextureProgress" parent="PanelRow/Team1/TeamInfo"]
 margin_top = 39.0
 margin_right = 188.0
-margin_bottom = 60.0
+margin_bottom = 55.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -80,12 +79,10 @@ stretch_margin_right = 4
 stretch_margin_bottom = 4
 
 [node name="TeamHype" type="TextureProgress" parent="PanelRow/Team1/TeamInfo"]
-visible = false
 margin_top = 59.0
 margin_right = 188.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 0, 24 )
-value = 50.0
 texture_under = ExtResource( 8 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 2 )
@@ -138,9 +135,8 @@ align = 1
 [node name="Team2" type="PanelContainer" parent="PanelRow"]
 show_behind_parent = true
 margin_left = 412.0
-margin_top = 11.0
 margin_right = 636.0
-margin_bottom = 107.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 224, 96 )
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 6 )
@@ -149,7 +145,7 @@ custom_styles/panel = ExtResource( 6 )
 margin_left = 18.0
 margin_top = 18.0
 margin_right = 206.0
-margin_bottom = 78.0
+margin_bottom = 101.0
 
 [node name="TeamName" type="Label" parent="PanelRow/Team2/TeamInfo"]
 margin_right = 188.0
@@ -163,7 +159,7 @@ align = 1
 [node name="TeamCount" type="TextureProgress" parent="PanelRow/Team2/TeamInfo"]
 margin_top = 39.0
 margin_right = 188.0
-margin_bottom = 60.0
+margin_bottom = 55.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -178,12 +174,10 @@ stretch_margin_right = 4
 stretch_margin_bottom = 4
 
 [node name="TeamHype" type="TextureProgress" parent="PanelRow/Team2/TeamInfo"]
-visible = false
 margin_top = 59.0
 margin_right = 188.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 0, 24 )
-value = 50.0
 texture_under = ExtResource( 8 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 2 )

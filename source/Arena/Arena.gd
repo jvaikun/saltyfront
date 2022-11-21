@@ -786,10 +786,12 @@ func ui_update():
 			# Update current unit info
 			unit_info.update_info(thisMech)
 			attack_info.update_info(thisMech.attack_wpn)
+			$MapUI/Attacker.update_info(thisMech)
 			# Update mech POV camera
 			mech_pov.global_transform = thisMech.cam_point.global_transform
 			if is_instance_valid(thisMech.attack_target):
 				counter_info.update_info(thisMech.attack_target.attack_wpn)
+				$MapUI/Defender.update_info(thisMech.attack_target)
 			else:
 				counter_info.update_info(null)
 			lbl_pov.text = ("%s %d: %s" % [GameData.teamNames[thisMech.team], thisMech.num, thisMech.mechData.pilot.name]).to_upper()

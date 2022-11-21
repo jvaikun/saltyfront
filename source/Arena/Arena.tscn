@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Arena/Arena.gd" type="Script" id=1]
 [ext_resource path="res://Arena/target.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Arena/UnitInfo.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Arena/ActionInfo.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/frames/ui_frame.png" type="Texture" id=13]
+[ext_resource path="res://ui/MechView.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Arena/move2.png" type="Texture" id=16]
 [ext_resource path="res://Arena/target2.png" type="Texture" id=17]
 [ext_resource path="res://Arena/DebugVector.gd" type="Script" id=18]
@@ -58,6 +59,33 @@ flags_disable_ambient_light = true
 albedo_texture = SubResource( 19 )
 
 [sub_resource type="PlaneMesh" id=11]
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attacker:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Defender:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
 
 [sub_resource type="Animation" id=14]
 tracks/0/type = "value"
@@ -180,6 +208,30 @@ tracks/9/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Attacker:rect_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Defender:rect_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="DynamicFont" id=15]
 size = 32
@@ -226,11 +278,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.5
 margin_bottom = -0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MapUI"]
+anims/RESET = SubResource( 20 )
 anims/intro = SubResource( 14 )
 
 [node name="IntroOutro" parent="MapUI" instance=ExtResource( 25 )]
@@ -238,7 +288,6 @@ anims/intro = SubResource( 14 )
 [node name="TopBar" type="Control" parent="MapUI"]
 anchor_right = 1.0
 grow_horizontal = 2
-rect_scale = Vector2( 1, 1e-05 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -272,9 +321,6 @@ margin_bottom = 346.0
 grow_vertical = 2
 custom_constants/separation = 0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UnitInfoMini" parent="MapUI/TeamInfo1" instance=ExtResource( 9 )]
 margin_top = 60.0
@@ -329,6 +375,7 @@ margin_top = 477.0
 margin_bottom = 620.0
 
 [node name="TurnInfo" type="HBoxContainer" parent="MapUI"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -338,12 +385,8 @@ margin_top = -280.0
 margin_right = 696.0
 grow_horizontal = 2
 grow_vertical = 0
-rect_scale = Vector2( 1, 1e-05 )
 custom_constants/separation = -16
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CurrentUnit" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
 margin_left = 17.0
@@ -398,7 +441,7 @@ margin_bottom = 260.0
 [node name="Viewport" type="Viewport" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox"]
 size = Vector2( 426, 240 )
 handle_input_locally = false
-render_target_update_mode = 3
+render_target_update_mode = 0
 
 [node name="ChaseCam" type="Camera" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox/Viewport"]
 cull_mask = 1048573
@@ -456,6 +499,26 @@ size_flags_vertical = 8
 
 [node name="SkillTag" parent="MapUI" instance=ExtResource( 21 )]
 visible = false
+
+[node name="Attacker" parent="MapUI" instance=ExtResource( 14 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -396.0
+margin_bottom = 0.0
+grow_horizontal = 1
+rect_scale = Vector2( 1e-05, 1e-05 )
+
+[node name="Defender" parent="MapUI" instance=ExtResource( 14 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -676.0
+margin_top = -396.0
+margin_right = 0.0
+margin_bottom = 0.0
+grow_horizontal = 0
+rect_scale = Vector2( 1e-05, 1e-05 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 

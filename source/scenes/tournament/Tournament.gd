@@ -408,7 +408,7 @@ func new_roster() -> void:
 		for j in TEAM_SIZE:
 			var pilot_id = pick_list[i + j*ROSTER_SIZE].pilot
 			var pilot_type = "npc"
-			var mech = new_mech(pilot_id)
+			var mech = new_mech("rand")
 			if str(pick_list[i + j*ROSTER_SIZE].user) != "npc":
 				mech.pilot.name = UserDB.users[pick_list[i + j*ROSTER_SIZE].user].name
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user

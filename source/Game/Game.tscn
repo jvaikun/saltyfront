@@ -623,9 +623,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MechInfo" parent="UI/PreFight" instance=ExtResource( 13 )]
 anchor_top = 0.5
@@ -681,11 +678,11 @@ custom_fonts/normal_font = ExtResource( 33 )
 bbcode_enabled = true
 bbcode_text = "Type commands in chat:
 [color=white]!register[/color] to register your username
-[color=white]!bet amount team[/color] to bet <amount> credits on <team>
+[color=white]!bet amount team[/color] to bet [color=white]amount[/color] credits on [color=white]team[/color]
 [color=white]!balance[/color] - Check your credit balance"
 text = "Type commands in chat:
 !register to register your username
-!bet amount team to bet <amount> credits on <team>
+!bet amount team to bet amount credits on team
 !balance - Check your credit balance"
 fit_content_height = true
 
@@ -815,6 +812,7 @@ char_face = ExtResource( 15 )
 char_name = "Sully"
 
 [node name="Disclaimer" type="Label" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -136.0
@@ -831,6 +829,7 @@ __meta__ = {
 }
 
 [node name="Disclaimer2" type="Label" parent="."]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
