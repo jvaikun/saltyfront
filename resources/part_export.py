@@ -2,10 +2,6 @@ import bpy
 import os
 
 # Blender application is needed
-# Script for MacOS
-# sudo /Applications/Blender.app/Contents/MacOS/Blender --background --python blender.py
-
-# Edit your own
 source_dirs = [
     'D:/Projects/saltyfront/resources/mechparts/arml',
     'D:/Projects/saltyfront/resources/mechparts/armr',
@@ -13,10 +9,10 @@ source_dirs = [
     'D:/Projects/saltyfront/resources/mechparts/legs',
     ]
 output_dirs = [
-    'D:/Projects/saltyfront/source/scenes/parts/meshes/arml',
-    'D:/Projects/saltyfront/source/scenes/parts/meshes/armr',
-    'D:/Projects/saltyfront/source/scenes/parts/meshes/body',
-    'D:/Projects/saltyfront/source/scenes/parts/meshes/legs',
+    'D:/Projects/saltyfront/source/scenes/parts/arml/models',
+    'D:/Projects/saltyfront/source/scenes/parts/armr/models',
+    'D:/Projects/saltyfront/source/scenes/parts/body/models',
+    'D:/Projects/saltyfront/source/scenes/parts/legs/models',
     ]
 
 for i in range(4):

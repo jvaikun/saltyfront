@@ -124,18 +124,18 @@ func _process(_delta):
 	if Input.is_key_pressed(KEY_4):
 		$Items/Bomb.type = "smoke"
 	if Input.is_action_just_pressed("ui_home"):
-		if $Items.get_child_count() == 0:
-			for point in $Nav.get_children():
-				point.clear_effects()
-			var bomb_obj = load("res://scenes/items/Bomb.tscn")
-			var bomb_inst = bomb_obj.instance()
-			$Items.add_child(bomb_inst)
-			bomb_inst.name = "Bomb"
-			bomb_inst.translation = Vector3(13, 0, 19)
-			#bomb_inst.explode_radius = Vector3(8, 0.25, 8)
-			bomb_inst.connect("exploded", self, "test_aoe")
-			nav_update()
-#		test_attack()
+#		if $Items.get_child_count() == 0:
+#			for point in $Nav.get_children():
+#				point.clear_effects()
+#			var bomb_obj = load("res://scenes/items/Bomb.tscn")
+#			var bomb_inst = bomb_obj.instance()
+#			$Items.add_child(bomb_inst)
+#			bomb_inst.name = "Bomb"
+#			bomb_inst.translation = Vector3(13, 0, 19)
+#			#bomb_inst.explode_radius = Vector3(8, 0.25, 8)
+#			bomb_inst.connect("exploded", self, "test_aoe")
+#			nav_update()
+		test_attack()
 #		mech_select += 1
 #		if mech_select >= turns_queue.size():
 #			mech_select = 0

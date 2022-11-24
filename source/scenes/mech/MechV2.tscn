@@ -2421,6 +2421,7 @@ transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.5, 0 )
 visible = false
 billboard = 1
 frames = SubResource( 15 )
+frame = 3
 playing = true
 
 [node name="Glow" type="MeshInstance" parent="Effects"]
@@ -2689,5 +2690,8 @@ material_override = SubResource( 51 )
 cast_shadow = 0
 mesh = SubResource( 52 )
 skeleton = NodePath("")
+
+[node name="SkillTag" type="MeshInstance" parent="."]
+visible = false
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]

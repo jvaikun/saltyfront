@@ -348,6 +348,7 @@ func setup(var my_arena):
 	dodge_total = (mechData.body.dodge + 
 	mechData.arm_r.dodge + mechData.arm_l.dodge + 
 	mechData.legs.dodge + mechData.pilot.dodge / 100.0)
+	
 	# Clear old body parts
 	for part in mech_parts:
 		for piece in mech_parts[part]:
