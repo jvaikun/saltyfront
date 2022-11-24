@@ -80,7 +80,7 @@ onready var mech_parts = {
 	],
 	"wpn_l":[
 		{"point":$mech_frame/Armature/Skeleton/WpnL,
-		"model":"",
+		"model":"weapon",
 		"obj":null}
 	],
 	"pod_l":[
@@ -90,7 +90,7 @@ onready var mech_parts = {
 	],
 	"wpn_r":[
 		{"point":$mech_frame/Armature/Skeleton/WpnR,
-		"model":"",
+		"model":"weapon",
 		"obj":null}
 	],
 	"pod_r":[
@@ -361,11 +361,13 @@ func setup(var my_arena):
 		var this_part = mech_parts[part]
 		if part in ["wpn_r", "wpn_l"]:
 			part_set = mechData[part].type + mechData[part].model
+		elif part in ["pod_r", "pod_l"]:
+			part_set = "pod" + mechData[part].model
 		else:
 			part_set = mechData[part].model
 		for piece in this_part:
 			if part in ["pod_r", "pod_l", "wpn_r", "wpn_l"]:
-				var part_path = "res://scenes/parts/%s%s.tscn" % [piece.model, part_set]
+				var part_path = "res://scenes/parts/%s/%s.tscn" % [piece.model, part_set]
 				part_inst = load(part_path).instance()
 				piece.point.add_child(part_inst)
 				piece.obj = part_inst

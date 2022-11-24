@@ -1,0 +1,93 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://scenes/parts/weapon/textures/tex_rifle0.png" type="Texture" id=1]
+[ext_resource path="res://scenes/parts/weapon/models/rifle0.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Effects/muzzle_02.png" type="Texture" id=3]
+[ext_resource path="res://sfx/shoot/rifle_shoot7.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/shoot/rifle_shoot3.wav" type="AudioStream" id=5]
+[ext_resource path="res://sfx/shoot/rifle_shoot4.wav" type="AudioStream" id=6]
+[ext_resource path="res://sfx/shoot/rifle_shoot2.wav" type="AudioStream" id=7]
+[ext_resource path="res://sfx/shoot/rifle_shoot1.wav" type="AudioStream" id=8]
+[ext_resource path="res://sfx/shoot/rifle_shoot0.wav" type="AudioStream" id=9]
+[ext_resource path="res://sfx/shoot/rifle_shoot6.wav" type="AudioStream" id=10]
+[ext_resource path="res://sfx/shoot/rifle_shoot8.wav" type="AudioStream" id=11]
+[ext_resource path="res://sfx/shoot/rifle_shoot5.wav" type="AudioStream" id=12]
+[ext_resource path="res://sfx/shoot/rifle_shoot9.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/parts/weapon/Weapon.gd" type="Script" id=14]
+[ext_resource path="res://sfx/ready/rifle_ready2.wav" type="AudioStream" id=15]
+[ext_resource path="res://sfx/ready/rifle_ready1.wav" type="AudioStream" id=16]
+[ext_resource path="res://sfx/ready/rifle_ready0.wav" type="AudioStream" id=17]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 1 )
+roughness = 0.6
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_align_y = true
+direction = Vector3( 1, 1, 0 )
+spread = 5.0
+initial_velocity = 1.0
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.784314, 0.827451, 0.254902, 1 )
+
+[sub_resource type="CubeMesh" id=9]
+material = SubResource( 7 )
+size = Vector3( 0.02, 0.02, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.933333, 0.952941, 0.588235, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=3]
+
+[node name="rifle0" type="Spatial"]
+script = ExtResource( 14 )
+
+[node name="SFXAim" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "rifle_ready0", "rifle_ready1", "rifle_ready2" ), [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 15 ) ] ]
+
+[node name="SFXShoot" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "rifle_shoot3", "rifle_shoot4", "rifle_shoot5", "rifle_shoot6", "rifle_shoot7", "rifle_shoot8", "rifle_shoot9" ), [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 13 ) ] ]
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Mesh" type="MeshInstance" parent="."]
+material_override = SubResource( 1 )
+mesh = ExtResource( 2 )
+
+[node name="Eject" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0647093, 0.0970791, -0.154514 )
+emitting = false
+amount = 6
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 9 )
+
+[node name="Muzzle" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0580497, -1.05286 )
+visible = false
+
+[node name="MeshInstance" type="MeshInstance" parent="Muzzle"]
+transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Muzzle"]
+transform = Transform( -1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 1.91069e-15, -1, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+
+[node name="Flash" type="OmniLight" parent="Muzzle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.161698 )
+light_color = Color( 1, 1, 0.501961, 1 )
+light_energy = 2.0
+omni_range = 2.0

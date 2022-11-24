@@ -115,17 +115,6 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		#$Items/Bomb.explode()
 		$ModularArmature.anim_walk()
-		$ModularArmature2.anim_walk()
-		$ModularArmature3.anim_walk()
-		$ModularArmature4.anim_walk()
-		var tween_time = 12
-		var tween_offset = Vector3(0,0,-20)
-		var tween = get_tree().create_tween()
-		tween.tween_property($ModularArmature, "translation", $ModularArmature.translation + tween_offset, tween_time)
-		tween.parallel().tween_property($ModularArmature2, "translation", $ModularArmature2.translation + tween_offset, tween_time)
-		tween.parallel().tween_property($ModularArmature3, "translation", $ModularArmature3.translation + tween_offset, tween_time)
-		tween.parallel().tween_property($ModularArmature4, "translation", $ModularArmature4.translation + tween_offset, tween_time)
-		tween.play()
 	if Input.is_key_pressed(KEY_1):
 		$Items/Bomb.type = "acid"
 	if Input.is_key_pressed(KEY_2):

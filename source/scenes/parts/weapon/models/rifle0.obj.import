@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rifle0.obj-90ae7c7ce47a1061eea7eef1d8376bce.mesh"
+
+[deps]
+
+files=[ "res://.import/rifle0.obj-90ae7c7ce47a1061eea7eef1d8376bce.mesh" ]
+
+source_file="res://scenes/parts/weapon/models/rifle0.obj"
+dest_files=[ "res://.import/rifle0.obj-90ae7c7ce47a1061eea7eef1d8376bce.mesh", "res://.import/rifle0.obj-90ae7c7ce47a1061eea7eef1d8376bce.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

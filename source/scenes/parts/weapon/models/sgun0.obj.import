@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sgun0.obj-a52dc465c0332cc8ebcee14255ebb02e.mesh"
+
+[deps]
+
+files=[ "res://.import/sgun0.obj-a52dc465c0332cc8ebcee14255ebb02e.mesh" ]
+
+source_file="res://scenes/parts/weapon/models/sgun0.obj"
+dest_files=[ "res://.import/sgun0.obj-a52dc465c0332cc8ebcee14255ebb02e.mesh", "res://.import/sgun0.obj-a52dc465c0332cc8ebcee14255ebb02e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

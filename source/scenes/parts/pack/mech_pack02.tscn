@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Parts/mech_base.material" type="Material" id=1]
+[ext_resource path="res://scenes/parts/pack/models/pack2.obj" type="ArrayMesh" id=2]
+
+[node name="mech_pack02" type="Spatial"]
+
+[node name="pack2" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+material_override = ExtResource( 1 )
+mesh = ExtResource( 2 )
