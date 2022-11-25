@@ -2,6 +2,9 @@ extends Spatial
 
 const mat_mech = preload("res://scenes/parts/mat_mech.material")
 const mat_team = preload("res://scenes/parts/mat_team.material")
+const scr_part = preload("res://classes/MechPart.gd")
+const spark_obj = preload("res://Effects/Sparks.tscn")
+
 const source_dirs = [
 	"res://scenes/parts/arml/models/",
 	"res://scenes/parts/armr/models/",
@@ -26,14 +29,20 @@ const out_paths = [
 	"res://scenes/parts/body/mech_%s.tscn",
 	"res://scenes/parts/legs/mech_%s.tscn",
 ]
-const bone_list = {
+const attach_bones = {
 	"hand":"Hand",
 	"shoulder":"Shoulder",
+	"head":"Head",
 	"root":"Hip",
 	"arm.r":"ArmR",
 	"arm.l":"ArmL",
-	"pack":"Pack"
+	"pack":"Pack",
 }
+const spark_bones = [
+	"shoulder",
+	"head",
+	"root",
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,13 +81,18 @@ func _ready():
 					mat_team.albedo_color = Color(1, 0, 0)
 					this_mesh.surface_set_material(1, mat_team.duplicate())
 				# Add BoneAttachments to Armature/Skeleton
-				for bone in bone_list.keys():
+				for bone in attach_bones.keys():
 					if skel.find_bone(bone) >= 0:
 						var attach = BoneAttachment.new()
 						skel.add_child(attach)
 						attach.owner = load_inst
-						attach.name = bone_list[bone]
+						attach.name = attach_bones[bone]
 						attach.bone_name = bone
+						if bone in spark_bones:
+							var spark_inst = spark_obj.instance()
+							attach.add_child(spark_inst)
+							spark_inst.owner = load_inst
+			load_inst.set_script(scr_part)
 			
 			# Save object to PackedScene file then free it
 			var scene = PackedScene.new()

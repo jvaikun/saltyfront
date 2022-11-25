@@ -1,15 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/parts/body/textures/tex_body02.png" type="Texture" id=1]
+[ext_resource path="res://classes/MechPart.gd" type="Script" id=2]
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=15]
 resource_local_to_scene = true
 flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 1 )
 roughness = 0.6
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=16]
 resource_local_to_scene = true
 flags_vertex_lighting = true
 params_specular_mode = 4
@@ -25,7 +27,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 279,
-"material": SubResource( 8 ),
+"material": SubResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.5, 0.00999991, -0.25, 1, 0.6, 0.55 ), AABB( -0.151234, 0.607499, -0.151963, 0.302478, 0.200925, 0.321 ) ],
 "vertex_count": 185
@@ -37,7 +39,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 48,
-"material": SubResource( 9 ),
+"material": SubResource( 16 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.5, 0.331138, -0.25, 1.00001, 0.278862, 0.55 ), AABB( -0.051234, 0.608425, -0.151963, 0.102478, 0.20001, 0.321 ) ],
 "vertex_count": 32
@@ -61,6 +63,42 @@ bind/3/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, -0.45, 0 )
 bind/4/name = "pack"
 bind/4/bone = -1
 bind/4/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0.25 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.25, 0.5 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+lifetime_randomness = 1.0
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 90.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+scale_random = 0.5
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+hue_variation = 0.1
+hue_variation_random = 1.0
+
+[sub_resource type="CubeMesh" id=14]
+size = Vector3( 0.01, 0.2, 0.01 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "melee_left"
@@ -258,6 +296,7 @@ tracks/4/enabled = true
 tracks/4/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0, 0.000541283, 0, 1, 1, 1, 1, 0.133333, 1, 0, 0, 0, 0, 0.00436866, 0, 0.99999, 1, 1, 1, 0.2, 1, 0, 0, 0, 0, 0.0122978, 0, 0.999924, 1, 1, 1, 0.266667, 1, 0, 0, 0, 0, 0.0237874, 0, 0.999717, 1, 1, 1, 0.866667, 1, 0, 0, 0, 0, 0.198379, 0, 0.980125, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0.230942, 0, 0.972967, 1, 1, 1, 1.06667, 1, 0, 0, 0, 0, 0.243085, 0, 0.970005, 1, 1, 1, 1.13333, 1, 0, 0, 0, 0, 0.252148, 0, 0.967689, 1, 1, 1, 1.2, 1, 0, 0, 0, 0, 0.257441, 0, 0.966294, 1, 1, 1, 1.25, 1, 0, 0, 0, 0, 0.258819, 0, 0.965926, 1, 1, 1 )
 
 [node name="mech_body02" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Armature" type="Spatial" parent="."]
 
@@ -271,7 +310,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0.08 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("Head") ]
 bones/2/name = "arm.l"
 bones/2/parent = 0
 bones/2/rest = Transform( 1, 5.96046e-07, -1.19209e-07, -5.96046e-07, 1, 7.10542e-14, 1.19209e-07, 0, 1, 0.51, 0.45, 0 )
@@ -291,6 +330,20 @@ bones/4/bound_children = [ NodePath("Pack") ]
 [node name="body" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+
+[node name="Head" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0.08 )
+bone_name = "head"
+
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Head" instance=ExtResource( 3 )]
+material_override = SubResource( 8 )
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+randomness = 0.8
+local_coords = false
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
 
 [node name="ArmR" type="BoneAttachment" parent="Armature/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51, 0.45, 0 )

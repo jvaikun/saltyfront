@@ -2,12 +2,8 @@ extends KinematicBody
 
 enum MechState {READY, MOVE, ACTION, DONE, WAIT}
 
-const mat_mech = preload("res://scenes/parts/mat_mech.material")
-const mat_team = preload("res://scenes/parts/mat_team.material")
 const bullet_obj = preload("res://scenes/projectile/Bullet.tscn")
 const missile_obj = preload("res://scenes/projectile/MissileLarge.tscn")
-const obj_dmgtext = preload("res://Effects/DamageNum.tscn")
-const part_path = "res://Parts/3D/"
 const part_paths = {
 	"body": "res://scenes/parts/body/mech_body%s.tscn",
 	"pack": "res://scenes/parts/pack/mech_pack%s.tscn",
@@ -26,14 +22,7 @@ const sound_fx = {
 	"explode_lg":7,
 }
 
-onready var mech_anim = $mech_frame/AnimationPlayer
 onready var smoke = $Effects/Smoke
-onready var sparks = {
-	"body":$mech_frame/Armature/Skeleton/Body/Sparks,
-	"arm_r":$mech_frame/Armature/Skeleton/PodR/Sparks,
-	"arm_l":$mech_frame/Armature/Skeleton/PodL/Sparks,
-	"legs":$mech_frame/Armature/Skeleton/Hip/Sparks,
-}
 onready var cam_point = $CamPoint
 onready var mech_tag = $MechTag
 
@@ -167,7 +156,6 @@ func set_bodyHP(value):
 			is_dead = true
 			#print("Mech is dead")
 	else:
-		sparks.body.emitting = (value < mechData.body.hp / 2)
 		smoke.emitting = (value < mechData.body.hp / 2)
 		bodyHP = value
 
@@ -178,12 +166,11 @@ func set_armRHP(value):
 			if !prop_mode:
 				play_fx("explode_sm")
 			mechData.part_lost += 1
-			toggle_part("arm_r", false)
+			mech_parts.arm_r.obj.set_state("broken")
 		armRHP = 0
 	else:
 		if armRHP <= 0:
-			toggle_part("arm_r", true)
-		sparks.arm_r.emitting = (value < mechData.arm_r.hp / 2)
+			mech_parts.arm_r.obj.set_state("normal")
 		armRHP = value
 	update_wpn()
 
@@ -194,12 +181,11 @@ func set_armLHP(value):
 			if !prop_mode:
 				play_fx("explode_sm")
 			mechData.part_lost += 1
-			toggle_part("arm_l", false)
+			mech_parts.arm_l.obj.set_state("broken")
 		armLHP = 0
 	else:
 		if armLHP <= 0:
-			toggle_part("arm_l", true)
-		sparks.arm_l.emitting = (value < mechData.arm_l.hp / 2)
+			mech_parts.arm_l.obj.set_state("normal")
 		armLHP = value
 	update_wpn()
 
@@ -210,14 +196,13 @@ func set_legsHP(value):
 			if !prop_mode:
 				play_fx("explode_sm")
 			mechData.part_lost += 1
-			toggle_part("legs", false)
+			mech_parts.legs.obj.set_state("broken")
 		move_range = int(mechData.legs.move / 2)
 		jump_height = max(1, int(mechData.legs.jump / 2))
 		legsHP = 0
 	else:
 		if legsHP <= 0:
-			toggle_part("legs", true)
-		sparks.legs.emitting = (value < mechData.legs.hp / 2)
+			mech_parts.legs.obj.set_state("normal")
 		move_range = mechData.legs.move
 		jump_height = mechData.legs.jump
 		legsHP = value
@@ -248,7 +233,8 @@ func _physics_process(delta):
 			if is_moving:
 				move(delta)
 			else:
-				mech_anim.stop()
+				for part in mech_parts:
+					mech_parts[part].anim.stop()
 				check_item()
 				emit_signal("move_done")
 				think_action()
@@ -267,7 +253,8 @@ func _physics_process(delta):
 				state = MechState.WAIT
 		MechState.DONE:
 			if !turn_finished:
-				mech_anim.stop()
+				for part in mech_parts:
+					mech_parts[part].anim.stop()
 				turn_finished = true
 				#print("Team " + str(team) + ", Mech " + str(num) + " turn finished")
 		MechState.WAIT:
@@ -310,6 +297,8 @@ func setup(var my_arena):
 			else:
 				mech_parts[part].path = part_paths[part] % ("0" + str(model_num))
 	
+	var obj_mat = null
+	
 	mech_parts.legs.obj = load(mech_parts.legs.path).instance()
 	$Parts.add_child(mech_parts.legs.obj)
 	mech_parts.legs.anim = mech_parts.legs.obj.get_node("AnimationPlayer")
@@ -317,14 +306,20 @@ func setup(var my_arena):
 	mech_parts.body.obj = load(mech_parts.body.path).instance()
 	mech_parts.legs.obj.get_node("Armature/Skeleton/Hip").add_child(mech_parts.body.obj)
 	mech_parts.body.anim = mech_parts.body.obj.get_node("AnimationPlayer")
+	obj_mat = mech_parts.body.obj.get_node("Armature/Skeleton/body").mesh.surface_get_material(1)
+	obj_mat.albedo_color = GameData.teamColors[team]
 	
 	mech_parts.arm_l.obj = load(mech_parts.arm_l.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmL").add_child(mech_parts.arm_l.obj)
 	mech_parts.arm_l.anim = mech_parts.arm_l.obj.get_node("AnimationPlayer")
+	obj_mat = mech_parts.arm_l.obj.get_node("Armature/Skeleton/arm").mesh.surface_get_material(1)
+	obj_mat.albedo_color = GameData.teamColors[team]
 	
 	mech_parts.arm_r.obj = load(mech_parts.arm_r.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmR").add_child(mech_parts.arm_r.obj)
 	mech_parts.arm_r.anim = mech_parts.arm_r.obj.get_node("AnimationPlayer")
+	obj_mat = mech_parts.arm_r.obj.get_node("Armature/Skeleton/arm").mesh.surface_get_material(1)
+	obj_mat.albedo_color = GameData.teamColors[team]
 	
 	mech_parts.pack.obj = load(mech_parts.pack.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/Pack").add_child(mech_parts.pack.obj)
@@ -343,9 +338,6 @@ func setup(var my_arena):
 	mech_parts.pod_r.obj = load(mech_parts.pod_r.path).instance()
 	mech_parts.arm_r.obj.get_node("Armature/Skeleton/Shoulder").add_child(mech_parts.pod_r.obj)
 	
-	# Set up spark emitters
-	for spark in sparks:
-		sparks[spark].emitting = false
 	# Build weapon list
 	weapon_list.clear()
 	global_range_max = 0
@@ -407,15 +399,6 @@ func setup(var my_arena):
 		$MechTag.show()
 
 
-func toggle_part(part, flag):
-	for piece in mech_parts[part]:
-		piece.point.visible = flag
-	if part == "arm_l":
-		mech_parts.wpn_l[0].point.visible = flag
-	elif part == "arm_r":
-		mech_parts.wpn_r[0].point.visible = flag
-
-
 func reset_acts():
 	if !is_dead:
 		is_thinking = false
@@ -429,21 +412,7 @@ func reset_acts():
 
 
 # aux functions:
-func impact(part, damage, crit, hitsound):
-	var dmgtxt = obj_dmgtext.instance()
-	add_child(dmgtxt)
-	if part == "repair":
-		dmgtxt.translation = sparks.body.translation
-		dmgtxt.label.modulate = Color(0, 1, 0, 1)
-	elif part == "miss":
-		dmgtxt.translation = sparks.body.translation
-	else:
-		dmgtxt.translation = sparks[part].translation
-	dmgtxt.label.text = str(damage)
-	if crit > 1:
-		dmgtxt.label.modulate = Color(1, 0, 0, 1)
-	if hitsound != "none":
-		play_fx(hitsound)
+
 
 # Update recent damage amount of attacker
 func update_threats(attacker, damage):
@@ -451,6 +420,7 @@ func update_threats(attacker, damage):
 		if enemy.mech == attacker:
 			enemy.last_attack = 1
 			enemy.last_dmg = damage
+
 
 # Update weapon availability based on weapon ammo or arm HP
 func update_wpn():
@@ -495,7 +465,7 @@ func repair(percent):
 	self.armRHP += mechData.arm_r.hp * percent
 	self.armLHP += mechData.arm_l.hp * percent
 	self.legsHP += mechData.legs.hp * percent
-	impact("repair", "+" + str(int(percent * 100)) + "%", 1, "none")
+	mech_parts.body.obj.impact("repair", "+" + str(int(percent * 100)) + "%", 1)
 
 # Add an effect to this mech
 func add_effect(new_effect):
@@ -822,8 +792,10 @@ func get_move_path():
 
 func move(delta):
 	if !move_tiles.empty() && !move_path.empty():
-		if mech_anim.current_animation != "walk":
-			mech_anim.play("walk", -1, spd_anim, false)
+		if mech_parts.legs.anim.current_animation != "walk":
+			mech_parts.legs.anim.play("walk", -1, spd_anim, false)
+			mech_parts.arm_l.anim.play("walk", -1, spd_anim, false)
+			mech_parts.arm_r.anim.play("walk", -1, spd_anim, false)
 		var from = global_transform.origin
 		var to = move_path.front().global_transform.origin
 		var look = to
@@ -852,7 +824,8 @@ func move(delta):
 			is_moving = false
 			#print("Move finished")
 	else:
-		mech_anim.stop()
+		for part in mech_parts:
+			mech_parts[part].anim.stop()
 		for tile in move_tiles:
 			tile.unmark()
 		move_tiles.clear()
@@ -882,7 +855,8 @@ func damage(data):
 		if data.part != "body" && part_hp[data.part] <= 0:
 			data.part = "body"
 			data.dmg = data.dmg/2
-		impact(data.part, data.dmg, data.crit, sfx)
+		mech_parts[data.part].obj.impact("hit", data.dmg, data.crit)
+		play_fx(sfx)
 		match data.part:
 			"body":
 				self.bodyHP -= data.dmg
@@ -902,7 +876,8 @@ func damage(data):
 				sfx = "none"
 			"flame":
 				sfx = "none"
-		impact(data.part, "miss", data.crit, sfx)
+		mech_parts.body.obj.impact("miss", "miss", data.crit)
+		play_fx(sfx)
 
 # Spawn bullet for attack
 func projectile(target, object, hardpoint, speed, spread, data):
@@ -939,7 +914,7 @@ func do_attack(shot_list):
 		mech_parts.legs.anim.play("shoot_in_" + attack_wpn.side, -1, spd_anim, false)
 		mech_parts.body.anim.play("shoot_in_" + attack_wpn.side, -1, spd_anim, false)
 		anim_side.play("shoot_in", -1, spd_anim, false)
-		yield(anim_side, "animation_finished")
+		yield(mech_parts.legs.anim, "animation_finished")
 	attack_wpn.obj.start_loop()
 	# Attack loop
 	var last_shot
@@ -948,16 +923,18 @@ func do_attack(shot_list):
 		match (attack_wpn.type):
 			# If weapon is melee, spawn invisible bullet, animate
 			"melee":
-				mech_anim.stop()
-				mech_anim.play("melee_" + attack_wpn.side, -1, spd_anim, false)
+				mech_parts.body.anim.stop()
+				anim_side.stop()
+				mech_parts.body.anim.play("melee_" + attack_wpn.side, -1, spd_anim, false)
+				anim_side.play("melee", -1, spd_anim, false)
 				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 20, 0, shot)
 				bullet.visible = false
-				yield(mech_anim, "animation_finished")
+				yield(mech_parts.body.anim, "animation_finished")
 			# If weapon is shotgun, spawn bullets all at once, animate start only
 			"sgun":
 				if shot_list.find(shot) == 0:
-					mech_anim.stop()
+					anim_side.stop()
 					anim_side.play("shoot", -1, spd_anim, false)
 					attack_wpn.obj.shoot()
 					yield(anim_side, "animation_finished")
@@ -973,29 +950,31 @@ func do_attack(shot_list):
 				bullet.visible = false
 				yield(get_tree().create_timer(0.1), "timeout")
 			"missile":
-				mech_anim.play("launch_" + attack_wpn.side, -1, spd_anim, false)
+				anim_side.stop()
+				anim_side.play("launch", -1, spd_anim, false)
 				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, missile_obj, point, 20, 0, shot)
-				yield(mech_anim, "animation_finished")
+				yield(anim_side, "animation_finished")
 			"mgun":
-				mech_anim.stop()
+				anim_side.stop()
 				anim_side.play("shoot", -1, spd_anim * 2, false)
 				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.6, shot)
 				yield(anim_side, "animation_finished")
 			"rifle":
-				mech_anim.stop()
-				mech_anim.play("shoot_" + attack_wpn.side, -1, spd_anim, false)
+				anim_side.stop()
+				anim_side.play("shoot", -1, spd_anim, false)
 				attack_wpn.obj.shoot()
 				bullet = projectile(shot.target, bullet_obj, point, 30, 0.2, shot)
-				yield(mech_anim, "animation_finished")
+				yield(anim_side, "animation_finished")
 		if shot_list.find(shot) == shot_list.size()-1:
 			last_shot = bullet
 	# Attack end animation
 	attack_wpn.obj.end_loop()
 	$Effects/Flame.emitting = false
 	$Effects/AnimEffect.stop()
-	mech_anim.stop()
+	for part in mech_parts:
+		mech_parts[part].anim.stop()
 	if attack_wpn.type == "missile":
 		mech_parts.legs.anim.play("launch_in_" + attack_wpn.side, -1, -spd_anim, true)
 		mech_parts.body.anim.play("launch_in_" + attack_wpn.side, -1, -spd_anim, true)

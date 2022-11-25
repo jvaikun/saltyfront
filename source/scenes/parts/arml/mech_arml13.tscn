@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/parts/arml/textures/tex_arml13.png" type="Texture" id=1]
+[ext_resource path="res://classes/MechPart.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
@@ -41,6 +42,7 @@ bind/3/bone = -1
 bind/3/pose = Transform( 7.47904e-08, 0.258819, 0.965926, 3.86626e-08, -0.965926, 0.258819, 1, -2.6133e-08, -9.75296e-08, 0.200752, -0.686703, -0.19 )
 
 [node name="mech_arml13" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Armature" type="Spatial" parent="."]
 

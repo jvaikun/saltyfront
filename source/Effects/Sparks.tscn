@@ -39,6 +39,7 @@ size = Vector3( 0.01, 0.2, 0.01 )
 [node name="Sparks" type="Particles"]
 material_override = SubResource( 8 )
 cast_shadow = 0
+emitting = false
 explosiveness = 1.0
 randomness = 0.8
 local_coords = false

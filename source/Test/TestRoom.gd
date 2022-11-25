@@ -58,6 +58,13 @@ const tile_data = [
 	{"name":"dirt_low", "height":1, "angle":0, "move":3},
 	{"name":"dirt_tall", "height":2, "angle":0, "move":3},
 ]
+const test_weapons = {
+	"sgun":"0",
+	"mgun":"4",
+	"flame":"8",
+	"rifle":"12",
+	"melee":"16",
+}
 
 onready var debug_info = $Debug/DebugInfo
 onready var mech_prod = $Mechs/Mech1
@@ -74,6 +81,7 @@ var part_set = 0
 var mouse_sensitivity = 0.05
 var mech_select = 0
 var lighting = "Dawn"
+var wpn_test_type = "sgun"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -141,7 +149,8 @@ func _process(_delta):
 #			mech_select = 0
 #		cam_base.follow_mech(turns_queue[mech_select])
 	if Input.is_action_just_pressed("ui_end"):
-		reroll_all()
+		mech_targ.repair(1)
+		#reroll_all()
 	if Input.is_action_just_pressed("ui_page_down"):
 		if map_cam.cam_mode == map_cam.CamState.NORMAL:
 			map_cam.cam_mode = map_cam.CamState.PHOTO
@@ -171,17 +180,16 @@ func test_aoe(center, radius, effect):
 		#yield(get_tree().create_timer(0.2), "timeout")
 
 func test_attack():
-	var test_type = "mgun"
 	mech_prod.attack_target = $Mechs/Mech2
 	for weapon in mech_prod.weapon_list:
-		if weapon.type == test_type:
+		if weapon.type == wpn_test_type:
 			mech_prod.attack_wpn = weapon
 	var shots = [
-		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
-		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
-		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
-		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
-		{ "type":test_type, "target":$Mechs/Mech2, "part":"body", "dmg":5, "crit":1 },
+		{ "type":wpn_test_type, "target":$Mechs/Mech2, "part":"legs", "dmg":50, "crit":1 },
+		{ "type":wpn_test_type, "target":$Mechs/Mech2, "part":"legs", "dmg":50, "crit":1 },
+		{ "type":wpn_test_type, "target":$Mechs/Mech2, "part":"legs", "dmg":50, "crit":1 },
+		{ "type":wpn_test_type, "target":$Mechs/Mech2, "part":"legs", "dmg":50, "crit":1 },
+		{ "type":wpn_test_type, "target":$Mechs/Mech2, "part":"legs", "dmg":50, "crit":1 },
 	]
 	mech_prod.do_attack(shots)
 
@@ -207,7 +215,7 @@ func roll_stats(mech):
 	stats.arm_r = PartDB.arm[partSet]
 	stats.arm_l = PartDB.arm[partSet]
 	stats.legs = PartDB.legs[partSet]
-	var wpnSet = "4" #str(randi() % PartDB.weapon.size())
+	var wpnSet = test_weapons[wpn_test_type] #str(randi() % PartDB.weapon.size())
 	stats.wpn_r = PartDB.weapon[wpnSet]
 	stats.wpn_l = PartDB.weapon[wpnSet]
 	var podSet = str(randi() % PartDB.pod.size())

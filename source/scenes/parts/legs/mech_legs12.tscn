@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/parts/legs/textures/tex_legs12.png" type="Texture" id=1]
+[ext_resource path="res://classes/MechPart.gd" type="Script" id=2]
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=15]
 resource_local_to_scene = true
 flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
@@ -18,7 +20,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 636,
-"material": SubResource( 6 ),
+"material": SubResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.14, 0.7, -0.356608, 0.28, 0.369561, 0.656608 ), AABB( 0.15, 0.4, -0.6, 0.6, 0.65, 1.2 ), AABB( -0.75, 0.4, -0.6, 0.60001, 0.65, 1.2 ) ],
 "vertex_count": 400
@@ -36,6 +38,42 @@ bind/1/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.9, 0 )
 bind/2/name = "leg.r"
 bind/2/bone = -1
 bind/2/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.9, 0 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.25, 0.5 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+lifetime_randomness = 1.0
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 90.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+scale_random = 0.5
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+hue_variation = 0.1
+hue_variation_random = 1.0
+
+[sub_resource type="CubeMesh" id=14]
+size = Vector3( 0.01, 0.2, 0.01 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
@@ -113,6 +151,7 @@ tracks/2/enabled = true
 tracks/2/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, -0.00468755, 0, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, 0, -0.0484375, 0, 0, 0, 0, 1, 1, 1, 1, 0.266667, 1, 0, -0.04708, 0, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, 0, -0.0391999, 0, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, 0, -0.00632, 0, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, 0, -0.000839949, 0, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, 0, -0.00520003, 0, 0, 0, 0, 1, 1, 1, 1, 0.8, 1, 0, -0.04584, 0, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, 0, -0.04888, 0, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, 0, -0.04256, 0, 0, 0, 0, 1, 1, 1, 1, 1.13333, 1, 0, -0.00968003, 0, 0, 0, 0, 1, 1, 1, 1, 1.2, 1, 0, -0.00215995, 0, 0, 0, 0, 1, 1, 1, 1, 1.25, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
 [node name="mech_legs12" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Armature" type="Spatial" parent="."]
 
@@ -140,6 +179,16 @@ skin = SubResource( 2 )
 [node name="Hip" type="BoneAttachment" parent="Armature/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08, 0 )
 bone_name = "root"
+
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Hip" instance=ExtResource( 3 )]
+material_override = SubResource( 8 )
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+randomness = 0.8
+local_coords = false
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 3 )

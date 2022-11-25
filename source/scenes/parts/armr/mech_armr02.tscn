@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/parts/armr/textures/tex_armr02.png" type="Texture" id=1]
+[ext_resource path="res://classes/MechPart.gd" type="Script" id=2]
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=15]
 resource_local_to_scene = true
 flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 1 )
 roughness = 0.6
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=16]
 resource_local_to_scene = true
 flags_vertex_lighting = true
 params_specular_mode = 4
@@ -25,7 +27,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 219,
-"material": SubResource( 11 ),
+"material": SubResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.241388, -0.345039, -0.186752, 0.145555, 0.427201, 0.276627 ), AABB( -0.279764, -0.803229, -0.19549, 0.218621, 0.490888, 0.272844 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.328881, -0.192363, -0.151112, 0.320138, 0.360987, 0.290185 ) ],
 "vertex_count": 149
@@ -37,7 +39,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 3,
-"material": SubResource( 12 ),
+"material": SubResource( 16 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.328881, -0.0792974, -0.150131, 0.0628312, 0.247922, 0.289214 ) ],
 "vertex_count": 3
@@ -64,6 +66,42 @@ bind/4/pose = Transform( -1, 0, 0, 0, 0, 1, 0, 1, 0, -0.17, 0, 0.727724 )
 bind/5/name = "shoulder"
 bind/5/bone = -1
 bind/5/pose = Transform( 1, -1.0076e-07, 2.16081e-07, 4.26326e-14, 0.906308, 0.422618, -2.38419e-07, -0.422618, 0.906308, 0.17, 7.10543e-15, -4.05312e-08 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.25, 0.5 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+lifetime_randomness = 1.0
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 90.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+scale_random = 0.5
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+hue_variation = 0.1
+hue_variation_random = 1.0
+
+[sub_resource type="CubeMesh" id=14]
+size = Vector3( 0.01, 0.2, 0.01 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
@@ -295,7 +333,7 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = PoolRealArray( 0, 1, 1.49012e-08, -2.84217e-16, 0, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.0416667, 1, 1.49012e-08, -2.84217e-16, 0, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 resource_name = "shoot"
 length = 1.25
 tracks/0/type = "transform"
@@ -341,7 +379,7 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = PoolRealArray( 0, 1, 1.49012e-08, -2.84217e-16, 0, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1, 0.0666667, 1, 1.49012e-08, -0.000434792, -0.000932416, -0.657541, -1.30428e-14, -6.66753e-15, 0.753419, 1, 1, 1, 0.133333, 1, 1.49012e-08, -0.00322906, -0.00692474, -0.657541, 4.67211e-15, -5.35337e-15, 0.753419, 1, 1, 1, 0.333333, 1, 1.49012e-08, -0.0184642, -0.0395966, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1, 0.4, 1, 0, -0.0208411, -0.0446938, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1, 0.466667, 1, 0, -0.02089, -0.0447988, -0.657541, -5.35336e-15, -4.67211e-15, 0.753419, 1, 1, 1, 0.533333, 1, 0, -0.0199856, -0.0428593, -0.657541, -1.00255e-14, 6.81255e-16, 0.753419, 1, 1, 1, 0.6, 1, 0, -0.0184917, -0.0396555, -0.657541, -6.03462e-15, -1.46976e-14, 0.753419, 1, 1, 1, 1.13333, 1, 0, -0.0011453, -0.00245609, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1, 1.2, 1, 0, -0.000240892, -0.000516598, -0.657541, -1.30428e-14, -6.66753e-15, 0.753419, 1, 1, 1, 1.25, 1, 1.49012e-08, -2.84217e-16, 0, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=18]
 resource_name = "shoot_in"
 length = 1.25
 tracks/0/type = "transform"
@@ -387,7 +425,7 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = PoolRealArray( 0, 1, 1.49012e-08, -2.84217e-16, 0, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.0666667, 1, 1.49012e-08, -2.84217e-16, 0, 0.0010675, 7.10163e-15, -3.5603e-15, 0.999999, 1, 1, 1, 0.133333, 1, 1.49012e-08, -2.84217e-16, 0, 0.0078316, -1.41826e-14, 3.6639e-15, 0.999969, 1, 1, 1, 0.2, 1, 1.49012e-08, -2.84217e-16, 0, 0.0183894, -7.10423e-15, 1.30665e-16, 0.999831, 1, 1, 1, 0.266667, 1, 1.49012e-08, -2.84217e-16, 0, 0.0266239, -7.10291e-15, 1.89174e-16, 0.999646, 1, 1, 1, 0.333333, 1, 1.49012e-08, -2.84217e-16, 0, 0.0284509, -1.01078e-16, -3.55128e-15, 0.999595, 1, 1, 1, 0.4, 1, 1.49012e-08, -2.84217e-16, 0, 0.0185772, -7.1042e-15, 1.31999e-16, 0.999827, 1, 1, 1, 0.466667, 1, 1.49012e-08, -2.84217e-16, 0, -0.00382872, 0, 0, 0.999993, 1, 1, 1, 0.533333, 1, 1.49012e-08, -2.84217e-16, 0, -0.0410238, -1.45746e-16, 3.54972e-15, 0.999158, 1, 1, 1, 0.6, 1, 1.49012e-08, -2.84217e-16, 0, -0.0926602, -1.41497e-14, -1.31678e-15, 0.995698, 1, 1, 1, 0.733333, 1, 1.49012e-08, -2.84217e-16, 0, -0.227987, 1.61994e-15, -6.9183e-15, 0.973664, 1, 1, 1, 0.866667, 1, 1.49012e-08, -2.84217e-16, 0, -0.379375, 1.06177e-14, -7.16575e-15, 0.925243, 1, 1, 1, 1, 1, 1.49012e-08, -2.84217e-16, 0, -0.51731, -9.05317e-15, -2.62291e-14, 0.855798, 1, 1, 1, 1.13333, 1, 1.49012e-08, -2.84217e-16, 0, -0.619957, -1.55554e-14, -3.23495e-15, 0.784636, 1, 1, 1, 1.2, 1, 1.49012e-08, -2.84217e-16, 0, -0.649416, -1.39024e-14, -1.65447e-14, 0.760434, 1, 1, 1, 1.25, 1, 1.49012e-08, -2.84217e-16, 0, -0.657541, -1.77149e-14, -1.31417e-15, 0.753419, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=19]
 resource_name = "walk"
 length = 1.25
 tracks/0/type = "transform"
@@ -434,6 +472,7 @@ tracks/5/enabled = true
 tracks/5/keys = PoolRealArray( 0, 1, 1.49012e-08, -0.0226577, 0.0105655, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.0666667, 1, 1.49012e-08, -0.0184094, 0.00858443, -7.59959e-07, -1.42109e-14, -1.07997e-20, 1, 1, 1, 1, 0.2, 1, 1.49012e-08, 0.0212416, -0.00990512, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.266667, 1, 1.49012e-08, 0.0200113, -0.00933141, -7.59959e-07, -1.42109e-14, 3.5527e-15, 1, 1, 1, 1, 0.333333, 1, 1.49012e-08, 0.0128696, -0.00600118, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.533333, 1, 1.49012e-08, -0.0169298, 0.00789451, -7.15255e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.6, 1, 1.49012e-08, -0.0218964, 0.0102105, -7.59959e-07, -1.42109e-14, -1.07997e-20, 1, 1, 1, 1, 0.666667, 1, 1.49012e-08, -0.0179449, 0.00836784, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.8, 1, 1.49012e-08, 0.0188875, -0.00880736, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.866667, 1, 1.49012e-08, 0.0216426, -0.0100921, -7.15255e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 0.933333, 1, 1.49012e-08, 0.0159148, -0.00742118, -7.59959e-07, -1.42109e-14, -1.07997e-20, 1, 1, 1, 1, 1.13333, 1, 1.49012e-08, -0.0138846, 0.00647451, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 1.2, 1, 1.49012e-08, -0.0207001, 0.0096526, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1, 1.25, 1, 1.49012e-08, -0.0226577, 0.0105655, -7.45058e-07, -2.13163e-14, -3.55273e-15, 1, 1, 1, 1 )
 
 [node name="mech_armr02" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Armature" type="Spatial" parent="."]
 
@@ -481,12 +520,22 @@ bone_name = "hand"
 transform = Transform( 1, 1.42109e-14, -2.38418e-07, -1.0076e-07, 0.906308, -0.422618, 2.16081e-07, 0.422618, 0.906308, -0.17, 0, 0 )
 bone_name = "shoulder"
 
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Shoulder" instance=ExtResource( 3 )]
+material_override = SubResource( 8 )
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+randomness = 0.8
+local_coords = false
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 3 )
 anims/launch = SubResource( 4 )
 anims/launch_in = SubResource( 5 )
 anims/melee = SubResource( 6 )
 anims/reset = SubResource( 7 )
-anims/shoot = SubResource( 8 )
-anims/shoot_in = SubResource( 9 )
-anims/walk = SubResource( 10 )
+anims/shoot = SubResource( 17 )
+anims/shoot_in = SubResource( 18 )
+anims/walk = SubResource( 19 )
