@@ -41,6 +41,7 @@ func update_info(mech):
 	curr_wpn = focus_mech.attack_wpn
 	if is_instance_valid(focus_mech):
 		cam_pov.global_transform = focus_mech.cam_point.global_transform
+		cam_pov.rotation_degrees.y += 180
 		var face_id = int(focus_mech.mechData.pilot.face) 
 		var faceX = (face_id % ATLAS_WIDTH) * FACE_WIDTH
 		var faceY = (face_id / ATLAS_WIDTH) * FACE_HEIGHT
@@ -76,3 +77,6 @@ func update_info(mech):
 				curr_wpn.damage,
 				"N/A"]
 
+
+func night_mode_on():
+	cam_pov.environment = load("res://scenes/maps/env_nightvision.tres")

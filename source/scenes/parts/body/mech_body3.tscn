@@ -1,24 +1,13 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
-[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/parts/body/textures/tex_body3.png" type="Texture" id=3]
-
-[sub_resource type="SpatialMaterial" id=15]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 3 )
-roughness = 0.6
-
-[sub_resource type="SpatialMaterial" id=16]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-params_specular_mode = 4
-albedo_color = Color( 1, 0, 0, 1 )
-roughness = 0.2
+[ext_resource path="res://scenes/parts/body/models/mat_body.material" type="Material" id=2]
+[ext_resource path="res://scenes/parts/body/models/mat_team.material" type="Material" id=3]
+[ext_resource path="res://scenes/parts/body/textures/tex_body3.png" type="Texture" id=4]
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
 resource_name = "mech_body3_body"
 surfaces/0 = {
 "aabb": AABB( -0.504, 0.0137837, -0.411538, 1.008, 0.849409, 0.94 ),
@@ -27,7 +16,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 417,
-"material": SubResource( 15 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.504, 0.0137837, -0.411538, 1.008, 0.714133, 0.94 ), AABB( -0.15, 0.68986, -0.200405, 0.3, 0.173333, 0.35 ) ],
 "vertex_count": 275
@@ -39,7 +28,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 78,
-"material": SubResource( 16 ),
+"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.48, 0.427917, -0.411538, 0.96, 0.3, 0.9 ), AABB( -0.15, 0.68986, -0.200405, 0.3, 0.173333, 0.35 ) ],
 "vertex_count": 48
@@ -63,6 +52,20 @@ bind/3/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, -0.5, 0 )
 bind/4/name = "pack"
 bind/4/bone = -1
 bind/4/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.41 )
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 4 )
+roughness = 0.6
+
+[sub_resource type="SpatialMaterial" id=16]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+params_specular_mode = 4
+albedo_color = Color( 1, 0, 0, 1 )
+roughness = 0.2
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
@@ -330,12 +333,14 @@ bones/4/bound_children = [ NodePath("Pack") ]
 [node name="body" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 15 )
+material/1 = SubResource( 16 )
 
 [node name="Head" type="BoneAttachment" parent="Armature/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0.05 )
 bone_name = "head"
 
-[node name="Sparks" type="Particles" parent="Armature/Skeleton/Head" instance=ExtResource( 2 )]
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Head" instance=ExtResource( 5 )]
 material_override = SubResource( 8 )
 cast_shadow = 0
 emitting = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Arena/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Game.gd" type="Script" id=2]
@@ -35,7 +35,6 @@
 [ext_resource path="res://ui/fonts/ui_font_med.tres" type="DynamicFont" id=33]
 [ext_resource path="res://Game/icon_twitter.png" type="Texture" id=34]
 [ext_resource path="res://Game/icon_reddit.png" type="Texture" id=35]
-[ext_resource path="res://ui/BetInfo2.tscn" type="PackedScene" id=36]
 
 [sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 1, 1, 1, 0.25098 )
@@ -689,13 +688,7 @@ fit_content_height = true
 [node name="BetInfo" parent="UI/PreFight/Body" instance=ExtResource( 12 )]
 margin_top = 179.0
 margin_right = 980.0
-margin_bottom = 312.0
-
-[node name="BetInfo2" parent="UI/PreFight/Body" instance=ExtResource( 36 )]
-visible = false
-margin_top = 312.0
-margin_right = 980.0
-margin_bottom = 499.0
+margin_bottom = 370.0
 
 [node name="Stats" parent="UI" instance=ExtResource( 18 )]
 visible = false

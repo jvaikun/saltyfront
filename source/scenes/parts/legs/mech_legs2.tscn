@@ -1,17 +1,12 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
-[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/parts/legs/models/mat_legs.material" type="Material" id=2]
 [ext_resource path="res://scenes/parts/legs/textures/tex_legs2.png" type="Texture" id=3]
-
-[sub_resource type="SpatialMaterial" id=15]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 3 )
-roughness = 0.6
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
 resource_name = "mech_legs2_legs"
 surfaces/0 = {
 "aabb": AABB( -0.45, 0, -0.27, 0.9, 1.27001, 0.594275 ),
@@ -20,7 +15,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 876,
-"material": SubResource( 15 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.155, 0.97, -0.23, 0.31, 0.30001, 0.48 ), AABB( 0.15, 0.69995, -0.0941518, 0.3, 0.530546, 0.331565 ), AABB( 0.157, 0.141016, -0.0779051, 0.286, 0.611453, 0.349205 ), AABB( 0.15, 0, -0.27, 0.3, 0.16, 0.594275 ), AABB( -0.45, 0.69995, -0.0941518, 0.3, 0.530546, 0.331565 ), AABB( -0.443, 0.141016, -0.0779051, 0.286, 0.611453, 0.349205 ), AABB( -0.45, 0, -0.27, 0.3, 0.16, 0.594275 ) ],
 "vertex_count": 556
@@ -62,6 +57,13 @@ bind/9/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0.299308, 0, -0.174654 )
 bind/10/name = "leg_ik_pole.r"
 bind/10/bone = -1
 bind/10/pose = Transform( -1, 0, 0, 0, 0, 1, 0, 1, 0, -0.299308, -0.29109, -0.725051 )
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 3 )
+roughness = 0.6
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
@@ -733,12 +735,13 @@ bones/10/bound_children = [  ]
 [node name="legs" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 15 )
 
 [node name="Hip" type="BoneAttachment" parent="Armature/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28, 0 )
 bone_name = "root"
 
-[node name="Sparks" type="Particles" parent="Armature/Skeleton/Hip" instance=ExtResource( 2 )]
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Hip" instance=ExtResource( 4 )]
 material_override = SubResource( 8 )
 cast_shadow = 0
 emitting = false

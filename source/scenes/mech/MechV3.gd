@@ -23,7 +23,6 @@ const sound_fx = {
 }
 
 onready var smoke = $Effects/Smoke
-onready var cam_point = $CamPoint
 onready var mech_tag = $MechTag
 
 signal move_done
@@ -100,6 +99,7 @@ var legsHP = 5 setget set_legsHP
 var dodge_total = 0
 var team = 0
 var num = 0
+var cam_point = null
 var mech_parts = {
 	"body": {"path":"", "obj":null, "anim":null},
 	"pack": {"path":"", "obj":null, "anim":null},
@@ -293,17 +293,17 @@ func setup(var my_arena):
 	mech_parts.body.obj = load(mech_parts.body.path).instance()
 	mech_parts.legs.obj.get_node("Armature/Skeleton/Hip").add_child(mech_parts.body.obj)
 	mech_parts.body.anim = mech_parts.body.obj.get_node("AnimationPlayer")
-	mech_parts.body.obj.get_node("Armature/Skeleton/body").mesh.surface_set_material(1, team_mat)
+	mech_parts.body.obj.get_node("Armature/Skeleton/body").set_surface_material(1, team_mat)
 	
 	mech_parts.arm_l.obj = load(mech_parts.arm_l.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmL").add_child(mech_parts.arm_l.obj)
 	mech_parts.arm_l.anim = mech_parts.arm_l.obj.get_node("AnimationPlayer")
-	mech_parts.arm_l.obj.get_node("Armature/Skeleton/arm").mesh.surface_set_material(1, team_mat)
+	mech_parts.arm_l.obj.get_node("Armature/Skeleton/arm").set_surface_material(1, team_mat)
 	
 	mech_parts.arm_r.obj = load(mech_parts.arm_r.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmR").add_child(mech_parts.arm_r.obj)
 	mech_parts.arm_r.anim = mech_parts.arm_r.obj.get_node("AnimationPlayer")
-	mech_parts.arm_r.obj.get_node("Armature/Skeleton/arm").mesh.surface_set_material(1, team_mat)
+	mech_parts.arm_r.obj.get_node("Armature/Skeleton/arm").set_surface_material(1, team_mat)
 	
 	mech_parts.pack.obj = load(mech_parts.pack.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/Pack").add_child(mech_parts.pack.obj)
@@ -377,6 +377,7 @@ func setup(var my_arena):
 				else:
 					enemies.append(info)
 		unit_list = friends + enemies
+	cam_point = mech_parts.body.obj.get_node("Armature/Skeleton/Head")
 	if !prop_mode:
 		$Viewport/Tag.modulate = GameData.teamColors[team]
 		$Viewport/Label.text = str(num)

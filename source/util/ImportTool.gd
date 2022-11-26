@@ -73,13 +73,14 @@ func _ready():
 			var skel = load_inst.get_node("Armature/Skeleton")
 			if is_instance_valid(skel):
 				# Set mesh materials to mech base material and team color
-				var this_mesh = skel.get_child(0).mesh
+				var mesh_instance = skel.get_child(0)
 				var tex_path = tex_paths[i] % file
 				mat_mech.albedo_texture = load(tex_path)
-				this_mesh.surface_set_material(0, mat_mech.duplicate())
-				if this_mesh.get_surface_count() > 1:
+				mesh_instance.set_surface_material(0, mat_mech.duplicate())
+				if mesh_instance.get_surface_material_count() > 1:
 					mat_team.albedo_color = Color(1, 0, 0)
-					this_mesh.surface_set_material(1, mat_team.duplicate())
+					mesh_instance.set_surface_material(1, mat_team.duplicate())
+				mesh_instance.mesh.resource_local_to_scene = true
 				# Add BoneAttachments to Armature/Skeleton
 				for bone in attach_bones.keys():
 					if skel.find_bone(bone) >= 0:

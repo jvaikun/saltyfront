@@ -1,16 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
-[ext_resource path="res://scenes/parts/arml/textures/tex_arml13.png" type="Texture" id=2]
-
-[sub_resource type="SpatialMaterial" id=3]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 2 )
-roughness = 0.6
+[ext_resource path="res://scenes/parts/arml/models/mat_arml.material" type="Material" id=2]
+[ext_resource path="res://scenes/parts/arml/textures/tex_arml13.png" type="Texture" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
 resource_name = "mech_arml13_Cylinder"
 surfaces/0 = {
 "aabb": AABB( 0.0100001, -1.09794, -0.229055, 0.4, 1.3235, 0.42439 ),
@@ -19,7 +14,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 1032,
-"material": SubResource( 3 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.0100001, -0.392978, -0.196019, 0.4, 0.618539, 0.391354 ), AABB( 0.018564, -1.09794, -0.229055, 0.308564, 0.830282, 0.398346 ), AABB( 0.048564, -1.07917, -0.0684383, 0.281446, 0.475291, 0.1677 ) ],
 "vertex_count": 632
@@ -40,6 +35,13 @@ bind/2/pose = Transform( 3.10492e-07, 0.258819, 0.965926, 3.86626e-08, -0.965926
 bind/3/name = "arm_claw.l"
 bind/3/bone = -1
 bind/3/pose = Transform( 7.47904e-08, 0.258819, 0.965926, 3.86626e-08, -0.965926, 0.258819, 1, -2.6133e-08, -9.75296e-08, 0.200752, -0.686703, -0.19 )
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 3 )
+roughness = 0.6
 
 [node name="mech_arml13" type="Spatial"]
 script = ExtResource( 1 )
@@ -71,3 +73,4 @@ bones/3/bound_children = [  ]
 [node name="Claw" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 3 )

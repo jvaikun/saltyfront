@@ -1,16 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
-[ext_resource path="res://scenes/parts/arml/textures/tex_arml11.png" type="Texture" id=2]
-
-[sub_resource type="SpatialMaterial" id=3]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 2 )
-roughness = 0.6
+[ext_resource path="res://scenes/parts/arml/models/mat_arml.material" type="Material" id=2]
+[ext_resource path="res://scenes/parts/arml/textures/tex_arml11.png" type="Texture" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
 resource_name = "mech_arml11_arm"
 surfaces/0 = {
 "aabb": AABB( 0.01, -0.15, -0.2, 0.30001, 0.3, 1.0444 ),
@@ -19,7 +14,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 924,
-"material": SubResource( 3 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0.01, -0.08, -0.08, 0.14001, 0.16, 0.16001 ), AABB( 0.15, -0.15, -0.2, 0.16001, 0.3, 1.0444 ) ],
 "vertex_count": 600
@@ -34,6 +29,13 @@ bind/0/pose = Transform( 0, 0, 1, 1, 0, -1.19209e-07, 0, 1, 0, 0, 0, 0 )
 bind/1/name = "arm_lower.l"
 bind/1/bone = -1
 bind/1/pose = Transform( -1, 0, -1.42109e-14, -1.19209e-07, 0, 1, 0, 1, 0, 0.23, 2.74181e-08, 0 )
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 3 )
+roughness = 0.6
 
 [node name="mech_arml11" type="Spatial"]
 script = ExtResource( 1 )
@@ -55,3 +57,4 @@ bones/1/bound_children = [  ]
 [node name="arm" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 3 )

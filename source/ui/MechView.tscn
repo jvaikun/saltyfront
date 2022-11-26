@@ -51,7 +51,7 @@ render_target_update_mode = 3
 cull_mask = 1048573
 fov = 90.0
 size = 2.0
-near = 0.1
+near = 0.2
 
 [node name="MechHP" type="PanelContainer" parent="."]
 margin_left = 459.0

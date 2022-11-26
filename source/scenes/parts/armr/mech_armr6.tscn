@@ -1,24 +1,13 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
-[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/parts/armr/textures/tex_armr6.png" type="Texture" id=3]
-
-[sub_resource type="SpatialMaterial" id=15]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 3 )
-roughness = 0.6
-
-[sub_resource type="SpatialMaterial" id=16]
-resource_local_to_scene = true
-flags_vertex_lighting = true
-params_specular_mode = 4
-albedo_color = Color( 1, 0, 0, 1 )
-roughness = 0.2
+[ext_resource path="res://scenes/parts/armr/models/mat_armr.material" type="Material" id=2]
+[ext_resource path="res://scenes/parts/armr/models/mat_team.material" type="Material" id=3]
+[ext_resource path="res://scenes/parts/armr/textures/tex_armr6.png" type="Texture" id=4]
+[ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
 resource_name = "mech_armr6_arm"
 surfaces/0 = {
 "aabb": AABB( -0.483354, -0.814136, -0.269154, 0.475346, 1.07397, 0.536938 ),
@@ -27,7 +16,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 582,
-"material": SubResource( 15 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.240695, -0.345032, -0.190366, 0.145555, 0.427201, 0.276627 ), AABB( -0.39991, -0.814136, -0.269154, 0.307271, 0.585389, 0.3764 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.483354, -0.226942, -0.261017, 0.475356, 0.486781, 0.528802 ) ],
 "vertex_count": 378
@@ -39,7 +28,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 72,
-"material": SubResource( 16 ),
+"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.497101, -0.0168231, -0.169184, 0.489104, 0.247855, 0.413276 ) ],
 "vertex_count": 48
@@ -66,6 +55,20 @@ bind/4/pose = Transform( -1, 0, 0, 0, 0, 1, 0, 1, 0, -0.17, 0, 0.727724 )
 bind/5/name = "shoulder"
 bind/5/bone = -1
 bind/5/pose = Transform( 1, -1.0076e-07, 2.16081e-07, 4.26326e-14, 0.906308, 0.422618, -2.38419e-07, -0.422618, 0.906308, 0.17, 7.10543e-15, -4.05312e-08 )
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 4 )
+roughness = 0.6
+
+[sub_resource type="SpatialMaterial" id=16]
+resource_local_to_scene = true
+flags_vertex_lighting = true
+params_specular_mode = 4
+albedo_color = Color( 1, 0, 0, 1 )
+roughness = 0.2
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
@@ -513,6 +516,8 @@ bones/5/bound_children = [ NodePath("Shoulder") ]
 [node name="arm" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 15 )
+material/1 = SubResource( 16 )
 
 [node name="Hand" type="BoneAttachment" parent="Armature/Skeleton"]
 transform = Transform( 1, -1.42109e-14, 2.38419e-07, 2.21366e-07, 0.37139, -0.928477, -8.85464e-08, 0.928477, 0.37139, -0.17, -0.727724, 1.49012e-08 )
@@ -522,7 +527,7 @@ bone_name = "hand"
 transform = Transform( 1, 1.42109e-14, -2.38418e-07, -1.0076e-07, 0.906308, -0.422618, 2.16081e-07, 0.422618, 0.906308, -0.17, 0, 0 )
 bone_name = "shoulder"
 
-[node name="Sparks" type="Particles" parent="Armature/Skeleton/Shoulder" instance=ExtResource( 2 )]
+[node name="Sparks" type="Particles" parent="Armature/Skeleton/Shoulder" instance=ExtResource( 5 )]
 material_override = SubResource( 8 )
 cast_shadow = 0
 emitting = false

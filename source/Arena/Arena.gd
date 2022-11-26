@@ -102,8 +102,6 @@ onready var unit_info = $MapUI/TurnInfo/CurrentUnit
 onready var attack_info = $MapUI/TurnInfo/AttackInfo
 onready var target_info = $MapUI/TurnInfo/CurrentTarget
 onready var counter_info = $MapUI/TurnInfo/CounterInfo
-onready var mech_pov = $MapUI/TurnInfo/MechView/InnerBox/ViewBox/Viewport/ChaseCam
-onready var lbl_pov = $MapUI/TurnInfo/MechView/InnerBox/Label
 
 # Arena variables:
 var state : int = MapState.IDLE
@@ -786,15 +784,13 @@ func ui_update():
 			# Update current unit info
 			unit_info.update_info(thisMech)
 			attack_info.update_info(thisMech.attack_wpn)
-			$MapUI/Attacker.update_info(thisMech)
 			# Update mech POV camera
-			mech_pov.global_transform = thisMech.cam_point.global_transform
+			$MapUI/Attacker.update_info(thisMech)
 			if is_instance_valid(thisMech.attack_target):
 				counter_info.update_info(thisMech.attack_target.attack_wpn)
 				$MapUI/Defender.update_info(thisMech.attack_target)
 			else:
 				counter_info.update_info(null)
-			lbl_pov.text = ("%s %d: %s" % [GameData.teamNames[thisMech.team], thisMech.num, thisMech.mechData.pilot.name]).to_upper()
 			target_info.update_info(thisMech.attack_target)
 
 
@@ -1220,9 +1216,8 @@ func load_map(tournament):
 	ui_update()
 	map_cam.translation = map_cam.origin + Vector3(0, 25, 0)
 	if map_props.light == "Night":
-		mech_pov.environment = load("res://scenes/maps/env_nightvision.tres")
-	else:
-		mech_pov.environment = null
+		$MapUI/Attacker.night_mode_on()
+		$MapUI/Defender.night_mode_on()
 	map_cam.cam.current = true
 	$MapUI.visible = false
 
