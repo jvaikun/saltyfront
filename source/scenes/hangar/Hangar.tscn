@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=2]
 
+[ext_resource path="res://scenes/mech/MechV3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/hangar/RobotArm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/hangar/Hangar.gd" type="Script" id=4]
 [ext_resource path="res://scenes/hangar/texture/tex_door.png" type="Texture" id=5]
 [ext_resource path="res://scenes/hangar/HangarLight.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/mech/MechV2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/hangar/BaySign.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/hangar/HangarEnv.tres" type="Environment" id=9]
 [ext_resource path="res://scenes/hangar/HangarSign.tscn" type="PackedScene" id=10]
@@ -70,7 +70,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 6 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Team1/Mech2:transform")
@@ -154,7 +154,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 3, 0, 6 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 6 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -198,7 +198,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 ), Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -12 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 6 ), Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -12 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Team1/Mech2:transform")
@@ -210,7 +210,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 ), Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -16 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 ), Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -16 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Team1/Mech3:transform")
@@ -222,7 +222,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 ), Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -20 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 ), Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -20 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Team1/Mech4:transform")
@@ -234,7 +234,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 ), Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -24 ) ]
+"values": [ Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 ), Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -24 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Team2/Mech5:transform")
@@ -246,7 +246,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 ), Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -24 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 ), Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -24 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Team2/Mech6:transform")
@@ -258,7 +258,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 ), Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -20 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 ), Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -20 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Team2/Mech7:transform")
@@ -270,7 +270,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 ), Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -16 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 ), Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -16 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Team2/Mech8:transform")
@@ -282,7 +282,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 1, 2, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( -4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 3, 0, 6 ), Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -12 ) ]
+"values": [ Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 6 ), Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -12 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -471,39 +471,39 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 24.4 )
 [node name="Team1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.2 )
 
-[node name="Mech1" parent="Team1" instance=ExtResource( 7 )]
-transform = Transform( -4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, -3, 0, 6 )
+[node name="Mech1" parent="Team1" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 6 )
 prop_mode = true
 
-[node name="Mech2" parent="Team1" instance=ExtResource( 7 )]
+[node name="Mech2" parent="Team1" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 2 )
 prop_mode = true
 
-[node name="Mech3" parent="Team1" instance=ExtResource( 7 )]
+[node name="Mech3" parent="Team1" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -2 )
 prop_mode = true
 
-[node name="Mech4" parent="Team1" instance=ExtResource( 7 )]
+[node name="Mech4" parent="Team1" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -6 )
 prop_mode = true
 
 [node name="Team2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.2 )
 
-[node name="Mech5" parent="Team2" instance=ExtResource( 7 )]
+[node name="Mech5" parent="Team2" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -6 )
 prop_mode = true
 
-[node name="Mech6" parent="Team2" instance=ExtResource( 7 )]
+[node name="Mech6" parent="Team2" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -2 )
 prop_mode = true
 
-[node name="Mech7" parent="Team2" instance=ExtResource( 7 )]
+[node name="Mech7" parent="Team2" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 2 )
 prop_mode = true
 
-[node name="Mech8" parent="Team2" instance=ExtResource( 7 )]
-transform = Transform( -4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 3, 0, 6 )
+[node name="Mech8" parent="Team2" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 6 )
 prop_mode = true
 
 [node name="TopArms" type="Spatial" parent="."]

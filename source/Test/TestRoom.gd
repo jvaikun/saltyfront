@@ -121,8 +121,7 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		#$Items/Bomb.explode()
-		$ModularArmature.anim_walk()
+		$Items/Bomb.explode()
 	if Input.is_key_pressed(KEY_1):
 		$Items/Bomb.type = "acid"
 	if Input.is_key_pressed(KEY_2):
@@ -193,21 +192,24 @@ func test_attack():
 	]
 	mech_prod.do_attack(shots)
 
+
 func next_mech():
 	turns_queue.push_back(turns_queue.pop_front())
 	turns_queue.front().reset_acts()
 
+
 func reroll_all():
 	for mech in $Mechs.get_children():
 		roll_stats(mech)
+
 
 func roll_stats(mech):
 	# Create new mech stat block
 	var stats = MechStats.new()
 	stats.id = 0
 	stats.pilot = PartDB.drone["0"]
-	# var partSet = str(randi() % PartDB.body.size())
-	var partSet = str(part_set)
+	var partSet = str(randi() % PartDB.body.size())
+	#var partSet = str(part_set)
 	part_set += 1
 	if part_set >= PartDB.body.size():
 		part_set = 0

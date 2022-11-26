@@ -414,8 +414,8 @@ func new_roster() -> void:
 				mech.user_id = pick_list[i + j*ROSTER_SIZE].user
 				pilot_type = "user"
 			else:
-				mech.pilot.name = PartDB.drone[pick_list[i + j*ROSTER_SIZE].pilot].name
-				mech.pilot.face = PartDB.drone[pick_list[i + j*ROSTER_SIZE].pilot].face
+				mech.pilot.name = PartDB.drone[pilot_id].name
+				mech.pilot.face = PartDB.drone[pilot_id].face
 				mech.user_id = "npc"
 				team_dict.open += 1
 			team_dict.data.append(mech)

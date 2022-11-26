@@ -37,11 +37,6 @@ signal glow_done
 export (bool) var prop_mode = false
 export (bool) var debug_mode = false
 
-var anim_legs
-var anim_body
-var anim_armr
-var anim_arml
-
 # Speed settings
 var spd_move = 10.0
 var spd_anim = 1.0
@@ -233,7 +228,7 @@ func _physics_process(delta):
 			if is_moving:
 				move(delta)
 			else:
-				for part in mech_parts:
+				for part in ["arm_r", "arm_l", "body", "legs"]:
 					mech_parts[part].anim.stop()
 				check_item()
 				emit_signal("move_done")
@@ -253,7 +248,7 @@ func _physics_process(delta):
 				state = MechState.WAIT
 		MechState.DONE:
 			if !turn_finished:
-				for part in mech_parts:
+				for part in ["arm_r", "arm_l", "body", "legs"]:
 					mech_parts[part].anim.stop()
 				turn_finished = true
 				#print("Team " + str(team) + ", Mech " + str(num) + " turn finished")
@@ -286,18 +281,10 @@ func setup(var my_arena):
 	for part in mech_parts:
 		if part in ["wpn_l", "wpn_r"]:
 			mech_parts[part].path = part_paths[part] % [mechData[part].type, mechData[part].model]
-		elif part in ["pod_l", "pod_r"]:
-			mech_parts[part].path = part_paths[part] % mechData[part].model
-		elif part == "pack":
-			mech_parts[part].path = part_paths[part] % ("0" + mechData[part].model)
 		else:
-			var model_num = int(mechData[part].model) - 1
-			if model_num > 9:
-				mech_parts[part].path = part_paths[part] % str(model_num)
-			else:
-				mech_parts[part].path = part_paths[part] % ("0" + str(model_num))
+			mech_parts[part].path = part_paths[part] % mechData[part].model
 	
-	var obj_mat = null
+	var team_mat = load("res://scenes/parts/team_" + str(team) + ".material")
 	
 	mech_parts.legs.obj = load(mech_parts.legs.path).instance()
 	$Parts.add_child(mech_parts.legs.obj)
@@ -306,20 +293,17 @@ func setup(var my_arena):
 	mech_parts.body.obj = load(mech_parts.body.path).instance()
 	mech_parts.legs.obj.get_node("Armature/Skeleton/Hip").add_child(mech_parts.body.obj)
 	mech_parts.body.anim = mech_parts.body.obj.get_node("AnimationPlayer")
-	obj_mat = mech_parts.body.obj.get_node("Armature/Skeleton/body").mesh.surface_get_material(1)
-	obj_mat.albedo_color = GameData.teamColors[team]
+	mech_parts.body.obj.get_node("Armature/Skeleton/body").mesh.surface_set_material(1, team_mat)
 	
 	mech_parts.arm_l.obj = load(mech_parts.arm_l.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmL").add_child(mech_parts.arm_l.obj)
 	mech_parts.arm_l.anim = mech_parts.arm_l.obj.get_node("AnimationPlayer")
-	obj_mat = mech_parts.arm_l.obj.get_node("Armature/Skeleton/arm").mesh.surface_get_material(1)
-	obj_mat.albedo_color = GameData.teamColors[team]
+	mech_parts.arm_l.obj.get_node("Armature/Skeleton/arm").mesh.surface_set_material(1, team_mat)
 	
 	mech_parts.arm_r.obj = load(mech_parts.arm_r.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/ArmR").add_child(mech_parts.arm_r.obj)
 	mech_parts.arm_r.anim = mech_parts.arm_r.obj.get_node("AnimationPlayer")
-	obj_mat = mech_parts.arm_r.obj.get_node("Armature/Skeleton/arm").mesh.surface_get_material(1)
-	obj_mat.albedo_color = GameData.teamColors[team]
+	mech_parts.arm_r.obj.get_node("Armature/Skeleton/arm").mesh.surface_set_material(1, team_mat)
 	
 	mech_parts.pack.obj = load(mech_parts.pack.path).instance()
 	mech_parts.body.obj.get_node("Armature/Skeleton/Pack").add_child(mech_parts.pack.obj)
@@ -792,10 +776,10 @@ func get_move_path():
 
 func move(delta):
 	if !move_tiles.empty() && !move_path.empty():
-		if mech_parts.legs.anim.current_animation != "walk":
-			mech_parts.legs.anim.play("walk", -1, spd_anim, false)
-			mech_parts.arm_l.anim.play("walk", -1, spd_anim, false)
-			mech_parts.arm_r.anim.play("walk", -1, spd_anim, false)
+		if mech_parts.legs.anim.current_animation != "walk-loop":
+			mech_parts.legs.anim.play("walk-loop", -1, spd_anim, false)
+			mech_parts.arm_l.anim.play("walk-loop", -1, spd_anim, false)
+			mech_parts.arm_r.anim.play("walk-loop", -1, spd_anim, false)
 		var from = global_transform.origin
 		var to = move_path.front().global_transform.origin
 		var look = to
@@ -824,7 +808,7 @@ func move(delta):
 			is_moving = false
 			#print("Move finished")
 	else:
-		for part in mech_parts:
+		for part in ["arm_r", "arm_l", "body", "legs"]:
 			mech_parts[part].anim.stop()
 		for tile in move_tiles:
 			tile.unmark()
@@ -906,7 +890,6 @@ func do_attack(shot_list):
 	var point = attack_wpn.obj.get_node("Muzzle")
 	if attack_wpn.type == "missile":
 		mech_parts.legs.anim.play("launch_in_" + attack_wpn.side, -1, spd_anim, false)
-		mech_parts.body.anim.play("launch_in_" + attack_wpn.side, -1, spd_anim, false)
 		mech_parts.arm_r.anim.play("launch_in", -1, spd_anim, false)
 		mech_parts.arm_l.anim.play("launch_in", -1, spd_anim, false)
 		yield(mech_parts.legs.anim, "animation_finished")
@@ -973,11 +956,10 @@ func do_attack(shot_list):
 	attack_wpn.obj.end_loop()
 	$Effects/Flame.emitting = false
 	$Effects/AnimEffect.stop()
-	for part in mech_parts:
+	for part in ["arm_r", "arm_l", "body", "legs"]:
 		mech_parts[part].anim.stop()
 	if attack_wpn.type == "missile":
 		mech_parts.legs.anim.play("launch_in_" + attack_wpn.side, -1, -spd_anim, true)
-		mech_parts.body.anim.play("launch_in_" + attack_wpn.side, -1, -spd_anim, true)
 		mech_parts.arm_r.anim.play("launch_in", -1, -spd_anim, true)
 		mech_parts.arm_l.anim.play("launch_in", -1, -spd_anim, true)
 	elif attack_wpn.type != "melee":

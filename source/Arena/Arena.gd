@@ -85,7 +85,7 @@ const debris_obj = preload("res://Effects/Debris.tscn")
 const repair_small_obj = preload("res://scenes/items/RepairSmall.tscn")
 const repair_large_obj = preload("res://scenes/items/RepairLarge.tscn")
 const mine_obj = preload("res://scenes/items/Mine.tscn")
-const mech_obj = preload("res://scenes/mech/MechV2.tscn")
+const mech_obj = preload("res://scenes/mech/MechV3.tscn")
 const nav_obj = preload("res://Arena/NavPoint.tscn")
 const msg_obj = preload("res://ui/DialogText.tscn")
 const obj_explosion = preload("res://Effects/Explosion.tscn")
@@ -875,7 +875,8 @@ func check_win():
 			$Debug/Vectors.focus_mech = null
 		for mech in $Mechs.get_children():
 			mech.state = mech.MechState.DONE
-			mech.mech_anim.stop()
+			for part in ["body", "arm_r", "arm_l", "legs"]:
+				mech.mech_parts[part].anim.stop()
 		match_bonuses()
 	return end_match
 
@@ -931,13 +932,9 @@ func next_turn():
 		else:
 			idle_turns = 0
 		is_turn_idle = true
-		# Reset visibility layer of mech torso
-		#turns_queue.front().mech_parts.body[0].obj.layers = 1
 		turns_queue.push_back(turns_queue.pop_front())
 		while turns_queue.front().is_dead:
 			turns_queue.push_back(turns_queue.pop_front())
-		# Set visibility layer of mech torso to be invisible to POV camera
-		#turns_queue.front().mech_parts.body[0].obj.layers = 2
 		turns_queue.front().reset_acts()
 		#print("Team " + str(turns_queue.front().team) + ", Mech: " + str(turns_queue.front().num) + " reset action")
 		turns_queue.front().item_list = $Items.get_children()

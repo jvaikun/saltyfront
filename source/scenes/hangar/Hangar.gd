@@ -75,7 +75,9 @@ func reset_scene(type):
 	for arm in arms_top:
 		arm.top = true
 	for mech in (team1 + team2):
-		mech.get_node("mech_frame/AnimationPlayer").stop()
+		for part in mech.mech_parts:
+			if is_instance_valid(mech.mech_parts[part].anim):
+				mech.mech_parts[part].anim.stop()
 
 
 func load_mechs(team_list):
@@ -143,7 +145,9 @@ func move_out():
 	yield($AnimationPlayer, "animation_finished")
 	$HangarSign.update_sign("deploy")
 	for mech in (team1 + team2):
-		mech.get_node("mech_frame/AnimationPlayer").play("walk")
+		mech.mech_parts.legs.anim.play("walk-loop")
+		mech.mech_parts.arm_l.anim.play("walk-loop")
+		mech.mech_parts.arm_r.anim.play("walk-loop")
 	$AnimationPlayer.play("mechs_out")
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("mechs_out")
