@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Arena/Arena.gd" type="Script" id=1]
 [ext_resource path="res://Arena/target.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Arena/UnitInfoMini.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Arena/UnitInfo.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Arena/ActionInfo.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/frames/ui_frame.png" type="Texture" id=13]
 [ext_resource path="res://ui/MechView.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Arena/move2.png" type="Texture" id=16]
@@ -62,30 +61,6 @@ albedo_texture = SubResource( 19 )
 
 [sub_resource type="Animation" id=20]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Attacker:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Defender:rect_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ) ]
-}
 
 [sub_resource type="Animation" id=14]
 tracks/0/type = "value"
@@ -208,37 +183,9 @@ tracks/9/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("Attacker:rect_scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Defender:rect_scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
-}
 
 [sub_resource type="DynamicFont" id=15]
 size = 32
-font_data = ExtResource( 19 )
-
-[sub_resource type="DynamicFont" id=17]
-size = 24
 font_data = ExtResource( 19 )
 
 [node name="Arena" type="Spatial"]
@@ -288,6 +235,7 @@ anims/intro = SubResource( 14 )
 [node name="TopBar" type="Control" parent="MapUI"]
 anchor_right = 1.0
 grow_horizontal = 2
+rect_scale = Vector2( 1, 1e-05 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -375,7 +323,6 @@ margin_top = 477.0
 margin_bottom = 620.0
 
 [node name="TurnInfo" type="HBoxContainer" parent="MapUI"]
-visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -388,28 +335,9 @@ grow_vertical = 0
 custom_constants/separation = -16
 alignment = 1
 
-[node name="CurrentUnit" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
-margin_left = 17.0
-margin_top = 80.0
-margin_right = 367.0
-margin_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-
-[node name="AttackInfo" parent="MapUI/TurnInfo" instance=ExtResource( 12 )]
-show_behind_parent = true
-margin_left = 351.0
-margin_top = 80.0
-margin_right = 479.0
-margin_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-
 [node name="MechView" type="MarginContainer" parent="MapUI/TurnInfo"]
-margin_left = 463.0
-margin_right = 929.0
+margin_left = 296.0
+margin_right = 762.0
 margin_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -441,22 +369,13 @@ margin_bottom = 260.0
 [node name="Viewport" type="Viewport" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox"]
 size = Vector2( 426, 240 )
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 3
 
 [node name="ChaseCam" type="Camera" parent="MapUI/TurnInfo/MechView/InnerBox/ViewBox/Viewport"]
 cull_mask = 1048573
 fov = 90.0
 size = 2.0
-
-[node name="Label" type="Label" parent="MapUI/TurnInfo/MechView/InnerBox"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 446.0
-margin_bottom = 39.0
-size_flags_vertical = 0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 17 )
-text = "Mech View:"
+near = 0.2
 
 [node name="OverlayCRT" parent="MapUI/TurnInfo/MechView/InnerBox" instance=ExtResource( 8 )]
 anchor_right = 0.0
@@ -466,32 +385,10 @@ margin_top = 20.0
 margin_right = 446.0
 margin_bottom = 260.0
 
-[node name="CounterInfo" parent="MapUI/TurnInfo" instance=ExtResource( 12 )]
-show_behind_parent = true
-margin_left = 913.0
+[node name="CurrentUnit" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
+margin_left = 746.0
 margin_top = 80.0
-margin_right = 1041.0
-margin_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-
-[node name="InfoCont" parent="MapUI/TurnInfo/CounterInfo" index="0"]
-margin_right = 110.0
-
-[node name="Title" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="0"]
-margin_right = 92.0
-
-[node name="WeaponIcon" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="1"]
-margin_right = 92.0
-
-[node name="WeaponInfo" parent="MapUI/TurnInfo/CounterInfo/InfoCont" index="2"]
-margin_right = 92.0
-
-[node name="CurrentTarget" parent="MapUI/TurnInfo" instance=ExtResource( 11 )]
-margin_left = 1025.0
-margin_top = 80.0
-margin_right = 1375.0
+margin_right = 1096.0
 margin_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -501,14 +398,15 @@ size_flags_vertical = 8
 visible = false
 
 [node name="Attacker" parent="MapUI" instance=ExtResource( 14 )]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -396.0
 margin_bottom = 0.0
 grow_horizontal = 1
-rect_scale = Vector2( 1e-05, 1e-05 )
 
 [node name="Defender" parent="MapUI" instance=ExtResource( 14 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -518,7 +416,6 @@ margin_top = -396.0
 margin_right = 0.0
 margin_bottom = 0.0
 grow_horizontal = 0
-rect_scale = Vector2( 1e-05, 1e-05 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
@@ -538,5 +435,3 @@ script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[editable path="MapUI/TurnInfo/CounterInfo"]

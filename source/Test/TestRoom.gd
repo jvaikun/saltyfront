@@ -148,8 +148,8 @@ func _process(_delta):
 #			mech_select = 0
 #		cam_base.follow_mech(turns_queue[mech_select])
 	if Input.is_action_just_pressed("ui_end"):
-		mech_targ.repair(1)
-		#reroll_all()
+		#mech_targ.repair(1)
+		reroll_all()
 	if Input.is_action_just_pressed("ui_page_down"):
 		if map_cam.cam_mode == map_cam.CamState.NORMAL:
 			map_cam.cam_mode = map_cam.CamState.PHOTO
@@ -214,8 +214,11 @@ func roll_stats(mech):
 	if part_set >= PartDB.body.size():
 		part_set = 0
 	stats.body = PartDB.body[partSet]
+	partSet = str(randi() % PartDB.arm.size())
 	stats.arm_r = PartDB.arm[partSet]
+	partSet = str(randi() % PartDB.arm.size())
 	stats.arm_l = PartDB.arm[partSet]
+	partSet = str(randi() % PartDB.legs.size())
 	stats.legs = PartDB.legs[partSet]
 	var wpnSet = test_weapons[wpn_test_type] #str(randi() % PartDB.weapon.size())
 	stats.wpn_r = PartDB.weapon[wpnSet]

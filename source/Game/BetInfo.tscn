@@ -1,39 +1,33 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/frames/ui_panel.tres" type="StyleBox" id=1]
 [ext_resource path="res://ui/fonts/font_terminal.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://ui/frames/bar2_fg.png" type="Texture" id=3]
-[ext_resource path="res://ui/frames/bar2_fill.png" type="Texture" id=4]
 [ext_resource path="res://Game/BetInfo.gd" type="Script" id=5]
 [ext_resource path="res://ui/fonts/ui_font_small.tres" type="DynamicFont" id=6]
+[ext_resource path="res://ui/fonts/ui_font_terminal.tres" type="DynamicFont" id=7]
 
 [sub_resource type="DynamicFont" id=6]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 24
-font_data = ExtResource( 2 )
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 2
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 2
+
+[sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxLine" id=2]
-color = Color( 0, 1, 0, 1 )
-thickness = 2
-
-[sub_resource type="StyleBoxLine" id=3]
-color = Color( 0, 1, 0, 1 )
-thickness = 2
-vertical = true
-
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=10]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 1, 1, 1, 1 )
 
 [node name="BetInfo" type="VBoxContainer"]
@@ -43,19 +37,19 @@ size_flags_horizontal = 3
 script = ExtResource( 5 )
 
 [node name="Header" type="PanelContainer" parent="."]
-margin_right = 540.0
-margin_bottom = 109.0
+margin_right = 546.0
+margin_bottom = 99.0
 custom_styles/panel = ExtResource( 1 )
 
 [node name="Body" type="HBoxContainer" parent="Header"]
 margin_left = 18.0
 margin_top = 18.0
-margin_right = 522.0
-margin_bottom = 91.0
+margin_right = 528.0
+margin_bottom = 81.0
 
 [node name="Team1" type="VBoxContainer" parent="Header/Body"]
 margin_right = 120.0
-margin_bottom = 73.0
+margin_bottom = 63.0
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,66 +57,65 @@ __meta__ = {
 
 [node name="TeamName" type="Label" parent="Header/Body/Team1"]
 margin_right = 120.0
-margin_bottom = 19.0
+margin_bottom = 63.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 6 )
-text = "TEAM NAME"
+text = "TEAM NAME
+TEAM ODDS
+BET INFO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Odds" type="Label" parent="Header/Body/Team1"]
-margin_top = 27.0
-margin_right = 120.0
-margin_bottom = 46.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "TEAM ODDS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bets" type="Label" parent="Header/Body/Team1"]
-margin_top = 54.0
-margin_right = 120.0
-margin_bottom = 73.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "BET INFO"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="Header/Body"]
+[node name="BetRatio" type="HBoxContainer" parent="Header/Body"]
 margin_left = 124.0
-margin_right = 380.0
-margin_bottom = 73.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 256, 64 )
+margin_right = 386.0
+margin_bottom = 63.0
 size_flags_horizontal = 3
-max_value = 1.0
-step = 0.01
-value = 0.5
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 3 )
-texture_progress = ExtResource( 4 )
-fill_mode = 1
-tint_under = Color( 1, 0, 0, 1 )
-tint_progress = Color( 0, 0, 1, 1 )
-nine_patch_stretch = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
+custom_constants/separation = 0
+
+[node name="TeamColor1" type="ColorRect" parent="Header/Body/BetRatio"]
+margin_right = 131.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Header/Body/BetRatio/TeamColor1"]
+material = SubResource( 7 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.5
+margin_top = -15.0
+margin_right = 34.5
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 7 )
+text = "1000C"
+
+[node name="TeamColor2" type="ColorRect" parent="Header/Body/BetRatio"]
+margin_left = 131.0
+margin_right = 262.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Header/Body/BetRatio/TeamColor2"]
+material = SubResource( 8 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.5
+margin_top = -15.0
+margin_right = 34.5
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 7 )
+text = "1000C"
 
 [node name="Team2" type="VBoxContainer" parent="Header/Body"]
-margin_left = 384.0
-margin_right = 504.0
-margin_bottom = 73.0
+margin_left = 390.0
+margin_right = 510.0
+margin_bottom = 63.0
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,188 +123,27 @@ __meta__ = {
 
 [node name="TeamName" type="Label" parent="Header/Body/Team2"]
 margin_right = 120.0
-margin_bottom = 19.0
+margin_bottom = 63.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = SubResource( 6 )
-text = "TEAM NAME"
+text = "TEAM NAME
+TEAM ODDS
+BET INFO"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Odds" type="Label" parent="Header/Body/Team2"]
-margin_top = 27.0
-margin_right = 120.0
-margin_bottom = 46.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "TEAM ODDS"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bets" type="Label" parent="Header/Body/Team2"]
-margin_top = 54.0
-margin_right = 120.0
-margin_bottom = 73.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "BET INFO"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Body" type="HBoxContainer" parent="."]
-visible = false
-margin_top = 113.0
-margin_right = 540.0
-margin_bottom = 210.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="Team1" type="VBoxContainer" parent="Body"]
-margin_right = 264.0
-margin_bottom = 97.0
-size_flags_horizontal = 3
-custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TeamName" type="Label" parent="Body/Team1"]
-margin_right = 264.0
-margin_bottom = 23.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-custom_styles/normal = SubResource( 4 )
-text = "TEAM NAME"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Odds" type="Label" parent="Body/Team1"]
-margin_top = 31.0
-margin_right = 264.0
-margin_bottom = 50.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "TEAM ODDS"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bets" type="Label" parent="Body/Team1"]
-margin_top = 58.0
-margin_right = 264.0
-margin_bottom = 77.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "BET INFO"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator" type="HSeparator" parent="Body/Team1"]
-margin_top = 85.0
-margin_right = 264.0
-margin_bottom = 89.0
-custom_styles/separator = SubResource( 2 )
-
-[node name="BetList" type="VBoxContainer" parent="Body/Team1"]
-margin_top = 97.0
-margin_right = 264.0
-margin_bottom = 97.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VSeparator" type="VSeparator" parent="Body"]
-margin_left = 268.0
-margin_right = 272.0
-margin_bottom = 97.0
-custom_styles/separator = SubResource( 3 )
-
-[node name="Team2" type="VBoxContainer" parent="Body"]
-margin_left = 276.0
-margin_right = 540.0
-margin_bottom = 97.0
-size_flags_horizontal = 3
-custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TeamName" type="Label" parent="Body/Team2"]
-margin_right = 264.0
-margin_bottom = 23.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-custom_styles/normal = SubResource( 5 )
-text = "TEAM NAME"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Odds" type="Label" parent="Body/Team2"]
-margin_top = 31.0
-margin_right = 264.0
-margin_bottom = 50.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "TEAM ODDS"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bets" type="Label" parent="Body/Team2"]
-margin_top = 58.0
-margin_right = 264.0
-margin_bottom = 77.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "BET INFO"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator" type="HSeparator" parent="Body/Team2"]
-margin_top = 85.0
-margin_right = 264.0
-margin_bottom = 89.0
-custom_styles/separator = SubResource( 2 )
-
-[node name="BetList" type="VBoxContainer" parent="Body/Team2"]
-margin_top = 97.0
-margin_right = 264.0
-margin_bottom = 97.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="TopBets" type="HBoxContainer" parent="."]
-margin_top = 113.0
-margin_right = 540.0
-margin_bottom = 191.0
+margin_top = 103.0
+margin_right = 546.0
+margin_bottom = 189.0
 custom_constants/separation = 0
 
 [node name="Team1" type="PanelContainer" parent="TopBets"]
-margin_right = 270.0
-margin_bottom = 78.0
+margin_right = 273.0
+margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = ExtResource( 1 )
@@ -319,28 +151,30 @@ custom_styles/panel = ExtResource( 1 )
 [node name="Body" type="VBoxContainer" parent="TopBets/Team1"]
 margin_left = 18.0
 margin_top = 18.0
-margin_right = 252.0
-margin_bottom = 60.0
+margin_right = 255.0
+margin_bottom = 68.0
 
 [node name="Header" type="Label" parent="TopBets/Team1/Body"]
-margin_right = 234.0
-margin_bottom = 19.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
+margin_right = 237.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
-text = "Team 1 Top Bets"
+custom_styles/normal = SubResource( 9 )
+text = "TOP 10 BETS: TEAM"
+align = 1
 
 [node name="BetList" type="Label" parent="TopBets/Team1/Body"]
-margin_top = 23.0
-margin_right = 234.0
-margin_bottom = 42.0
+margin_top = 31.0
+margin_right = 237.0
+margin_bottom = 50.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Bet List"
 
 [node name="Team2" type="PanelContainer" parent="TopBets"]
-margin_left = 270.0
-margin_right = 540.0
-margin_bottom = 78.0
+margin_left = 273.0
+margin_right = 546.0
+margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = ExtResource( 1 )
@@ -348,20 +182,22 @@ custom_styles/panel = ExtResource( 1 )
 [node name="Body" type="VBoxContainer" parent="TopBets/Team2"]
 margin_left = 18.0
 margin_top = 18.0
-margin_right = 252.0
-margin_bottom = 60.0
+margin_right = 255.0
+margin_bottom = 68.0
 
 [node name="Header" type="Label" parent="TopBets/Team2/Body"]
-margin_right = 234.0
-margin_bottom = 19.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
+margin_right = 237.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
-text = "Team 1 Top Bets"
+custom_styles/normal = SubResource( 10 )
+text = "TOP 10 BETS: TEAM"
+align = 1
 
 [node name="BetList" type="Label" parent="TopBets/Team2/Body"]
-margin_top = 23.0
-margin_right = 234.0
-margin_bottom = 42.0
+margin_top = 31.0
+margin_right = 237.0
+margin_bottom = 50.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Bet List"

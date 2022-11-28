@@ -98,10 +98,8 @@ onready var map_info = $MapUI/TopBar/MapInfo/InfoLabel
 onready var match_info = $MapUI/TopBar/MatchInfo
 onready var team_info1 = $MapUI/TeamInfo1
 onready var team_info2 = $MapUI/TeamInfo2
+onready var mech_cam = $MapUI/TurnInfo/MechView/InnerBox/ViewBox/Viewport/ChaseCam
 onready var unit_info = $MapUI/TurnInfo/CurrentUnit
-onready var attack_info = $MapUI/TurnInfo/AttackInfo
-onready var target_info = $MapUI/TurnInfo/CurrentTarget
-onready var counter_info = $MapUI/TurnInfo/CounterInfo
 
 # Arena variables:
 var state : int = MapState.IDLE
@@ -316,8 +314,12 @@ func hit_location():
 	if loc_roll > hitArmL && loc_roll <= hitTotal:
 		return "legs"
 
+
 # Run combat between two mechs
 func combat(attacker, defender):
+	$MapUI/TurnInfo.hide()
+	$MapUI/Attacker.show()
+	$MapUI/Defender.show()
 	is_turn_idle = false
 	var atk_parts_lost = attacker.mechData.part_lost
 	var def_parts_lost = defender.mechData.part_lost
@@ -362,6 +364,11 @@ func combat(attacker, defender):
 			if attacker.is_dead:
 				defender.mechData.kill += 1
 	attacker.in_combat = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	$MapUI/TurnInfo.show()
+	$MapUI/Attacker.hide()
+	$MapUI/Defender.hide()
+
 
 func pick_action(atk, def):
 	if atk.attack_wpn.special != "none":
@@ -783,15 +790,12 @@ func ui_update():
 				$Debug/DebugInfo.text = debug_info
 			# Update current unit info
 			unit_info.update_info(thisMech)
-			attack_info.update_info(thisMech.attack_wpn)
 			# Update mech POV camera
+			mech_cam.global_transform = thisMech.cam_point.global_transform
+			mech_cam.rotation_degrees.y += 180
 			$MapUI/Attacker.update_info(thisMech)
 			if is_instance_valid(thisMech.attack_target):
-				counter_info.update_info(thisMech.attack_target.attack_wpn)
 				$MapUI/Defender.update_info(thisMech.attack_target)
-			else:
-				counter_info.update_info(null)
-			target_info.update_info(thisMech.attack_target)
 
 
 func check_win():
@@ -1216,8 +1220,13 @@ func load_map(tournament):
 	ui_update()
 	map_cam.translation = map_cam.origin + Vector3(0, 25, 0)
 	if map_props.light == "Night":
-		$MapUI/Attacker.night_mode_on()
-		$MapUI/Defender.night_mode_on()
+		mech_cam.environment = load("res://scenes/maps/env_nightvision.tres")
+		$MapUI/Attacker.night_mode(true)
+		$MapUI/Defender.night_mode(true)
+	else:
+		mech_cam.environment = null
+		$MapUI/Attacker.night_mode(false)
+		$MapUI/Defender.night_mode(false)
 	map_cam.cam.current = true
 	$MapUI.visible = false
 

@@ -78,5 +78,8 @@ func update_info(mech):
 				"N/A"]
 
 
-func night_mode_on():
-	cam_pov.environment = load("res://scenes/maps/env_nightvision.tres")
+func night_mode(toggle):
+	if toggle:
+		cam_pov.environment = load("res://scenes/maps/env_nightvision.tres")
+	else:
+		cam_pov.environment = null

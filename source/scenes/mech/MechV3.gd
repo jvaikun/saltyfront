@@ -318,9 +318,11 @@ func setup(var my_arena):
 	
 	mech_parts.pod_l.obj = load(mech_parts.pod_l.path).instance()
 	mech_parts.arm_l.obj.get_node("Armature/Skeleton/Shoulder").add_child(mech_parts.pod_l.obj)
+	mech_parts.pod_l.obj.translation += Vector3(0, 0.15, 0)
 	
 	mech_parts.pod_r.obj = load(mech_parts.pod_r.path).instance()
 	mech_parts.arm_r.obj.get_node("Armature/Skeleton/Shoulder").add_child(mech_parts.pod_r.obj)
+	mech_parts.pod_r.obj.translation += Vector3(0, 0.15, 0)
 	
 	# Build weapon list
 	weapon_list.clear()
@@ -397,8 +399,6 @@ func reset_acts():
 
 
 # aux functions:
-
-
 # Update recent damage amount of attacker
 func update_threats(attacker, damage):
 	for enemy in enemies:
@@ -819,7 +819,6 @@ func move(delta):
 # Damage function
 func damage(data):
 	# Get current part hp values
-	var sfx = "bullet_hit"
 	var part_hp = {
 		"body":bodyHP,
 		"arm_r":armRHP,
@@ -829,19 +828,20 @@ func damage(data):
 	if data.part != "miss":
 		if "effect" in data:
 			add_effect(data.effect)
-		match data.type:
-			"melee":
-				sfx = "step_mech"
-			"missile":
-				sfx = "explode_sm"
-			"flame":
-				sfx = "none"
 		# If a destroyed arm/leg was hit, apply half damage to the body instead
 		if data.part != "body" && part_hp[data.part] <= 0:
 			data.part = "body"
 			data.dmg = data.dmg/2
 		mech_parts[data.part].obj.impact("hit", data.dmg, data.crit)
-		play_fx(sfx)
+		match data.type:
+			"melee":
+				play_fx("step_mech")
+			"missile":
+				play_fx("explode_sm")
+			"flame":
+				pass
+			_:
+				play_fx("bullet_hit")
 		match data.part:
 			"body":
 				self.bodyHP -= data.dmg
@@ -853,16 +853,9 @@ func damage(data):
 				self.legsHP -= data.dmg
 		mechData.dmg_in += data.dmg
 	else:
-		sfx = "bullet_miss"
-		match data.type:
-			"melee":
-				sfx = "none"
-			"missile":
-				sfx = "none"
-			"flame":
-				sfx = "none"
 		mech_parts.body.obj.impact("miss", "miss", data.crit)
-		play_fx(sfx)
+		if !(data.type in ["melee", "missile", "flame"]):
+			play_fx("bullet_miss")
 
 # Spawn bullet for attack
 func projectile(target, object, hardpoint, speed, spread, data):

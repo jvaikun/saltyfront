@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://classes/MechPart.gd" type="Script" id=1]
 [ext_resource path="res://scenes/parts/legs/models/mat_legs4.material" type="Material" id=2]
 [ext_resource path="res://scenes/parts/legs/textures/tex_legs12.png" type="Texture" id=3]
 [ext_resource path="res://Effects/Sparks.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Effects/Thruster.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_local_to_scene = true
@@ -269,12 +270,12 @@ bones/1/name = "leg.l"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.18, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("LegL") ]
 bones/2/name = "leg.r"
 bones/2/parent = 0
 bones/2/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.18, 0 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("LegR") ]
 
 [node name="legs" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
@@ -285,15 +286,24 @@ material/0 = SubResource( 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08, 0 )
 bone_name = "root"
 
-[node name="Sparks" type="Particles" parent="Armature/Skeleton/Hip" instance=ExtResource( 4 )]
+[node name="Sparks" parent="Armature/Skeleton/Hip" instance=ExtResource( 4 )]
 material_override = SubResource( 8 )
-cast_shadow = 0
-emitting = false
-explosiveness = 1.0
-randomness = 0.8
-local_coords = false
 process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 14 )
+
+[node name="LegL" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.9, 0 )
+bone_name = "leg.l"
+
+[node name="Thruster" parent="Armature/Skeleton/LegL" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, -0.4, -0.1 )
+
+[node name="LegR" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.9, 0 )
+bone_name = "leg.r"
+
+[node name="Thruster" parent="Armature/Skeleton/LegR" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, -0.4, -0.1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle-loop = SubResource( 3 )

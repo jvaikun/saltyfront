@@ -10,3 +10,5 @@ id,name,hp,defense,dodge,move,jump,model,texture
 8,Enforcer,372,10,0.05,6,2,1,0
 9,Shinra,384,4,0.15,12,2,2,0
 10,Titan,384,8,0.05,8,2,0,0
+11,Capricorn,350,12,0.05,6,2,11,0
+12,Staccato,300,4,0.1,10,6,12,0
